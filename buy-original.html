@@ -155,7 +155,7 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
     <div class="trust-item">
       
       <h3>Secure Payment</h3>
-      <p>Payment is processed via a secure payment link — both provide full buyer protection. You have recourse if anything goes wrong. No wire transfers, no cash, no risk.</p>
+      <p>Payment is processed via a secure link — all major credit cards accepted. You have full buyer protection and recourse if anything goes wrong. No wire transfers, no cash.</p>
     </div>
     <div class="trust-item">
       
@@ -211,7 +211,7 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
         <div class="step-number">3</div>
         <div class="step-content">
           <h4>Secure payment</h4>
-          <p>You'll receive an invoice via a secure payment link. Both carry full buyer protection — you can dispute the charge if the painting doesn't arrive as described. Payment in full secures the work. No payment plan or deposit arrangements.</p>
+          <p>You'll receive a secure invoice link by email. All major credit cards accepted, with full buyer protection. Payment in full secures the work — no deposits, no payment plans.</p>
           <p class="step-detail">Accepted: all major credit cards. Buyer protection included.</p>
         </div>
       </div>
@@ -250,7 +250,7 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
   <div class="terms-section">
     <div class="term-item">
       <h4>Payment</h4>
-      <p>Payment in full required before shipping. Accepted via PayPal (buyer protection included) or secure payment link (all major credit cards). No wire transfers.</p>
+      <p>Payment in full required before shipping. All major credit cards accepted via secure invoice link. No wire transfers.</p>
     </div>
     <div class="term-item">
       <h4>Shipping</h4>
@@ -306,6 +306,14 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
 </footer>
 
 <script>
+// Pre-fill painting name from URL param
+const urlParams = new URLSearchParams(window.location.search);
+const paintingParam = urlParams.get('painting');
+if(paintingParam) {
+  const field = document.getElementById('acq-painting');
+  if(field) field.value = paintingParam;
+}
+
 // Acquisition inquiry form
 async function submitAcqForm(e) {
   e.preventDefault();
