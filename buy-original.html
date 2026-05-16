@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buy an Original Painting — Mary Kilpatrick</title>
+<meta name="description" content="How to acquire an original Mary Kilpatrick painting. Secure payment, insured shipping, Certificate of Authenticity. Direct from the artist.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%239C7C38'/><text y='72' x='50' text-anchor='middle' font-size='60' font-family='Georgia,serif' fill='white'>MK</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Karla:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FDFBF7;
+  --paper: #F5F1EA;
+  --warm-gray: #4A3F35;
+  --light-gray: #6B5F55;
+  --soft-black: #1A1814;
+  --gold: #9C7C38;
+  --gold-light: #C4A45A;
+  --rule: rgba(156,124,56,0.2);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:"Karla",sans-serif;background:var(--cream);color:var(--soft-black);font-weight:300;font-size:1rem;line-height:1.7;-webkit-font-smoothing:antialiased;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);border-bottom:1px solid var(--rule);height:64px;display:flex;align-items:center;padding:0 48px;justify-content:space-between;}
+.nav-name{font-family:"EB Garamond",serif;font-size:1.2rem;font-weight:400;letter-spacing:0.1em;text-decoration:none;color:var(--soft-black);text-transform:uppercase;}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
+.nav-links a{font-size:0.7rem;font-weight:400;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;color:var(--soft-black);transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{color:var(--gold)!important;border:1px solid var(--gold);padding:7px 18px;transition:all 0.2s!important;}
+.nav-cta:hover{background:var(--gold)!important;color:#fff!important;}
+.nav-dropdown{position:relative;}
+.nav-dropdown-menu{display:none;position:absolute;top:100%;left:0;background:var(--cream);border:1px solid var(--rule);min-width:200px;z-index:1001;box-shadow:0 4px 16px rgba(0,0,0,0.08);padding:8px 0;list-style:none;}
+.nav-dropdown:hover .nav-dropdown-menu{display:block;}
+.nav-dropdown-menu li a{display:block;padding:10px 20px;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--soft-black);text-decoration:none;transition:color 0.2s;}
+.nav-dropdown-menu li a:hover{color:var(--gold);}
+
+/* PAGE */
+.page{padding:120px 64px 80px;}
+.page-header{max-width:720px;margin-bottom:72px;}
+.page-header .label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.2em;color:var(--gold);margin-bottom:20px;display:block;}
+.page-header h1{font-family:"EB Garamond",serif;font-size:3.2rem;font-weight:400;line-height:1.15;margin-bottom:20px;}
+.page-header .intro{font-size:1.05rem;color:var(--warm-gray);line-height:1.85;max-width:600px;}
+
+/* TRUST SIGNALS */
+.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:80px;background:var(--rule);}
+.trust-item{background:var(--cream);padding:40px 36px;}
+.trust-item .trust-icon{font-size:1.4rem;margin-bottom:16px;display:block;}
+.trust-item h3{font-family:"EB Garamond",serif;font-size:1.25rem;font-weight:400;margin-bottom:10px;}
+.trust-item p{font-size:0.88rem;color:var(--warm-gray);line-height:1.8;}
+
+/* PROCESS */
+.process-section{max-width:760px;margin-bottom:80px;}
+.process-section h2{font-family:"EB Garamond",serif;font-size:2rem;font-weight:400;margin-bottom:40px;}
+.process-steps{display:flex;flex-direction:column;gap:0;}
+.process-step{display:grid;grid-template-columns:64px 1fr;gap:24px;padding:32px 0;border-bottom:1px solid var(--rule);}
+.process-step:first-child{border-top:1px solid var(--rule);}
+.step-number{font-family:"EB Garamond",serif;font-size:2.4rem;color:var(--gold);opacity:0.4;font-weight:400;line-height:1;}
+.step-content h4{font-family:"EB Garamond",serif;font-size:1.15rem;font-weight:400;margin-bottom:6px;}
+.step-content p{font-size:0.88rem;color:var(--warm-gray);line-height:1.8;}
+.step-content .step-detail{font-size:0.78rem;color:var(--light-gray);margin-top:8px;padding-top:8px;border-top:1px solid var(--rule);}
+
+/* TERMS */
+.terms-section{background:var(--paper);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:56px 64px;margin:0 -64px 80px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;}
+.term-item h4{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold);margin-bottom:10px;}
+.term-item p{font-size:0.87rem;color:var(--warm-gray);line-height:1.8;}
+
+/* CTA */
+.cta-section{max-width:680px;}
+.cta-section h2{font-family:"EB Garamond",serif;font-size:2rem;font-weight:400;margin-bottom:16px;}
+.cta-section p{font-size:0.95rem;color:var(--warm-gray);line-height:1.85;margin-bottom:36px;}
+.cta-buttons{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-primary{background:var(--soft-black);color:#fff;padding:14px 36px;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;font-family:"Karla",sans-serif;transition:background 0.2s;display:inline-block;}
+.btn-primary:hover{background:var(--gold);}
+.btn-secondary{background:transparent;color:var(--soft-black);border:1px solid var(--soft-black);padding:14px 36px;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;font-family:"Karla",sans-serif;transition:all 0.2s;display:inline-block;}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold);}
+
+/* CONTACT STRIP */
+.contact-strip{margin-top:80px;padding-top:40px;border-top:1px solid var(--rule);display:flex;gap:48px;align-items:flex-start;}
+.contact-strip .contact-item{font-size:0.82rem;color:var(--warm-gray);}
+.contact-strip .contact-item strong{display:block;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold);font-weight:400;margin-bottom:4px;}
+.contact-strip a{color:var(--warm-gray);text-decoration:none;}
+.contact-strip a:hover{color:var(--gold);}
+
+/* FOOTER */
+footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-content:space-between;align-items:center;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--light-gray);}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{color:var(--light-gray);text-decoration:none;}
+.footer-links a:hover{color:var(--gold);}
+
+@media(max-width:900px){
+  nav{padding:0 24px;}
+  .page{padding:100px 24px 60px;}
+  .trust-grid{grid-template-columns:1fr;}
+  .terms-section{grid-template-columns:1fr;margin:0 -24px 60px;padding:40px 24px;}
+  .process-section{max-width:100%;}
+  footer{padding:24px;flex-direction:column;gap:16px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">Mary Kilpatrick</a>
+  <ul class="nav-links">
+    <li><a href="index.html" onclick="sessionStorage.setItem('openBio','1')">About</a></li>
+    <li><a href="index.html#gallery">Works</a></li>
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">Acquire ▾</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="buy-original.html" style="color:var(--gold);">Buy an Original</a></li>
+        <li><a href="prints.html">Buy Prints</a></li>
+      </ul>
+    </li>
+    <li><a href="index.html#contact">Inquire</a></li>
+    <li><a href="tel:+14586663614">(458) 666-3614</a></li>
+    <li><a href="prints.html" class="nav-cta">Buy Prints</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <div class="page-header">
+    <span class="label">Acquiring an Original</span>
+    <h1>You're buying something that can't be replaced.</h1>
+    <p class="intro">Every original Mary Kilpatrick painting is a one-of-a-kind object — acrylic and mixed media on canvas, often with real feathers, gemstones, and found materials embedded in the surface. Once it's gone, it's gone. Here's exactly how the process works, what protects you, and what to expect.</p>
+  </div>
+
+  <!-- TRUST SIGNALS -->
+  <div class="trust-grid">
+    <div class="trust-item">
+      <span class="trust-icon">🔒</span>
+      <h3>Secure Payment</h3>
+      <p>Payment is processed via PayPal or Square — both provide full buyer protection. You have recourse if anything goes wrong. Mary never receives payment until the transaction is confirmed. No wire transfers, no cash, no risk.</p>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">📦</span>
+      <h3>Insured & Tracked Shipping</h3>
+      <p>Every original ships via FedEx or UPS with declared value coverage and full tracking. You'll receive tracking the day it ships and can watch it move. Mary packs every painting herself — acid-free tissue, bubble wrap, rigid crating — the same standard used for gallery shipments.</p>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">📜</span>
+      <h3>Certificate of Authenticity</h3>
+      <p>Every original ships with a signed Certificate of Authenticity documenting the title, medium, dimensions, date, and Mary's signature. This travels with the painting and establishes its provenance — important for resale, insurance, and estate purposes.</p>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">📸</span>
+      <h3>Pre-Ship Documentation</h3>
+      <p>Before your painting ships, Mary photographs it in detail — front, back, edges, any mixed media elements — and sends those images to you. You know exactly what you're receiving before it leaves the studio. No surprises on arrival.</p>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">🛡️</span>
+      <h3>Damage Protection</h3>
+      <p>If your painting arrives damaged in transit, Mary makes it right — period. Photograph the damage before opening the packaging fully, contact us within 48 hours, and we handle the claim and resolution. You will not be left holding a damaged painting.</p>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">📞</span>
+      <h3>A Real Person to Call</h3>
+      <p>This isn't a faceless e-commerce operation. Mary's studio can be reached directly at <a href="tel:+14586663614" style="color:var(--warm-gray);">(458) 666-3614</a> or <a href="mailto:art@marykilpatrick.com" style="color:var(--warm-gray);">art@marykilpatrick.com</a>. Questions before you buy are welcome. So are questions after.</p>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <div class="process-section">
+    <h2>How it works</h2>
+    <div class="process-steps">
+
+      <div class="process-step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>Send an inquiry</h4>
+          <p>Use the form below or email <a href="mailto:art@marykilpatrick.com" style="color:var(--warm-gray);">art@marykilpatrick.com</a> with the painting you're interested in. Include any questions — size concerns, what it looks like in person, whether it's framed, anything.</p>
+          <p class="step-detail">Response within one business day. Usually sooner.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>Confirm availability & details</h4>
+          <p>Mary personally responds to every inquiry. She'll confirm the painting is available, answer your questions, and share any additional detail photos you'd like — specific angles, texture close-ups, how it looks under different lighting.</p>
+          <p class="step-detail">Paintings are held for 48 hours during active inquiry — not indefinitely. First to complete payment secures the work.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>Secure payment</h4>
+          <p>You'll receive an invoice via PayPal or Square. Both carry full buyer protection — you can dispute the charge if the painting doesn't arrive as described. Payment in full secures the work. No payment plan or deposit arrangements.</p>
+          <p class="step-detail">Accepted: all major credit cards via Square, or PayPal. Both provide buyer protection.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h4>Pre-ship photos & packing</h4>
+          <p>Before anything moves, Mary photographs the painting in full and sends you those images. She then packs it using gallery-standard materials — acid-free tissue, archival padding, bubble wrap, and a rigid outer crate appropriate for the size.</p>
+          <p class="step-detail">Packing typically takes 1–2 days. You'll be notified when it ships.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <h4>Tracked, insured delivery</h4>
+          <p>Ships via FedEx or UPS with declared value coverage and full tracking. You receive the tracking number the day it ships. Estimated transit 3–7 business days within the continental US. Signature required on delivery.</p>
+          <p class="step-detail">Currently shipping within the continental United States only.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">6</div>
+        <div class="step-content">
+          <h4>Your painting arrives</h4>
+          <p>Unpack carefully, keeping all packaging materials until you've confirmed the condition. Inside the crate you'll find the painting and its Certificate of Authenticity. If anything looks off, photograph it immediately and contact the studio within 48 hours.</p>
+          <p class="step-detail">Buyer is responsible for shipping cost. Mary calculates exact shipping based on size and destination and includes it on your invoice — no markup.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TERMS -->
+  <div class="terms-section">
+    <div class="term-item">
+      <h4>Payment</h4>
+      <p>Payment in full required before shipping. Accepted via PayPal (buyer protection included) or Square (all major credit cards). No wire transfers.</p>
+    </div>
+    <div class="term-item">
+      <h4>Shipping</h4>
+      <p>Continental US only. FedEx or UPS, declared value coverage, full tracking. Actual cost billed at cost — no markup. Signature required on delivery.</p>
+    </div>
+    <div class="term-item">
+      <h4>Returns & Damage</h4>
+      <p>All sales are final — originals are one-of-a-kind and cannot be resold as new. Damage in transit is covered: photograph immediately, contact within 48 hours, and Mary handles it.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>Ready to inquire?</h2>
+    <p>Browse the paintings, find one that stops you, and reach out. Mary responds personally to every inquiry. There's no obligation, no pressure, and no sales process — just a conversation about a painting you're interested in owning.</p>
+    <div class="cta-buttons">
+      <a href="index.html#gallery" class="btn-primary">View the Paintings</a>
+      <a href="index.html#contact" class="btn-secondary">Send an Inquiry</a>
+    </div>
+  </div>
+
+  <!-- CONTACT STRIP -->
+  <div class="contact-strip">
+    <div class="contact-item">
+      <strong>Phone</strong>
+      <a href="tel:+14586663614">(458) 666-3614</a>
+    </div>
+    <div class="contact-item">
+      <strong>Email</strong>
+      <a href="mailto:art@marykilpatrick.com">art@marykilpatrick.com</a>
+    </div>
+    <div class="contact-item">
+      <strong>Response time</strong>
+      Within one business day
+    </div>
+    <div class="contact-item">
+      <strong>Studio location</strong>
+      Bend, Oregon
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span>&copy; 2026 Mary Kilpatrick. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="prints.html">Prints</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="https://www.instagram.com/marykilpatrickart/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</footer>
+
+<script>
+// Nav dropdown
+document.querySelectorAll('.nav-dropdown-toggle').forEach(toggle => {
+  toggle.addEventListener('click', e => {
+    e.preventDefault();
+    const menu = toggle.nextElementSibling;
+    menu.style.display = menu.style.display === 'block' ? '' : 'block';
+  });
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown-menu').forEach(m => m.style.display = '');
+  }
+});
+</script>
+</body>
+</html>
