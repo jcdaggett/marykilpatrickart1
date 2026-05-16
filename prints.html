@@ -32,7 +32,7 @@
     --paper: #F7F1E8;
     --soft-black: #1A1A1A;
     --dark-gold: #9C7C38;
-    --warm-gray: #6D635B;
+    --warm-gray: #4A3F35;
     --light-gray: #6B5F55;
     --sold-red: #B02020;
     --success: #2D7A4F;
@@ -42,10 +42,10 @@
   body { font-family: 'Karla', sans-serif; background: var(--cream); color: var(--soft-black); font-weight: 300; font-size: 1rem; line-height: 1.7; -webkit-font-smoothing: antialiased; }
   h1,h2,h3,h4 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
   nav { position: fixed; top: 0; width: 100%; height: 72px; background: rgba(253,251,247,0.96); backdrop-filter: blur(10px); display: flex; justify-content: space-between; align-items: center; padding: 0 48px; z-index: 1000; border-bottom: 1px solid rgba(184,176,168,0.2); }
-  .nav-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; text-decoration: none; color: var(--soft-black); letter-spacing: 0.02em; }
-  .nav-links { list-style: none; display: flex; gap: 36px; align-items: center; }
-  .nav-links a { text-decoration: none; color: var(--soft-black); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; transition: color 0.3s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--dark-gold); }
+  .nav-name{font-family:"EB Garamond",serif;font-size:1.2rem;font-weight:400;letter-spacing:0.1em;text-decoration:none;color:var(--soft-black);text-transform:uppercase;}
+  .nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
+  .nav-links a{font-size:0.7rem;font-weight:400;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;color:var(--soft-black);transition:color 0.2s;}
+  .nav-links a:hover{color:var(--dark-gold);}
   .nav-dropdown { position: relative; }
   .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--cream); border: 1px solid rgba(184,176,168,0.2); min-width: 200px; z-index: 1001; box-shadow: 0 4px 16px rgba(0,0,0,0.08); padding: 8px 0; list-style: none; }
   .nav-dropdown:hover .nav-dropdown-menu { display: block; }
@@ -222,7 +222,7 @@
 <nav>
   <a href="index.html" class="nav-name">Mary Kilpatrick</a>
   <ul class="nav-links">
-    <li><a href="index.html" onclick="sessionStorage.setItem('openBio','1')">About</a></li>
+    <li><a href="index.html" >About</a></li>
     <li><a href="index.html#gallery">Works</a></li>
     <li class="nav-dropdown">
       <a href="index.html#buy" class="nav-dropdown-toggle">Acquire ▾</a>
