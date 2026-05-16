@@ -128,10 +128,26 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
 
 <div class="page">
 
-  <div class="page-header">
-    <span class="label">Acquiring an Original</span>
-    <h1>Every original is one of a kind.<br>Here's how it gets to you safely.</h1>
-    <p class="intro">Each painting is acrylic on canvas. Several works incorporate real feathers, gemstones, and found materials physically embedded in the surface — making those originals truly three-dimensional objects. Below is exactly how the process works, what protects you, and what to expect from inquiry to delivery.</p>
+  <div style="display:grid;grid-template-columns:1fr 420px;gap:80px;margin-bottom:72px;align-items:start;">
+    <div class="page-header" style="margin-bottom:0;">
+      <span class="label">Acquiring an Original</span>
+      <h1>Every original is one of a kind.<br>Here's how it gets to you safely.</h1>
+      <p class="intro">Each painting is acrylic on canvas. Several works incorporate real feathers, gemstones, and found materials physically embedded in the surface — making those originals truly three-dimensional objects. Below is exactly how the process works, what protects you, and what to expect from inquiry to delivery.</p>
+    </div>
+
+    <!-- INQUIRY FORM -->
+    <div style="background:var(--paper);padding:40px;border-top:2px solid var(--gold);">
+      <p style="font-family:'EB Garamond',serif;font-size:1.3rem;font-weight:400;margin-bottom:6px;">Interested in a painting?</p>
+      <p style="font-size:0.85rem;color:var(--warm-gray);margin-bottom:24px;">Tell us which painting and we'll be in touch within one business day.</p>
+      <form id="acq-form" onsubmit="submitAcqForm(event)" style="display:flex;flex-direction:column;gap:14px;">
+        <input type="text" id="acq-name" placeholder="Your name" required style="border:1px solid var(--rule);background:#fff;padding:11px 14px;font-size:0.92rem;font-family:'Karla',sans-serif;outline:none;color:var(--soft-black);">
+        <input type="email" id="acq-email" placeholder="Email address" required style="border:1px solid var(--rule);background:#fff;padding:11px 14px;font-size:0.92rem;font-family:'Karla',sans-serif;outline:none;color:var(--soft-black);">
+        <input type="text" id="acq-painting" placeholder="Which painting? (optional)" style="border:1px solid var(--rule);background:#fff;padding:11px 14px;font-size:0.92rem;font-family:'Karla',sans-serif;outline:none;color:var(--soft-black);">
+        <textarea id="acq-message" placeholder="Questions or notes" rows="4" style="border:1px solid var(--rule);background:#fff;padding:11px 14px;font-size:0.92rem;font-family:'Karla',sans-serif;outline:none;color:var(--soft-black);resize:vertical;"></textarea>
+        <button type="submit" id="acq-btn" style="background:var(--soft-black);color:#fff;border:none;padding:14px;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;cursor:pointer;font-family:'Karla',sans-serif;transition:background 0.2s;">Send Inquiry</button>
+        <p id="acq-msg" style="font-size:0.82rem;color:var(--warm-gray);display:none;"></p>
+      </form>
+    </div>
   </div>
 
   <!-- TRUST SIGNALS -->
@@ -290,6 +306,42 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
 </footer>
 
 <script>
+// Acquisition inquiry form
+async function submitAcqForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('acq-btn');
+  const msg = document.getElementById('acq-msg');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  msg.style.display = 'none';
+  const name = document.getElementById('acq-name').value.trim();
+  const email = document.getElementById('acq-email').value.trim();
+  const painting = document.getElementById('acq-painting').value.trim();
+  const message = document.getElementById('acq-message').value.trim();
+  try {
+    const res = await fetch('https://mary-kilpatrick-api.jesse-daggett.workers.dev/api/inquire', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({name, email, painting: painting || 'Originals inquiry', message})
+    });
+    const data = await res.json();
+    if(res.ok && data.success) {
+      msg.style.color = 'var(--gold)';
+      msg.textContent = 'Received. We\'ll be in touch within one business day.';
+      msg.style.display = 'block';
+      document.getElementById('acq-form').reset();
+    } else {
+      throw new Error();
+    }
+  } catch {
+    msg.style.color = '#c0392b';
+    msg.textContent = 'Something went wrong. Please email art@marykilpatrick.com directly.';
+    msg.style.display = 'block';
+  }
+  btn.disabled = false;
+  btn.textContent = 'Send Inquiry';
+}
+
 // Nav dropdown
 document.querySelectorAll('.nav-dropdown-toggle').forEach(toggle => {
   toggle.addEventListener('click', e => {
