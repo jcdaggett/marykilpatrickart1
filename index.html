@@ -337,13 +337,13 @@ footer a:hover{color:var(--gold);}
 
 
 <!-- ARTIST CARD — fixed top right -->
-<div class="artist-card" id="about">
+<div class="artist-card" id="about" onclick="event.stopPropagation()">
   <img class="artist-card-photo" src="mary_photo.jpg" alt="Mary Kilpatrick">
   <div class="artist-card-body">
     <p class="artist-card-name">Mary Kilpatrick</p>
     <p class="artist-card-role">Broadway Actress · Painter</p>
     <p class="artist-card-bio">From Broadway to canvas — original mixed media paintings celebrating women's lives.</p>
-    <a href="#" class="artist-card-link" onclick="openBioModal(event)">Full Biography ›</a>
+    <a href="#" class="artist-card-link" onclick="event.stopPropagation();event.preventDefault();document.getElementById('bio-modal').classList.add('active');document.body.style.overflow='hidden';">Full Biography ›</a>
   </div>
 </div>
 
