@@ -301,24 +301,31 @@ footer a:hover{color:var(--gold);}
   /* RESPONSIVE */
 @media(max-width:1100px){.reviews-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:900px){
-  nav{padding:0 24px;}
-  .nav-links{gap:16px;}
-  .nav-links li:nth-child(-n+3){display:none;}
+  nav{padding:0 16px;height:56px;}
+  .nav-name{font-size:0.95rem;letter-spacing:0.08em;}
+  .nav-links{gap:12px;}
+  .nav-links li:nth-child(-n+4){display:none;}
+  .nav-links li:last-child,.nav-links li:nth-last-child(2){display:flex;}
   .artist-intro{grid-template-columns:1fr;}
-  .artist-photo-wrap{height:280px;order:-1;}
-  .artist-intro-text{padding:36px 24px;}
-  .section-header,.reviews-section,.faq-section,.contact-section{padding-left:24px;padding-right:24px;}
-  .gallery-section{padding:0 0 60px;}
-  .buy-section{grid-template-columns:1fr;padding:48px 24px;gap:48px;}
-  .contact-section{grid-template-columns:1fr;gap:48px;}
+  .artist-photo-wrap{height:260px;order:-1;}
+  .artist-intro-text{padding:28px 20px;}
+  .section-header,.reviews-section,.faq-section,.contact-section{padding-left:20px;padding-right:20px;}
+  .gallery-section{padding:0 0 48px;}
+  .buy-section{grid-template-columns:1fr;padding:40px 20px;gap:40px;}
+  .contact-section{grid-template-columns:1fr;gap:40px;}
   .faq-grid{grid-template-columns:1fr;}
   .gallery-grid{grid-template-columns:repeat(2,1fr);}
   .artist-card{display:none!important;}
+  h1{font-size:2.4rem;}
+  .credentials-inline{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:580px){
-  .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  .gallery-grid{grid-template-columns:1fr;}
   .form-row{grid-template-columns:1fr;}
   footer{flex-direction:column;gap:14px;text-align:center;}
+  .credentials-inline{grid-template-columns:1fr;}
+  nav{padding:0 16px;}
+  .nav-name{font-size:0.85rem;}
 }
 .nav-dropdown { position: relative; }
 .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--cream); border: 1px solid rgba(184,176,168,0.2); min-width: 200px; z-index: 1001; box-shadow: 0 4px 16px rgba(0,0,0,0.08); padding: 8px 0; list-style: none; }
@@ -364,6 +371,7 @@ footer a:hover{color:var(--gold);}
     <p class="artist-card-role">Broadway Actress · Painter</p>
     <p class="artist-card-bio">From Broadway to canvas — original figurative paintings celebrating women's lives.</p>
     <a href="#hero" class="artist-card-link">Full Biography ›</a>
+    <button onclick="document.getElementById('about').style.display='none'" style="display:block;margin-top:10px;background:none;border:none;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--light-gray);cursor:pointer;padding:0;font-family:'Karla',sans-serif;">Hide ×</button>
   </div>
 </div>
 
@@ -573,7 +581,7 @@ footer a:hover{color:var(--gold);}
     <div class="buy-panel-divider"></div>
     <h3>Limited Edition Prints</h3>
     <p>Every painting is available as a numbered limited edition print — a maximum of 100 worldwide, ever. When an edition sells out, it closes permanently. Each print is made to last and ships with a signed and numbered Certificate of Authenticity.</p>
-    <p style="font-size:0.8rem;color:var(--light-gray);">Somerset Velvet, Hot Press, or Cold Press fine art paper. Prints from $150. Ships nationwide.</p>
+    <p style="font-size:0.8rem;color:var(--light-gray);">Somerset Velvet, Hot Press, or Cold Press fine art paper. Ships nationwide.</p>
     <a href="prints.html" class="btn-primary">Browse &amp; Buy Prints</a>
   </div>
 </section>
@@ -626,20 +634,12 @@ footer a:hover{color:var(--gold);}
       <p>Yes. Numbered limited edition prints on 100% cotton rag, acid-free fine art paper. Choose from Somerset Velvet, Hot Press, or Cold Press. Each ships with a signed, numbered Certificate of Authenticity. Maximum 100 prints per painting — once sold out, permanently closed.</p>
     </div>
     <div class="faq-item">
-      <h3>What makes these paintings different?</h3>
-      <p>A performer's eye for the human figure, an illustrator's gift for narrative, and an advocate's authenticity — almost never found together in one artist. Many works are also mixed media: physically built with real feathers, jewels, beads, and lace embedded in the canvas.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Why own an original rather than a print?</h3>
-      <p>Several originals — Earth Mother, Cotton Candy, Josephine Baker, Personas — are mixed media objects with real materials in the canvas. A print is beautiful. The original is a physical object that commands a room. When you own it, you own the only one that will ever exist.</p>
-    </div>
-    <div class="faq-item">
       <h3>What is giclée?</h3>
       <p>Giclée (zhee-KLAY) is the fine art printing standard used by galleries and museums worldwide. Archival pigment inks on 100% cotton rag, acid-free paper. The difference from standard prints is immediately apparent — the paper has weight, the colors have depth, the print reads as art.</p>
     </div>
     <div class="faq-item">
       <h3>Do you ship nationwide?</h3>
-      <p>Yes. Prints ship nationwide via insured carrier with tracking — 3–5 business days production. Originals also ship nationwide with crating and insurance. The studio will provide all shipping details on inquiry.</p>
+      <p>Yes. Prints ship nationwide via insured carrier with tracking — 3–5 business days production. Originals also ship nationwide with crating and insurance. All shipping details provided on inquiry.</p>
     </div>
   </div>
 </section>
@@ -653,7 +653,7 @@ footer a:hover{color:var(--gold);}
       <div class="section-rule"></div>
     </div>
     <h2 style="font-family:'EB Garamond',serif;font-size:2.4rem;font-weight:400;margin-bottom:16px;">Get in Touch</h2>
-    <p>For questions about originals, prints, private viewings, or anything else. The studio responds within one business day.</p>
+    <p>For questions about originals, prints, or anything else. We respond within one business day.</p>
     <div class="contact-details">
       <div class="contact-detail-item"><span class="detail-label">Email</span><a href="mailto:art@marykilpatrick.com" style="color:var(--gold);text-decoration:none;">art@marykilpatrick.com</a></div>
       <div class="contact-detail-item"><span class="detail-label">Phone</span><a href="tel:+14586663614" style="color:var(--soft-black);text-decoration:none;">(458) 666-3614</a></div>
@@ -840,7 +840,7 @@ async function submitInquiry(e){
   try{
     const res=await fetch(`${WORKER_URL}/api/inquire`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,painting,message})});
     const data=await res.json();
-    if(data.success){msg.style.color='var(--gold)';msg.textContent='Thank you. The studio will be in touch within one business day.';btn.textContent='Sent';}
+    if(data.success){msg.style.color='var(--gold)';msg.textContent='Thank you. We\'ll be in touch within one business day.';btn.textContent='Sent';}
     else throw new Error(data.error||'Failed');
   }catch(err){
     msg.style.color='#c0392b';
