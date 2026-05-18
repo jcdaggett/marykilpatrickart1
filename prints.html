@@ -32,8 +32,8 @@
     --paper: #F7F1E8;
     --soft-black: #1A1A1A;
     --dark-gold: #9C7C38;
-    --warm-gray: #4A3F35;
-    --light-gray: #6B5F55;
+    --warm-gray: #6D635B;
+    --light-gray: #B8B0A8;
     --sold-red: #B02020;
     --success: #2D7A4F;
   }
@@ -42,10 +42,10 @@
   body { font-family: 'Karla', sans-serif; background: var(--cream); color: var(--soft-black); font-weight: 300; font-size: 1rem; line-height: 1.7; -webkit-font-smoothing: antialiased; }
   h1,h2,h3,h4 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
   nav { position: fixed; top: 0; width: 100%; height: 72px; background: rgba(253,251,247,0.96); backdrop-filter: blur(10px); display: flex; justify-content: space-between; align-items: center; padding: 0 48px; z-index: 1000; border-bottom: 1px solid rgba(184,176,168,0.2); }
-  .nav-name{font-family:"EB Garamond",serif;font-size:1.2rem;font-weight:400;letter-spacing:0.1em;text-decoration:none;color:var(--soft-black);text-transform:uppercase;}
-  .nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
-  .nav-links a{font-size:0.7rem;font-weight:400;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;color:var(--soft-black);transition:color 0.2s;}
-  .nav-links a:hover{color:var(--dark-gold);}
+  .nav-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; text-decoration: none; color: var(--soft-black); letter-spacing: 0.02em; }
+  .nav-links { list-style: none; display: flex; gap: 36px; align-items: center; }
+  .nav-links a { text-decoration: none; color: var(--soft-black); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; transition: color 0.3s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--dark-gold); }
   .nav-dropdown { position: relative; }
   .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--cream); border: 1px solid rgba(184,176,168,0.2); min-width: 200px; z-index: 1001; box-shadow: 0 4px 16px rgba(0,0,0,0.08); padding: 8px 0; list-style: none; }
   .nav-dropdown:hover .nav-dropdown-menu { display: block; }
@@ -222,24 +222,24 @@
 <nav>
   <a href="index.html" class="nav-name">Mary Kilpatrick</a>
   <ul class="nav-links">
-    <li><a href="index.html" >About</a></li>
-    <li><a href="index.html#gallery">Works</a></li>
+    <li><a href="index.html#about">About</a></li>
     <li class="nav-dropdown">
-      <a href="index.html#buy" class="nav-dropdown-toggle">Acquire ▾</a>
+      <a href="index.html#buy" class="nav-dropdown-toggle">Buy ▾</a>
       <ul class="nav-dropdown-menu">
-        <li><a href="buy-original.html">Acquire an Original</a></li>
         <li><a href="prints.html" class="active">Buy Prints</a></li>
+        <li><a href="index.html#contact">Inquire About Originals</a></li>
       </ul>
     </li>
+    <li><a href="index.html#work">The Paintings</a></li>
     <li><a href="index.html#contact">Inquire</a></li>
-    <li><a href="tel:+14586663614">(458) 666-3614</a></li>
+    <li><a href="tel:+14586663614" style="color:var(--dark-gold);letter-spacing:0.05em;">(458) 666-3614</a></li>
   </ul>
 </nav>
 
 <div class="page-header">
   <h1>Mary Kilpatrick</h1>
   <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--warm-gray);margin-top:-8px;margin-bottom:20px;letter-spacing:0.04em;">Limited Edition Prints</h2>
-  <p>Every painting is available as a numbered limited edition print — a maximum of 100 worldwide, ever. When an edition sells out, it closes permanently. Each print is made to last, ships with a signed and numbered Certificate of Authenticity, and is delivered nationwide.</p>
+  <p>Every painting is available as a numbered limited edition print at the original painting's dimensions — a maximum of 100 worldwide, ever. When an edition sells out, it closes permanently. Each print is made to last, ships with a signed and numbered Certificate of Authenticity, and is delivered nationwide.</p>
 </div>
 
 <div class="shop-container">
@@ -473,17 +473,20 @@ function parseDims(dims) {
 }
 
 // Generate size tiers at 25%, 50%, 75%, 100%, 125%, 150%, 175%, 200%
-// Convert decimal inches to fraction string: 3.75 → '3¾'
-function toFraction(n) {
-  const whole = Math.floor(n);
-  const dec = Math.round((n - whole) * 8) / 8; // round to nearest 1/8
-  const fracs = { 0:'', 0.125:'⅛', 0.25:'¼', 0.375:'⅜', 0.5:'½', 0.625:'⅝', 0.75:'¾', 0.875:'⅞' };
-  const frac = fracs[dec] !== undefined ? fracs[dec] : '';
-  return whole === 0 ? (frac || '0') : (frac ? `${whole}${frac}` : `${whole}`);
-}
-
+// Single size — original dimensions only
 function getSizeTiers(painting) {
   const { w, h } = parseDims(painting.dims);
+  return [{
+    pct: 1.0,
+    label: '100%',
+    w: Math.round(w * 4) / 4,
+    h: Math.round(h * 4) / 4,
+    displayW: toFraction(Math.round(w * 4) / 4),
+    displayH: toFraction(Math.round(h * 4) / 4),
+    id: '100pct',
+    price: null
+  }];
+} = parseDims(painting.dims);
   const tiers = [0.25, 0.50, 0.75, 1.0, 1.25, 1.50, 1.75, 2.0];
   return tiers.map(t => {
     const rawW = Math.round(w * t * 4) / 4; // round to nearest ¼"
@@ -501,15 +504,13 @@ function getSizeTiers(painting) {
   });
 }
 
-// Print pricing: square root area scaling anchored at 20% of original price at 100% size
-// Scale factor = sqrt(size_pct) — gentle curve that keeps small sizes accessible
-// Floor: $150 | No cap — price scales naturally with size
+// Pricing: Lumaprints cost + $60 profit, rounded to nearest $5
+// Rate calibrated from real API data: 8×10 Somerset Velvet = $12.09
+// Rate = $0.12/sq inch + $2.50 base
 function estimatePrice(painting, size) {
-  const pct = size.pct || 1.0;
-  const basePrice = painting.originalPrice * 0.20;  // 100% size price = 20% of original
-  const scale = Math.sqrt(pct);                      // gentle square root curve
-  const price = basePrice * scale;
-  return Math.round(Math.max(150, price) / 5) * 5;  // round to nearest $5, $150 floor
+  const sqIn = size.w * size.h;
+  const estimatedLumaCost = sqIn * 0.12 + 2.50;
+  return Math.round((estimatedLumaCost + 60) / 5) * 5;
 }
 
 function totalPrice() {
@@ -685,27 +686,17 @@ The paper you'd find in a fine art print room at Christie's, Sotheby's, or MoMA.
 
 This is our recommended paper for Mary's acrylic and mixed media paintings.
 
-Made from 100% cotton — not wood pulp. That distinction matters: wood-pulp paper yellows and becomes brittle within decades. Cotton holds its color and structure for well over a hundred years. Thick enough to frame without mounting.
-
 255 gsm · 19 mil · 100% cotton rag · acid-free`,
 
-  'hot_press': `Hot Press — Maximum Color & Precision
+  'hot_press': `Hot Press — Maximum Precision & Color
 
-Hot Press has no surface texture — the paper completely disappears and what you see is pure image. Every brushstroke, every detail in Mary's originals comes through without anything competing with it. Colors are the most vivid of the three papers. Blacks are the deepest.
-
-The right choice for Mary's most saturated, graphic paintings — works where the boldness of the color is the point.
-
-100% cotton rather than wood pulp, so it won't yellow or degrade over time. Heavier than standard photo paper — closer in feel to a hardcover book cover. Frames without mounting and hangs flat.
+The paper of choice for photographers and artists who demand the highest color accuracy and the sharpest possible reproduction. Hot Press has an ultra-smooth surface — no visible texture — so every detail in the original painting comes through with complete fidelity. The color gamut is exceptional: colors are vivid and precise, blacks are the deepest of the three papers. If you've admired a large-format print in a contemporary art gallery and marveled at how alive it looked, it was almost certainly printed on a smooth cotton rag paper like this. Nothing competes with the image.
 
 330 gsm · 17 mil · 100% cotton rag · acid-free`,
 
-  'cold_press': `Cold Press — Painterly Surface & Depth
+  'cold_press': `Cold Press — Painterly Texture & Depth
 
-Cold Press has a pronounced visible texture — the kind of surface you'd see on a traditional watercolor or printmaking paper. When you run your hand across it, you feel the image as much as see it. That physicality makes it right for Mary's more expressive, raw paintings — works where the texture adds to the feeling rather than competing with it.
-
-The heaviest of the three papers. Colors are rich and warm rather than vivid and sharp. Where Hot Press maximizes precision and Somerset Velvet whispers texture, Cold Press makes its presence felt.
-
-100% cotton, archival, won't yellow. Substantial enough to frame without mounting.
+The paper that most closely evokes the feeling of an original work on canvas. Cold Press has a pronounced, visible texture — the same heavily laid surface you'd find on fine watercolor and printmaking papers used in traditional ateliers. It's the heaviest of the three papers and the most tactile: you can see and feel the surface working with the image. Colors are rich and deep, with exceptional contrast. Where Somerset Velvet whispers its texture and Hot Press disappears into the image, Cold Press makes itself known — and for Mary's most expressive, physical paintings, that presence is exactly right.
 
 340 gsm · 21 mil · 100% cotton rag · acid-free`,
 };
@@ -778,10 +769,7 @@ function renderSizeOptions() {
       </button>
     `;
   }).join('') + `
-    <button class="option-btn" style="border-style:dashed;" onclick="window.open('index.html#contact','_blank')">
-      Larger than 200% — Inquire
-      <span class="opt-price">Custom pricing</span>
-    </button>
+
   `;
 }
 
@@ -803,13 +791,18 @@ async function selectSize(sizeId) {
 
   updatePriceSummary();
 
-  // Background call to Lumaprints to log our cost (non-blocking)
+  // Fetch real Lumaprints cost and set final price as cost + $60
   fetch(`${WORKER_URL}/api/price`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ width: size.w, height: size.h, paperType: selected.paper.id })
   }).then(r => r.json()).then(data => {
-    if (data.lumaPrice) console.log(`Luma cost for ${size.displayW}×${size.displayH}: $${data.lumaPrice}, margin: $${(selected.size.price - data.lumaPrice).toFixed(2)}`);
+    if (data.lumaPrice && data.lumaPrice > 0) {
+      const finalPrice = Math.round((data.lumaPrice + 60) / 5) * 5;
+      selected.size.price = Math.max(65, finalPrice);
+      if (priceEl) priceEl.textContent = `$${selected.size.price.toLocaleString()}`;
+      updatePriceSummary();
+    }
   }).catch(() => {});
 }
 
