@@ -320,9 +320,10 @@
 
     <!-- Price summary -->
     <div class="price-summary" id="price-summary" style="display:none;">
-      <div class="price-row total"><span>Price</span><span class="price-val" id="total-price-display">—</span></div>
-      <p class="price-note">First edition · signed &amp; numbered Certificate of Authenticity included</p>
-      <p class="price-note" style="margin-top:4px;">+ shipping calculated at checkout · ships nationwide</p>
+      <div class="price-row"><span>Print price</span><span class="price-val" id="print-price-display">—</span></div>
+      <div class="price-row"><span>Shipping</span><span style="font-size:0.85rem;color:var(--warm-gray);">Calculated at checkout based on destination</span></div>
+      <div class="price-row total"><span>Print Total</span><span class="price-val" id="total-price-display">—</span></div>
+      <p class="price-note">First edition · signed &amp; numbered Certificate of Authenticity included · ships nationwide via insured carrier</p>
     </div>
 
 
@@ -343,8 +344,16 @@
 
     <!-- Checkout -->
     <div class="checkout-section" id="checkout-section">
-      <p class="step-label">Step 3</p>
-      <h2 style="font-family:"EB Garamond",serif;font-size:2.2rem;margin-bottom:24px;font-weight:400;">Shipping &amp; Payment</h2>
+      <p class="step-label">Step 3 — Shipping &amp; Payment</p>
+      <h2 style="font-family:'EB Garamond',serif;font-size:2.2rem;margin-bottom:24px;font-weight:400;">Complete Your Order</h2>
+
+      <div id="order-summary" style="background:#fff;border:1px solid rgba(156,124,56,0.2);padding:20px 24px;margin-bottom:28px;display:grid;grid-template-columns:1fr 1fr;gap:8px 32px;">
+        <div><span style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--light-gray);display:block;margin-bottom:2px;">Painting</span><span id="sum-painting" style="font-size:0.88rem;color:var(--soft-black);">—</span></div>
+        <div><span style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--light-gray);display:block;margin-bottom:2px;">Paper</span><span id="sum-paper" style="font-size:0.88rem;color:var(--soft-black);">—</span></div>
+        <div><span style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--light-gray);display:block;margin-bottom:2px;">Size</span><span id="sum-size" style="font-size:0.88rem;color:var(--soft-black);">—</span></div>
+        <div><span style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--light-gray);display:block;margin-bottom:2px;">Print Price</span><span id="sum-total" style="font-family:'EB Garamond',serif;font-size:1.2rem;color:var(--dark-gold);">—</span></div>
+        <div style="grid-column:1/-1;padding-top:8px;border-top:1px solid rgba(184,176,168,0.2);font-size:0.78rem;color:var(--light-gray);">+ Shipping calculated after address entry</div>
+      </div>
 
       <div class="form-grid">
         <div class="form-group"><label>First Name *</label><input type="text" id="firstName" placeholder="Jane"></div>
@@ -786,7 +795,7 @@ function renderSizeOptions() {
       ${size.displayW}×${size.displayH}″ &nbsp;<span style="font-size:0.7rem;opacity:0.6;">(original size)</span>
       <span class="opt-price" id="price-${size.id}">Loading…</span>
     </button>
-    <button class="option-btn" style="border-style:dashed;opacity:0.7;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+    <button class="option-btn" style="border-style:dashed;opacity:0.7;" onclick="window.location.href='index.html#contact'">
       Custom size — Inquire
       <span class="opt-price">Contact us</span>
     </button>
@@ -836,6 +845,7 @@ async function selectSize(sizeId) {
 function updatePriceSummary() {
   if (!selected.painting || !selected.paper || !selected.size) return;
   const price = totalPrice();
+  document.getElementById('print-price-display').textContent = `$${price.toLocaleString()}`;
   document.getElementById('total-price-display').textContent = `$${price.toLocaleString()}`;
   document.getElementById('price-summary').style.display = 'block';
   document.getElementById('checkout-btn').style.display = 'block';
@@ -848,6 +858,13 @@ function showCheckout() {
   } catch(e) {
     document.getElementById('card-errors').textContent = e.message;
     return;
+  }
+  // Populate order summary
+  if (selected.painting && selected.paper && selected.size) {
+    document.getElementById('sum-painting').textContent = selected.painting.title;
+    document.getElementById('sum-paper').textContent = selected.paper.name;
+    document.getElementById('sum-size').textContent = `${selected.size.displayW}×${selected.size.displayH}"`;
+    document.getElementById('sum-total').textContent = `$${totalPrice().toLocaleString()}`;
   }
   document.getElementById('checkout-section').classList.add('active');
   document.getElementById('checkout-section').scrollIntoView({ behavior:'smooth', block:'start' });
@@ -883,6 +900,13 @@ async function submitOrder() {
   const emailVal = document.getElementById('email').value.trim();
   if (!emailVal.includes('@') || !emailVal.includes('.')) {
     document.getElementById('card-errors').textContent = 'Please enter a valid email address.';
+    return;
+  }
+  // Block international orders that need manual handling
+  const countryVal = document.getElementById('country').value;
+  if (countryVal === 'OTHER') {
+    document.getElementById('card-errors').textContent = '';
+    window.location.href = 'index.html#contact';
     return;
   }
 
