@@ -15,7 +15,7 @@
 <meta property="og:description" content="First edition giclée prints on 100% cotton rag fine art paper — Somerset Velvet, Hot Press, or Cold Press. Broadway actress and figurative painter Mary Kilpatrick. Limited editions, signed certificate.">
 <meta property="og:image" content="https://www.marykilpatrick.com/mary-kilpatrick-earth-mother-figurative-painting.jpg">
 <meta property="og:site_name" content="Mary Kilpatrick">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Karla:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Karla:wght@300;400&display=swap" rel="stylesheet">
 <script src="https://js.stripe.com/v3/"></script>
 
 <!-- Google tag (gtag.js) -->
@@ -32,27 +32,27 @@
     --paper: #F7F1E8;
     --soft-black: #1A1A1A;
     --dark-gold: #9C7C38;
-    --warm-gray: #6D635B;
-    --light-gray: #B8B0A8;
+    --warm-gray: #4A3F35;
+    --light-gray: #6B5F55;
     --sold-red: #B02020;
     --success: #2D7A4F;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body { font-family: 'Karla', sans-serif; background: var(--cream); color: var(--soft-black); font-weight: 300; font-size: 1rem; line-height: 1.7; -webkit-font-smoothing: antialiased; }
-  h1,h2,h3,h4 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+  h1,h2,h3,h4 { font-family: "EB Garamond", serif; font-weight: 400; }
   nav { position: fixed; top: 0; width: 100%; height: 72px; background: rgba(253,251,247,0.96); backdrop-filter: blur(10px); display: flex; justify-content: space-between; align-items: center; padding: 0 48px; z-index: 1000; border-bottom: 1px solid rgba(184,176,168,0.2); }
-  .nav-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; text-decoration: none; color: var(--soft-black); letter-spacing: 0.02em; }
-  .nav-links { list-style: none; display: flex; gap: 36px; align-items: center; }
-  .nav-links a { text-decoration: none; color: var(--soft-black); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; transition: color 0.3s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--dark-gold); }
+  .nav-name{font-family:"EB Garamond",serif;font-size:1.2rem;font-weight:400;letter-spacing:0.1em;text-decoration:none;color:var(--soft-black);text-transform:uppercase;}
+  .nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
+  .nav-links a{font-size:0.7rem;font-weight:400;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;color:var(--soft-black);transition:color 0.2s;}
+  .nav-links a:hover{color:var(--dark-gold);}
   .nav-dropdown { position: relative; }
   .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--cream); border: 1px solid rgba(184,176,168,0.2); min-width: 200px; z-index: 1001; box-shadow: 0 4px 16px rgba(0,0,0,0.08); padding: 8px 0; list-style: none; }
   .nav-dropdown:hover .nav-dropdown-menu { display: block; }
   .nav-dropdown-menu li a { display: block; padding: 10px 20px; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--soft-black); text-decoration: none; transition: color 0.2s; }
   .nav-dropdown-menu li a:hover { color: var(--dark-gold); }
   .page-header { margin-top: 72px; background: var(--cream); padding: 60px 48px 40px; text-align: center; border-bottom: 1px solid rgba(184,176,168,0.2); }
-  .page-header h1 { font-size: 3.8rem; color: var(--soft-black); margin-bottom: 16px; font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+  .page-header h1 { font-size: 3.8rem; color: var(--soft-black); margin-bottom: 16px; font-family: "EB Garamond", serif; font-weight: 400; }
   .page-header p { color: var(--warm-gray); font-size: 1rem; max-width: 640px; margin: 0 auto; line-height: 1.8; }
   .shop-container { max-width: 1300px; margin: 0 auto; padding: 70px 48px; }
   .step-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--dark-gold); margin-bottom: 10px; font-weight: 400; }
@@ -64,7 +64,7 @@
   .painting-card.selected { border-color: var(--dark-gold); box-shadow: 0 6px 24px rgba(156,124,56,0.25); }
   .painting-card img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
   .painting-card-info { padding: 12px 10px 14px; }
-  .painting-card-info h3 { font-size: 1.05rem; font-family: 'Cormorant Garamond', serif; margin-bottom: 4px; font-weight: 400; }
+  .painting-card-info h3 { font-size: 1.05rem; font-family: "EB Garamond", serif; margin-bottom: 4px; font-weight: 400; }
   .painting-card-info .card-price { font-size: 0.78rem; color: var(--warm-gray); }
 
   /* Configurator */
@@ -79,7 +79,7 @@
 
   /* Options */
   .options-section { margin-bottom: 32px; }
-  .options-section h4 { font-size: 1.05rem; font-family: 'Cormorant Garamond', serif; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(184,176,168,0.3); color: var(--soft-black); }
+  .options-section h4 { font-size: 1.05rem; font-family: "EB Garamond", serif; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(184,176,168,0.3); color: var(--soft-black); }
   .options-grid { display: flex; flex-wrap: wrap; gap: 10px; }
   .option-btn { border: 1px solid var(--light-gray); background: #fff; padding: 8px 16px; font-size: 0.82rem; cursor: pointer; transition: all 0.2s; font-family: 'Karla', sans-serif; color: var(--soft-black); white-space: nowrap; }
   .option-btn:hover { border-color: var(--dark-gold); }
@@ -90,7 +90,7 @@
   .price-summary { background: #fff; border: 1px solid rgba(156,124,56,0.2); padding: 28px 32px; margin: 28px 0; }
   .price-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; font-size: 0.9rem; color: var(--warm-gray); }
   .price-row.total { border-top: 1px solid rgba(184,176,168,0.3); margin-top: 10px; padding-top: 14px; font-size: 1.1rem; color: var(--soft-black); }
-  .price-row.total .price-val { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--dark-gold); }
+  .price-row.total .price-val { font-family: "EB Garamond", serif; font-size: 1.8rem; color: var(--dark-gold); }
   .price-note { font-size: 0.78rem; color: var(--light-gray); margin-top: 8px; }
 
   /* Checkout */
@@ -176,7 +176,7 @@
     font-weight: 400;
     margin-bottom: 4px;
     color: var(--dark-gold);
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "EB Garamond", serif;
     font-size: 0.95rem;
   }
   .paper-btn-wrap:hover .paper-tooltip,
@@ -194,6 +194,19 @@
       border-bottom-color: var(--soft-black);
     }
   }
+
+/* HAMBURGER */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;z-index:1002;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--soft-black);transition:all 0.3s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.nav-mobile{display:none;position:fixed;top:64px;left:0;right:0;background:#FDFBF7;border-bottom:1px solid rgba(156,124,56,0.2);z-index:999;padding:24px 24px 32px;flex-direction:column;gap:0;}
+.nav-mobile.open{display:flex;}
+.nav-mobile a{display:block;padding:14px 0;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.15em;color:#1A1814;text-decoration:none;border-bottom:1px solid rgba(156,124,56,0.2);}
+.nav-mobile a:last-child{border-bottom:none;}
+.nav-mobile .nav-mobile-cta{color:#9C7C38;margin-top:16px;border:1px solid #9C7C38;text-align:center;padding:14px;border-bottom:1px solid #9C7C38!important;}
+@media(max-width:900px){.nav-links{display:none;}.nav-hamburger{display:flex;}}
 </style>
 <script type="application/ld+json">
 {
@@ -222,30 +235,43 @@
 <nav>
   <a href="index.html" class="nav-name">Mary Kilpatrick</a>
   <ul class="nav-links">
-    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html" >About</a></li>
+    <li><a href="index.html#gallery">Works</a></li>
     <li class="nav-dropdown">
-      <a href="index.html#buy" class="nav-dropdown-toggle">Buy ▾</a>
+      <a href="index.html#buy" class="nav-dropdown-toggle">Acquire ▾</a>
       <ul class="nav-dropdown-menu">
+        <li><a href="buy-original.html">Acquire an Original</a></li>
         <li><a href="prints.html" class="active">Buy Prints</a></li>
-        <li><a href="index.html#contact">Inquire About Originals</a></li>
       </ul>
     </li>
-    <li><a href="index.html#work">The Paintings</a></li>
     <li><a href="index.html#contact">Inquire</a></li>
-    <li><a href="tel:+14586663614" style="color:var(--dark-gold);letter-spacing:0.05em;">(458) 666-3614</a></li>
-  </ul>
+    <li><a href="tel:+14586663614">(458) 666-3614</a></li>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="nav-mobile">
+  <a href="index.html#hero">About</a>
+  <a href="index.html#gallery">Works</a>
+  <a href="buy-original.html">Acquire an Original</a>
+  <a href="prints.html">Buy Prints</a>
+  <a href="index.html#contact">Inquire</a>
+  <a href="tel:+14586663614">(458) 666-3614</a>
+  <a href="prints.html" class="nav-mobile-cta">Buy Prints</a>
+</div>
 
 <div class="page-header">
   <h1>Mary Kilpatrick</h1>
-  <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--warm-gray);margin-top:-8px;margin-bottom:20px;letter-spacing:0.04em;">Limited Edition Prints</h2>
-  <p>Every painting is available as a numbered limited edition print at the original painting's dimensions — a maximum of 100 worldwide, ever. When an edition sells out, it closes permanently. Each print is made to last, ships with a signed and numbered Certificate of Authenticity, and is delivered nationwide.</p>
+  <h2 style="font-family:"EB Garamond",serif;font-size:1.6rem;font-weight:400;color:var(--warm-gray);margin-top:-8px;margin-bottom:20px;letter-spacing:0.04em;">Limited Edition Prints</h2>
+  <p>Every painting is available as a numbered limited edition print — a maximum of 100 worldwide, ever. When an edition sells out, it closes permanently. Each print is made to last, ships with a signed and numbered Certificate of Authenticity, and is delivered nationwide.</p>
 </div>
 
 <div class="shop-container">
 
   <p class="step-label">Step 1</p>
-  <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.6rem;margin-bottom:8px;font-weight:400;">Select a Painting</h2>
+  <h2 style="font-family:"EB Garamond",serif;font-size:2.6rem;margin-bottom:8px;font-weight:400;">Select a Painting</h2>
   <p style="color:var(--warm-gray);margin-bottom:28px;font-size:0.9rem;">Select a painting to configure your print. Editions are limited — once sold out, they close permanently.</p>
 
   <div class="paintings-grid" id="paintings-grid"></div>
@@ -265,7 +291,7 @@
     </div>
 
     <p class="step-label">Step 2</p>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.6rem;margin-bottom:24px;font-weight:400;">Choose Your Paper &amp; Size</h2>
+    <h2 style="font-family:"EB Garamond",serif;font-size:2.6rem;margin-bottom:24px;font-weight:400;">Choose Your Paper &amp; Size</h2>
 
     <!-- Paper type -->
     <div class="options-section">
@@ -287,13 +313,8 @@
 
     <!-- Size -->
     <div class="options-section" id="size-section" style="display:none;">
-      <div style="font-size:0.78rem;color:var(--light-gray);margin-bottom:14px;line-height:1.7;">
-  <strong style="color:var(--warm-gray);font-family:'Cormorant Garamond',serif;font-size:0.9rem;">Size guide:</strong>
-  Small prints (under 12″) suit a shelf, desk, or intimate wall grouping.
-  Medium prints (12–24″) work as standalone wall pieces in most rooms.
-  Large prints (24″+) are statement pieces — living rooms, hallways, over a sofa.
-</div>
         <h4>Print Size</h4>
+        <p style="font-size:0.82rem;color:var(--light-gray);margin-bottom:14px;">Printed at the original painting's exact dimensions.</p>
       <div class="options-grid" id="size-options"></div>
     </div>
 
@@ -323,7 +344,7 @@
     <!-- Checkout -->
     <div class="checkout-section" id="checkout-section">
       <p class="step-label">Step 3</p>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;margin-bottom:24px;font-weight:400;">Shipping &amp; Payment</h2>
+      <h2 style="font-family:"EB Garamond",serif;font-size:2.2rem;margin-bottom:24px;font-weight:400;">Shipping &amp; Payment</h2>
 
       <div class="form-grid">
         <div class="form-group"><label>First Name *</label><input type="text" id="firstName" placeholder="Jane"></div>
@@ -360,7 +381,7 @@
       <div class="form-group"><label>Phone</label><input type="tel" id="phone" placeholder="555-555-5555"></div>
       </div>
 
-      <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(184,176,168,0.3);">Card Details</h4>
+      <h4 style="font-size:1.1rem;font-family:"EB Garamond",serif;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(184,176,168,0.3);">Card Details</h4>
       <div id="card-element"></div>
       <div id="card-errors"></div>
 
@@ -388,7 +409,7 @@
     <button onclick="closeFullRes()" style="position:absolute;top:-44px;right:-8px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;opacity:0.7;line-height:1;">&times;</button>
     
     <img id="fullres-img" src="" alt="" style="max-width:100%;max-height:78vh;object-fit:contain;display:block;margin:0 auto;">
-    <p id="fullres-title" style="color:rgba(255,255,255,0.7);font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;margin-top:14px;"></p>
+    <p id="fullres-title" style="color:rgba(255,255,255,0.7);font-family:"EB Garamond",serif;font-size:1.2rem;font-style:italic;margin-top:14px;"></p>
   </div>
 </div>
 <footer>&copy; 2026 Mary Kilpatrick. All rights reserved. &nbsp;|&nbsp; <a href="index.html#work" style="color:var(--light-gray);text-decoration:none;">View Gallery</a> &nbsp;|&nbsp; <a href="privacy.html" style="color:var(--light-gray);text-decoration:none;">Privacy</a> &nbsp;|&nbsp; <a href="terms.html" style="color:var(--light-gray);text-decoration:none;">Terms</a></footer>
@@ -472,45 +493,35 @@ function parseDims(dims) {
   return m ? { w: parseFloat(m[1]), h: parseFloat(m[2]) } : { w: 20, h: 20 };
 }
 
-// Generate size tiers at 25%, 50%, 75%, 100%, 125%, 150%, 175%, 200%
-// Single size — original dimensions only
+// Convert decimal inches to fraction string: 3.75 → '3¾'
+function toFraction(n) {
+  const whole = Math.floor(n);
+  const dec = Math.round((n - whole) * 8) / 8;
+  const fracs = { 0:'', 0.125:'⅛', 0.25:'¼', 0.375:'⅜', 0.5:'½', 0.625:'⅝', 0.75:'¾', 0.875:'⅞' };
+  const frac = fracs[dec] !== undefined ? fracs[dec] : '';
+  return whole === 0 ? (frac || '0') : (frac ? `${whole}${frac}` : `${whole}`);
+}
+
+// Generate single size tier at 100% of original dimensions only
 function getSizeTiers(painting) {
   const { w, h } = parseDims(painting.dims);
   return [{
     pct: 1.0,
     label: '100%',
-    w: Math.round(w * 4) / 4,
-    h: Math.round(h * 4) / 4,
-    displayW: toFraction(Math.round(w * 4) / 4),
-    displayH: toFraction(Math.round(h * 4) / 4),
+    w: w,
+    h: h,
+    displayW: toFraction(w),
+    displayH: toFraction(h),
     id: '100pct',
     price: null
   }];
-} = parseDims(painting.dims);
-  const tiers = [0.25, 0.50, 0.75, 1.0, 1.25, 1.50, 1.75, 2.0];
-  return tiers.map(t => {
-    const rawW = Math.round(w * t * 4) / 4; // round to nearest ¼"
-    const rawH = Math.round(h * t * 4) / 4;
-    return {
-      pct: t,
-      label: `${Math.round(t * 100)}%`,
-      w: rawW,
-      h: rawH,
-      displayW: toFraction(rawW),
-      displayH: toFraction(rawH),
-      id: `${Math.round(t * 100)}pct`,
-      price: null
-    };
-  });
 }
 
-// Pricing: Lumaprints cost + $60 profit, rounded to nearest $5
-// Rate calibrated from real API data: 8×10 Somerset Velvet = $12.09
-// Rate = $0.12/sq inch + $2.50 base
+// Price = Lumaprints cost + $60 margin
+// Falls back to a reasonable estimate if API call fails
 function estimatePrice(painting, size) {
-  const sqIn = size.w * size.h;
-  const estimatedLumaCost = sqIn * 0.12 + 2.50;
-  return Math.round((estimatedLumaCost + 60) / 5) * 5;
+  // Fallback only — real price comes from Lumaprints API
+  return null;
 }
 
 function totalPrice() {
@@ -559,8 +570,7 @@ function renderPaintings() {
         </div>
         <div class="painting-card-info">
           <h3>${p.title}</h3>
-          <p class="card-price">${soldOut ? `First Edition Sold Out` : `${remaining} remaining`}</p>
-          <div class="inventory-bar"><div class="inventory-fill" style="width:${pct}%"></div></div>
+          </div>
         </div>
       </div>
     `;
@@ -621,7 +631,7 @@ function renderPaperRecommendation(painting) {
   recEl.innerHTML = `
     <div style="background:rgba(156,124,56,0.06);border-left:3px solid var(--dark-gold);padding:16px 20px;margin-bottom:20px;">
       <p style="font-size:0.82rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--dark-gold);margin-bottom:6px;">Recommended for this painting</p>
-      <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:8px;color:var(--soft-black);">${paperName}</p>
+      <p style="font-family:"EB Garamond",serif;font-size:1.1rem;margin-bottom:8px;color:var(--soft-black);">${paperName}</p>
       <p style="font-size:0.88rem;color:var(--warm-gray);line-height:1.7;">${reason}</p>
     </div>
   `;
@@ -686,17 +696,27 @@ The paper you'd find in a fine art print room at Christie's, Sotheby's, or MoMA.
 
 This is our recommended paper for Mary's acrylic and mixed media paintings.
 
+Made from 100% cotton — not wood pulp. That distinction matters: wood-pulp paper yellows and becomes brittle within decades. Cotton holds its color and structure for well over a hundred years. Thick enough to frame without mounting.
+
 255 gsm · 19 mil · 100% cotton rag · acid-free`,
 
-  'hot_press': `Hot Press — Maximum Precision & Color
+  'hot_press': `Hot Press — Maximum Color & Precision
 
-The paper of choice for photographers and artists who demand the highest color accuracy and the sharpest possible reproduction. Hot Press has an ultra-smooth surface — no visible texture — so every detail in the original painting comes through with complete fidelity. The color gamut is exceptional: colors are vivid and precise, blacks are the deepest of the three papers. If you've admired a large-format print in a contemporary art gallery and marveled at how alive it looked, it was almost certainly printed on a smooth cotton rag paper like this. Nothing competes with the image.
+Hot Press has no surface texture — the paper completely disappears and what you see is pure image. Every brushstroke, every detail in Mary's originals comes through without anything competing with it. Colors are the most vivid of the three papers. Blacks are the deepest.
+
+The right choice for Mary's most saturated, graphic paintings — works where the boldness of the color is the point.
+
+100% cotton rather than wood pulp, so it won't yellow or degrade over time. Heavier than standard photo paper — closer in feel to a hardcover book cover. Frames without mounting and hangs flat.
 
 330 gsm · 17 mil · 100% cotton rag · acid-free`,
 
-  'cold_press': `Cold Press — Painterly Texture & Depth
+  'cold_press': `Cold Press — Painterly Surface & Depth
 
-The paper that most closely evokes the feeling of an original work on canvas. Cold Press has a pronounced, visible texture — the same heavily laid surface you'd find on fine watercolor and printmaking papers used in traditional ateliers. It's the heaviest of the three papers and the most tactile: you can see and feel the surface working with the image. Colors are rich and deep, with exceptional contrast. Where Somerset Velvet whispers its texture and Hot Press disappears into the image, Cold Press makes itself known — and for Mary's most expressive, physical paintings, that presence is exactly right.
+Cold Press has a pronounced visible texture — the kind of surface you'd see on a traditional watercolor or printmaking paper. When you run your hand across it, you feel the image as much as see it. That physicality makes it right for Mary's more expressive, raw paintings — works where the texture adds to the feeling rather than competing with it.
+
+The heaviest of the three papers. Colors are rich and warm rather than vivid and sharp. Where Hot Press maximizes precision and Somerset Velvet whispers texture, Cold Press makes its presence felt.
+
+100% cotton, archival, won't yellow. Substantial enough to frame without mounting.
 
 340 gsm · 21 mil · 100% cotton rag · acid-free`,
 };
@@ -724,7 +744,7 @@ function selectPaper(paperId) {
     if (isRecommended && paintingReason) {
       // Recommended paper for this painting — lead with the specific reason
       expText.innerHTML = `
-        <strong style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--dark-gold);display:block;margin-bottom:8px;">Recommended for this print: ${PAPER_TYPES.find(p => p.id === paperId)?.name || ''}</strong>
+        <strong style="font-family:"EB Garamond",serif;font-size:1.05rem;color:var(--dark-gold);display:block;margin-bottom:8px;">Recommended for this print: ${PAPER_TYPES.find(p => p.id === paperId)?.name || ''}</strong>
         <span style="display:block;margin-bottom:14px;line-height:1.75;">${paintingReason}</span>
         <span style="display:block;font-size:0.78rem;color:var(--light-gray);padding-top:10px;border-top:1px solid rgba(184,176,168,0.2);">${descBody.replace(/\n/g, '<br>')}</span>
       `;
@@ -732,7 +752,7 @@ function selectPaper(paperId) {
       // Non-recommended paper — show generic description with a note
       const recPaperName = selected.painting ? (PAPER_TYPES.find(p => p.id === selected.painting.recommendedPaper)?.name || 'Somerset Velvet') : '';
       expText.innerHTML = `
-        <strong style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--soft-black);display:block;margin-bottom:8px;">${descHeadline}</strong>
+        <strong style="font-family:"EB Garamond",serif;font-size:1.05rem;color:var(--soft-black);display:block;margin-bottom:8px;">${descHeadline}</strong>
         <span style="display:block;margin-bottom:14px;line-height:1.75;">${descBody.replace(/\n/g, '<br>')}</span>
         ${recPaperName ? `<span style="display:block;font-size:0.82rem;color:var(--warm-gray);padding-top:10px;border-top:1px solid rgba(184,176,168,0.2);">Our recommendation for this painting is ${recPaperName}.</span>` : ''}
       `;
@@ -760,17 +780,19 @@ function selectPaper(paperId) {
 function renderSizeOptions() {
   const tiers = getSizeTiers(selected.painting);
   const container = document.getElementById('size-options');
-  
-  container.innerHTML = tiers.map(s => {
-    return `
-      <button class="option-btn" id="size-${s.id}" onclick="selectSize('${s.id}')">
-        ${s.displayW}×${s.displayH}″
-        <span class="opt-price" id="price-${s.id}"></span>
-      </button>
-    `;
-  }).join('') + `
-
+  const size = tiers[0];
+  container.innerHTML = `
+    <button class="option-btn selected" id="size-${size.id}" onclick="selectSize('${size.id}')">
+      ${size.displayW}×${size.displayH}″ &nbsp;<span style="font-size:0.7rem;opacity:0.6;">(original size)</span>
+      <span class="opt-price" id="price-${size.id}">Loading…</span>
+    </button>
+    <button class="option-btn" style="border-style:dashed;opacity:0.7;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      Custom size — Inquire
+      <span class="opt-price">Contact us</span>
+    </button>
   `;
+  // Auto-select and fetch price immediately
+  selectSize(size.id);
 }
 
 async function selectSize(sizeId) {
@@ -778,32 +800,37 @@ async function selectSize(sizeId) {
   const size = tiers.find(s => s.id === sizeId);
   if (!size) return;
 
-  document.querySelectorAll('#size-options .option-btn').forEach(b => b.classList.remove('selected'));
-  const btn = document.getElementById(`size-${sizeId}`);
-  if (btn) btn.classList.add('selected');
-
-  // Assign size and set tier price immediately
   selected.size = size;
-  selected.size.price = estimatePrice(selected.painting, size);
 
   const priceEl = document.getElementById(`price-${sizeId}`);
-  if (priceEl) priceEl.textContent = `$${selected.size.price.toLocaleString()}`;
+  if (priceEl) priceEl.textContent = 'Loading…';
 
-  updatePriceSummary();
+  document.getElementById('price-summary').style.display = 'none';
+  document.getElementById('checkout-btn').style.display = 'none';
 
-  // Fetch real Lumaprints cost and set final price as cost + $60
-  fetch(`${WORKER_URL}/api/price`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ width: size.w, height: size.h, paperType: selected.paper.id })
-  }).then(r => r.json()).then(data => {
+  // Fetch real Lumaprints cost then add $60 margin
+  try {
+    const res = await fetch(`${WORKER_URL}/api/price`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ width: size.w, height: size.h, paperType: selected.paper.id })
+    });
+    const data = await res.json();
     if (data.lumaPrice && data.lumaPrice > 0) {
-      const finalPrice = Math.round((data.lumaPrice + 60) / 5) * 5;
-      selected.size.price = Math.max(65, finalPrice);
-      if (priceEl) priceEl.textContent = `$${selected.size.price.toLocaleString()}`;
-      updatePriceSummary();
+      const salePrice = Math.ceil(data.lumaPrice + 60);
+      selected.size.price = salePrice;
+      if (priceEl) priceEl.textContent = `$${salePrice}`;
+    } else {
+      // Lumaprints API didn't return a price — show contact fallback
+      selected.size.price = null;
+      if (priceEl) priceEl.textContent = 'Contact for price';
     }
-  }).catch(() => {});
+  } catch(e) {
+    selected.size.price = null;
+    if (priceEl) priceEl.textContent = 'Contact for price';
+  }
+
+  if (selected.size.price) updatePriceSummary();
 }
 
 function updatePriceSummary() {
@@ -1101,6 +1128,21 @@ document.addEventListener('click', function(e) {
   }
   if (!e.target.closest('.paper-btn-wrap')) {
     document.querySelectorAll('.paper-btn-wrap').forEach(w => w.classList.remove('tooltip-open'));
+  }
+});
+
+function toggleMobileNav() {
+  const menu = document.getElementById('nav-mobile');
+  const btn = document.getElementById('nav-hamburger');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('nav') && !e.target.closest('.nav-mobile')) {
+    const m = document.getElementById('nav-mobile');
+    const b = document.getElementById('nav-hamburger');
+    if(m) m.classList.remove('open');
+    if(b) b.classList.remove('open');
   }
 });
 </script>

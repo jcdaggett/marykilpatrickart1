@@ -14,6 +14,9 @@
 <meta property="og:description" content="Original mixed media paintings celebrating women. Limited edition prints. Ships nationwide.">
 <meta property="og:url" content="https://www.marykilpatrick.com/">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://www.marykilpatrick.com/thumbs/mary-kilpatrick-personas-figurative-painting.jpg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL153EKQJB"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-HL153EKQJB");</script>
 
@@ -21,8 +24,8 @@
 :root {
   --cream: #FDFBF7;
   --paper: #F5F1EA;
-  --warm-gray: #8C7D70;
-  --light-gray: #B8B0A8;
+  --warm-gray: #4A3F35;
+  --light-gray: #6B5F55;
   --soft-black: #1A1814;
   --gold: #9C7C38;
   --gold-light: #C4A45A;
@@ -42,13 +45,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);bor
 .nav-cta:hover{background:var(--gold)!important;color:#fff!important;}
 
 /* ARTIST INTRO */
-.artist-intro{margin-top:0;display:grid;grid-template-columns:1fr 380px;min-height:440px;border-bottom:1px solid var(--rule);}
+.artist-intro{margin-top:0;display:grid;grid-template-columns:minmax(0,1fr) 420px;min-height:440px;border-bottom:1px solid var(--rule);}
 .artist-intro-text{padding:64px 64px 64px 64px;display:flex;flex-direction:column;justify-content:center;}
 .label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.2em;color:var(--gold);margin-bottom:20px;}
 .artist-intro-text h1{font-family:"EB Garamond",serif;font-size:3.4rem;font-weight:400;line-height:1.1;margin-bottom:6px;letter-spacing:0.02em;}
 .subtitle{font-family:"EB Garamond",serif;font-size:1.2rem;font-style:italic;color:var(--warm-gray);margin-bottom:28px;}
-.bio-short{font-size:0.93rem;color:var(--warm-gray);line-height:1.85;max-width:520px;margin-bottom:24px;}
-.bio-full{display:none;font-size:0.9rem;color:var(--warm-gray);line-height:1.85;max-width:520px;margin-bottom:20px;}
+.bio-short{font-size:0.93rem;color:var(--warm-gray);line-height:1.85;margin-bottom:24px;}
+.bio-full{display:none;font-size:0.9rem;color:var(--warm-gray);line-height:1.85;margin-bottom:20px;}
 .bio-full.open{display:block;}
 .bio-full p{margin-bottom:14px;}
 .learn-more-btn{display:inline-flex;align-items:center;gap:8px;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold);background:none;border:none;cursor:pointer;font-family:"Karla",sans-serif;padding:0;transition:gap 0.2s;}
@@ -58,8 +61,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);bor
 .credentials-inline{margin-top:28px;padding-top:24px;border-top:1px solid var(--rule);display:flex;gap:28px;flex-wrap:wrap;}
 .credential-item{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--light-gray);line-height:1.6;}
 .credential-item strong{display:block;color:var(--warm-gray);font-weight:400;margin-bottom:2px;}
-.artist-photo-wrap{position:relative;overflow:hidden;background:var(--paper);}
-.artist-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+.artist-photo-wrap{position:relative;overflow:hidden;background:var(--paper);min-height:440px;}
+.artist-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;position:absolute;top:0;left:0;}
 
 /* SECTION HEADER */
 .section-header{display:flex;align-items:center;gap:24px;padding:56px 64px 0;margin-bottom:40px;}.gallery-section+.artist-intro{margin-top:0;}.section-header:first-of-type{padding-top:calc(64px + 48px);}
@@ -67,18 +70,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);bor
 .section-header h2{font-family:"EB Garamond",serif;font-size:0.72rem;font-weight:400;text-transform:uppercase;letter-spacing:0.28em;color:var(--warm-gray);white-space:nowrap;}
 
 /* GALLERY */
+.reveal-ready{opacity:1;transform:none;transition:opacity 0.5s ease,transform 0.5s ease;}
+@media (prefers-reduced-motion: no-preference){.reveal-ready:not(.revealed){opacity:0;transform:translateY(16px);}}
 .gallery-section{padding:0 0 80px;}
-.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
-.gallery-item{position:relative;cursor:pointer;overflow:hidden;background:var(--paper);aspect-ratio:1;}.gallery-item.tapped .gallery-overlay{opacity:1;}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.gallery-item{position:relative;cursor:pointer;overflow:hidden;background:var(--paper);aspect-ratio:1;}
 .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94),opacity 0.4s;}
 .gallery-item:hover img{transform:scale(1.04);opacity:0.9;}
 .gallery-item.sold img{filter:grayscale(30%);opacity:0.6;}
-.gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,24,20,0.9) 0%,rgba(26,24,20,0.2) 50%,transparent 70%);opacity:0;transition:opacity 0.4s;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;}
-.gallery-item:hover .gallery-overlay{opacity:1;}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,24,20,0.75) 0%,rgba(26,24,20,0.1) 40%,transparent 65%);opacity:1;transition:opacity 0.4s;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;}
 .gallery-overlay h3{font-family:"EB Garamond",serif;font-size:1.1rem;font-weight:400;color:#fff;margin-bottom:3px;}
-.gallery-overlay .ov-price{font-size:0.75rem;color:rgba(255,255,255,0.65);letter-spacing:0.05em;margin-bottom:12px;}
-.gallery-actions{display:flex;gap:8px;position:relative;z-index:10;pointer-events:all;}
-.gallery-actions a{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;padding:6px 13px;text-decoration:none;transition:all 0.2s;pointer-events:all;position:relative;z-index:11;}
+.gallery-overlay .ov-price{font-size:0.75rem;color:rgba(255,255,255,0.65);letter-spacing:0.05em;margin-bottom:12px;opacity:0;transition:opacity 0.3s;}
+.gallery-item:hover .gallery-overlay .ov-price{opacity:1;}
+.gallery-actions{display:flex;gap:8px;opacity:0;transition:opacity 0.3s;}
+.gallery-item:hover .gallery-actions{opacity:1;}
+.gallery-actions{display:flex;gap:8px;}
+.gallery-actions a{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;padding:6px 13px;text-decoration:none;transition:all 0.2s;}
 .btn-inquire{background:transparent;border:1px solid rgba(255,255,255,0.45);color:#fff;}
 .btn-inquire:hover{background:rgba(255,255,255,0.12);}
 .btn-print{background:var(--gold);border:1px solid var(--gold);color:#fff;}
@@ -149,16 +156,17 @@ footer a:hover{color:var(--gold);}
     top: 80px;
     right: 32px;
     z-index: 500;
-    width: 240px;
-    background: rgba(253,251,247,0.94);
+    width: 220px;
+    background: rgba(253,251,247,0.96);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--rule);
     padding: 0;
     overflow: hidden;
     box-shadow: 0 4px 32px rgba(26,24,20,0.1);
-    transition: box-shadow 0.3s;
+    transition: box-shadow 0.3s, opacity 0.4s, transform 0.4s;
   }
+
   .artist-card:hover { box-shadow: 0 8px 48px rgba(26,24,20,0.15); }
   .artist-card-photo {
     width: 100%;
@@ -206,7 +214,7 @@ footer a:hover{color:var(--gold);}
   .artist-card-link:hover { gap: 10px; }
 
   /* Bio modal */
-  .bio-modal { display:none;
+  .bio-modal {
     display: none;
     position: fixed;
     inset: 0;
@@ -214,23 +222,23 @@ footer a:hover{color:var(--gold);}
     z-index: 2000;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 24px;
   }
   .bio-modal.active { display: flex; }
   .bio-modal-inner {
     background: var(--cream);
-    max-width: 640px;
+    max-width: 720px;
     width: 100%;
-    max-height: 85vh;
+    max-height: 90vh;
     overflow-y: auto;
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 240px 1fr;
   }
   .bio-modal-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top center;
+    object-position: 50% 20%;
     display: block;
     min-height: 300px;
   }
@@ -287,30 +295,59 @@ footer a:hover{color:var(--gold);}
   }
   .bio-cred strong { display: block; color: var(--warm-gray); font-weight: 400; margin-bottom: 2px; }
 
-  @media(max-width:900px) {
-    .artist-card { display: none; }
-  }
+  .artist-card { opacity: 0; pointer-events: none; transform: translateY(-8px); transition: opacity 0.4s, transform 0.4s; }
+  .artist-card.card-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
 
   /* RESPONSIVE */
-@media(max-width:1100px){.gallery-grid{grid-template-columns:repeat(3,1fr);}.reviews-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:1100px){.reviews-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:900px){
-  nav{padding:0 24px;}
-  .nav-links{gap:16px;}
-  .nav-links li:nth-child(-n+3){display:none;}
+  nav{padding:0 16px;height:56px;}
+  .nav-name{font-size:0.95rem;letter-spacing:0.08em;}
+  .nav-links{gap:12px;}
+  .nav-links li:nth-child(-n+4){display:none;}
+  .nav-links li:last-child,.nav-links li:nth-last-child(2){display:flex;}
   .artist-intro{grid-template-columns:1fr;}
-  .artist-photo-wrap{height:280px;order:-1;}
-  .artist-intro-text{padding:36px 24px;}
-  .section-header,.reviews-section,.faq-section,.contact-section{padding-left:24px;padding-right:24px;}
-  .gallery-section{padding:0 0 60px;}
-  .buy-section{grid-template-columns:1fr;padding:48px 24px;gap:48px;}
-  .contact-section{grid-template-columns:1fr;gap:48px;}
+  .artist-photo-wrap{height:260px;order:-1;}
+  .artist-intro-text{padding:28px 20px;}
+  .section-header,.reviews-section,.faq-section,.contact-section{padding-left:20px;padding-right:20px;}
+  .gallery-section{padding:0 0 48px;}
+  .buy-section{grid-template-columns:1fr;padding:40px 20px;gap:40px;}
+  .contact-section{grid-template-columns:1fr;gap:40px;}
   .faq-grid{grid-template-columns:1fr;}
   .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  .artist-card{display:none!important;}
+  h1{font-size:2.4rem;}
+  .credentials-inline{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:580px){
-  .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  .gallery-grid{grid-template-columns:1fr;}
   .form-row{grid-template-columns:1fr;}
   footer{flex-direction:column;gap:14px;text-align:center;}
+  .credentials-inline{grid-template-columns:1fr;}
+  nav{padding:0 16px;}
+  .nav-name{font-size:0.85rem;}
+}
+.nav-dropdown { position: relative; }
+.nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--cream); border: 1px solid rgba(184,176,168,0.2); min-width: 200px; z-index: 1001; box-shadow: 0 4px 16px rgba(0,0,0,0.08); padding: 8px 0; list-style: none; }
+.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu li a { display: block; padding: 10px 20px; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--soft-black); text-decoration: none; transition: color 0.2s; }
+.nav-dropdown-menu li a:hover { color: var(--dark-gold); }
+
+/* HAMBURGER */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;z-index:1002;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--soft-black);transition:all 0.3s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.nav-mobile{display:none;position:fixed;top:64px;left:0;right:0;background:var(--cream);border-bottom:1px solid var(--rule);z-index:999;padding:24px 24px 32px;flex-direction:column;gap:0;}
+.nav-mobile.open{display:flex;}
+.nav-mobile a{display:block;padding:14px 0;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--soft-black);text-decoration:none;border-bottom:1px solid var(--rule);}
+.nav-mobile a:last-child{border-bottom:none;}
+.nav-mobile a:hover{color:var(--gold);}
+.nav-mobile .nav-mobile-cta{color:var(--gold);margin-top:16px;border:1px solid var(--gold);text-align:center;padding:14px;border-bottom:1px solid var(--gold)!important;}
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
 }
 </style>
 
@@ -326,181 +363,237 @@ footer a:hover{color:var(--gold);}
 <nav>
   <a href="index.html" class="nav-name">Mary Kilpatrick</a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
+    <li><a href="#hero" onclick="setTimeout(()=>{const f=document.getElementById('bio-full');const b=document.getElementById('learn-more-btn');const l=document.getElementById('learn-more-label');if(f&&!f.classList.contains('open')){f.classList.add('open');if(b)b.classList.add('open');if(l)l.textContent='Show Less';}},300)">About</a></li>
     <li><a href="#gallery">Works</a></li>
-    <li><a href="#buy">Acquire</a></li>
+    <li class="nav-dropdown">
+      <a href="#buy" class="nav-dropdown-toggle">Acquire ▾</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="buy-original.html">Acquire an Original</a></li>
+        <li><a href="prints.html">Buy Prints</a></li>
+      </ul>
+    </li>
     <li><a href="#contact">Inquire</a></li>
     <li><a href="tel:+14586663614">(458) 666-3614</a></li>
     <li><a href="prints.html" class="nav-cta">Buy Prints</a></li>
   </ul>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="nav-mobile">
+  <a href="#hero" onclick="toggleMobileNav()">About</a>
+  <a href="#gallery" onclick="toggleMobileNav()">Works</a>
+  <a href="buy-original.html">Acquire an Original</a>
+  <a href="prints.html">Buy Prints</a>
+  <a href="#contact" onclick="toggleMobileNav()">Inquire</a>
+  <a href="tel:+14586663614">(458) 666-3614</a>
+  <a href="prints.html" class="nav-mobile-cta">Buy Prints</a>
+</div>
 
 
 <!-- ARTIST CARD — fixed top right -->
-<div class="artist-card" id="about" onclick="event.stopPropagation()">
+<div class="artist-card" id="about">
+  <button onclick="document.getElementById('about').style.display='none'" style="position:absolute;top:6px;right:8px;background:none;border:none;color:var(--warm-gray);font-size:0.9rem;cursor:pointer;line-height:1;padding:2px 4px;z-index:10;" title="Hide">×</button>
   <img class="artist-card-photo" src="mary_photo.jpg" alt="Mary Kilpatrick">
   <div class="artist-card-body">
     <p class="artist-card-name">Mary Kilpatrick</p>
     <p class="artist-card-role">Broadway Actress · Painter</p>
-    <p class="artist-card-bio">From Broadway to canvas — original mixed media paintings celebrating women's lives.</p>
-    <a href="#" class="artist-card-link" onclick="event.stopPropagation();event.preventDefault();document.getElementById('bio-modal').classList.add('active');document.body.style.overflow='hidden';">Full Biography ›</a>
+    <p class="artist-card-bio">From Broadway to canvas — original figurative paintings celebrating women's lives.</p>
+    <a href="#hero" class="artist-card-link">Full Biography ›</a>
+    <button onclick="document.getElementById('about').style.display='none'" style="display:block;margin-top:10px;background:none;border:none;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--light-gray);cursor:pointer;padding:0;font-family:'Karla',sans-serif;">Hide ×</button>
   </div>
 </div>
 
-<!-- BIO MODAL -->
-<div class="bio-modal" id="bio-modal" onclick="closeBioModal(event)">
-  <div class="bio-modal-inner" onclick="event.stopPropagation()">
-    <img class="bio-modal-photo" src="mary_photo.jpg" alt="Mary Kilpatrick">
-    <div class="bio-modal-content">
-      <button class="bio-modal-close" onclick="document.getElementById('bio-modal').classList.remove('active');document.body.style.overflow=''">&times;</button>
-      <h2>Mary Kilpatrick</h2>
-      <p class="bio-role">Broadway Actress · Painter · Published Illustrator</p>
-      <p>Mary Kilpatrick has spent her life telling stories that matter — on Broadway stages, in a book used in shelters worldwide, and now on canvas. Her paintings are vivid, emotionally charged works centered on women's lives: their strength, their tenderness, their resilience, and their joy.</p>
-      <p>She performed on Broadway at the Martin Beck Theatre in the long-running revival of <em>Oh! Calcutta!</em> (1976–1989). National tour credits include <em>The Pirates of Penzance</em>, <em>Bye Bye Birdie</em>, and <em>Seven Brides for Seven Brothers</em>. That theatrical training carried directly into her painting — her figures carry gesture, weight, and emotional presence that only comes from years of performing.</p>
-      <p>With her husband, writer Howard Schor, she created <em>A Place for Starr: A Story of Hope for Children Experiencing Family Violence</em> — a book that sold over 10,000 copies and continues to be used in shelters and counseling settings worldwide. She co-founded BEAT Children's Theatre, honored by the Oregon State Legislature in 2015.</p>
-      <p>Many of Mary's paintings are mixed media — real feathers, gemstones, lace, silk ribbon, and cotton physically embedded in the canvas. Each original is a singular, three-dimensional object.</p>
-      <div class="bio-credentials">
-        <div class="bio-cred"><strong>Broadway</strong>Oh! Calcutta! · Bye Bye Birdie</div>
-        <div class="bio-cred"><strong>Published</strong>A Place for Starr · 10,000+ copies</div>
-        <div class="bio-cred"><strong>Nonprofit</strong>BEAT Children's Theatre · 2006</div>
-        <div class="bio-cred"><strong>Honored</strong>Oregon House Resolution 9 · 2015</div>
-      </div>
+
+<!-- HERO -->
+<div class="artist-intro" id="hero" style="margin-top:64px;">
+  <div class="artist-intro-text">
+    <p class="label">Broadway Actress · Published Illustrator · Painter</p>
+    <h1>Mary Kilpatrick</h1>
+    <p class="subtitle">Original paintings celebrating the female experience</p>
+    <p class="bio-short">From Broadway stages to canvas — vivid, emotionally charged works that celebrate women's strength, tenderness, and resilience. Each painting carries the weight of a life spent in service to storytelling.</p>
+    <div class="bio-full" id="bio-full">
+      <p>Mary Kilpatrick has spent her life telling stories that matter — on Broadway stages, in a book used in shelters and counseling settings worldwide, and on canvas. Her paintings are vivid, emotionally charged works centered on women's lives: their strength, their tenderness, their resilience, and their joy.</p>
+      <p>Mary's artistic journey began under the lights of New York City's most storied theaters. She performed on Broadway at the Martin Beck Theatre in the long-running revival of <a href="https://www.imdb.com/name/nm5017887/" target="_blank" rel="noopener" style="color:inherit;"><em>Oh! Calcutta!</em></a> (1976–1989). Her national tour credits include <em>The Pirates of Penzance</em> (1986–1988), <em>Bye Bye Birdie</em>, and <em>Seven Brides for Seven Brothers</em>. She later appeared in the independent film <em>A Stone in the Water</em> (2019), shot in Central Oregon. That theatrical training carried directly into her painting — her figures carry gesture, weight, and emotional presence that only comes from years of performing and directing.</p>
+      <p>While working as a Children's Specialist at <a href="https://www.sanctuaryforfamilies.org/" target="_blank" rel="noopener" style="color:inherit;">Sanctuary for Families</a> in New York City, Mary saw firsthand what children endure in violent homes. With her husband, writer Howard Schor, she created <a href="https://aplaceforstarr.com/" target="_blank" rel="noopener" style="color:inherit;"><em>A Place for Starr: A Story of Hope for Children Experiencing Family Violence</em></a> — illustrating it from the child's perspective, showing adults only from the neck down, the way a small child actually sees the world. The book sold over 10,000 copies across two editions and continues to be used as a therapeutic tool in shelters and counseling settings worldwide.</p>
+      <p>After relocating to Bend, OR in 2002, Mary continued advocacy work with <a href="https://www.saving-grace.org/" target="_blank" rel="noopener" style="color:inherit;">Saving Grace</a> and co-founded <a href="https://www.beatchildrenstheatre.org/" target="_blank" rel="noopener" style="color:inherit;">BEAT Children's Theatre</a> (Bend Experimental Art Theatre) in 2006. The program now serves over 500 students directly each season, reaches 1,500–2,000 more through community partnerships, and draws approximately 5,000 audience members annually. In 2015, the Oregon State Legislature passed <a href="https://trackbill.com/bill/oregon-house-resolution-9-honors-howard-schor-and-mary-kilpatrick/1193182/" target="_blank" rel="noopener" style="color:inherit;">House Resolution 9</a> formally honoring Mary and Howard for their work building BEAT.</p>
+      <p>Her paintings span the full range of women's lives — strength, tenderness, joy, solitude, resilience, and defiance. Her subjects are diverse in background, age, and expression. The paintings that carry political weight don't come from research or abstraction. They come from someone who has spent years sitting in rooms with women navigating the hardest moments of their lives. That proximity makes the work ring true in a way that is felt before it is understood.</p>
+    </div>
+    <button class="learn-more-btn" id="learn-more-btn" onclick="toggleBio()"><span id="learn-more-label">Read Full Biography</span> <span class="arrow">›</span></button>
+    <div class="credentials-inline">
+      <div class="credential-item"><strong>Broadway</strong><a href="https://www.ibdb.com/broadway-cast-staff/mary-kilpatrick-492830" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Oh! Calcutta! · Bye Bye Birdie</a></div>
+      <div class="credential-item"><strong>Published</strong><a href="https://www.amazon.com/Place-Starr-Story-Children-Experiencing/dp/1558640827" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">A Place for Starr · 10,000+ copies</a></div>
+      <div class="credential-item"><strong>Nonprofit</strong><a href="https://beatchildrenstheatre.org" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">BEAT Children's Theatre · Est. 2006</a></div>
+      <div class="credential-item"><strong>Honored</strong><a href="https://trackbill.com/bill/oregon-house-resolution-9-honors-howard-schor-and-mary-kilpatrick/1193182/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Oregon House Resolution 9 · 2015</a></div>
     </div>
   </div>
+  <div class="artist-photo-wrap">
+    <img src="mary_photo.jpg" alt="Mary Kilpatrick, Broadway actress and painter">
+  </div>
 </div>
 
+
+<!-- SEO: Individual painting pages for Google indexing -->
+<div style="display:none" aria-hidden="true">
+  <a href="paintings/personas.html">Personas</a>
+  <a href="paintings/geri.html">Geri</a>
+  <a href="paintings/josephine-baker.html">Josephine Baker</a>
+  <a href="paintings/breaking-away.html">Breaking Away</a>
+  <a href="paintings/girls-night-out.html">Girls Night Out</a>
+  <a href="paintings/journey.html">Journey</a>
+  <a href="paintings/cat-lady.html">Cat Lady</a>
+  <a href="paintings/kissing-cousins.html">Kissing Cousins</a>
+  <a href="paintings/showgirl.html">Showgirl</a>
+  <a href="paintings/harmony.html">Harmony</a>
+  <a href="paintings/earth-mother.html">Earth Mother</a>
+  <a href="paintings/jamaican-hero.html">Jamaican Hero</a>
+  <a href="paintings/cotton-candy.html">Cotton Candy</a>
+  <a href="paintings/beauty.html">Beauty</a>
+  <a href="paintings/virtual-girl.html">Virtual Girl</a>
+  <a href="paintings/bravery.html">Bravery</a>
+  <a href="paintings/tickle.html">Tickle</a>
+  <a href="paintings/deconstruction.html">Deconstruction</a>
+  <a href="paintings/two-dancers.html">Two Dancers</a>
+  <a href="paintings/christ-mass.html">Christ Mass</a>
+  <a href="paintings/covid.html">Covid</a>
+</div>
 <!-- GALLERY -->
-<div class="section-header" id="gallery" style="padding-top:calc(64px + 40px);">
+<div class="section-header" id="gallery" style="padding-top:48px;">
   <div class="section-rule"></div>
-  <h2>The Paintings</h2>
+  <div style="text-align:center;padding:0 24px;">
+    <p style="font-family:'EB Garamond',serif;font-size:0.78rem;font-weight:400;text-transform:uppercase;letter-spacing:0.2em;color:var(--warm-gray);margin-bottom:4px;">Mary Kilpatrick · Broadway Actress · Published Illustrator · Painter</p>
+    <p style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--light-gray);">Original figurative paintings celebrating women · Select works in mixed media · First edition giclée prints available</p>
+  </div>
   <div class="section-rule"></div>
 </div>
 
 <section class="gallery-section">
   <div class="gallery-grid">
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-personas-figurative-painting.jpg','Personas')">
+    <div class="gallery-item" data-url="paintings/personas.html" onclick="openLightbox('mary-kilpatrick-personas-figurative-painting.jpg','Personas')">
       <img src="thumbs/mary-kilpatrick-personas-figurative-painting.jpg" alt="Personas - original mixed media painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Personas</h3><p class="ov-price">$6,000 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Personas')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Personas</h3><p class="ov-price">$6,000 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Personas" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Personas" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-geri-figurative-painting.jpg','Geri')">
+    <div class="gallery-item" data-url="paintings/geri.html" onclick="openLightbox('mary-kilpatrick-geri-figurative-painting.jpg','Geri')">
       <img src="thumbs/mary-kilpatrick-geri-figurative-painting.jpg" alt="Geri - original painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Geri</h3><p class="ov-price">$2,500 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Geri')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Geri</h3><p class="ov-price">$2,500 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Geri" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Geri" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-josephine-baker-figurative-painting.jpg','Josephine Baker')">
+    <div class="gallery-item" data-url="paintings/josephine-baker.html" onclick="openLightbox('mary-kilpatrick-josephine-baker-figurative-painting.jpg','Josephine Baker')">
       <img src="thumbs/mary-kilpatrick-josephine-baker-figurative-painting.jpg" alt="Josephine Baker - original mixed media painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Josephine Baker</h3><p class="ov-price">$4,000 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Josephine Baker')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Josephine Baker</h3><p class="ov-price">$4,000 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Josephine%20Baker" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Josephine Baker" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item sold" onclick="handleGalleryClick(event,'mary-kilpatrick-two-twisted-sisters-figurative-painting.jpg','Two Twisted Sisters')">
+    <div class="gallery-item sold" onclick="openLightbox('mary-kilpatrick-two-twisted-sisters-figurative-painting.jpg','Two Twisted Sisters')">
       <img src="thumbs/mary-kilpatrick-two-twisted-sisters-figurative-painting.jpg" alt="Two Twisted Sisters - original painting by Mary Kilpatrick (sold)" loading="lazy">
       <div class="sold-badge">Sold</div>
-      <div class="gallery-overlay"><h3>Two Twisted Sisters</h3><p class="ov-price">Sold · Prints Available</p><div class="gallery-actions"><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Buy Print</a></div></div>
+      <div class="gallery-overlay"><h3>Two Twisted Sisters</h3><p class="ov-price">Sold</p><div class="gallery-actions"></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-breaking-away-figurative-painting.jpg','Breaking Away')">
+    <div class="gallery-item" data-url="paintings/breaking-away.html" onclick="openLightbox('mary-kilpatrick-breaking-away-figurative-painting.jpg','Breaking Away')">
       <img src="thumbs/mary-kilpatrick-breaking-away-figurative-painting.jpg" alt="Breaking Away - original painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Breaking Away</h3><p class="ov-price">$4,000 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Breaking Away')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Breaking Away</h3><p class="ov-price">$4,000 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Breaking%20Away" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Breaking Away" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-girls-night-out-figurative-painting.jpg','Girls Night Out')">
+    <div class="gallery-item" data-url="paintings/girls-night-out.html" onclick="openLightbox('mary-kilpatrick-girls-night-out-figurative-painting.jpg','Girls Night Out')">
       <img src="thumbs/mary-kilpatrick-girls-night-out-figurative-painting.jpg" alt="Girls Night Out - original painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Girls Night Out</h3><p class="ov-price">$2,500 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Girls Night Out')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Girls Night Out</h3><p class="ov-price">$2,500 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Girls%20Night%20Out" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Girls Night Out" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-journey-figurative-painting.jpg','Journey')">
+    <div class="gallery-item" data-url="paintings/journey.html" onclick="openLightbox('mary-kilpatrick-journey-figurative-painting.jpg','Journey')">
       <img src="thumbs/mary-kilpatrick-journey-figurative-painting.jpg" alt="Journey - original painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Journey</h3><p class="ov-price">$3,000 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Journey')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Journey</h3><p class="ov-price">$3,000 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Journey" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Journey" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item sold" onclick="handleGalleryClick(event,'mary-kilpatrick-blue-lady-figurative-painting.jpg','Blue Lady')">
+    <div class="gallery-item sold" onclick="openLightbox('mary-kilpatrick-blue-lady-figurative-painting.jpg','Blue Lady')">
       <img src="thumbs/mary-kilpatrick-blue-lady-figurative-painting.jpg" alt="Blue Lady - original painting by Mary Kilpatrick (sold)" loading="lazy">
       <div class="sold-badge">Sold</div>
-      <div class="gallery-overlay"><h3>Blue Lady</h3><p class="ov-price">Sold · Prints Available</p><div class="gallery-actions"><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Buy Print</a></div></div>
+      <div class="gallery-overlay"><h3>Blue Lady</h3><p class="ov-price">Sold</p><div class="gallery-actions"></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-cat-lady-figurative-painting.jpg','Cat Lady')">
+    <div class="gallery-item" data-url="paintings/cat-lady.html" onclick="openLightbox('mary-kilpatrick-cat-lady-figurative-painting.jpg','Cat Lady')">
       <img src="thumbs/mary-kilpatrick-cat-lady-figurative-painting.jpg" alt="Cat Lady - original painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Cat Lady</h3><p class="ov-price">$3,500 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Cat Lady')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Cat Lady</h3><p class="ov-price">$3,500 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Cat%20Lady" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Cat Lady" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-kissing-cousins-figurative-painting.jpg','Kissing Cousins')">
+    <div class="gallery-item" data-url="paintings/kissing-cousins.html" onclick="openLightbox('mary-kilpatrick-kissing-cousins-figurative-painting.jpg','Kissing Cousins')">
       <img src="thumbs/mary-kilpatrick-kissing-cousins-figurative-painting.jpg" alt="Kissing Cousins - original painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Kissing Cousins</h3><p class="ov-price">$2,000 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Kissing Cousins')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Kissing Cousins</h3><p class="ov-price">$2,000 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Kissing%20Cousins" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Kissing Cousins" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-showgirl-figurative-painting.jpg','Showgirl')">
+    <div class="gallery-item" data-url="paintings/showgirl.html" onclick="openLightbox('mary-kilpatrick-showgirl-figurative-painting.jpg','Showgirl')">
       <img src="thumbs/mary-kilpatrick-showgirl-figurative-painting.jpg" alt="Showgirl - original painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Showgirl</h3><p class="ov-price">$15,000 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Showgirl')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Showgirl</h3><p class="ov-price">$15,000 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Showgirl" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Showgirl" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-harmony-figurative-painting.jpg','Harmony')">
+    <div class="gallery-item" data-url="paintings/harmony.html" onclick="openLightbox('mary-kilpatrick-harmony-figurative-painting.jpg','Harmony')">
       <img src="thumbs/mary-kilpatrick-harmony-figurative-painting.jpg" alt="Harmony - original painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Harmony</h3><p class="ov-price">$3,000 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Harmony')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Harmony</h3><p class="ov-price">$3,000 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Harmony" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Harmony" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item sold" onclick="handleGalleryClick(event,'mary-kilpatrick-war-figurative-painting.jpg','War')">
+    <div class="gallery-item sold" onclick="openLightbox('mary-kilpatrick-war-figurative-painting.jpg','War')">
       <img src="thumbs/mary-kilpatrick-war-figurative-painting.jpg" alt="War - original painting by Mary Kilpatrick (sold)" loading="lazy">
       <div class="sold-badge">Sold</div>
-      <div class="gallery-overlay"><h3>War</h3><p class="ov-price">Sold · Prints Available</p><div class="gallery-actions"><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Buy Print</a></div></div>
+      <div class="gallery-overlay"><h3>War</h3><p class="ov-price">Sold</p><div class="gallery-actions"></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-bravery-figurative-painting.jpg','Bravery')">
+    <div class="gallery-item" data-url="paintings/bravery.html" onclick="openLightbox('mary-kilpatrick-bravery-figurative-painting.jpg','Bravery')">
       <img src="thumbs/mary-kilpatrick-bravery-figurative-painting.jpg" alt="Bravery - original painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Bravery</h3><p class="ov-price">$4,000 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Bravery')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Bravery</h3><p class="ov-price">$4,000 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Bravery" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Bravery" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-beauty-figurative-painting.jpg','Beauty')">
+    <div class="gallery-item" data-url="paintings/beauty.html" onclick="openLightbox('mary-kilpatrick-beauty-figurative-painting.jpg','Beauty')">
       <img src="thumbs/mary-kilpatrick-beauty-figurative-painting.jpg" alt="Beauty - original painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Beauty</h3><p class="ov-price">$15,000 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Beauty')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Beauty</h3><p class="ov-price">$15,000 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Beauty" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Beauty" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-two-dancers-figurative-painting.jpg','Two Dancers')">
+    <div class="gallery-item" data-url="paintings/two-dancers.html" onclick="openLightbox('mary-kilpatrick-two-dancers-figurative-painting.jpg','Two Dancers')">
       <img src="thumbs/mary-kilpatrick-two-dancers-figurative-painting.jpg" alt="Two Dancers - original painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Two Dancers</h3><p class="ov-price">$4,500 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Two Dancers')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Two Dancers</h3><p class="ov-price">$4,500 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Two%20Dancers" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Two Dancers" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item sold" onclick="handleGalleryClick(event,'mary-kilpatrick-evil-figurative-painting.jpg','Evil')">
-      <img src="thumbs/mary-kilpatrick-evil-figurative-painting.jpg" alt="Evil - original painting by Mary Kilpatrick (sold)" loading="lazy">
-      <div class="sold-badge">Sold</div>
-      <div class="gallery-overlay"><h3>Evil</h3><p class="ov-price">Sold · Prints Available</p><div class="gallery-actions"><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Buy Print</a></div></div>
+    <div class="gallery-item" onclick="openLightbox('mary-kilpatrick-las-vegas-figurative-painting.jpg','Las Vegas')">
+      <img src="thumbs/mary-kilpatrick-las-vegas-figurative-painting.jpg" alt="Las Vegas - original mixed media painting by Mary Kilpatrick" loading="lazy">
+      
+      <div class="gallery-overlay"><h3>Las Vegas</h3><p class="ov-price">$3,500 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Las%20Vegas" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Las Vegas" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-tickle-figurative-painting.jpg','Tickle')">
+    <div class="gallery-item" data-url="paintings/tickle.html" onclick="openLightbox('mary-kilpatrick-tickle-figurative-painting.jpg','Tickle')">
       <img src="thumbs/mary-kilpatrick-tickle-figurative-painting.jpg" alt="Tickle - original painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Tickle</h3><p class="ov-price">$10,000 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Tickle')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Tickle</h3><p class="ov-price">$10,000 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Tickle" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Tickle" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-earth-mother-figurative-painting.jpg','Earth Mother')">
+    <div class="gallery-item" data-url="paintings/earth-mother.html" onclick="openLightbox('mary-kilpatrick-earth-mother-figurative-painting.jpg','Earth Mother')">
       <img src="thumbs/mary-kilpatrick-earth-mother-figurative-painting.jpg" alt="Earth Mother - original mixed media painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Earth Mother</h3><p class="ov-price">$25,000 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Earth Mother')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Earth Mother</h3><p class="ov-price">$25,000 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Earth%20Mother" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Earth Mother" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-christ-mass-figurative-painting.jpg','Christ Mass')">
+    <div class="gallery-item" data-url="paintings/christ-mass.html" onclick="openLightbox('mary-kilpatrick-christ-mass-figurative-painting.jpg','Christ Mass')">
       <img src="thumbs/mary-kilpatrick-christ-mass-figurative-painting.jpg" alt="Christ Mass - original painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Christ Mass</h3><p class="ov-price">$7,500 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Christ Mass')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Christ Mass</h3><p class="ov-price">$7,500 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Christ%20Mass" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Christ Mass" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-virtual-girl-figurative-painting.jpg','Virtual Girl')">
+    <div class="gallery-item" data-url="paintings/virtual-girl.html" onclick="openLightbox('mary-kilpatrick-virtual-girl-figurative-painting.jpg','Virtual Girl')">
       <img src="thumbs/mary-kilpatrick-virtual-girl-figurative-painting.jpg" alt="Virtual Girl - original painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Virtual Girl</h3><p class="ov-price">$5,000 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Virtual Girl')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Virtual Girl</h3><p class="ov-price">$5,000 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Virtual%20Girl" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Virtual Girl" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-cotton-candy-figurative-painting.jpg','Cotton Candy')">
+    <div class="gallery-item" data-url="paintings/cotton-candy.html" onclick="openLightbox('mary-kilpatrick-cotton-candy-figurative-painting.jpg','Cotton Candy')">
       <img src="thumbs/mary-kilpatrick-cotton-candy-figurative-painting.jpg" alt="Cotton Candy - original mixed media painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Cotton Candy</h3><p class="ov-price">$5,000 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Cotton Candy')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Cotton Candy</h3><p class="ov-price">$5,000 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Cotton%20Candy" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Cotton Candy" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-jamaican-hero-figurative-painting.jpg','Jamaican Hero')">
+    <div class="gallery-item" data-url="paintings/jamaican-hero.html" onclick="openLightbox('mary-kilpatrick-jamaican-hero-figurative-painting.jpg','Jamaican Hero')">
       <img src="thumbs/mary-kilpatrick-jamaican-hero-figurative-painting.jpg" alt="Jamaican Hero - original painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Jamaican Hero</h3><p class="ov-price">$3,500 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Jamaican Hero')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Jamaican Hero</h3><p class="ov-price">$3,500 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Jamaican%20Hero" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Jamaican Hero" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
-    <div class="gallery-item" onclick="handleGalleryClick(event,'mary-kilpatrick-deconstruction-figurative-painting.jpg','Deconstruction')">
+    <div class="gallery-item" data-url="paintings/deconstruction.html" onclick="openLightbox('mary-kilpatrick-deconstruction-figurative-painting.jpg','Deconstruction')">
       <img src="thumbs/mary-kilpatrick-deconstruction-figurative-painting.jpg" alt="Deconstruction - original painting by Mary Kilpatrick" loading="lazy">
-      <div class="gallery-overlay"><h3>Deconstruction</h3><p class="ov-price">$8,000 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Deconstruction')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
+      <div class="gallery-overlay"><h3>Deconstruction</h3><p class="ov-price">$8,000 · Original</p><div class="gallery-actions"><a href="buy-original.html?painting=Deconstruction" class="btn-inquire" onclick="event.stopPropagation()">Acquire the Original</a><a href="prints.html#Deconstruction" class="btn-print" onclick="event.stopPropagation()">Buy a Print</a></div></div>
     </div>
 
   </div>
@@ -513,13 +606,13 @@ footer a:hover{color:var(--gold);}
     <h3>Original Paintings</h3>
     <p>Every painting is a one-of-one original — when it sells, it is gone permanently. Many works are mixed media: real feathers, gemstones, lace, silk ribbon, and cotton physically embedded in the canvas. Each one is a singular object.</p>
     <p style="font-size:0.8rem;color:var(--light-gray);">Originals from $2,000. All include a Certificate of Authenticity. Private viewings available by appointment. Inquire for condition notes, dimensions, framing, and shipping.</p>
-    <a href="#contact" class="btn-secondary">Inquire About Originals</a>
+    <a href="#contact" class="btn-secondary">Acquire an Original</a>
   </div>
   <div class="buy-panel">
     <div class="buy-panel-divider"></div>
     <h3>Limited Edition Prints</h3>
     <p>Every painting is available as a numbered limited edition print — a maximum of 100 worldwide, ever. When an edition sells out, it closes permanently. Each print is made to last and ships with a signed and numbered Certificate of Authenticity.</p>
-    <p style="font-size:0.8rem;color:var(--light-gray);">Somerset Velvet, Hot Press, or Cold Press fine art paper. Prints from $150. Ships nationwide.</p>
+    <p style="font-size:0.8rem;color:var(--light-gray);">Somerset Velvet, Hot Press, or Cold Press fine art paper. Ships nationwide.</p>
     <a href="prints.html" class="btn-primary">Browse &amp; Buy Prints</a>
   </div>
 </section>
@@ -572,20 +665,12 @@ footer a:hover{color:var(--gold);}
       <p>Yes. Numbered limited edition prints on 100% cotton rag, acid-free fine art paper. Choose from Somerset Velvet, Hot Press, or Cold Press. Each ships with a signed, numbered Certificate of Authenticity. Maximum 100 prints per painting — once sold out, permanently closed.</p>
     </div>
     <div class="faq-item">
-      <h3>What makes these paintings different?</h3>
-      <p>A performer's eye for the human figure, an illustrator's gift for narrative, and an advocate's authenticity — almost never found together in one artist. Many works are also mixed media: physically built with real feathers, jewels, beads, and lace embedded in the canvas.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Why own an original rather than a print?</h3>
-      <p>Several originals — Earth Mother, Cotton Candy, Josephine Baker, Personas — are mixed media objects with real materials in the canvas. A print is beautiful. The original is a physical object that commands a room. When you own it, you own the only one that will ever exist.</p>
-    </div>
-    <div class="faq-item">
       <h3>What is giclée?</h3>
       <p>Giclée (zhee-KLAY) is the fine art printing standard used by galleries and museums worldwide. Archival pigment inks on 100% cotton rag, acid-free paper. The difference from standard prints is immediately apparent — the paper has weight, the colors have depth, the print reads as art.</p>
     </div>
     <div class="faq-item">
       <h3>Do you ship nationwide?</h3>
-      <p>Yes. Prints ship nationwide via insured carrier with tracking — 3–5 business days production. Originals also ship nationwide with crating and insurance. The studio will provide all shipping details on inquiry.</p>
+      <p>Yes. Prints ship nationwide via insured carrier with tracking — 3–5 business days production. Originals also ship nationwide with crating and insurance. All shipping details provided on inquiry.</p>
     </div>
   </div>
 </section>
@@ -599,7 +684,7 @@ footer a:hover{color:var(--gold);}
       <div class="section-rule"></div>
     </div>
     <h2 style="font-family:'EB Garamond',serif;font-size:2.4rem;font-weight:400;margin-bottom:16px;">Get in Touch</h2>
-    <p>For questions about originals, prints, private viewings, or anything else. The studio responds within one business day.</p>
+    <p>For questions about originals, prints, or anything else. We respond within one business day.</p>
     <div class="contact-details">
       <div class="contact-detail-item"><span class="detail-label">Email</span><a href="mailto:art@marykilpatrick.com" style="color:var(--gold);text-decoration:none;">art@marykilpatrick.com</a></div>
       <div class="contact-detail-item"><span class="detail-label">Phone</span><a href="tel:+14586663614" style="color:var(--soft-black);text-decoration:none;">(458) 666-3614</a></div>
@@ -625,11 +710,11 @@ footer a:hover{color:var(--gold);}
             <option>Harmony</option><option>Deconstruction</option><option>Bravery</option>
             <option>Beauty</option><option>Two Dancers</option><option>Jamaican Hero</option>
             <option>Tickle</option><option>Earth Mother</option><option>Christ Mass</option>
-            <option>Virtual Girl</option><option>Cotton Candy</option>
+            <option>Virtual Girl</option><option>Cotton Candy</option><option>Las Vegas</option>
           </optgroup>
           <optgroup label="Prints Only (Original Sold)">
             <option>Blue Lady (print only)</option><option>Two Twisted Sisters (print only)</option>
-            <option>War (print only)</option><option>Evil (print only)</option>
+            <option>War (print only)</option>
           </optgroup>
         </select>
       </div>
@@ -644,9 +729,13 @@ footer a:hover{color:var(--gold);}
 <div id="lightbox" onclick="closeLightbox(event)">
   <div class="lightbox-content">
     <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <p style="color:rgba(255,255,255,0.85);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:10px;">Close with × · Escape · or your back button</p>
     <img id="lightbox-img" src="" alt="">
     <p id="lightbox-title"></p>
-    <p style="color:rgba(255,255,255,0.35);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;margin-top:10px;">Click or tap image to expand &nbsp;·&nbsp; Use × to close — not the browser back button</p>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:16px;">
+      <a id="lightbox-buy-original" href="buy-original.html" onclick="this.href='buy-original.html?painting='+encodeURIComponent(document.getElementById('lightbox-title').innerText);closeLightbox();" style="background:#fff;color:#1A1814;padding:10px 24px;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.12em;text-decoration:none;font-family:'Karla',sans-serif;">Acquire the Original</a>
+      <a id="lightbox-buy-print" href="prints.html" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.5);padding:10px 24px;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.12em;text-decoration:none;font-family:'Karla',sans-serif;">Buy Print</a>
+    </div>
   </div>
 </div>
 
@@ -663,11 +752,6 @@ footer a:hover{color:var(--gold);}
 <script>
 const WORKER_URL = 'https://mary-kilpatrick-api.jesse-daggett.workers.dev';
 
-function openBioModal(e) {
-  e.preventDefault();
-  document.getElementById('bio-modal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
 function closeBioModal(e) {
   if (!e || e.target.id === 'bio-modal' || e.target.classList.contains('bio-modal-close')) {
     document.getElementById('bio-modal').classList.remove('active');
@@ -685,30 +769,6 @@ function toggleBio() {
   label.textContent = open ? 'Show Less' : 'Learn More';
 }
 
-function handleGalleryClick(e, src, title) {
-  const item = e.currentTarget;
-  // If buttons were clicked, let them handle it
-  if (e.target.classList.contains('btn-inquire') || e.target.classList.contains('btn-print')) return;
-  // On touch devices — first tap reveals overlay, second tap opens lightbox
-  if (window.matchMedia('(hover: none)').matches) {
-    if (!item.classList.contains('tapped')) {
-      // First tap — show overlay
-      document.querySelectorAll('.gallery-item.tapped').forEach(el => el.classList.remove('tapped'));
-      item.classList.add('tapped');
-      return;
-    }
-  }
-  // Desktop or second tap — open lightbox
-  openLightbox(src, title);
-}
-
-// Close tapped state when tapping elsewhere
-document.addEventListener('click', function(e) {
-  if (!e.target.closest('.gallery-item')) {
-    document.querySelectorAll('.gallery-item.tapped').forEach(el => el.classList.remove('tapped'));
-  }
-});
-
 function setInquiryPainting(title) {
   setTimeout(() => {
     const sel = document.getElementById('inq-painting');
@@ -721,6 +781,10 @@ function setInquiryPainting(title) {
 
 // Lightbox
 let lbScale=1,lbDragging=false,lbLastX=0,lbLastY=0,lbTransX=0,lbTransY=0,lbLastDist=0;
+
+// Push a base state on load so there's always a page to land on after closing lightbox
+history.replaceState({page:'gallery'},'','');
+
 function openLightbox(src,title){
   const img=document.getElementById('lightbox-img');
   img.src='';lbScale=1;lbTransX=0;lbTransY=0;
@@ -729,15 +793,32 @@ function openLightbox(src,title){
   document.getElementById('lightbox').classList.add('active');
   document.body.style.overflow='hidden';
   img.src='watermarked/'+src;
+  // Set Buy a Print link to go directly to that painting
+  document.getElementById('lightbox-buy-print').href='prints.html#'+encodeURIComponent(title);
+  // Hide buy buttons for sold paintings
+  const clickedItem = document.querySelector(`.gallery-item[onclick*="${src}"]`);
+  const isSold = clickedItem && clickedItem.classList.contains('sold');
+  document.getElementById('lightbox-buy-original').style.display = isSold ? 'none' : '';
+  document.getElementById('lightbox-buy-print').style.display = isSold ? 'none' : '';
+
+  history.pushState({lightbox:true},'','');
 }
 function closeLightbox(e){
-  if(!e||e.target.id==='lightbox'||e.target.classList.contains('lightbox-close')){
+  if(!e||e.target.id==='lightbox'||e.target.classList.contains('lightbox-close')||e.target.id==='lightbox-img'){
     document.getElementById('lightbox').classList.remove('active');
     document.getElementById('lightbox-img').src='';
     document.body.style.overflow='';
     lbScale=1;lbTransX=0;lbTransY=0;
   }
 }
+window.addEventListener('popstate',function(e){
+  if(document.getElementById('lightbox').classList.contains('active')){
+    document.getElementById('lightbox').classList.remove('active');
+    document.getElementById('lightbox-img').src='';
+    document.body.style.overflow='';
+    lbScale=1;lbTransX=0;lbTransY=0;
+  }
+});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 document.getElementById('lightbox').addEventListener('wheel',function(e){
   e.preventDefault();
@@ -773,7 +854,7 @@ async function submitInquiry(e){
   try{
     const res=await fetch(`${WORKER_URL}/api/inquire`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,painting,message})});
     const data=await res.json();
-    if(data.success){msg.style.color='var(--gold)';msg.textContent='Thank you. The studio will be in touch within one business day.';btn.textContent='Sent';}
+    if(data.success){msg.style.color='var(--gold)';msg.textContent='Thank you. We\'ll be in touch within one business day.';btn.textContent='Sent';}
     else throw new Error(data.error||'Failed');
   }catch(err){
     msg.style.color='#c0392b';
@@ -782,11 +863,51 @@ async function submitInquiry(e){
   }
 }
 
+// Show artist card after hero scrolls out
+const heroSection = document.querySelector('.artist-intro');
+const floatingCard = document.querySelector('.artist-card');
+if(heroSection && floatingCard) {
+  const heroObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      floatingCard.classList.toggle('card-visible', !e.isIntersecting);
+    });
+  }, {threshold: 0});
+  heroObserver.observe(heroSection);
+}
+
 // Scroll reveal
-const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});},{threshold:0.05});
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');}});},{threshold:0.05});
 document.querySelectorAll('.gallery-item,.review-item,.faq-item,.buy-panel').forEach(el=>{
-  el.style.opacity='0';el.style.transform='translateY(16px)';el.style.transition='opacity 0.5s ease,transform 0.5s ease';
+  el.classList.add('reveal-ready');
   observer.observe(el);
+});
+// Mobile nav toggle
+function toggleMobileNav() {
+  const menu = document.getElementById('nav-mobile');
+  const btn = document.getElementById('nav-hamburger');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+// Close mobile nav on outside click
+document.addEventListener('click', e => {
+  if (!e.target.closest('nav') && !e.target.closest('.nav-mobile')) {
+    document.getElementById('nav-mobile').classList.remove('open');
+    document.getElementById('nav-hamburger').classList.remove('open');
+  }
+});
+
+// Nav dropdown
+document.querySelectorAll('.nav-dropdown-toggle').forEach(toggle => {
+  toggle.addEventListener('click', e => {
+    e.preventDefault();
+    const menu = toggle.nextElementSibling;
+    menu.style.display = menu.style.display === 'block' ? '' : 'block';
+  });
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown-menu').forEach(m => m.style.display = '');
+  }
 });
 </script>
 </body>

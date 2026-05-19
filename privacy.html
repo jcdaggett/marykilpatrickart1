@@ -6,22 +6,81 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — Mary Kilpatrick</title>
 <meta name="robots" content="noindex">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Karla:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Karla:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root{--cream:#FDFBF7;--soft-black:#1A1A1A;--dark-gold:#9C7C38;--warm-gray:#6D635B;--light-gray:#B8B0A8;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Karla',sans-serif;background:var(--cream);color:var(--soft-black);font-weight:300;line-height:1.8;-webkit-font-smoothing:antialiased;}
-nav{position:fixed;top:0;width:100%;height:72px;background:rgba(253,251,247,0.96);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:0 48px;z-index:1000;border-bottom:1px solid rgba(184,176,168,0.2);}
-.nav-name{font-family:'Cormorant Garamond',serif;font-size:1.8rem;text-decoration:none;color:var(--soft-black);}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#FDFBF7;border-bottom:1px solid rgba(156,124,56,0.2);height:64px;display:flex;align-items:center;padding:0 48px;justify-content:space-between;}
+.nav-name{font-family:"EB Garamond",serif;font-size:1.2rem;font-weight:400;letter-spacing:0.1em;text-decoration:none;color:#1A1814;text-transform:uppercase;}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
+.nav-links a{font-size:0.7rem;font-weight:400;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;color:#1A1814;transition:color 0.2s;}
+.nav-links a:hover{color:#9C7C38;}
+.nav-cta{color:#9C7C38!important;border:1px solid #9C7C38;padding:7px 18px;transition:all 0.2s!important;}
+.nav-cta:hover{background:#9C7C38!important;color:#fff!important;}
+.nav-dropdown{position:relative;}
+.nav-dropdown-menu{display:none;position:absolute;top:100%;left:0;background:#FDFBF7;border:1px solid rgba(156,124,56,0.2);min-width:200px;z-index:1001;box-shadow:0 4px 16px rgba(0,0,0,0.08);padding:8px 0;list-style:none;}
+.nav-dropdown:hover .nav-dropdown-menu{display:block;}
+.nav-dropdown-menu li a{display:block;padding:10px 20px;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.08em;color:#1A1814;text-decoration:none;}
+.nav-dropdown-menu li a:hover{color:#9C7C38;}
+
 .page{max-width:780px;margin:0 auto;padding:110px 48px 80px;}
 h1{font-family:'Cormorant Garamond',serif;font-size:2.8rem;margin-bottom:8px;font-weight:400;}
 h2{font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin:36px 0 12px;font-weight:400;}
 p{color:var(--warm-gray);margin-bottom:16px;}
 footer{background:var(--soft-black);color:var(--light-gray);text-align:center;padding:28px;font-size:0.85rem;margin-top:80px;}
+
+/* HAMBURGER */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;z-index:1002;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--soft-black);transition:all 0.3s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.nav-mobile{display:none;position:fixed;top:64px;left:0;right:0;background:#FDFBF7;border-bottom:1px solid rgba(156,124,56,0.2);z-index:999;padding:24px 24px 32px;flex-direction:column;gap:0;}
+.nav-mobile.open{display:flex;}
+.nav-mobile a{display:block;padding:14px 0;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.15em;color:#1A1814;text-decoration:none;border-bottom:1px solid rgba(156,124,56,0.2);}
+.nav-mobile a:last-child{border-bottom:none;}
+.nav-mobile .nav-mobile-cta{color:#9C7C38;margin-top:16px;border:1px solid #9C7C38;text-align:center;padding:14px;border-bottom:1px solid #9C7C38!important;}
+@media(max-width:900px){.nav-links{display:none;}.nav-hamburger{display:flex;}}
 </style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HL153EKQJB"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-HL153EKQJB");</script>
+<meta property="og:image" content="https://www.marykilpatrick.com/thumbs/mary-kilpatrick-personas-figurative-painting.jpg">
+<meta property="og:title" content="Mary Kilpatrick — Broadway Actress & Painter">
+<link rel="canonical" href="https://www.marykilpatrick.com/privacy.html">
+<meta name="description" content="Mary Kilpatrick — Broadway actress and figurative painter. Original mixed media paintings celebrating women.">
 </head>
 <body>
-<nav><a href="index.html" class="nav-name">Mary Kilpatrick</a></nav>
+<nav>
+  <a href="index.html" class="nav-name">Mary Kilpatrick</a>
+  <ul class="nav-links">
+    <li><a href="index.html#hero">About</a></li>
+    <li><a href="index.html#gallery">Works</a></li>
+    <li class="nav-dropdown">
+      <a href="index.html#buy" class="nav-dropdown-toggle">Acquire ▾</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="buy-original.html">Acquire an Original</a></li>
+        <li><a href="prints.html">Buy Prints</a></li>
+      </ul>
+    </li>
+    <li><a href="index.html#contact">Inquire</a></li>
+    <li><a href="tel:+14586663614">(458) 666-3614</a></li>
+    <li><a href="prints.html" class="nav-cta">Buy Prints</a></li>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="nav-mobile">
+  <a href="index.html#hero">About</a>
+  <a href="index.html#gallery">Works</a>
+  <a href="buy-original.html">Acquire an Original</a>
+  <a href="prints.html">Buy Prints</a>
+  <a href="index.html#contact">Inquire</a>
+  <a href="tel:+14586663614">(458) 666-3614</a>
+  <a href="prints.html" class="nav-mobile-cta">Buy Prints</a>
+</div>
 <div class="page">
 <h1>Privacy Policy</h1>
 <p>Last updated: May 2026</p>
