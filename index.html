@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Karla:wght@300;400&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://www.marykilpatrick.com/">
 <meta property="og:title" content="Mary Kilpatrick — Broadway Actress & Painter">
-<meta property="og:description" content="Original mixed media paintings celebrating women. Limited edition prints. Ships nationwide.">
+<meta property="og:description" content="Original figurative paintings celebrating women. First edition giclée prints. Ships nationwide.">
 <meta property="og:url" content="https://www.marykilpatrick.com/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://www.marykilpatrick.com/thumbs/mary-kilpatrick-personas-figurative-painting.jpg">
@@ -213,27 +213,7 @@ footer a:hover{color:var(--gold);}
   }
   .artist-card-link:hover { gap: 10px; }
 
-  /* Bio modal */
-  .bio-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(26,24,20,0.7);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
-    padding: 24px;
-  }
-  .bio-modal.active { display: flex; }
-  .bio-modal-inner {
-    background: var(--cream);
-    max-width: 720px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    display: grid;
-    grid-template-columns: 240px 1fr;
-  }
+
   .bio-modal-photo {
     width: 100%;
     height: 100%;
@@ -355,7 +335,7 @@ footer a:hover{color:var(--gold);}
 {"@context":"https://schema.org","@type":"Person","name":"Mary Kilpatrick","alternateName":"Mary Kilpatrick Broadway actress painter","jobTitle":["Painter","Broadway Actress","Illustrator"],"url":"https://www.marykilpatrick.com","description":"Mary Kilpatrick (New York City) is a Broadway actress and figurative mixed media painter. She performed on Broadway at the Martin Beck Theatre in Oh! Calcutta! and in national tours of Bye Bye Birdie.","sameAs":["https://www.ibdb.com/broadway-cast-staff/mary-kilpatrick-492830","https://www.imdb.com/name/nm5017887/","https://aplaceforstarr.com","https://beatchildrenstheatre.org","https://www.instagram.com/marykilpatrickart/"],"knowsAbout":["Acrylic painting","Mixed media art","Figurative art","Fine art prints"]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Product","name":"Limited Edition Prints — Mary Kilpatrick","description":"Limited edition giclée prints of original figurative paintings by Mary Kilpatrick. 100% cotton rag fine art paper. Maximum 100 prints per edition. Signed Certificate of Authenticity.","brand":{"@type":"Brand","name":"Mary Kilpatrick"},"offers":{"@type":"AggregateOffer","priceCurrency":"USD","lowPrice":"150","highPrice":"2500","offerCount":"21"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"1","bestRating":"5","worstRating":"1"},"review":{"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Dione J."},"reviewBody":"I adore my Mary original hanging in my house. Guests notice it and comment often. The painting completes the room."}}
+{"@context":"https://schema.org","@type":"Product","name":"Limited Edition Prints — Mary Kilpatrick","description":"Limited edition giclée prints of original figurative paintings by Mary Kilpatrick. 100% cotton rag fine art paper. Maximum 100 prints per edition. Signed Certificate of Authenticity.","brand":{"@type":"Brand","name":"Mary Kilpatrick"},"offers":{"@type":"AggregateOffer","priceCurrency":"USD","lowPrice":"60","highPrice":"500","offerCount":"21"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"1","bestRating":"5","worstRating":"1"},"review":{"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Dione J."},"reviewBody":"I adore my Mary original hanging in my house. Guests notice it and comment often. The painting completes the room."}}
 </script>
 </head>
 <body>
@@ -395,13 +375,12 @@ footer a:hover{color:var(--gold);}
 
 <!-- ARTIST CARD — fixed top right -->
 <div class="artist-card" id="about">
-  <button onclick="document.getElementById('about').style.display='none'" style="position:absolute;top:6px;right:8px;background:none;border:none;color:var(--warm-gray);font-size:0.9rem;cursor:pointer;line-height:1;padding:2px 4px;z-index:10;" title="Hide">×</button>
   <img class="artist-card-photo" src="mary_photo.jpg" alt="Mary Kilpatrick">
   <div class="artist-card-body">
     <p class="artist-card-name">Mary Kilpatrick</p>
     <p class="artist-card-role">Broadway Actress · Painter</p>
     <p class="artist-card-bio">From Broadway to canvas — original figurative paintings celebrating women's lives.</p>
-    <a href="#hero" class="artist-card-link">Full Biography ›</a>
+    <a href="#hero" class="artist-card-link" onclick="setTimeout(()=>{const f=document.getElementById('bio-full');const b=document.getElementById('learn-more-btn');const l=document.getElementById('learn-more-label');if(f&&!f.classList.contains('open')){f.classList.add('open');if(b)b.classList.add('open');if(l)l.textContent='Show Less';}},300)">Full Biography ›</a>
     <button onclick="document.getElementById('about').style.display='none'" style="display:block;margin-top:10px;background:none;border:none;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--light-gray);cursor:pointer;padding:0;font-family:'Karla',sans-serif;">Hide ×</button>
   </div>
 </div>
