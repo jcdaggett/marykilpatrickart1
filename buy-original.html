@@ -165,8 +165,19 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
 
     <!-- INQUIRY FORM -->
     <div style="background:var(--paper);padding:40px;border-top:2px solid var(--gold);">
-      <p style="font-family:'EB Garamond',serif;font-size:1.3rem;font-weight:400;margin-bottom:6px;">Interested in a painting?</p>
-      <p style="font-size:0.85rem;color:var(--warm-gray);margin-bottom:24px;">Tell us which painting and we'll be in touch within one business day.</p>
+      <!-- Painting context — shown when arriving from a specific painting -->
+      <div id="painting-context" style="display:none;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--rule);">
+        <p style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold);margin-bottom:10px;">Inquiring about</p>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <img id="context-thumb" src="" alt="" style="width:72px;height:72px;object-fit:cover;border:1px solid var(--rule);">
+          <div>
+            <p id="context-title" style="font-family:'EB Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--soft-black);margin-bottom:2px;"></p>
+            <a href="index.html#gallery" style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);text-decoration:none;">← View all paintings</a>
+          </div>
+        </div>
+      </div>
+      <p style="font-family:'EB Garamond',serif;font-size:1.3rem;font-weight:400;margin-bottom:6px;" id="form-headline">Interested in a painting?</p>
+      <p style="font-size:0.85rem;color:var(--warm-gray);margin-bottom:24px;">We'll be in touch within one business day.</p>
       <form id="acq-form" onsubmit="submitAcqForm(event)" style="display:flex;flex-direction:column;gap:14px;">
         <input type="text" id="acq-name" placeholder="Your name" required style="border:1px solid var(--rule);background:#fff;padding:11px 14px;font-size:0.92rem;font-family:'Karla',sans-serif;outline:none;color:var(--soft-black);">
         <input type="email" id="acq-email" placeholder="Email address" required style="border:1px solid var(--rule);background:#fff;padding:11px 14px;font-size:0.92rem;font-family:'Karla',sans-serif;outline:none;color:var(--soft-black);">
@@ -334,12 +345,28 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
 </footer>
 
 <script>
-// Pre-fill painting name from URL param
+// Pre-fill painting name from URL param and show context
 const urlParams = new URLSearchParams(window.location.search);
 const paintingParam = urlParams.get('painting');
 if(paintingParam) {
   const field = document.getElementById('acq-painting');
   if(field) field.value = paintingParam;
+  
+  // Show painting context panel
+  const ctx = document.getElementById('painting-context');
+  const ctxTitle = document.getElementById('context-title');
+  const ctxThumb = document.getElementById('context-thumb');
+  const headline = document.getElementById('form-headline');
+  
+  if(ctx && ctxTitle && ctxThumb) {
+    ctxTitle.textContent = paintingParam;
+    // Build thumbnail filename from painting title
+    const slug = paintingParam.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    ctxThumb.src = `thumbs/mary-kilpatrick-${slug}-figurative-painting.jpg`;
+    ctxThumb.alt = paintingParam;
+    ctx.style.display = 'block';
+    if(headline) headline.textContent = 'Ready to acquire this work?';
+  }
 }
 
 // Acquisition inquiry form
