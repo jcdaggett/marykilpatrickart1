@@ -38,6 +38,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);bor
 .nav-dropdown-menu li a{display:block;padding:10px 20px;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--soft-black);text-decoration:none;transition:color 0.2s;}
 .nav-dropdown-menu li a:hover{color:var(--gold);}
 
+/* PAINTING CARDS */
+.acq-painting-card{cursor:pointer;position:relative;overflow:hidden;background:var(--paper);aspect-ratio:1;}
+.acq-painting-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s,opacity 0.3s;}
+.acq-painting-card:hover img{transform:scale(1.04);opacity:0.85;}
+.acq-painting-card.selected{outline:3px solid var(--gold);}
+.acq-card-info{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(26,24,20,0.85) 0%,transparent 100%);padding:16px 14px 12px;transition:opacity 0.3s;}
+.acq-card-title{font-family:"EB Garamond",serif;font-size:0.95rem;color:#fff;font-weight:400;}
+.acq-card-price{font-size:0.72rem;color:rgba(255,255,255,0.7);margin-top:2px;}
+
 /* PAGE */
 .page{padding:120px 64px 80px;}
 .page-header{max-width:720px;margin-bottom:72px;}
@@ -157,7 +166,107 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
 
 <div class="page">
 
-  <div style="display:grid;grid-template-columns:420px 1fr;gap:80px;margin-bottom:72px;align-items:start;">
+  <!-- PAINTINGS GRID -->
+  <div style="margin-bottom:64px;">
+    <div style="display:flex;align-items:center;gap:24px;margin-bottom:32px;">
+      <div style="flex:1;height:1px;background:var(--rule);"></div>
+      <span style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.2em;color:var(--warm-gray);white-space:nowrap;">Available Originals</span>
+      <div style="flex:1;height:1px;background:var(--rule);"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;">
+      <div class="acq-painting-card" onclick="selectPainting('Personas','mary-kilpatrick-personas-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-personas-figurative-painting.jpg" alt="Personas">
+        <div class="acq-card-info"><p class="acq-card-title">Personas</p><p class="acq-card-price">$6,000</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Josephine Baker','mary-kilpatrick-josephine-baker-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-josephine-baker-figurative-painting.jpg" alt="Josephine Baker">
+        <div class="acq-card-info"><p class="acq-card-title">Josephine Baker</p><p class="acq-card-price">$4,000</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Breaking Away','mary-kilpatrick-breaking-away-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-breaking-away-figurative-painting.jpg" alt="Breaking Away">
+        <div class="acq-card-info"><p class="acq-card-title">Breaking Away</p><p class="acq-card-price">$4,000</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Girls Night Out','mary-kilpatrick-girls-night-out-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-girls-night-out-figurative-painting.jpg" alt="Girls Night Out">
+        <div class="acq-card-info"><p class="acq-card-title">Girls Night Out</p><p class="acq-card-price">$2,500</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Journey','mary-kilpatrick-journey-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-journey-figurative-painting.jpg" alt="Journey">
+        <div class="acq-card-info"><p class="acq-card-title">Journey</p><p class="acq-card-price">$3,000</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Covid','mary-kilpatrick-covid-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-covid-figurative-painting.jpg" alt="Covid">
+        <div class="acq-card-info"><p class="acq-card-title">Covid</p><p class="acq-card-price">$4,000</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Cat Lady','mary-kilpatrick-cat-lady-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-cat-lady-figurative-painting.jpg" alt="Cat Lady">
+        <div class="acq-card-info"><p class="acq-card-title">Cat Lady</p><p class="acq-card-price">$3,500</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Kissing Cousins','mary-kilpatrick-kissing-cousins-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-kissing-cousins-figurative-painting.jpg" alt="Kissing Cousins">
+        <div class="acq-card-info"><p class="acq-card-title">Kissing Cousins</p><p class="acq-card-price">$2,000</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Showgirl','mary-kilpatrick-showgirl-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-showgirl-figurative-painting.jpg" alt="Showgirl">
+        <div class="acq-card-info"><p class="acq-card-title">Showgirl</p><p class="acq-card-price">$15,000</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Harmony','mary-kilpatrick-harmony-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-harmony-figurative-painting.jpg" alt="Harmony">
+        <div class="acq-card-info"><p class="acq-card-title">Harmony</p><p class="acq-card-price">$3,000</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Deconstruction','mary-kilpatrick-deconstruction-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-deconstruction-figurative-painting.jpg" alt="Deconstruction">
+        <div class="acq-card-info"><p class="acq-card-title">Deconstruction</p><p class="acq-card-price">$8,000</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Bravery','mary-kilpatrick-bravery-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-bravery-figurative-painting.jpg" alt="Bravery">
+        <div class="acq-card-info"><p class="acq-card-title">Bravery</p><p class="acq-card-price">$4,000</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Beauty','mary-kilpatrick-beauty-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-beauty-figurative-painting.jpg" alt="Beauty">
+        <div class="acq-card-info"><p class="acq-card-title">Beauty</p><p class="acq-card-price">$15,000</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Two Dancers','mary-kilpatrick-two-dancers-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-two-dancers-figurative-painting.jpg" alt="Two Dancers">
+        <div class="acq-card-info"><p class="acq-card-title">Two Dancers</p><p class="acq-card-price">$4,500</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Jamaican Hero','mary-kilpatrick-jamaican-hero-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-jamaican-hero-figurative-painting.jpg" alt="Jamaican Hero">
+        <div class="acq-card-info"><p class="acq-card-title">Jamaican Hero</p><p class="acq-card-price">$3,500</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Tickle','mary-kilpatrick-tickle-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-tickle-figurative-painting.jpg" alt="Tickle">
+        <div class="acq-card-info"><p class="acq-card-title">Tickle</p><p class="acq-card-price">$10,000</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Earth Mother','mary-kilpatrick-earth-mother-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-earth-mother-figurative-painting.jpg" alt="Earth Mother">
+        <div class="acq-card-info"><p class="acq-card-title">Earth Mother</p><p class="acq-card-price">$25,000</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Christ Mass','mary-kilpatrick-christ-mass-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-christ-mass-figurative-painting.jpg" alt="Christ Mass">
+        <div class="acq-card-info"><p class="acq-card-title">Christ Mass</p><p class="acq-card-price">$7,500</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Virtual Girl','mary-kilpatrick-virtual-girl-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-virtual-girl-figurative-painting.jpg" alt="Virtual Girl">
+        <div class="acq-card-info"><p class="acq-card-title">Virtual Girl</p><p class="acq-card-price">$5,000</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Cotton Candy','mary-kilpatrick-cotton-candy-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-cotton-candy-figurative-painting.jpg" alt="Cotton Candy">
+        <div class="acq-card-info"><p class="acq-card-title">Cotton Candy</p><p class="acq-card-price">$5,000</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Las Vegas','mary-kilpatrick-las-vegas-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-las-vegas-figurative-painting.jpg" alt="Las Vegas">
+        <div class="acq-card-info"><p class="acq-card-title">Las Vegas</p><p class="acq-card-price">$3,500</p></div>
+      </div>
+      <div class="acq-painting-card" onclick="selectPainting('Geri','mary-kilpatrick-geri-figurative-painting.jpg')">
+        <img src="thumbs/mary-kilpatrick-geri-figurative-painting.jpg" alt="Geri">
+        <div class="acq-card-info"><p class="acq-card-title">Geri</p><p class="acq-card-price">$2,500</p></div>
+      </div>
+    </div>
+    <p style="font-size:0.78rem;color:var(--light-gray);margin-top:16px;text-align:center;">Click a painting to select it — the inquiry form below will update automatically.</p>
+  </div>
+
+  <div id="inquiry-section" style="display:grid;grid-template-columns:420px 1fr;gap:80px;margin-bottom:72px;align-items:start;">
 
     <!-- INQUIRY FORM -->
     <div style="background:var(--paper);padding:40px;border-top:2px solid var(--gold);">
@@ -207,9 +316,7 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
       </div>
     </div>
 
-  </div>
-
-  <!-- TRUST SIGNALS -->
+  </div><!-- end inquiry-section -->
   <div class="trust-grid">
     <div class="trust-item">
       
@@ -360,6 +467,33 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
 </footer>
 
 <script>
+// Select painting from grid
+function selectPainting(title, file) {
+  // Update form
+  const field = document.getElementById('acq-painting');
+  if(field) field.value = title;
+
+  // Show context panel
+  const ctx = document.getElementById('painting-context');
+  const ctxTitle = document.getElementById('context-title');
+  const ctxThumb = document.getElementById('context-thumb');
+  const headline = document.getElementById('form-headline');
+  if(ctx && ctxTitle && ctxThumb) {
+    ctxTitle.textContent = title;
+    ctxThumb.src = 'thumbs/' + file;
+    ctxThumb.alt = title;
+    ctx.style.display = 'block';
+    if(headline) headline.textContent = 'Ready to acquire this work?';
+  }
+
+  // Highlight selected card
+  document.querySelectorAll('.acq-painting-card').forEach(c => c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+
+  // Scroll to inquiry form
+  document.getElementById('inquiry-section').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
 // Pre-fill painting name from URL param and show context
 const urlParams = new URLSearchParams(window.location.search);
 const paintingParam = urlParams.get('painting');
