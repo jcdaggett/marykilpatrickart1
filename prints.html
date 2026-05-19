@@ -845,11 +845,6 @@ function totalPrice() {
   return printPrice + frameMarkup;
 }
 
-
-  if (!selected.painting || !selected.paper || !selected.size) return null;
-  return selected.size.price || estimatePrice(selected.painting, selected.size);
-}
-
 let inventoryData = {};
 
 async function loadInventory() {
@@ -891,7 +886,6 @@ function renderPaintings() {
         </div>
         <div class="painting-card-info">
           <h3>${p.title}</h3>
-          </div>
         </div>
       </div>
     `;
