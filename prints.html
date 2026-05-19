@@ -78,6 +78,27 @@
   .btn-back:hover { border-color: var(--dark-gold); color: var(--dark-gold); }
 
   /* Options */
+  /* FRAME CARDS */
+  .frame-card{cursor:pointer;text-align:center;border:2px solid transparent;padding:4px;transition:border 0.2s;}
+  .frame-card img{width:100%;aspect-ratio:1;object-fit:cover;display:block;}
+  .frame-card-name{font-size:0.75rem;color:var(--warm-gray);margin-top:4px;line-height:1.3;}
+  .frame-card-price{font-size:0.72rem;color:var(--gold);}
+  .frame-card.selected{border-color:var(--gold);}
+  .frame-card:hover{border-color:rgba(156,124,56,0.5);}
+  /* MAT SWATCHES */
+  .mat-swatch{width:36px;height:36px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border 0.2s;display:inline-block;}
+  .mat-swatch.selected{border-color:var(--gold);box-shadow:0 0 0 2px var(--cream),0 0 0 4px var(--gold);}
+  .mat-swatch:hover{border-color:var(--gold);}
+  /* MAT SIZE BUTTONS */
+  .mat-btn{background:transparent;border:1px solid var(--rule);padding:6px 14px;font-size:0.75rem;font-family:"Karla",sans-serif;cursor:pointer;color:var(--warm-gray);transition:all 0.2s;}
+  .mat-btn.selected{background:var(--soft-black);color:#fff;border-color:var(--soft-black);}
+  .mat-btn:hover{border-color:var(--gold);color:var(--gold);}
+  /* HARDWARE CARDS */
+  .hardware-card{cursor:pointer;border:2px solid transparent;padding:8px;text-align:center;transition:border 0.2s;}
+  .hardware-card.selected{border-color:var(--gold);}
+  .hardware-card:hover{border-color:rgba(156,124,56,0.5);}
+  .hardware-name{font-size:0.75rem;color:var(--warm-gray);margin-top:6px;line-height:1.4;}
+
   .options-section { margin-bottom: 32px; }
   .options-section h4 { font-size: 1.05rem; font-family: "EB Garamond", serif; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(184,176,168,0.3); color: var(--soft-black); }
   .options-grid { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -318,9 +339,196 @@
       <div class="options-grid" id="size-options"></div>
     </div>
 
+    <!-- FRAMING ADD-ON -->
+    <div class="options-section" id="frame-section" style="display:none;">
+      <h4>Framing <span style="font-size:0.75rem;font-weight:300;color:var(--light-gray);text-transform:none;letter-spacing:0;">(optional — ships ready to hang)</span></h4>
+      <p id="frame-size-warning" style="display:none;font-size:0.8rem;color:var(--warm-gray);margin-bottom:14px;">This painting's dimensions exceed the maximum frameable size (60×40"). Prints are available unframed only.</p>
+
+      <!-- Step 1: Frame selection -->
+      <div id="frame-chooser">
+        <p style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--light-gray);margin-bottom:12px;">Select Frame</p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;" id="frame-image-grid">
+
+          <div class="frame-card selected" id="frame-card-none" onclick="selectFrameCard(null,'No Frame')">
+            <div style="aspect-ratio:1;background:var(--paper);display:flex;align-items:center;justify-content:center;border:1px solid var(--rule);">
+              <span style="font-size:0.8rem;color:var(--light-gray);">Unframed</span>
+            </div>
+            <p class="frame-card-name">No Frame</p>
+            <p class="frame-card-price">—</p>
+          </div>
+
+          <div class="frame-card" id="frame-card-105001" onclick="selectFrameCard(105001,'Black 0.875″')">
+            <img src="frames/frame-105001.jpg" alt="Black Frame">
+            <p class="frame-card-name">Black</p>
+            <p class="frame-card-price" id="frame-price-105001">Loading…</p>
+          </div>
+
+          <div class="frame-card" id="frame-card-105005" onclick="selectFrameCard(105005,'Black 1.25″')">
+            <img src="frames/frame-105005.webp" alt="Black Frame 1.25">
+            <p class="frame-card-name">Black 1.25″</p>
+            <p class="frame-card-price" id="frame-price-105005">Loading…</p>
+          </div>
+
+          <div class="frame-card" id="frame-card-105025" onclick="selectFrameCard(105025,'Matte Black')">
+            <img src="frames/frame-105025.webp" alt="Matte Black Frame">
+            <p class="frame-card-name">Matte Black</p>
+            <p class="frame-card-price" id="frame-price-105025">Loading…</p>
+          </div>
+
+          <div class="frame-card" id="frame-card-105002" onclick="selectFrameCard(105002,'White 0.875″')">
+            <img src="frames/frame-105002.jpg" alt="White Frame">
+            <p class="frame-card-name">White</p>
+            <p class="frame-card-price" id="frame-price-105002">Loading…</p>
+          </div>
+
+          <div class="frame-card" id="frame-card-105006" onclick="selectFrameCard(105006,'White 1.25″')">
+            <img src="frames/frame-105006.webp" alt="White Frame 1.25">
+            <p class="frame-card-name">White 1.25″</p>
+            <p class="frame-card-price" id="frame-price-105006">Loading…</p>
+          </div>
+
+          <div class="frame-card" id="frame-card-105003" onclick="selectFrameCard(105003,'Oak')">
+            <img src="frames/frame-105003.jpg" alt="Oak Frame">
+            <p class="frame-card-name">Oak</p>
+            <p class="frame-card-price" id="frame-price-105003">Loading…</p>
+          </div>
+
+          <div class="frame-card" id="frame-card-105022" onclick="selectFrameCard(105022,'Maple')">
+            <img src="frames/frame-105022.webp" alt="Maple Frame">
+            <p class="frame-card-name">Maple</p>
+            <p class="frame-card-price" id="frame-price-105022">Loading…</p>
+          </div>
+
+          <div class="frame-card" id="frame-card-105019" onclick="selectFrameCard(105019,'Driftwood White')">
+            <img src="frames/frame-105019.jpg" alt="Driftwood White Frame">
+            <p class="frame-card-name">Driftwood White</p>
+            <p class="frame-card-price" id="frame-price-105019">Loading…</p>
+          </div>
+
+          <div class="frame-card" id="frame-card-105020" onclick="selectFrameCard(105020,'Plein Air Espresso Gold')">
+            <img src="frames/frame-105020.webp" alt="Plein Air Espresso Gold">
+            <p class="frame-card-name">Plein Air Espresso</p>
+            <p class="frame-card-price" id="frame-price-105020">Loading…</p>
+          </div>
+
+          <div class="frame-card" id="frame-card-105023" onclick="selectFrameCard(105023,'Gold Plein Air')">
+            <img src="frames/frame-105023.webp" alt="Gold Plein Air Frame">
+            <p class="frame-card-name">Gold Plein Air</p>
+            <p class="frame-card-price" id="frame-price-105023">Loading…</p>
+          </div>
+
+          <div class="frame-card" id="frame-card-105017" onclick="selectFrameCard(105017,'Slimwoods Black Gold')">
+            <img src="frames/frame-105017.webp" alt="Slimwoods Black Gold">
+            <p class="frame-card-name">Slimwoods Black Gold</p>
+            <p class="frame-card-price" id="frame-price-105017">Loading…</p>
+          </div>
+
+          <div class="frame-card" id="frame-card-105016" onclick="selectFrameCard(105016,'Slimwoods Black Silver')">
+            <img src="frames/frame-105016.jpg" alt="Slimwoods Black Silver">
+            <p class="frame-card-name">Slimwoods Black Silver</p>
+            <p class="frame-card-price" id="frame-price-105016">Loading…</p>
+          </div>
+
+          <div class="frame-card" id="frame-card-105013" onclick="selectFrameCard(105013,'Framers Choice Black Gold')">
+            <img src="frames/frame-105013.jpg" alt="Framers Choice Black Gold">
+            <p class="frame-card-name">Framers Choice Black Gold</p>
+            <p class="frame-card-price" id="frame-price-105013">Loading…</p>
+          </div>
+
+          <div class="frame-card" id="frame-card-105015" onclick="selectFrameCard(105015,'Concerto Black Gold')">
+            <img src="frames/frame-105015.jpg" alt="Concerto Black Gold">
+            <p class="frame-card-name">Concerto Black Gold</p>
+            <p class="frame-card-price" id="frame-price-105015">Loading…</p>
+          </div>
+
+          <div class="frame-card" id="frame-card-105021" onclick="selectFrameCard(105021,'Vintage Copper')">
+            <img src="frames/frame-105021.webp" alt="Vintage Copper Frame">
+            <p class="frame-card-name">Vintage Copper</p>
+            <p class="frame-card-price" id="frame-price-105021">Loading…</p>
+          </div>
+
+        </div>
+
+        <!-- Mat size -->
+        <div id="mat-options" style="display:none;">
+          <p style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--light-gray);margin-bottom:10px;">Mat Size</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+            <button class="mat-btn selected" data-mat-id="64" onclick="selectMat(64,'No Mat')">No Mat</button>
+            <button class="mat-btn" data-mat-id="65" onclick="selectMat(65,'1.0″')">1.0″</button>
+            <button class="mat-btn" data-mat-id="66" onclick="selectMat(66,'1.5″')">1.5″</button>
+            <button class="mat-btn" data-mat-id="67" onclick="selectMat(67,'2.0″')">2.0″</button>
+            <button class="mat-btn" data-mat-id="68" onclick="selectMat(68,'2.5″')">2.5″</button>
+            <button class="mat-btn" data-mat-id="69" onclick="selectMat(69,'3.0″')">3.0″</button>
+            <button class="mat-btn" data-mat-id="70" onclick="selectMat(70,'3.5″')">3.5″</button>
+            <button class="mat-btn" data-mat-id="71" onclick="selectMat(71,'4.0″')">4.0″</button>
+            <button class="mat-btn" data-mat-id="72" onclick="selectMat(72,'4.5″')">4.5″</button>
+            <button class="mat-btn" data-mat-id="73" onclick="selectMat(73,'5.0″')">5.0″</button>
+          </div>
+
+          <!-- Mat color -->
+          <div id="mat-color-section" style="display:none;margin-bottom:20px;">
+            <p style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--light-gray);margin-bottom:10px;">Mat Color</p>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <div class="mat-swatch selected" data-color-id="96" title="White" style="background:#FFFFFF;border:1px solid #ddd;" onclick="selectMatColor(96,'White')"></div>
+              <div class="mat-swatch" data-color-id="104" title="Off White" style="background:#F5F0E0;" onclick="selectMatColor(104,'Off White')"></div>
+              <div class="mat-swatch" data-color-id="99" title="Antique White" style="background:#EDE8D0;" onclick="selectMatColor(99,'Antique White')"></div>
+              <div class="mat-swatch" data-color-id="102" title="Cream" style="background:#EDE4B8;" onclick="selectMatColor(102,'Cream')"></div>
+              <div class="mat-swatch" data-color-id="105" title="Pearl" style="background:#D8D3C8;" onclick="selectMatColor(105,'Pearl')"></div>
+              <div class="mat-swatch" data-color-id="103" title="Sand" style="background:#C8B98A;" onclick="selectMatColor(103,'Sand')"></div>
+              <div class="mat-swatch" data-color-id="109" title="Sauterne" style="background:#B8B080;" onclick="selectMatColor(109,'Sauterne')"></div>
+              <div class="mat-swatch" data-color-id="101" title="Dawn Gray" style="background:#9EAAA8;" onclick="selectMatColor(101,'Dawn Gray')"></div>
+              <div class="mat-swatch" data-color-id="107" title="French Blue" style="background:#8EA8B8;" onclick="selectMatColor(107,'French Blue')"></div>
+              <div class="mat-swatch" data-color-id="106" title="Silver Florentine" style="background:#C0C0B8;background:linear-gradient(135deg,#C8C8C0,#A8A8A0);" onclick="selectMatColor(106,'Silver Florentine')"></div>
+              <div class="mat-swatch" data-color-id="108" title="Indigo" style="background:#2D3D5A;" onclick="selectMatColor(108,'Indigo')"></div>
+              <div class="mat-swatch" data-color-id="110" title="Moist Point Green" style="background:#8A9E68;" onclick="selectMatColor(110,'Moist Point Green')"></div>
+              <div class="mat-swatch" data-color-id="98" title="Smooth Black" style="background:#2A2A2A;" onclick="selectMatColor(98,'Smooth Black')"></div>
+              <div class="mat-swatch" data-color-id="97" title="White with Black Core" style="background:#F8F5EE;border:3px solid #111;" onclick="selectMatColor(97,'White with Black Core')"></div>
+            </div>
+            <p id="mat-color-label" style="font-size:0.78rem;color:var(--warm-gray);margin-top:8px;">White</p>
+          </div>
+        </div>
+
+        <!-- Glazing -->
+        <div id="glazing-options" style="display:none;margin-bottom:20px;">
+          <p style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--light-gray);margin-bottom:10px;">Glazing</p>
+          <div style="display:flex;gap:10px;">
+            <button class="mat-btn selected" data-glazing-id="146" onclick="selectGlazing(146,'Acrylic Glass (recommended)')">Acrylic Glass <span style="font-size:0.7rem;opacity:0.7;">(recommended)</span></button>
+            <button class="mat-btn" data-glazing-id="147" onclick="selectGlazing(147,'No Glass')">No Glass</button>
+          </div>
+        </div>
+
+        <!-- Hardware -->
+        <div id="hardware-options" style="display:none;margin-bottom:20px;">
+          <p style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--light-gray);margin-bottom:10px;">Hanging Hardware</p>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+            <div class="hardware-card" id="hw-83" onclick="selectHardware(83,'Hanging Wire')">
+              <div class="hardware-img">
+                <img src="frames/hardware-options.png" alt="Hanging Wire" style="width:100%;object-fit:cover;object-position:50% 50%;height:80px;">
+              </div>
+              <p class="hardware-name">Hanging Wire</p>
+            </div>
+            <div class="hardware-card selected" id="hw-93" onclick="selectHardware(93,'Sawtooth Hanger')">
+              <div class="hardware-img">
+                <img src="frames/hardware-options.png" alt="Sawtooth Hanger" style="width:100%;object-fit:cover;object-position:17% 50%;height:80px;">
+              </div>
+              <p class="hardware-name">Sawtooth Hanger</p>
+            </div>
+            <div class="hardware-card" id="hw-135" onclick="selectHardware(135,'Corner Sawtooth')">
+              <div class="hardware-img">
+                <img src="frames/hardware-options.png" alt="Corner Sawtooth" style="width:100%;object-fit:cover;object-position:83% 50%;height:80px;">
+              </div>
+              <p class="hardware-name">Corner Sawtooth<br><span style="font-size:0.68rem;color:var(--light-gray);">Recommended for prints over 36×48″</span></p>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end frame-chooser -->
+    </div><!-- end frame-section -->
+
     <!-- Price summary -->
     <div class="price-summary" id="price-summary" style="display:none;">
       <div class="price-row"><span>Print price</span><span class="price-val" id="print-price-display">—</span></div>
+      <div class="price-row" id="frame-price-line" style="display:none;"></div>
       <div class="price-row"><span>Shipping</span><span style="font-size:0.85rem;color:var(--warm-gray);">Calculated at checkout based on destination</span></div>
       <div class="price-row total"><span>Print Total</span><span class="price-val" id="total-price-display">—</span></div>
       <p class="price-note">First edition · signed &amp; numbered Certificate of Authenticity included · ships nationwide via insured carrier</p>
@@ -480,7 +688,7 @@ const PAPER_TYPES = [
 // Surcharge = (lumaprints cost * paper multiplier) * 2.5 markup
 
 
-let selected = { painting: null, paper: null, size: null };
+let selected = { painting: null, paper: null, size: null, frame: null };
 
 // Parse original painting dimensions from dims string
 function parseDims(dims) {
@@ -533,7 +741,111 @@ function estimatePrice(painting, size) {
   return null;
 }
 
+// ─── FRAMING STATE ─────────────────────────────────────────────────────────
+const FRAME_IDS = [105001,105005,105025,105002,105006,105003,105022,105019,105020,105023,105017,105016,105013,105015,105021];
+const MAX_FRAME_W = 60;
+const MAX_FRAME_H = 40;
+
+let framingState = {
+  frameId: null, frameName: 'No Frame', frameMarkup: 0,
+  matSizeId: 64, matSizeName: 'No Mat',
+  matColorId: 96, matColorName: 'White',
+  glazingId: 146, glazingName: 'Acrylic Glass',
+  hardwareId: 93, hardwareName: 'Sawtooth Hanger',
+};
+
+async function showFrameSection() {
+  const frameSection = document.getElementById('frame-section');
+  const warning = document.getElementById('frame-size-warning');
+  if (!frameSection || !selected.size) return;
+  frameSection.style.display = 'block';
+  const w = selected.size.w, h = selected.size.h;
+  const canFrame = w <= MAX_FRAME_W && h <= MAX_FRAME_H;
+  if (!canFrame) {
+    document.getElementById('frame-image-grid').style.display = 'none';
+    warning.style.display = 'block';
+    return;
+  }
+  warning.style.display = 'none';
+  document.getElementById('frame-image-grid').style.display = 'grid';
+  framingState = { frameId:null, frameName:'No Frame', frameMarkup:0, matSizeId:64, matSizeName:'No Mat', matColorId:96, matColorName:'White', glazingId:146, glazingName:'Acrylic Glass', hardwareId:93, hardwareName:'Sawtooth Hanger' };
+  document.querySelectorAll('.frame-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('frame-card-none').classList.add('selected');
+  for (const id of FRAME_IDS) {
+    const priceEl = document.getElementById(`frame-price-${id}`);
+    if (!priceEl || priceEl.textContent !== 'Loading…') continue;
+    try {
+      const res = await fetch(`${WORKER_URL}/api/price`, {
+        method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ width: w, height: h, frameSubcategoryId: id })
+      });
+      const data = await res.json();
+      if (data.lumaPrice > 0) {
+        const markup = Math.ceil(data.lumaPrice * 2);
+        priceEl.textContent = `+$${markup}`;
+        priceEl.dataset.markup = markup;
+      } else { priceEl.textContent = 'Inquire'; }
+    } catch { priceEl.textContent = 'Inquire'; }
+  }
+}
+
+function selectFrameCard(frameId, frameName) {
+  document.querySelectorAll('.frame-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById(frameId ? `frame-card-${frameId}` : 'frame-card-none').classList.add('selected');
+  if (!frameId) {
+    framingState.frameId = null; framingState.frameName = 'No Frame'; framingState.frameMarkup = 0;
+    document.getElementById('mat-options').style.display = 'none';
+    document.getElementById('glazing-options').style.display = 'none';
+    document.getElementById('hardware-options').style.display = 'none';
+    selected.frame = null;
+  } else {
+    const markup = parseInt(document.getElementById(`frame-price-${frameId}`)?.dataset.markup || 0);
+    framingState.frameId = frameId; framingState.frameName = frameName; framingState.frameMarkup = markup;
+    document.getElementById('mat-options').style.display = 'block';
+    document.getElementById('glazing-options').style.display = 'block';
+    document.getElementById('hardware-options').style.display = 'block';
+    selected.frame = {...framingState};
+  }
+  updatePriceSummary();
+}
+
+function selectMat(matId, matName) {
+  document.querySelectorAll('.mat-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelector(`.mat-btn[data-mat-id="${matId}"]`).classList.add('selected');
+  framingState.matSizeId = matId; framingState.matSizeName = matName;
+  document.getElementById('mat-color-section').style.display = matId === 64 ? 'none' : 'block';
+  if (framingState.frameId) { selected.frame = {...framingState}; updatePriceSummary(); }
+}
+
+function selectMatColor(colorId, colorName) {
+  document.querySelectorAll('.mat-swatch').forEach(s => s.classList.remove('selected'));
+  document.querySelector(`.mat-swatch[data-color-id="${colorId}"]`).classList.add('selected');
+  document.getElementById('mat-color-label').textContent = colorName;
+  framingState.matColorId = colorId; framingState.matColorName = colorName;
+  if (framingState.frameId) { selected.frame = {...framingState}; updatePriceSummary(); }
+}
+
+function selectGlazing(glazingId, glazingName) {
+  document.querySelectorAll('[data-glazing-id]').forEach(b => b.classList.remove('selected'));
+  document.querySelector(`[data-glazing-id="${glazingId}"]`).classList.add('selected');
+  framingState.glazingId = glazingId; framingState.glazingName = glazingName;
+  if (framingState.frameId) { selected.frame = {...framingState}; updatePriceSummary(); }
+}
+
+function selectHardware(hwId, hwName) {
+  document.querySelectorAll('.hardware-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById(`hw-${hwId}`).classList.add('selected');
+  framingState.hardwareId = hwId; framingState.hardwareName = hwName;
+  if (framingState.frameId) { selected.frame = {...framingState}; updatePriceSummary(); }
+}
+
 function totalPrice() {
+  const printPrice = selected.size?.price || 0;
+  const frameMarkup = selected.frame?.frameMarkup || 0;
+  return printPrice + frameMarkup;
+}
+
+
   if (!selected.painting || !selected.paper || !selected.size) return null;
   return selected.size.price || estimatePrice(selected.painting, selected.size);
 }
@@ -590,7 +902,7 @@ function selectPainting(i) {
   if (isSoldOut(PAINTINGS[i].title)) return;
   document.querySelectorAll('.painting-card').forEach(c => c.classList.remove('selected'));
   document.getElementById(`pcard-${i}`).classList.add('selected');
-  selected = { painting: PAINTINGS[i], paper: null, size: null };
+  selected = { painting: PAINTINGS[i], paper: null, size: null, frame: null };
 
   document.getElementById('config-img').src = `thumbs/${PAINTINGS[i].file}`;
   document.getElementById('config-title').textContent = PAINTINGS[i].title;
@@ -829,7 +1141,6 @@ async function selectSize(sizeId) {
       selected.size.price = salePrice;
       if (priceEl) priceEl.textContent = `$${salePrice}`;
     } else {
-      // Lumaprints API didn't return a price — show contact fallback
       selected.size.price = null;
       if (priceEl) priceEl.textContent = 'Contact for price';
     }
@@ -838,14 +1149,37 @@ async function selectSize(sizeId) {
     if (priceEl) priceEl.textContent = 'Contact for price';
   }
 
-  if (selected.size.price) updatePriceSummary();
+  selected.frame = null;
+  framingState = { frameId:null, frameName:'No Frame', frameMarkup:0, matSizeId:64, matSizeName:'No Mat', matColorId:96, matColorName:'White', glazingId:146, glazingName:'Acrylic Glass', hardwareId:93, hardwareName:'Sawtooth Hanger' };
+  // Reset frame price displays so they reload for new size
+  FRAME_IDS.forEach(id => {
+    const el = document.getElementById(`frame-price-${id}`);
+    if (el) { el.textContent = 'Loading…'; delete el.dataset.markup; }
+  });
+  document.getElementById('mat-options').style.display = 'none';
+  document.getElementById('glazing-options').style.display = 'none';
+  document.getElementById('hardware-options').style.display = 'none';
+
+  if (selected.size.price) {
+    updatePriceSummary();
+    showFrameSection();
+  }
 }
 
 function updatePriceSummary() {
   if (!selected.painting || !selected.paper || !selected.size) return;
   const price = totalPrice();
-  document.getElementById('print-price-display').textContent = `$${price.toLocaleString()}`;
+  document.getElementById('print-price-display').textContent = `$${selected.size.price.toLocaleString()}`;
   document.getElementById('total-price-display').textContent = `$${price.toLocaleString()}`;
+  const frameLine = document.getElementById('frame-price-line');
+  if (frameLine) {
+    if (selected.frame) {
+      frameLine.style.display = '';
+      frameLine.innerHTML = `<span>Framing (${selected.frame.name})</span><span class="price-val">+$${selected.frame.markup}</span>`;
+    } else {
+      frameLine.style.display = 'none';
+    }
+  }
   document.getElementById('price-summary').style.display = 'block';
   document.getElementById('checkout-btn').style.display = 'block';
   document.getElementById('stripe-note').style.display = 'block';
@@ -976,11 +1310,19 @@ async function submitOrder() {
           },
           orderItems: [{
             externalItemId: String(Date.now()),
-            subcategoryId: null,
+            subcategoryId: selected.frame ? selected.frame.frameId : null,
             quantity: 1,
             file: { imageUrl: `https://www.marykilpatrick.com/${selected.painting.file}` },
-            orderItemOptions: [],
-            notes: `Paper: ${selected.paper.name}, Size: ${selected.size.displayW}×${selected.size.displayH}", Painting: ${selected.painting.title}`,
+            orderItemOptions: selected.frame ? [
+              { optionId: selected.frame.matSizeId },
+              { optionId: selected.frame.matColorId },
+              { optionId: selected.frame.glazingId },
+              { optionId: selected.frame.hardwareId },
+              { optionId: 95 }, // Kraft Paper backing
+              // Paper type option within frame
+              ...(selected.paper.id === 'somerset_velvet' ? [{optionId:82}] : selected.paper.id === 'hot_press' ? [{optionId:75}] : [{optionId:76}])
+            ] : [],
+            notes: `Paper: ${selected.paper.name}${selected.frame ? `, Frame: ${selected.frame.frameName}, Mat: ${selected.frame.matSizeName} ${selected.frame.matColorId !== 64 ? selected.frame.matColorName : ''}, Glazing: ${selected.frame.glazingName}, Hardware: ${selected.frame.hardwareName}` : ', Unframed'}, Size: ${selected.size.displayW}×${selected.size.displayH}", Painting: ${selected.painting.title}`,
             printWidth: selected.size.w,
             printHeight: selected.size.h,
             paperType: selected.paper.id,
@@ -1119,7 +1461,7 @@ function checkHashSelection() {
 }
 
 function clearSelection() {
-  selected = { painting:null, paper:null, size:null };
+  selected = { painting:null, paper:null, size:null, frame:null };
   document.querySelectorAll('.painting-card').forEach(c => c.classList.remove('selected'));
   document.getElementById('configurator').classList.remove('active');
   window.scrollTo({ top: document.getElementById('paintings-grid').offsetTop - 100, behavior:'smooth' });
