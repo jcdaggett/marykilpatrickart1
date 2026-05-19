@@ -529,7 +529,7 @@
     <div class="price-summary" id="price-summary" style="display:none;">
       <div class="price-row"><span>Print price</span><span class="price-val" id="print-price-display">—</span></div>
       <div class="price-row" id="frame-price-line" style="display:none;"></div>
-      <div class="price-row"><span>Shipping</span><span style="font-size:0.85rem;color:var(--warm-gray);">Calculated at checkout based on destination</span></div>
+      <div class="price-row"><span>Shipping</span><span style="font-size:0.85rem;color:var(--warm-gray);">Calculated at checkout — typically under $20. Actual shipping cost, no markup.</span></div>
       <div class="price-row total"><span>Print Total</span><span class="price-val" id="total-price-display">—</span></div>
       <p class="price-note">First edition · signed &amp; numbered Certificate of Authenticity included · ships nationwide via insured carrier</p>
     </div>
@@ -560,7 +560,7 @@
         <div><span style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--light-gray);display:block;margin-bottom:2px;">Paper</span><span id="sum-paper" style="font-size:0.88rem;color:var(--soft-black);">—</span></div>
         <div><span style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--light-gray);display:block;margin-bottom:2px;">Size</span><span id="sum-size" style="font-size:0.88rem;color:var(--soft-black);">—</span></div>
         <div><span style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--light-gray);display:block;margin-bottom:2px;">Print Price</span><span id="sum-total" style="font-family:'EB Garamond',serif;font-size:1.2rem;color:var(--dark-gold);">—</span></div>
-        <div style="grid-column:1/-1;padding-top:8px;border-top:1px solid rgba(184,176,168,0.2);font-size:0.78rem;color:var(--light-gray);">+ Shipping calculated after address entry</div>
+        <div style="grid-column:1/-1;padding-top:8px;border-top:1px solid rgba(184,176,168,0.2);font-size:0.78rem;color:var(--light-gray);">+ Calculated at checkout — typically under $20. Actual shipping cost, no markup.</div>
       </div>
 
       <div class="form-grid">
@@ -741,6 +741,12 @@ function estimatePrice(painting, size) {
   return null;
 }
 
+
+function scrollToNext(id) {
+  const el = document.getElementById(id);
+  if(el) setTimeout(() => el.scrollIntoView({behavior:'smooth', block:'start'}), 150);
+}
+
 // ─── FRAMING STATE ─────────────────────────────────────────────────────────
 const FRAME_IDS = [105001,105005,105025,105002,105006,105003,105022,105019,105020,105023,105017,105016,105013,105015,105021];
 const MAX_FRAME_W = 60;
@@ -771,21 +777,29 @@ async function showFrameSection() {
   framingState = { frameId:null, frameName:'No Frame', frameMarkup:0, matSizeId:64, matSizeName:'No Mat', matColorId:96, matColorName:'White', glazingId:146, glazingName:'Acrylic Glass', hardwareId:93, hardwareName:'Sawtooth Hanger' };
   document.querySelectorAll('.frame-card').forEach(c => c.classList.remove('selected'));
   document.getElementById('frame-card-none').classList.add('selected');
-  for (const id of FRAME_IDS) {
-    const priceEl = document.getElementById(`frame-price-${id}`);
-    if (!priceEl || priceEl.textContent !== 'Loading…') continue;
-    try {
-      const res = await fetch(`${WORKER_URL}/api/price`, {
-        method: 'POST', headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({ width: w, height: h, frameSubcategoryId: id })
-      });
-      const data = await res.json();
-      if (data.lumaPrice > 0) {
-        const markup = Math.ceil(data.lumaPrice * 1.25);
+
+  // Batch fetch all frame prices in one call — cached 24h on the Worker
+  try {
+    const res = await fetch(`${WORKER_URL}/api/frame-prices`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ width: w, height: h })
+    });
+    const prices = await res.json();
+    for (const id of FRAME_IDS) {
+      const priceEl = document.getElementById(`frame-price-${id}`);
+      if (!priceEl) continue;
+      const lumaPrice = prices[id] || 0;
+      if (lumaPrice > 0) {
+        const markup = Math.ceil(lumaPrice * 1.25);
         priceEl.textContent = `+$${markup}`;
         priceEl.dataset.markup = markup;
       } else { priceEl.textContent = 'Inquire'; }
-    } catch { priceEl.textContent = 'Inquire'; }
+    }
+  } catch {
+    FRAME_IDS.forEach(id => {
+      const el = document.getElementById(`frame-price-${id}`);
+      if (el) el.textContent = 'Inquire';
+    });
   }
 }
 
@@ -805,6 +819,7 @@ function selectFrameCard(frameId, frameName) {
     document.getElementById('glazing-options').style.display = 'block';
     document.getElementById('hardware-options').style.display = 'block';
     selected.frame = {...framingState};
+    scrollToNext('mat-options');
   }
   updatePriceSummary();
 }
@@ -815,6 +830,7 @@ function selectMat(matId, matName) {
   framingState.matSizeId = matId; framingState.matSizeName = matName;
   document.getElementById('mat-color-section').style.display = matId === 64 ? 'none' : 'block';
   if (framingState.frameId) { selected.frame = {...framingState}; updatePriceSummary(); }
+  scrollToNext(matId === 64 ? 'glazing-options' : 'mat-color-section');
 }
 
 function selectMatColor(colorId, colorName) {
@@ -822,21 +838,21 @@ function selectMatColor(colorId, colorName) {
   document.querySelector(`.mat-swatch[data-color-id="${colorId}"]`).classList.add('selected');
   document.getElementById('mat-color-label').textContent = colorName;
   framingState.matColorId = colorId; framingState.matColorName = colorName;
-  if (framingState.frameId) { selected.frame = {...framingState}; updatePriceSummary(); }
+  if (framingState.frameId) { selected.frame = {...framingState}; updatePriceSummary(); scrollToNext('glazing-options'); }
 }
 
 function selectGlazing(glazingId, glazingName) {
   document.querySelectorAll('[data-glazing-id]').forEach(b => b.classList.remove('selected'));
   document.querySelector(`[data-glazing-id="${glazingId}"]`).classList.add('selected');
   framingState.glazingId = glazingId; framingState.glazingName = glazingName;
-  if (framingState.frameId) { selected.frame = {...framingState}; updatePriceSummary(); }
+  if (framingState.frameId) { selected.frame = {...framingState}; updatePriceSummary(); scrollToNext('hardware-options'); }
 }
 
 function selectHardware(hwId, hwName) {
   document.querySelectorAll('.hardware-card').forEach(c => c.classList.remove('selected'));
   document.getElementById(`hw-${hwId}`).classList.add('selected');
   framingState.hardwareId = hwId; framingState.hardwareName = hwName;
-  if (framingState.frameId) { selected.frame = {...framingState}; updatePriceSummary(); }
+  if (framingState.frameId) { selected.frame = {...framingState}; updatePriceSummary(); scrollToNext('price-summary'); }
 }
 
 function totalPrice() {
