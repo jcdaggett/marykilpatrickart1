@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%239C7C38'/><text y='72' x='50' text-anchor='middle' font-size='60' font-family='Georgia,serif' fill='white'>MK</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Limited Edition Prints — Mary Kilpatrick | Museum-Quality Fine Art Prints</title>
+<title>First Edition Prints — Mary Kilpatrick</title>
 <meta name="description" content="First edition giclée prints by Mary Kilpatrick. 100% cotton rag fine art paper. Limited to 100 prints per painting. Signed, numbered certificate.">
 <meta name="keywords" content="Mary Kilpatrick prints, giclée prints for sale, first edition art prints, limited edition prints, figurative art prints, women figurative prints, Somerset Velvet prints, Hot Press fine art prints, Cold Press fine art prints, cotton rag giclée prints, 100% cotton rag art prints, archival fine art paper prints, museum quality fine art prints, 100 year archival prints, acid free art prints, fine art paper prints for sale, signed art prints, certificate of authenticity prints, fine art prints online, buy art prints USA, Broadway actress art prints, women figurative art prints, expressive figurative prints, Bend Oregon artist prints">
 <meta name="robots" content="index, follow">
@@ -450,13 +450,13 @@ const PAINTINGS = [
   { title:'Girls Night Out', file:'mary-kilpatrick-girls-night-out-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-girls-night-out-figurative-painting.jpg', dims:'16 × 20 in', originalPrice:2500, editionSize:87 , recommendedPaper:'hot_press' },
   { title:'Journey', file:'mary-kilpatrick-journey-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-journey-figurative-painting.jpg', dims:'20 × 10 in', originalPrice:3000, editionSize:84 , recommendedPaper:'hot_press' },
   { title:'Covid', file:'mary-kilpatrick-covid-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-covid-figurative-painting.jpg', dims:'20 × 16 in', originalPrice:4000, editionSize:83 , recommendedPaper:'cold_press' },
-  { title:'Cat Lady', file:'mary-kilpatrick-cat-lady-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-cat-lady-figurative-painting.jpg', dims:'8 × 10 in', originalPrice:3500, editionSize:97 , recommendedPaper:'cold_press' },
+  { title:'Cat Lady', file:'mary-kilpatrick-cat-lady-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-cat-lady-figurative-painting.jpg', dims:'8 × 10 in', originalPrice:3500, editionSize:97 , recommendedPaper:'hot_press' },
   { title:'Kissing Cousins', file:'mary-kilpatrick-kissing-cousins-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kissing-cousins-figurative-painting.jpg', dims:'16 × 12 in', originalPrice:2000, editionSize:82 , recommendedPaper:'cold_press' },
   { title:'Showgirl', file:'mary-kilpatrick-showgirl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-showgirl-figurative-painting.jpg', dims:'20 × 24 in', originalPrice:15000, editionSize:98 , recommendedPaper:'hot_press' },
   { title:'Harmony', file:'mary-kilpatrick-harmony-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-harmony-figurative-painting.jpg', dims:'15 × 19 in', originalPrice:3000, editionSize:93 , recommendedPaper:'somerset_velvet' },
   { title:'Deconstruction', file:'mary-kilpatrick-deconstruction-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-deconstruction-figurative-painting.jpg', dims:'28 × 36 in', originalPrice:8000, editionSize:81 , recommendedPaper:'cold_press' },
   { title:'Bravery', file:'mary-kilpatrick-bravery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-bravery-figurative-painting.jpg', dims:'18 × 18 in', originalPrice:4000, editionSize:80 , recommendedPaper:'somerset_velvet' },
-  { title:'Beauty', file:'mary-kilpatrick-beauty-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-beauty-figurative-painting.jpg', dims:'22 × 28 in', originalPrice:15000, editionSize:82 , recommendedPaper:'cold_press' },
+  { title:'Beauty', file:'mary-kilpatrick-beauty-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-beauty-figurative-painting.jpg', dims:'22 × 28 in', originalPrice:15000, editionSize:82 , recommendedPaper:'somerset_velvet' },
   { title:'Two Dancers', file:'mary-kilpatrick-two-dancers-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-two-dancers-figurative-painting.jpg', dims:'24 × 24 in', originalPrice:4500, editionSize:86 , recommendedPaper:'hot_press' },
   { title:'Jamaican Hero', file:'mary-kilpatrick-jamaican-hero-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-jamaican-hero-figurative-painting.jpg', dims:'30 × 24 in', originalPrice:3500, editionSize:87 , recommendedPaper:'somerset_velvet' },
   { title:'Tickle', file:'mary-kilpatrick-tickle-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-tickle-figurative-painting.jpg', dims:'36 × 24 in', originalPrice:10000, editionSize:96 , recommendedPaper:'cold_press' },
@@ -649,7 +649,7 @@ function renderPaperRecommendation(painting) {
 const PAPER_TOOLTIPS = {
   'somerset_velvet': '<strong>Somerset Velvet</strong>255 gsm · velvet finish · 100% cotton rag<br>Warm, cloth-like surface used in fine art print rooms worldwide since the 1700s. The traditional choice for serious limited editions.',
   'hot_press': '<strong>Hot Press</strong>330 gsm · ultra-smooth matte · 100% cotton rag<br>No visible texture — nothing between you and the image. Maximum color accuracy and sharpness. The choice for bold, graphic works.',
-  'cold_press': '<strong>Cold Press</strong>340 gsm · heavily textured matte · 100% cotton rag<br>Pronounced texture that replicates traditional watercolor and printmaking paper. Adds its own painterly character to the print.',
+  'cold_press': '<strong>Cold Press</strong>340 gsm · heavily textured matte · 100% cotton rag<br>Pronounced surface texture that gives prints a physical, painterly presence. Right for raw, expressive work.',
 };
 
 function renderPaperOptions() {
@@ -681,13 +681,13 @@ const PAPER_REASONS = {
   'Girls Night Out': 'Girls Night Out is a graphic, high-contrast painting — teal figures on deep red with strong black outlines. Hot Press brings out the maximum depth of that red and the clarity of the teal. The smooth surface makes the graphic quality sing.',
   'Journey': 'Journey is a long vertical painting — a golden path against swirling greens and blues. The painting\'s power is in its luminous color relationships. Hot Press delivers the most accurate reproduction of those hues and preserves the shimmer in the background washes.',
   'Covid': 'Covid is an expressive composition — figures in movement, gestural marks, layered paint. Cold Press\'s textured surface gives the print the same rough-hewn energy as the original. The texture works with the image, not against it.',
-  'Cat Lady': 'Cat Lady is a small, intimate work with delicate line and a quiet palette. Cold Press\'s textured surface gives the print a handmade quality that suits the painting\'s charm and scale. On smooth paper this work would feel clinical — on Cold Press it feels personal.',
+  'Cat Lady': 'Cat Lady is a small, intimate work with delicate line and a quiet palette. At 8×10 inches, a heavily textured paper would overpower the image. Hot Press keeps every fine line crisp and the palette clean — the intimacy of the original comes through without the surface competing.',
   'Kissing Cousins': 'Kissing Cousins has a loose, painterly quality with layered color and gestural marks. Cold Press gives the print a surface that reads as made rather than produced — appropriate for the work\'s intimacy and informal warmth.',
   'Showgirl': 'Showgirl features real beads and paint set against bold saturated color fields. Hot Press captures the maximum vibrancy of those color blocks and brings out the precision of the figure\'s skin tones and detail.',
   'Harmony': 'Harmony\'s rich blues and deep reds — four women singers bathed in golden light — call for a paper that honors warmth and depth. Somerset Velvet deepens the blues and lets the golden background glow without going flat or oversaturated.',
   'Deconstruction': 'Deconstruction is an expressive, painterly work — elongated figures in loose washes of blue and purple against a bare canvas ground. Cold Press\'s heavily textured surface honors the rawness of the image and makes the print feel as much like a drawing as a reproduction.',
   'Bravery': 'Bravery is a quiet, emotionally weighted work — a woman\'s face among blue-robed figures. Somerset Velvet\'s warm, muted surface suits the painting\'s restraint and gives the central figure\'s skin tones the gentle realism they deserve.',
-  'Beauty': 'Beauty is a spare, elegant nude — soft skin tones against white and pale grey, rendered with clean confident line. Cold Press adds a subtle depth to those quiet tones and gives the print a handcrafted quality that matches the painting\'s intimacy.',
+  'Beauty': 'Beauty is a spare, elegant nude — soft skin tones against white and pale grey. Cold Press texture on skin this delicate would read as noise. Somerset Velvet\'s soft surface preserves the gentleness of those tones and gives the figure the warmth the painting carries.',
   'Two Dancers': 'Two Dancers is a bold figurative work with strong silhouettes and confident brushwork. Hot Press captures the maximum contrast between the figures and ground and delivers the sharpest reproduction of the gestural marks.',
   'Jamaican Hero': 'Jamaican Hero is a sun-drenched narrative painting with warm sand, bright yellow, and vivid detail. Somerset Velvet\'s warm ground enriches the ochres and blues without making them aggressive. The velvet surface gives the print the joyful weight of the original.',
   'Tickle': 'Tickle is bold and raw — a large near-abstract nude against a coral ground with gestural tree forms. Cold Press\'s textured surface honors the physicality of the brushwork and gives the print the same painterly presence as the original.',
@@ -695,7 +695,6 @@ const PAPER_REASONS = {
   'Virtual Girl': 'Virtual Girl has a bold graphic quality — strong outlines, saturated color, high contrast. Hot Press delivers the sharpest reproduction of those defining lines and the most accurate color for the vivid tones in the figure.',
   'Cotton Candy': 'Cotton Candy is pure mixed media — real cotton, glitter, ribbon roses, and beads on a dark ground. Somerset Velvet\'s gentle texture reads naturally alongside the soft materiality of the original. Its warmth brings the gold and blush tones to life.',
   'Geri': 'Geri is a bold, graphic painting — a woman skier in vivid cobalt blue against crisp white snow and sky. Hot Press delivers the full saturation of that cobalt and the precision of the linework without softening or warming the image. On a textured paper, those clean edges would blur. Here they hold.',
-  'Harmony': 'Harmony\'s four singers — bathed in deep blues and golden stage light — need a paper that honors warmth and tonal depth. Somerset Velvet deepens the blues, lets the golden background glow, and gives the figures the same quiet weight they carry in the original.',
 };
 
 const PAPER_DESCRIPTIONS = {
@@ -703,7 +702,7 @@ const PAPER_DESCRIPTIONS = {
 
 The paper you'd find in a fine art print room at Christie's, Sotheby's, or MoMA. Somerset Velvet has been the standard for limited edition fine art prints for over three hundred years — used by printmakers, galleries, and publishers of serious collectible editions worldwide. Its surface has a soft, velvet-like quality that you feel immediately when you handle it: substantial, warm, with a gentle texture that gives the print physical presence. Colors are deep and nuanced rather than flat or aggressive. Blacks have real depth. On the wall, it reads as art — not reproduction.
 
-This is our recommended paper for Mary's acrylic and mixed media paintings.
+This is our recommended paper for Mary's warm-toned, mixed media, and jewel-toned paintings — works where depth and richness matter more than sharpness.
 
 Made from 100% cotton — not wood pulp. That distinction matters: wood-pulp paper yellows and becomes brittle within decades. Cotton holds its color and structure for well over a hundred years. Thick enough to frame without mounting.
 
@@ -721,7 +720,7 @@ The right choice for Mary's most saturated, graphic paintings — works where th
 
   'cold_press': `Cold Press — Painterly Surface & Depth
 
-Cold Press has a pronounced visible texture — the kind of surface you'd see on a traditional watercolor or printmaking paper. When you run your hand across it, you feel the image as much as see it. That physicality makes it right for Mary's more expressive, raw paintings — works where the texture adds to the feeling rather than competing with it.
+Cold Press has a pronounced visible texture — the kind you feel when you run your hand across fine printmaking paper. The surface works with the image rather than against it, giving prints a physical presence that flat papers can't match. That makes it right for Mary's more expressive, raw paintings — works where texture adds to the feeling.
 
 The heaviest of the three papers. Colors are rich and warm rather than vivid and sharp. Where Hot Press maximizes precision and Somerset Velvet whispers texture, Cold Press makes its presence felt.
 
@@ -753,8 +752,8 @@ function selectPaper(paperId) {
     if (isRecommended && paintingReason) {
       // Recommended paper for this painting — lead with the specific reason
       expText.innerHTML = `
-        <strong style="font-family:"EB Garamond",serif;font-size:1.05rem;color:var(--dark-gold);display:block;margin-bottom:8px;">Recommended for this print: ${PAPER_TYPES.find(p => p.id === paperId)?.name || ''}</strong>
-        <span style="display:block;margin-bottom:14px;line-height:1.75;">${paintingReason}</span>
+        <strong style="font-family:'EB Garamond',serif;font-size:1.05rem;color:var(--dark-gold);display:block;margin-bottom:8px;">Recommended for this print: ${PAPER_TYPES.find(p => p.id === paperId)?.name || ''}</strong>
+        <span style="display:block;margin-bottom:14px;line-height:1.75;margin-top:10px;">${paintingReason}</span>
         <span style="display:block;font-size:0.78rem;color:var(--light-gray);padding-top:10px;border-top:1px solid rgba(184,176,168,0.2);">${descBody.replace(/\n/g, '<br>')}</span>
       `;
     } else {
@@ -871,7 +870,7 @@ function showCheckout() {
 
   if (!cardElement) {
     cardElement = elements.create('card', {
-      style: { base: { fontFamily:'Karla,sans-serif', fontSize:'16px', color:'#1A1A1A', '::placeholder':{ color:'#B8B0A8' } } }
+      style: { base: { fontFamily:'Karla,sans-serif', fontSize:'16px', color:'#1A1A1A', '::placeholder':{ color:'#6B5F55' } } }
     });
     cardElement.mount('#card-element');
     cardElement.on('change', e => {
