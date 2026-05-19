@@ -380,7 +380,7 @@ footer a:hover{color:var(--gold);}
     <p class="artist-card-name">Mary Kilpatrick</p>
     <p class="artist-card-role">Broadway Actress · Painter</p>
     <p class="artist-card-bio">From Broadway to canvas — original figurative paintings celebrating women's lives.</p>
-    <a href="#hero" class="artist-card-link" onclick="setTimeout(()=>{const f=document.getElementById('bio-full');const b=document.getElementById('learn-more-btn');const l=document.getElementById('learn-more-label');if(f&&!f.classList.contains('open')){f.classList.add('open');if(b)b.classList.add('open');if(l)l.textContent='Show Less';}},300)">Full Biography ›</a>
+    <a href="#hero" class="artist-card-link" onclick="const f=document.getElementById('bio-full');const b=document.getElementById('learn-more-btn');const l=document.getElementById('learn-more-label');if(f&&!f.classList.contains('open')){f.classList.add('open');if(b)b.classList.add('open');if(l)l.textContent='Show Less';}">Full Biography ›</a>
     <button onclick="document.getElementById('about').style.display='none'" style="display:block;margin-top:10px;background:none;border:none;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--light-gray);cursor:pointer;padding:0;font-family:'Karla',sans-serif;">Hide ×</button>
   </div>
 </div>
