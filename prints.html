@@ -491,36 +491,21 @@ function parseDims(dims) {
   return m ? { w: parseFloat(m[1]), h: parseFloat(m[2]) } : { w: 20, h: 20 };
 }
 
-// Generate size tiers at 25%, 50%, 75%, 100%, 125%, 150%, 175%, 200%
 // Single size — original dimensions only
 function getSizeTiers(painting) {
   const { w, h } = parseDims(painting.dims);
+  const rawW = Math.round(w * 4) / 4;
+  const rawH = Math.round(h * 4) / 4;
   return [{
     pct: 1.0,
     label: '100%',
-    w: Math.round(w * 4) / 4,
-    h: Math.round(h * 4) / 4,
-    displayW: toFraction(Math.round(w * 4) / 4),
-    displayH: toFraction(Math.round(h * 4) / 4),
+    w: rawW,
+    h: rawH,
+    displayW: toFraction(rawW),
+    displayH: toFraction(rawH),
     id: '100pct',
     price: null
   }];
-} = parseDims(painting.dims);
-  const tiers = [0.25, 0.50, 0.75, 1.0, 1.25, 1.50, 1.75, 2.0];
-  return tiers.map(t => {
-    const rawW = Math.round(w * t * 4) / 4; // round to nearest ¼"
-    const rawH = Math.round(h * t * 4) / 4;
-    return {
-      pct: t,
-      label: `${Math.round(t * 100)}%`,
-      w: rawW,
-      h: rawH,
-      displayW: toFraction(rawW),
-      displayH: toFraction(rawH),
-      id: `${Math.round(t * 100)}pct`,
-      price: null
-    };
-  });
 }
 
 // Pricing: Lumaprints cost + $60 profit, rounded to nearest $5
