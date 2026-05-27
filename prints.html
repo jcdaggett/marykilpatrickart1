@@ -491,6 +491,15 @@ function parseDims(dims) {
   return m ? { w: parseFloat(m[1]), h: parseFloat(m[2]) } : { w: 20, h: 20 };
 }
 
+// Convert decimal to fraction string e.g. 15.75 → '15¾'
+function toFraction(n) {
+  const whole = Math.floor(n);
+  const dec = Math.round((n - whole) * 8) / 8;
+  const fracs = {0:'',0.125:'⅛',0.25:'¼',0.375:'⅜',0.5:'½',0.625:'⅝',0.75:'¾',0.875:'⅞'};
+  const frac = fracs[dec] !== undefined ? fracs[dec] : '';
+  return whole === 0 ? (frac || '0') : (frac ? `${whole}${frac}` : `${whole}`);
+}
+
 // Single size — original dimensions only
 function getSizeTiers(painting) {
   const { w, h } = parseDims(painting.dims);
@@ -768,12 +777,15 @@ function renderSizeOptions() {
   container.innerHTML = tiers.map(s => {
     return `
       <button class="option-btn" id="size-${s.id}" onclick="selectSize('${s.id}')">
-        ${s.displayW}×${s.displayH}″
+        ${s.displayW}×${s.displayH}″ <span style="font-size:0.72rem;color:var(--warm-gray);font-weight:300;">(original dimensions)</span>
         <span class="opt-price" id="price-${s.id}"></span>
       </button>
     `;
   }).join('') + `
-
+    <button class="option-btn" style="border-style:dashed;margin-top:8px;" onclick="window.open('index.html#contact','_blank')">
+      Request a Different Size
+      <span class="opt-price" style="font-size:0.72rem;">Contact us</span>
+    </button>
   `;
 }
 
