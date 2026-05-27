@@ -205,87 +205,7 @@ footer a:hover{color:var(--gold);}
   }
   .artist-card-link:hover { gap: 10px; }
 
-  /* Bio modal */
-  .bio-modal { display:none;
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(26,24,20,0.7);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-  }
-  .bio-modal.active { display: flex; }
-  .bio-modal-inner {
-    background: var(--cream);
-    max-width: 640px;
-    width: 100%;
-    max-height: 85vh;
-    overflow-y: auto;
-    display: grid;
-    grid-template-columns: 200px 1fr;
-  }
-  .bio-modal-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-    min-height: 300px;
-  }
-  .bio-modal-content {
-    padding: 36px 36px 36px;
-    position: relative;
-  }
-  .bio-modal-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: none;
-    border: none;
-    font-size: 1.4rem;
-    cursor: pointer;
-    color: var(--warm-gray);
-    line-height: 1;
-    transition: color 0.2s;
-  }
-  .bio-modal-close:hover { color: var(--soft-black); }
-  .bio-modal-content h2 {
-    font-family: "EB Garamond", serif;
-    font-size: 1.8rem;
-    font-weight: 400;
-    margin-bottom: 4px;
-  }
-  .bio-modal-content .bio-role {
-    font-size: 0.68rem;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    color: var(--gold);
-    margin-bottom: 20px;
-  }
-  .bio-modal-content p {
-    font-size: 0.88rem;
-    color: var(--warm-gray);
-    line-height: 1.85;
-    margin-bottom: 14px;
-  }
-  .bio-credentials {
-    margin-top: 20px;
-    padding-top: 18px;
-    border-top: 1px solid var(--rule);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  .bio-cred {
-    font-size: 0.72rem;
-    color: var(--light-gray);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    line-height: 1.6;
-  }
-  .bio-cred strong { display: block; color: var(--warm-gray); font-weight: 400; margin-bottom: 2px; }
+
 
   @media(max-width:900px) {
     .artist-card { display: none; }
@@ -343,29 +263,7 @@ footer a:hover{color:var(--gold);}
     <p class="artist-card-name">Mary Kilpatrick</p>
     <p class="artist-card-role">Broadway Actress · Painter</p>
     <p class="artist-card-bio">From Broadway to canvas — original mixed media paintings celebrating women's lives.</p>
-    <a href="#" class="artist-card-link" onclick="event.stopPropagation();event.preventDefault();document.getElementById('bio-modal').classList.add('active');document.body.style.overflow='hidden';">Full Biography ›</a>
-  </div>
-</div>
-
-<!-- BIO MODAL -->
-<div class="bio-modal" id="bio-modal" onclick="closeBioModal(event)">
-  <div class="bio-modal-inner" onclick="event.stopPropagation()">
-    <img class="bio-modal-photo" src="mary_photo.jpg" alt="Mary Kilpatrick">
-    <div class="bio-modal-content">
-      <button class="bio-modal-close" onclick="document.getElementById('bio-modal').classList.remove('active');document.body.style.overflow=''">&times;</button>
-      <h2>Mary Kilpatrick</h2>
-      <p class="bio-role">Broadway Actress · Painter · Published Illustrator</p>
-      <p>Mary Kilpatrick has spent her life telling stories that matter — on Broadway stages, in a book used in shelters worldwide, and now on canvas. Her paintings are vivid, emotionally charged works centered on women's lives: their strength, their tenderness, their resilience, and their joy.</p>
-      <p>She performed on Broadway at the Martin Beck Theatre in the long-running revival of <em>Oh! Calcutta!</em> (1976–1989). National tour credits include <em>The Pirates of Penzance</em>, <em>Bye Bye Birdie</em>, and <em>Seven Brides for Seven Brothers</em>. That theatrical training carried directly into her painting — her figures carry gesture, weight, and emotional presence that only comes from years of performing.</p>
-      <p>With her husband, writer Howard Schor, she created <em>A Place for Starr: A Story of Hope for Children Experiencing Family Violence</em> — a book that sold over 10,000 copies and continues to be used in shelters and counseling settings worldwide. She co-founded BEAT Children's Theatre, honored by the Oregon State Legislature in 2015.</p>
-      <p>Many of Mary's paintings are mixed media — real feathers, gemstones, lace, silk ribbon, and cotton physically embedded in the canvas. Each original is a singular, three-dimensional object.</p>
-      <div class="bio-credentials">
-        <div class="bio-cred"><strong>Broadway</strong>Oh! Calcutta! · Bye Bye Birdie</div>
-        <div class="bio-cred"><strong>Published</strong>A Place for Starr · 10,000+ copies</div>
-        <div class="bio-cred"><strong>Nonprofit</strong>BEAT Children's Theatre · 2006</div>
-        <div class="bio-cred"><strong>Honored</strong>Oregon House Resolution 9 · 2015</div>
-      </div>
-    </div>
+    <a href="#about" class="artist-card-link" onclick="event.stopPropagation()">Full Biography ›</a>
   </div>
 </div>
 
@@ -503,6 +401,37 @@ footer a:hover{color:var(--gold);}
       <div class="gallery-overlay"><h3>Deconstruction</h3><p class="ov-price">$8,000 · Original</p><div class="gallery-actions"><a href="#contact" class="btn-inquire" onclick="event.stopPropagation();setInquiryPainting('Deconstruction')">Inquire</a><a href="prints.html" class="btn-print" onclick="event.stopPropagation()">Print</a></div></div>
     </div>
 
+  </div>
+</section>
+
+
+<!-- ARTIST INTRODUCTION -->
+<section class="artist-intro" id="about">
+  <div class="artist-intro-text">
+    <p class="label">Broadway Actress &nbsp;·&nbsp; Painter &nbsp;·&nbsp; Published Illustrator</p>
+    <h1>Mary Kilpatrick</h1>
+    <p class="subtitle">From Broadway to Canvas</p>
+    <p class="bio-short">From Broadway stages to canvas — vivid, emotionally charged works celebrating women's strength, tenderness, and resilience. Each painting carries the weight of a life spent in service to storytelling.</p>
+    <div class="bio-full" id="bio-full">
+      <p>Mary Kilpatrick has spent her life telling stories that matter — on Broadway stages, in a book used in shelters and counseling settings worldwide, and on canvas. Her paintings are vivid, emotionally charged works centered on women's lives: their strength, their tenderness, their resilience, and their joy.</p>
+      <p>She performed on Broadway at the Martin Beck Theatre in the long-running revival of <em>Oh! Calcutta!</em> (1976–1989). National tour credits include <em>The Pirates of Penzance</em>, <em>Bye Bye Birdie</em>, and <em>Seven Brides for Seven Brothers</em>. That theatrical training carried directly into her painting — her figures carry gesture, weight, and emotional presence that only comes from years of performing.</p>
+      <p>With her husband, writer Howard Schor, she created <em>A Place for Starr: A Story of Hope for Children Experiencing Family Violence</em> — a book that sold over 10,000 copies and continues to be used as a therapeutic tool in shelters and counseling settings worldwide. She co-founded BEAT Children's Theatre in Bend, Oregon, honored by the Oregon State Legislature in 2015.</p>
+      <p>Many of Mary's paintings are mixed media — real feathers, gemstones, lace, silk ribbon, and cotton physically embedded in the canvas. Each original is a singular, three-dimensional object. When you own an original, you own the only one that exists or will ever exist.</p>
+      <p>The paintings on this site are the product of that life. They are not decorative objects. They are the work of someone who has earned the right to paint what she paints.</p>
+    </div>
+    <button class="learn-more-btn" id="learn-more-btn" onclick="toggleBio()">
+      <span id="learn-more-label">Read Full Biography</span>
+      <span class="arrow">›</span>
+    </button>
+    <div class="credentials-inline">
+      <div class="credential-item"><strong>Broadway</strong>Oh! Calcutta! · Bye Bye Birdie</div>
+      <div class="credential-item"><strong>Published</strong>A Place for Starr · 10,000+ copies</div>
+      <div class="credential-item"><strong>Nonprofit</strong>BEAT Children's Theatre · 2006</div>
+      <div class="credential-item"><strong>Honored</strong>Oregon House Resolution 9 · 2015</div>
+    </div>
+  </div>
+  <div class="artist-photo-wrap">
+    <img src="mary_photo.jpg" alt="Mary Kilpatrick — Broadway actress and painter">
   </div>
 </section>
 
@@ -657,19 +586,6 @@ footer a:hover{color:var(--gold);}
 
 <script>
 const WORKER_URL = 'https://mary-kilpatrick-api.jesse-daggett.workers.dev';
-
-function openBioModal(e) {
-  e.preventDefault();
-  document.getElementById('bio-modal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeBioModal(e) {
-  if (!e || e.target.id === 'bio-modal' || e.target.classList.contains('bio-modal-close')) {
-    document.getElementById('bio-modal').classList.remove('active');
-    document.body.style.overflow = '';
-  }
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBioModal(); });
 
 function toggleBio() {
   const full = document.getElementById('bio-full');
