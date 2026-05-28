@@ -534,7 +534,7 @@ const PAINTINGS = [
   { title:'Harmony', file:'mary-kilpatrick-harmony-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-harmony-figurative-painting.jpg', dims:'15 × 19 in', originalPrice:3000, editionSize:93 , recommendedPaper:'somerset_velvet' },
   { title:'Deconstruction', file:'mary-kilpatrick-deconstruction-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-deconstruction-figurative-painting.jpg', dims:'28 × 36 in', originalPrice:8000, editionSize:81 , recommendedPaper:'cold_press' },
   { title:'Bravery', file:'mary-kilpatrick-bravery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-bravery-figurative-painting.jpg', dims:'18 × 18 in', originalPrice:4000, editionSize:80 , recommendedPaper:'somerset_velvet' },
-  { title:'Beauty', file:'mary-kilpatrick-beauty-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-beauty-figurative-painting.jpg', dims:'22 × 28 in', originalPrice:15000, editionSize:82 , recommendedPaper:'cold_press' },
+  { title:'Peaceful', file:'mary-kilpatrick-beauty-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-beauty-figurative-painting.jpg', dims:'22 × 28 in', originalPrice:15000, editionSize:82 , recommendedPaper:'cold_press' },
   { title:'Two Dancers', file:'mary-kilpatrick-two-dancers-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-two-dancers-figurative-painting.jpg', dims:'24 × 24 in', originalPrice:4500, editionSize:86 , recommendedPaper:'hot_press' },
   { title:'Jamaican Hero', file:'mary-kilpatrick-jamaican-hero-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-jamaican-hero-figurative-painting.jpg', dims:'30 × 24 in', originalPrice:3500, editionSize:87 , recommendedPaper:'somerset_velvet' },
   { title:'Tickle', file:'mary-kilpatrick-tickle-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-tickle-figurative-painting.jpg', dims:'36 × 24 in', originalPrice:10000, editionSize:96 , recommendedPaper:'cold_press' },
@@ -718,7 +718,7 @@ const MAT_RECOMMENDATIONS = {
   'Cat Lady': 'white',
   'Kissing Cousins': 'antique-white',
   'Bravery': 'dawn-gray',
-  'Beauty': 'cream',
+  'Peaceful': 'cream',
   'Two Dancers': 'french-blue',
   'Tickle': 'off-white',
   'Earth Mother': 'sauterne',
@@ -752,7 +752,7 @@ const MAT_SIZE_RECOMMENDATIONS = {
   'Breaking Away':   '15in',
   'Showgirl':        '25in',
   'Bravery':         '15in',
-  'Beauty':          '25in',
+  'Peaceful':          '25in',
   'Two Dancers':     '15in',
   'Jamaican Hero':   '2in',
   'Deconstruction':  '15in',
@@ -776,7 +776,7 @@ const MAT_SIZE_REASONS = {
   'Breaking Away':   'High-contrast graphic work reads best with a 1½″ mat.',
   'Showgirl':        'Theatrical richness deserves a 2½″ mat — gallery presentation scale.',
   'Bravery':         'The stark contrast of this piece needs a 1½″ mat — let the drama speak.',
-  'Beauty':          'Soft intimate tones benefit from a wider 2½″ mat — gives the figure room.',
+  'Peaceful':          'Soft intimate tones benefit from a wider 2½″ mat — gives the figure room.',
   'Two Dancers':     'Bold pink and strong lines — 1½″ keeps the energy tight.',
   'Jamaican Hero':   '2″ mat balances the generous scale of this painting.',
   'Deconstruction':  'Large abstract work reads strongest with a 1½″ mat — no visual interruption.',
@@ -830,7 +830,7 @@ function selectMatSize(id, inches) {
   framing.matSize = id;
   framing.matSizeInches = inches;
   document.querySelectorAll('#mat-size-options .option-btn').forEach(b => b.classList.remove('selected'));
-  document.getElementById(`mat-${id.replace('.','')}`).classList.add('selected');
+  const matBtnId = id === 'none' ? 'mat-none' : `mat-${id.replace('.','').replace('in','')}`;const matBtn = document.getElementById(matBtnId);if(matBtn) matBtn.classList.add('selected');
   // Show mat color only if mat selected
   document.getElementById('mat-color-section').style.display = inches > 0 ? 'block' : 'none';
   if (inches > 0) renderMatColors();
@@ -959,7 +959,7 @@ const PAPER_REASONS = {
   'Harmony': 'Harmony\'s rich blues and deep reds — four women singers bathed in golden light — call for a paper that honors warmth and depth. Somerset Velvet deepens the blues and lets the golden background glow without going flat or oversaturated.',
   'Deconstruction': 'Deconstruction is an expressive, painterly work — elongated figures in loose washes of blue and purple against a bare canvas ground. Cold Press\'s heavily textured surface honors the rawness of the image and makes the print feel as much like a drawing as a reproduction.',
   'Bravery': 'Bravery is a quiet, emotionally weighted work — a woman\'s face among blue-robed figures. Somerset Velvet\'s warm, muted surface suits the painting\'s restraint and gives the central figure\'s skin tones the gentle realism they deserve.',
-  'Beauty': 'Beauty is a spare, elegant nude — soft skin tones against white and pale grey, rendered with clean confident line. Cold Press adds a subtle depth to those quiet tones and gives the print a handcrafted quality that matches the painting\'s intimacy.',
+  'Peaceful': 'Peaceful is a spare, elegant nude — soft skin tones against white and pale grey, rendered with clean confident line. Cold Press adds a subtle depth to those quiet tones and gives the print a handcrafted quality that matches the painting\'s intimacy.',
   'Two Dancers': 'Two Dancers is a bold figurative work with strong silhouettes and confident brushwork. Hot Press captures the maximum contrast between the figures and ground and delivers the sharpest reproduction of the gestural marks.',
   'Jamaican Hero': 'Jamaican Hero is a sun-drenched narrative painting with warm sand, bright yellow, and vivid detail. Somerset Velvet\'s warm ground enriches the ochres and blues without making them aggressive. The velvet surface gives the print the joyful weight of the original.',
   'Tickle': 'Tickle is bold and raw — a large near-abstract nude against a coral ground with gestural tree forms. Cold Press\'s textured surface honors the physicality of the brushwork and gives the print the same painterly presence as the original.',
@@ -1059,7 +1059,7 @@ function highlightRecommendedMatSize() {
     const existing = b.querySelector('.mat-size-rec-label');
     if (existing) existing.remove();
   });
-  const recBtn = document.getElementById(`mat-${rec.replace('.','')}`);
+  const recBtnId = rec === 'none' ? 'mat-none' : `mat-${rec.replace('.','').replace('in','')}`;const recBtn = document.getElementById(recBtnId);
   if (recBtn) {
     recBtn.classList.add('recommended-mat');
     const label = document.createElement('span');
