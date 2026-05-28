@@ -194,47 +194,6 @@
       border-bottom-color: var(--soft-black);
     }
   }
-
-  /* Framing options */
-  .frame-toggle { display:flex; gap:12px; margin-bottom:20px; }
-  .frame-toggle-btn {
-    flex:1; padding:12px; border:1px solid var(--light-gray); background:#fff;
-    font-family:'Karla',sans-serif; font-size:0.8rem; text-transform:uppercase;
-    letter-spacing:0.1em; cursor:pointer; transition:all 0.2s; color:var(--soft-black);
-  }
-  .frame-toggle-btn.active { border-color:var(--dark-gold); color:var(--dark-gold); background:rgba(156,124,56,0.04); }
-  .framing-options { display:none; }
-  .framing-options.visible { display:block; }
-  .frame-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:20px; }
-  .frame-btn {
-    padding:10px 8px; border:1px solid var(--light-gray); background:#fff;
-    font-family:'Karla',sans-serif; font-size:0.75rem; text-align:center;
-    cursor:pointer; transition:all 0.2s; color:var(--soft-black); line-height:1.4;
-  }
-  .frame-btn:hover { border-color:var(--dark-gold); }
-  .frame-btn.selected { border-color:var(--dark-gold); background:rgba(156,124,56,0.04); }
-  .frame-btn .frame-swatch {
-    width:100%; height:10px; margin-bottom:6px; border:1px solid rgba(0,0,0,0.08);
-  }
-  .mat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:20px; }
-  .mat-btn {
-    padding:8px 6px; border:1px solid var(--light-gray); background:#fff;
-    font-family:'Karla',sans-serif; font-size:0.72rem; text-align:center;
-    cursor:pointer; transition:all 0.2s; color:var(--soft-black); line-height:1.4;
-  }
-  .mat-btn:hover { border-color:var(--dark-gold); }
-  .mat-btn.selected { border-color:var(--dark-gold); background:rgba(156,124,56,0.04); }
-  .mat-btn .mat-swatch {
-    width:100%; height:18px; margin-bottom:5px; border:1px solid rgba(0,0,0,0.08);
-  }
-  .mat-btn.recommended-mat { border-color:var(--dark-gold); }
-  #mat-size-options .option-btn.recommended-mat { border-color:var(--dark-gold); }
-  .mat-recommended-label {
-    font-size:0.62rem; color:var(--dark-gold); text-transform:uppercase;
-    letter-spacing:0.1em; display:block; margin-bottom:2px;
-  }
-  .framing-note { font-size:0.78rem; color:var(--light-gray); margin-bottom:16px; line-height:1.6; }
-
 </style>
 <script type="application/ld+json">
 {
@@ -355,54 +314,6 @@
 </div>
         <h4>Print Size</h4>
       <div class="options-grid" id="size-options"></div>
-    </div>
-
-
-    <!-- Framing Option -->
-    <div class="options-section" id="framing-section" style="display:none;">
-      <h4>Framing <span style="font-size:0.78rem;color:var(--warm-gray);font-family:'Karla',sans-serif;font-weight:300;text-transform:none;letter-spacing:0;">— optional</span></h4>
-      <div class="frame-toggle">
-        <button class="frame-toggle-btn active" id="frame-none-btn" onclick="selectFraming('none')">No Frame — Print Only</button>
-        <button class="frame-toggle-btn" id="frame-yes-btn" onclick="selectFraming('framed')">Add a Frame</button>
-      </div>
-
-      <div class="framing-options" id="framing-options">
-
-        <!-- Frame Profile -->
-        <h4 style="font-size:0.88rem;margin-bottom:10px;margin-top:4px;">Frame Style</h4>
-        <div class="frame-grid" id="frame-style-options">
-          <!-- rendered by JS -->
-        </div>
-
-        <!-- Mat Size -->
-        <h4 style="font-size:0.88rem;margin-bottom:10px;">Mat Border</h4>
-        <div class="options-grid" id="mat-size-options">
-          <button class="option-btn selected" id="mat-none" onclick="selectMatSize('none',0)">No Mat</button>
-          <button class="option-btn" id="mat-1" onclick="selectMatSize('1in',1)">1″</button>
-          <button class="option-btn" id="mat-15" onclick="selectMatSize('1.5in',1.5)">1½″</button>
-          <button class="option-btn" id="mat-2" onclick="selectMatSize('2in',2)">2″</button>
-          <button class="option-btn" id="mat-25" onclick="selectMatSize('2.5in',2.5)">2½″</button>
-          <button class="option-btn" id="mat-3" onclick="selectMatSize('3in',3)">3″</button>
-        </div>
-
-        <!-- Mat Color -->
-        <div id="mat-color-section" style="display:none;margin-top:16px;">
-          <h4 style="font-size:0.88rem;margin-bottom:10px;">Mat Color</h4>
-          <p class="framing-note" id="mat-rec-note"></p>
-          <div class="mat-grid" id="mat-color-options">
-            <!-- rendered by JS -->
-          </div>
-        </div>
-
-        <!-- Finish -->
-        <h4 style="font-size:0.88rem;margin-bottom:10px;margin-top:4px;">Finish</h4>
-        <div class="options-grid" id="finish-options">
-          <button class="option-btn selected" id="finish-matte" onclick="selectFinish('matte',213)">Matte <span class="opt-price">Recommended</span></button>
-          <button class="option-btn" id="finish-glossy" onclick="selectFinish('semi-glossy',212)">Semi-Glossy</button>
-        </div>
-
-        <p class="framing-note" style="margin-top:16px;">Hanging hardware is included and selected based on your print size. Solid wood frame. Optical-grade clear acrylic glazing included.</p>
-      </div>
     </div>
 
     <!-- Price summary -->
@@ -669,195 +580,6 @@ function renderPaintings() {
   }).join('');
 }
 
-
-// ============================================================
-// FRAMING DATA
-// ============================================================
-const FRAME_STYLES = [
-  { id: 'blk-875', name: 'Black', profile: '0.875×0.875″', optionId: 241, color: '#1a1814', subcategoryId: 102001 },
-  { id: 'wht-875', name: 'White', profile: '0.875×0.875″', optionId: 242, color: '#f5f1ea', subcategoryId: 102001 },
-  { id: 'oak-875', name: 'Natural Oak', profile: '0.875×0.875″', optionId: 243, color: '#c4965a', subcategoryId: 102001 },
-  { id: 'blk-125', name: 'Black', profile: '1.25×0.875″', optionId: 248, color: '#1a1814', subcategoryId: 102002 },
-  { id: 'wht-125', name: 'White', profile: '1.25×0.875″', optionId: 251, color: '#f5f1ea', subcategoryId: 102002 },
-  { id: 'mpl-125', name: 'Maple', profile: '1.25×0.875″', optionId: 249, color: '#d4a96a', subcategoryId: 102002 },
-  { id: 'blk-mat', name: 'Matte Black', profile: '1.625×1.375″', optionId: 252, color: '#2a2520', subcategoryId: 102003 },
-  { id: 'gld-311', name: 'Gold', profile: '3×1.125″', optionId: 245, color: '#9c7c38', subcategoryId: 102003 },
-  { id: 'blk-gld', name: 'Black w/ Gold', profile: '2×1.0625″', optionId: 216, color: '#1a1814', subcategoryId: 102003 },
-];
-
-const MAT_COLORS = [
-  { id: 'white', name: 'White', color: '#ffffff', optionGroupItem: 'White' },
-  { id: 'off-white', name: 'Off-White', color: '#f5f0e8', optionGroupItem: 'Off-White' },
-  { id: 'antique-white', name: 'Antique White', color: '#ede4d0', optionGroupItem: 'Antique White' },
-  { id: 'cream', name: 'Cream', color: '#f2e8d0', optionGroupItem: 'Cream' },
-  { id: 'pearl', name: 'Pearl', color: '#eee8e0', optionGroupItem: 'Pearl' },
-  { id: 'sand', name: 'Sand', color: '#d4c4a0', optionGroupItem: 'Sand' },
-  { id: 'sauterne', name: 'Sauterne', color: '#c8b878', optionGroupItem: 'Sauterne' },
-  { id: 'dawn-gray', name: 'Dawn Gray', color: '#c0bab4', optionGroupItem: 'Dawn Gray' },
-  { id: 'french-blue', name: 'French Blue', color: '#7090b0', optionGroupItem: 'French Blue' },
-  { id: 'silver-florentine', name: 'Silver Florentine', color: '#a8a8b0', optionGroupItem: 'Silver Florentine' },
-  { id: 'indigo', name: 'Indigo', color: '#3a4870', optionGroupItem: 'Indigo' },
-  { id: 'moist-green', name: 'Moist Point Green', color: '#6a8870', optionGroupItem: 'Moist Point Green' },
-  { id: 'black-white-core', name: 'Black / White Core', color: '#1a1814', optionGroupItem: 'Smooth Black with White Core' },
-  { id: 'white-black-core', name: 'White / Black Core', color: '#f5f1ea', optionGroupItem: 'White with Black Core' },
-];
-
-const MAT_RECOMMENDATIONS = {
-  'Personas': 'off-white',
-  'Cotton Candy': 'pearl',
-  'Showgirl': 'cream',
-  'Josephine Baker': 'sand',
-  'Jamaican Hero': 'off-white',
-  'Harmony': 'off-white',
-  'Geri': 'white',
-  'Christ Mass': 'antique-white',
-  'Breaking Away': 'french-blue',
-  'Girls Night Out': 'pearl',
-  'Journey': 'sand',
-  'Covid': 'dawn-gray',
-  'Cat Lady': 'white',
-  'Kissing Cousins': 'antique-white',
-  'Bravery': 'dawn-gray',
-  'Beauty': 'cream',
-  'Two Dancers': 'french-blue',
-  'Tickle': 'off-white',
-  'Earth Mother': 'sauterne',
-  'Virtual Girl': 'silver-florentine',
-  'Deconstruction': 'black-white-core',
-};
-
-// Framing state
-const framing = {
-  enabled: false,
-  frame: null,
-  matSize: 'none',
-  matSizeInches: 0,
-  matColor: null,
-  finish: { id: 'matte', optionId: 213 },
-};
-
-
-const MAT_SIZE_RECOMMENDATIONS = {
-  'Cat Lady':        '2in',
-  'Geri':            '15in',
-  'Kissing Cousins': '2in',
-  'Harmony':         '2in',
-  'Personas':        '25in',
-  'Cotton Candy':    '25in',
-  'Girls Night Out': '2in',
-  'Covid':           '2in',
-  'Virtual Girl':    '15in',
-  'Journey':         '15in',
-  'Josephine Baker': '2in',
-  'Breaking Away':   '15in',
-  'Showgirl':        '25in',
-  'Bravery':         '15in',
-  'Beauty':          '25in',
-  'Two Dancers':     '15in',
-  'Jamaican Hero':   '2in',
-  'Deconstruction':  '15in',
-  'Tickle':          '25in',
-  'Earth Mother':    '3in',
-  'Christ Mass':     '3in',
-};
-
-const MAT_SIZE_REASONS = {
-  'Cat Lady':        'Small format benefits from a generous 2″ mat — gives the work visual weight on the wall.',
-  'Geri':            'Bold graphic linework reads best with a slimmer 1½″ mat — the image commands the space.',
-  'Kissing Cousins': '2″ mat provides breathing room for this intimate narrative scene.',
-  'Harmony':         '2″ mat lets the deep blues and golden stage light expand naturally.',
-  'Personas':        'Mixed media texture benefits from a wider 2½″ mat — creates gallery presentation space.',
-  'Cotton Candy':    'Real cotton and ribbon elements deserve the breathing room of a 2½″ mat.',
-  'Girls Night Out': '2″ mat suits the warm, convivial energy of this piece.',
-  'Covid':           '2″ mat gives the swirling blue composition space to breathe.',
-  'Virtual Girl':    'Graphic clarity calls for a tighter 1½″ mat — nothing between you and the image.',
-  'Journey':         'The narrow vertical format suits a 1½″ mat — keeps the composition focused.',
-  'Josephine Baker': '2″ mat frames the bold color fields cleanly.',
-  'Breaking Away':   'High-contrast graphic work reads best with a 1½″ mat.',
-  'Showgirl':        'Theatrical richness deserves a 2½″ mat — gallery presentation scale.',
-  'Bravery':         'The stark contrast of this piece needs a 1½″ mat — let the drama speak.',
-  'Beauty':          'Soft intimate tones benefit from a wider 2½″ mat — gives the figure room.',
-  'Two Dancers':     'Bold pink and strong lines — 1½″ keeps the energy tight.',
-  'Jamaican Hero':   '2″ mat balances the generous scale of this painting.',
-  'Deconstruction':  'Large abstract work reads strongest with a 1½″ mat — no visual interruption.',
-  'Tickle':          '2½″ mat gives the large mixed-media surface the gallery framing it deserves.',
-  'Earth Mother':    '3″ mat is appropriate for this monumental work — museum presentation scale.',
-  'Christ Mass':     'The largest painting in the collection deserves a full 3″ mat.',
-};
-
-function renderFrameStyles() {
-  document.getElementById('frame-style-options').innerHTML = FRAME_STYLES.map(f => `
-    <button class="frame-btn" id="frame-${f.id}" onclick="selectFrameStyle('${f.id}')">
-      <div class="frame-swatch" style="background:${f.color};"></div>
-      <strong style="display:block;font-size:0.75rem;">${f.name}</strong>
-      <span style="font-size:0.68rem;color:var(--light-gray);">${f.profile}</span>
-    </button>
-  `).join('');
-}
-
-function renderMatColors() {
-  const recId = selected.painting ? (MAT_RECOMMENDATIONS[selected.painting.title] || 'off-white') : 'off-white';
-  document.getElementById('mat-color-options').innerHTML = MAT_COLORS.map(m => `
-    <button class="mat-btn${m.id === recId ? ' recommended-mat' : ''}" id="mat-color-${m.id}" onclick="selectMatColor('${m.id}')">
-      <div class="mat-swatch" style="background:${m.color};${m.id === 'black-white-core' ? 'border:2px solid #fff;' : ''}"></div>
-      ${m.id === recId ? '<span class="mat-recommended-label">★ Recommended</span>' : ''}
-      <span style="font-size:0.7rem;">${m.name}</span>
-    </button>
-  `).join('');
-  // Auto-select recommended
-  selectMatColor(recId);
-}
-
-function selectFraming(choice) {
-  framing.enabled = choice === 'framed';
-  document.getElementById('frame-none-btn').classList.toggle('active', !framing.enabled);
-  document.getElementById('frame-yes-btn').classList.toggle('active', framing.enabled);
-  document.getElementById('framing-options').classList.toggle('visible', framing.enabled);
-  if (framing.enabled && !document.getElementById('frame-style-options').innerHTML) {
-    renderFrameStyles();
-  }
-  updatePriceSummary();
-}
-
-function selectFrameStyle(id) {
-  framing.frame = FRAME_STYLES.find(f => f.id === id);
-  document.querySelectorAll('.frame-btn').forEach(b => b.classList.remove('selected'));
-  document.getElementById(`frame-${id}`).classList.add('selected');
-  updatePriceSummary();
-}
-
-function selectMatSize(id, inches) {
-  framing.matSize = id;
-  framing.matSizeInches = inches;
-  document.querySelectorAll('#mat-size-options .option-btn').forEach(b => b.classList.remove('selected'));
-  document.getElementById(`mat-${id.replace('.','')}`).classList.add('selected');
-  // Show mat color only if mat selected
-  document.getElementById('mat-color-section').style.display = inches > 0 ? 'block' : 'none';
-  if (inches > 0) renderMatColors();
-  updatePriceSummary();
-}
-
-function selectMatColor(id) {
-  framing.matColor = MAT_COLORS.find(m => m.id === id);
-  document.querySelectorAll('.mat-btn').forEach(b => b.classList.remove('selected'));
-  const btn = document.getElementById(`mat-color-${id}`);
-  if (btn) btn.classList.add('selected');
-}
-
-function selectFinish(id, optionId) {
-  framing.finish = { id, optionId };
-  document.querySelectorAll('#finish-options .option-btn').forEach(b => b.classList.remove('selected'));
-  document.getElementById(`finish-${id}`).classList.add('selected');
-  updatePriceSummary();
-}
-
-// Determine hanging hardware based on total size
-function getHangingHardware(w, h) {
-  const totalArea = (w + (framing.matSizeInches * 2)) * (h + (framing.matSizeInches * 2));
-  return totalArea > (36 * 48) ? 134 : 16; // Corner sawtooth vs hanging wire
-}
-
-
 function selectPainting(i) {
   if (isSoldOut(PAINTINGS[i].title)) return;
   document.querySelectorAll('.painting-card').forEach(c => c.classList.remove('selected'));
@@ -1048,34 +770,6 @@ function selectPaper(paperId) {
 }
 
 
-function highlightRecommendedMatSize() {
-  if (!selected.painting) return;
-  const rec = MAT_SIZE_RECOMMENDATIONS[selected.painting.title] || '2in';
-  const reason = MAT_SIZE_REASONS[selected.painting.title] || '';
-  // Add recommended label to mat size button
-  document.querySelectorAll('#mat-size-options .option-btn').forEach(b => {
-    b.classList.remove('recommended-mat');
-    // Remove any existing rec label
-    const existing = b.querySelector('.mat-size-rec-label');
-    if (existing) existing.remove();
-  });
-  const recBtn = document.getElementById(`mat-${rec.replace('.','')}`);
-  if (recBtn) {
-    recBtn.classList.add('recommended-mat');
-    const label = document.createElement('span');
-    label.className = 'mat-recommended-label mat-size-rec-label';
-    label.textContent = '★ Rec';
-    label.style.cssText = 'display:block;font-size:0.6rem;';
-    recBtn.insertBefore(label, recBtn.firstChild);
-    // Show reason note
-    const noteEl = document.getElementById('mat-rec-note');
-    if (noteEl && reason) {
-      noteEl.textContent = '★ ' + reason;
-      noteEl.style.display = 'block';
-    }
-  }
-}
-
 function renderSizeOptions() {
   const tiers = getSizeTiers(selected.painting);
   const container = document.getElementById('size-options');
@@ -1104,18 +798,16 @@ async function selectSize(sizeId) {
   const btn = document.getElementById(`size-${sizeId}`);
   if (btn) btn.classList.add('selected');
 
-  // Assign size — show loading state, fetch real price from API
+  // Assign size and set tier price immediately
   selected.size = size;
-  selected.size.price = null;
+  selected.size.price = estimatePrice(selected.painting, size);
 
   const priceEl = document.getElementById(`price-${sizeId}`);
-  if (priceEl) priceEl.textContent = 'Loading...';
+  if (priceEl) priceEl.textContent = `$${selected.size.price.toLocaleString()}`;
 
-  // Hide summary until real price confirmed
-  document.getElementById('price-summary').style.display = 'none';
-  document.getElementById('checkout-btn').style.display = 'none';
+  updatePriceSummary();
 
-  // Fetch real Lumaprints cost — price = cost + $60
+  // Fetch real Lumaprints cost and set final price as cost + $60
   fetch(`${WORKER_URL}/api/price`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -1124,22 +816,10 @@ async function selectSize(sizeId) {
     if (data.lumaPrice && data.lumaPrice > 0) {
       const finalPrice = Math.round((data.lumaPrice + 60) / 5) * 5;
       selected.size.price = Math.max(65, finalPrice);
-    } else {
-      // API failed — fall back to estimate
-      selected.size.price = estimatePrice(selected.painting, size);
+      if (priceEl) priceEl.textContent = `$${selected.size.price.toLocaleString()}`;
+      updatePriceSummary();
     }
-    if (priceEl) priceEl.textContent = `$${selected.size.price.toLocaleString()}`;
-    updatePriceSummary();
-    document.getElementById('framing-section').style.display = 'block';
-    highlightRecommendedMatSize();
-  }).catch(() => {
-    // Network error — fall back to estimate
-    selected.size.price = estimatePrice(selected.painting, size);
-    if (priceEl) priceEl.textContent = `$${selected.size.price.toLocaleString()}`;
-    updatePriceSummary();
-    document.getElementById('framing-section').style.display = 'block';
-    highlightRecommendedMatSize();
-  });
+  }).catch(() => {});
 }
 
 function updatePriceSummary() {
@@ -1266,7 +946,7 @@ async function submitOrder() {
             quantity: 1,
             file: { imageUrl: `https://www.marykilpatrick.com/${selected.painting.file}` },
             orderItemOptions: [],
-            notes: `Paper: ${selected.paper.name}, Size: ${selected.size.displayW}×${selected.size.displayH}", Framing: ${framing.enabled ? (framing.frame?.name + ' ' + framing.frame?.profile + (framing.matSize !== 'none' ? ', Mat: ' + framing.matSizeInches + 'in ' + (framing.matColor?.name || '') : '') + ', Finish: ' + framing.finish.id) : 'None'}, Painting: ${selected.painting.title}`,
+            notes: `Paper: ${selected.paper.name}, Size: ${selected.size.displayW}×${selected.size.displayH}", Painting: ${selected.painting.title}`,
             printWidth: selected.size.w,
             printHeight: selected.size.h,
             paperType: selected.paper.id,
