@@ -153,7 +153,8 @@ function generateCOA() {
 
     doc.setFont("helvetica","italic");
     doc.setFontSize(8.5);
-    doc.text("Archival Giclée on Fine Art Paper", COL3, VALUE_Y);
+    doc.text("Archival Giclée", COL3, VALUE_Y-0.1);
+    doc.text("on Fine Art Paper", COL3, VALUE_Y+0.1);
 
     // Divider below meta
     var DIV_Y = VALUE_Y+0.2;
