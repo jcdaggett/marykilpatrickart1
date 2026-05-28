@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Mary Kilpatrick — COA Generator</title>
+<title>Mary Kilpatrick COA Generator</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -52,7 +52,7 @@
     <option value="Virtual Girl|virtual-girl">Virtual Girl</option>
   </select>
   <div class="row">
-    <div><label>Edition Number</label><input type="number" id="edition" min="1" max="100" placeholder="e.g. 12"></div>
+    <div><label>Print Number</label><input type="number" id="edition" min="1" max="100" placeholder="e.g. 12"></div>
     <div><label>Year of Original</label><input type="number" id="year" min="2000" max="2030" placeholder="e.g. 2021"></div>
   </div>
   <button id="btn" onclick="generateCOA()">Generate PDF</button>
@@ -72,7 +72,7 @@ function generateCOA() {
   var yearVal = document.getElementById("year").value;
   if (!sel || !editionVal || !yearVal) { document.getElementById("status").textContent = "Please fill in all fields."; return; }
   var parts = sel.split("|");
-  var title = parts[0], slug = parts[1], year = yearVal, edition = parseInt(editionVal);
+  var title = parts[0], slug = parts[1], year = yearVal, printNum = parseInt(editionVal);
   document.getElementById("btn").disabled = true;
   document.getElementById("status").textContent = "Generating...";
   try {
@@ -81,11 +81,9 @@ function generateCOA() {
     var CRIMSON=[112,18,18], OCHRE=[196,132,58], CREAM=[250,246,240];
     var PARCH=[244,236,220], DARK=[42,18,8], BROWN=[120,80,40], GOLD=[210,170,100];
 
-    // Background
     doc.setFillColor(PARCH[0],PARCH[1],PARCH[2]);
     doc.rect(0,0,W,H,"F");
 
-    // Top band
     var TB=1.0;
     doc.setFillColor(CRIMSON[0],CRIMSON[1],CRIMSON[2]);
     doc.rect(0,0,W,TB,"F");
@@ -103,13 +101,11 @@ function generateCOA() {
     doc.setTextColor(OCHRE[0],OCHRE[1],OCHRE[2]);
     doc.text("C E R T I F I C A T E   O F   A U T H E N T I C I T Y",W-0.36,0.82,{align:"right"});
 
-    // Layout
     var BY=TB+0.16, FOOTER_H=0.5;
     var BODY_H=H-BY-FOOTER_H-0.08;
     var LX=0.36, LW=3.5;
     var RX=LX+LW+0.28, RW=W-RX-0.32;
 
-    // Artwork right column
     var thumb=THUMBS[slug];
     if(thumb){
       doc.setFillColor(255,255,255);
@@ -117,7 +113,6 @@ function generateCOA() {
       doc.addImage(thumb,"JPEG",RX,BY,RW,BODY_H,undefined,"MEDIUM");
     }
 
-    // ZONE 1 — Title
     var Z1=BY+0.34;
     doc.setTextColor(CRIMSON[0],CRIMSON[1],CRIMSON[2]);
     doc.setFont("helvetica","bold");
@@ -127,42 +122,32 @@ function generateCOA() {
     doc.setLineWidth(0.01);
     doc.line(LX,Z1+0.1,LX+LW,Z1+0.1);
 
-    // ZONE 2 — Meta: each field stacked label-above-value, sitting on shared baseline
-    // Give each field a fixed x, common label row and value row
-    var LABEL_Y = Z1+0.38;  // label baseline
-    var VALUE_Y = Z1+0.62;  // value baseline — 0.24in below label
-
+    var LABEL_Y=Z1+0.38, VALUE_Y=Z1+0.62;
     var COL1=LX, COL2=LX+1.3, COL3=LX+2.1;
 
-    // Labels
     doc.setTextColor(BROWN[0],BROWN[1],BROWN[2]);
     doc.setFont("helvetica","normal");
     doc.setFontSize(6.5);
-    doc.text("PRINT NO.",  COL1, LABEL_Y);
-    doc.text("YEAR",     COL2, LABEL_Y);
-    doc.text("MEDIUM",   COL3, LABEL_Y);
+    doc.text("PRINT NO.", COL1, LABEL_Y);
+    doc.text("YEAR",      COL2, LABEL_Y);
+    doc.text("MEDIUM",    COL3, LABEL_Y);
 
-    // Values — all same font size, consistent baseline
     doc.setFont("helvetica","bold");
     doc.setFontSize(13);
     doc.setTextColor(CRIMSON[0],CRIMSON[1],CRIMSON[2]);
-    doc.text(edition+" / 100", COL1, VALUE_Y);
-
+    doc.text(printNum+" / 100", COL1, VALUE_Y);
     doc.setTextColor(DARK[0],DARK[1],DARK[2]);
     doc.text(String(year), COL2, VALUE_Y);
-
     doc.setFont("helvetica","italic");
     doc.setFontSize(8.5);
-    doc.text("Archival Giclée", COL3, VALUE_Y-0.1);
-    doc.text("on Fine Art Paper", COL3, VALUE_Y+0.1);
+    doc.text("Archival Giclée",     COL3, VALUE_Y-0.1);
+    doc.text("on Fine Art Paper",   COL3, VALUE_Y+0.1);
 
-    // Divider below meta
-    var DIV_Y = VALUE_Y+0.2;
+    var DIV_Y=VALUE_Y+0.2;
     doc.setDrawColor(OCHRE[0],OCHRE[1],OCHRE[2]);
     doc.setLineWidth(0.006);
     doc.line(LX,DIV_Y,LX+LW,DIV_Y);
 
-    // ZONE 3 — Attestation
     var Z3=DIV_Y+0.2;
     doc.setTextColor(DARK[0],DARK[1],DARK[2]);
     doc.setFont("helvetica","normal");
@@ -170,14 +155,12 @@ function generateCOA() {
     var attestLines=doc.splitTextToSize(ATTEST,LW);
     doc.text(attestLines,LX,Z3);
 
-    // ZONE 4 — Signature pinned to bottom
     var SIG_H=0.46, SIG_TOP=BY+BODY_H-SIG_H;
     doc.setDrawColor(OCHRE[0],OCHRE[1],OCHRE[2]);
     doc.setLineWidth(0.006);
     doc.line(LX,SIG_TOP-0.1,LX+LW,SIG_TOP-0.1);
     doc.addImage(SIG,"PNG",LX-0.05,SIG_TOP,2.2,SIG_H);
 
-    // Footer
     var FY=H-FOOTER_H;
     doc.setFillColor(CRIMSON[0],CRIMSON[1],CRIMSON[2]);
     doc.rect(0,FY,W,FOOTER_H,"F");
@@ -192,8 +175,8 @@ function generateCOA() {
     doc.setTextColor(CREAM[0],CREAM[1],CREAM[2]);
     doc.text("marykilpatrick.com",W/2,FY+0.36,{align:"center"});
 
-    doc.save("COA_"+slug+"_"+edition+"-of-100.pdf");
-    document.getElementById("status").textContent = "Downloaded: COA_"+slug+"_"+edition+"-of-100.pdf";
+    doc.save("COA_"+slug+"_"+printNum+"-of-100.pdf");
+    document.getElementById("status").textContent = "Downloaded: COA_"+slug+"_"+printNum+"-of-100.pdf";
   } catch(e) {
     document.getElementById("status").textContent = "Error: "+e.message;
     console.error(e);
