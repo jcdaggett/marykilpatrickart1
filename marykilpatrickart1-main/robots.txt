@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /prints%205-27.html
+Disallow: /prints%205-28.html
+Disallow: /prints.html%20backup
+Disallow: /trigger.txt
+Disallow: /generate_bio.py
+Disallow: /.wrangler/
+
+Sitemap: https://www.marykilpatrick.com/sitemap.xml
