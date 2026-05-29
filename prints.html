@@ -6,13 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Limited Edition Prints — Mary Kilpatrick | Museum-Quality Fine Art Prints</title>
 <meta name="description" content="First edition giclée prints by Mary Kilpatrick. 100% cotton rag fine art paper. Limited to 100 prints per painting. Signed, numbered certificate.">
-<meta name="keywords" content="Mary Kilpatrick prints, giclée prints for sale, first edition art prints, limited edition prints, figurative art prints, women figurative prints, Somerset Velvet prints, Hot Press fine art prints, Cold Press fine art prints, cotton rag giclée prints, 100% cotton rag art prints, archival fine art paper prints, museum quality fine art prints, 100 year archival prints, acid free art prints, fine art paper prints for sale, signed art prints, certificate of authenticity prints, fine art prints online, buy art prints USA, Broadway actress art prints, women figurative art prints, expressive figurative prints, Bend Oregon artist prints">
+<meta name="keywords" content="Mary Kilpatrick prints, giclée prints for sale, first edition art prints, limited edition prints, figurative art prints, women figurative prints, Somerset Velvet prints, Hot Press fine art prints, Cold Press fine art prints, cotton rag giclée prints, 100% cotton rag art prints, archival fine art paper prints, museum quality fine art prints, 100 year archival prints, acid free art prints, fine art paper prints for sale, signed art prints, certificate of authenticity prints, fine art prints online, buy art prints USA, artist art prints, women figurative art prints, expressive figurative prints, Bend Oregon artist prints">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.marykilpatrick.com/prints.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.marykilpatrick.com/prints.html">
 <meta property="og:title" content="First Edition Giclée Prints — Mary Kilpatrick">
-<meta property="og:description" content="First edition giclée prints on 100% cotton rag fine art paper — Somerset Velvet, Hot Press, or Cold Press. Broadway actress and figurative painter Mary Kilpatrick. Limited editions, signed certificate.">
+<meta property="og:description" content="First edition giclée prints on 100% cotton rag fine art paper — Somerset Velvet, Hot Press, or Cold Press. figurative artist Mary Kilpatrick. Limited editions, signed certificate.">
 <meta property="og:image" content="https://www.marykilpatrick.com/mary-kilpatrick-earth-mother-figurative-painting.jpg">
 <meta property="og:site_name" content="Mary Kilpatrick">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Karla:wght@300;400&display=swap" rel="stylesheet">
@@ -241,7 +241,7 @@
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "Limited Edition Prints — Mary Kilpatrick",
-  "description": "Limited edition giclée prints of original paintings by Broadway actress and painter Mary Kilpatrick. 100% cotton rag fine art paper. Maximum 100 prints per painting. Signed, numbered Certificate of Authenticity. Ships nationwide.",
+  "description": "Limited edition giclée prints of original paintings by figurative artist Mary Kilpatrick. 100% cotton rag fine art paper. Maximum 100 prints per painting. Signed, numbered Certificate of Authenticity. Ships nationwide.",
   "brand": {
     "@type": "Brand",
     "name": "Mary Kilpatrick"
@@ -406,8 +406,8 @@
     </div>
 
     <!-- Price summary -->
-    <div class="price-summary" id="price-summary" style="display:none;">
-      <div class="price-row total"><span>Price</span><span class="price-val" id="total-price-display">—</span></div>
+    <div class="price-summary" id="price-summary" style="display:none;"></div>
+    <div id="price-notes" style="display:none;">
       <p class="price-note">First edition · signed &amp; numbered Certificate of Authenticity included</p>
       <p class="price-note" style="margin-top:4px;">+ shipping calculated at checkout · ships worldwide</p>
     </div>
@@ -659,21 +659,23 @@ function toFraction(n) {
   return whole === 0 ? (frac || '0') : (frac ? `${whole}${frac}` : `${whole}`);
 }
 
-// Single size — original dimensions only
+// Three size tiers: 75%, 100% (original), 125%
 function getSizeTiers(painting) {
   const { w, h } = parseDims(painting.dims);
-  const rawW = Math.round(w * 4) / 4;
-  const rawH = Math.round(h * 4) / 4;
-  return [{
-    pct: 1.0,
-    label: '100%',
-    w: rawW,
-    h: rawH,
-    displayW: toFraction(rawW),
-    displayH: toFraction(rawH),
-    id: '100pct',
-    price: null
-  }];
+  return [0.75, 1.0, 1.25].map(pct => {
+    const rawW = Math.round(w * pct * 4) / 4;
+    const rawH = Math.round(h * pct * 4) / 4;
+    return {
+      pct,
+      label: pct === 1.0 ? '100% — Original Size' : (pct < 1.0 ? '75% — Smaller' : '125% — Larger'),
+      w: rawW,
+      h: rawH,
+      displayW: toFraction(rawW),
+      displayH: toFraction(rawH),
+      id: pct === 0.75 ? '75pct' : pct === 1.0 ? '100pct' : '125pct',
+      price: null
+    };
+  });
 }
 
 // Pricing: Lumaprints cost + $60 profit, rounded to nearest $5
@@ -687,7 +689,9 @@ function estimatePrice(painting, size) {
 
 function totalPrice() {
   if (!selected.painting || !selected.paper || !selected.size) return null;
-  return selected.size.price || estimatePrice(selected.painting, selected.size);
+  const printPrice = selected.size.price || estimatePrice(selected.painting, selected.size);
+  const framingAddon = (framing.enabled && framing.addonPrice) ? framing.addonPrice : 0;
+  return printPrice + framingAddon;
 }
 
 let inventoryData = {};
@@ -743,33 +747,60 @@ function renderPaintings() {
 // ============================================================
 // FRAMING DATA
 // ============================================================
+// Framed Fine Art Paper subcategoryIds (105001-105007)
+// Frame style IS the subcategory — no separate frame optionId needed
+// Size sent to Luma = glass size = print + (mat * 2) on each dimension
 const FRAME_STYLES = [
-  { id: 'blk-875', name: 'Black', profile: '0.875×0.875″', optionId: 241, color: '#1a1814', subcategoryId: 102001 },
-  { id: 'wht-875', name: 'White', profile: '0.875×0.875″', optionId: 242, color: '#f5f1ea', subcategoryId: 102001 },
-  { id: 'oak-875', name: 'Natural Oak', profile: '0.875×0.875″', optionId: 243, color: '#c4965a', subcategoryId: 102001 },
-  { id: 'blk-125', name: 'Black', profile: '1.25×0.875″', optionId: 248, color: '#1a1814', subcategoryId: 102002 },
-  { id: 'wht-125', name: 'White', profile: '1.25×0.875″', optionId: 251, color: '#f5f1ea', subcategoryId: 102002 },
-  { id: 'mpl-125', name: 'Maple', profile: '1.25×0.875″', optionId: 249, color: '#d4a96a', subcategoryId: 102002 },
-  { id: 'blk-mat', name: 'Matte Black', profile: '1.625×1.375″', optionId: 252, color: '#2a2520', subcategoryId: 102003 },
-  { id: 'gld-311', name: 'Gold', profile: '3×1.125″', optionId: 245, color: '#9c7c38', subcategoryId: 102003 },
-  { id: 'blk-gld', name: 'Black w/ Gold', profile: '2×1.0625″', optionId: 216, color: '#1a1814', subcategoryId: 102003 },
+  { id: 'blk-875', name: 'Black', profile: '0.875″',  color: '#1a1814', subcategoryId: 105001 },
+  { id: 'wht-875', name: 'White', profile: '0.875″',  color: '#f5f1ea', subcategoryId: 105002 },
+  { id: 'oak-875', name: 'Natural Oak', profile: '0.875″', color: '#c4965a', subcategoryId: 105003 },
+  { id: 'blk-125', name: 'Black', profile: '1.25″',   color: '#1a1814', subcategoryId: 105005 },
+  { id: 'wht-125', name: 'White', profile: '1.25″',   color: '#f5f1ea', subcategoryId: 105006 },
+  { id: 'oak-125', name: 'Natural Oak', profile: '1.25″', color: '#c4965a', subcategoryId: 105007 },
 ];
 
+// Mat size optionIds — Luma Framed Fine Art Paper
+const MAT_SIZE_OPTIONS = {
+  'none': 64,
+  '1in':  65,
+  '1.5in': 66,
+  '2in':  67,
+  '2.5in': 68,
+  '3in':  69,
+};
+
+// Paper type optionIds — Luma Framed Fine Art Paper
+const PAPER_TYPE_OPTIONS = {
+  'somerset_velvet': 82,
+  'hot_press':       75,
+  'cold_press':      76,
+};
+
+// Hanging hardware optionIds — Luma Framed Fine Art Paper
+// 83 = Hanging Wire (default, lighter pieces)
+// 93 = Sawtooth (heavier pieces, glass area > 36×48)
+// 135 = Wall Buddies (very large, glass area > 40×60 — max for most frames)
+function getHardwareOptionId(glassW, glassH) {
+  const area = glassW * glassH;
+  if (area > 36 * 48) return 93;  // sawtooth for heavier
+  return 83;                       // hanging wire default
+}
+
 const MAT_COLORS = [
-  { id: 'white', name: 'White', color: '#ffffff', optionGroupItem: 'White' },
-  { id: 'off-white', name: 'Off-White', color: '#f5f0e8', optionGroupItem: 'Off-White' },
-  { id: 'antique-white', name: 'Antique White', color: '#ede4d0', optionGroupItem: 'Antique White' },
-  { id: 'cream', name: 'Cream', color: '#f2e8d0', optionGroupItem: 'Cream' },
-  { id: 'pearl', name: 'Pearl', color: '#eee8e0', optionGroupItem: 'Pearl' },
-  { id: 'sand', name: 'Sand', color: '#d4c4a0', optionGroupItem: 'Sand' },
-  { id: 'sauterne', name: 'Sauterne', color: '#c8b878', optionGroupItem: 'Sauterne' },
-  { id: 'dawn-gray', name: 'Dawn Gray', color: '#c0bab4', optionGroupItem: 'Dawn Gray' },
-  { id: 'french-blue', name: 'French Blue', color: '#7090b0', optionGroupItem: 'French Blue' },
-  { id: 'silver-florentine', name: 'Silver Florentine', color: '#a8a8b0', optionGroupItem: 'Silver Florentine' },
-  { id: 'indigo', name: 'Indigo', color: '#3a4870', optionGroupItem: 'Indigo' },
-  { id: 'moist-green', name: 'Moist Point Green', color: '#6a8870', optionGroupItem: 'Moist Point Green' },
-  { id: 'black-white-core', name: 'Black / White Core', color: '#1a1814', optionGroupItem: 'Smooth Black with White Core' },
-  { id: 'white-black-core', name: 'White / Black Core', color: '#f5f1ea', optionGroupItem: 'White with Black Core' },
+  { id: 'white',           name: 'White',              color: '#ffffff', optionId: 96  },
+  { id: 'off-white',       name: 'Off-White',          color: '#f5f0e8', optionId: 104 },
+  { id: 'antique-white',   name: 'Antique White',      color: '#ede4d0', optionId: 99  },
+  { id: 'cream',           name: 'Cream',              color: '#f2e8d0', optionId: 102 },
+  { id: 'pearl',           name: 'Pearl',              color: '#eee8e0', optionId: 105 },
+  { id: 'sand',            name: 'Sand',               color: '#d4c4a0', optionId: 103 },
+  { id: 'sauterne',        name: 'Sauterne',           color: '#c8b878', optionId: 109 },
+  { id: 'dawn-gray',       name: 'Dawn Gray',          color: '#c0bab4', optionId: 101 },
+  { id: 'french-blue',     name: 'French Blue',        color: '#7090b0', optionId: 107 },
+  { id: 'silver-florentine', name: 'Silver Florentine', color: '#a8a8b0', optionId: 106 },
+  { id: 'indigo',          name: 'Indigo',             color: '#3a4870', optionId: 108 },
+  { id: 'moist-green',     name: 'Moist Point Green',  color: '#6a8870', optionId: 110 },
+  { id: 'black-white-core', name: 'Black / White Core', color: '#1a1814', optionId: 98  },
+  { id: 'white-black-core', name: 'White / Black Core', color: '#f5f1ea', optionId: 97  },
 ];
 
 const MAT_RECOMMENDATIONS = {
@@ -804,7 +835,66 @@ const framing = {
   matSizeInches: 0,
   matColor: null,
   finish: { id: 'matte', optionId: 213 },
+  cost: null,
+  addonPrice: null,
 };
+
+// Fetch framing cost from Luma whenever any framing option changes.
+// For Framed Fine Art Paper:
+//   - subcategoryId = frame style (105001-105007)
+//   - glass size    = print size + mat border on each side
+//   - options array = [matSizeOptionId, matColorOptionId, paperTypeOptionId, hardwareOptionId]
+// All option prices are summed by Luma and returned as a single lumaPrice.
+// We apply 20% markup on the framing cost and add to the print price.
+async function fetchFramingCost() {
+  if (!framing.enabled || !framing.frame || !selected.size || !selected.paper) {
+    framing.cost = null;
+    framing.addonPrice = null;
+    updatePriceSummary();
+    return;
+  }
+
+  // Glass size = print dimensions + mat border (each side)
+  // Declared outside try so catch can access them
+  const glassW = Math.round((selected.size.w + framing.matSizeInches * 2) * 4) / 4;
+  const glassH = Math.round((selected.size.h + framing.matSizeInches * 2) * 4) / 4;
+  const fallbackCost = glassW * glassH * 0.15 + 25;
+
+  // Build options array with all relevant Luma optionIds
+  const matSizeOptId   = MAT_SIZE_OPTIONS[framing.matSize] || 64;
+  const matColorOptId  = framing.matSizeInches > 0 && framing.matColor ? framing.matColor.optionId : null;
+  const paperTypeOptId = PAPER_TYPE_OPTIONS[selected.paper.id] || 82;
+  const hardwareOptId  = getHardwareOptionId(glassW, glassH);
+
+  const options = [matSizeOptId, paperTypeOptId, hardwareOptId];
+  if (matColorOptId) options.push(matColorOptId);
+
+  try {
+    const res = await fetch(`${WORKER_URL}/api/price`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        subcategoryId: framing.frame.subcategoryId,
+        width: glassW,
+        height: glassH,
+        options
+      })
+    });
+    const data = await res.json();
+    if (data.customerPrice && data.customerPrice > 0) {
+      framing.addonPrice = data.customerPrice;
+    } else if (data.lumaPrice && data.lumaPrice > 0) {
+      // fallback: calculate locally if worker didn't return customerPrice
+      framing.addonPrice = Math.round((data.lumaPrice * 1.20) / 5) * 5;
+    } else {
+      framing.addonPrice = Math.round((fallbackCost * 1.20) / 5) * 5;
+    }
+  } catch (e) {
+    framing.cost = fallbackCost;
+    framing.addonPrice = Math.round((framing.cost * 1.20) / 5) * 5;
+  }
+  updatePriceSummary();
+}
 
 
 const MAT_SIZE_RECOMMENDATIONS = {
@@ -886,14 +976,20 @@ function selectFraming(choice) {
   if (framing.enabled && !document.getElementById('frame-style-options').querySelector('.frame-btn')) {
     renderFrameStyles();
   }
-  updatePriceSummary();
+  if (!framing.enabled) {
+    framing.cost = null;
+    framing.addonPrice = null;
+    updatePriceSummary();
+  } else {
+    fetchFramingCost();
+  }
 }
 
 function selectFrameStyle(id) {
   framing.frame = FRAME_STYLES.find(f => f.id === id);
   document.querySelectorAll('.frame-btn').forEach(b => b.classList.remove('selected'));
   document.getElementById(`frame-${id}`).classList.add('selected');
-  updatePriceSummary();
+  fetchFramingCost();
 }
 
 function selectMatSize(id, inches) {
@@ -904,7 +1000,7 @@ function selectMatSize(id, inches) {
   // Show mat color only if mat selected
   document.getElementById('mat-color-section').style.display = inches > 0 ? 'block' : 'none';
   if (inches > 0) renderMatColors();
-  updatePriceSummary();
+  fetchFramingCost();
 }
 
 function selectMatColor(id) {
@@ -912,20 +1008,17 @@ function selectMatColor(id) {
   document.querySelectorAll('.mat-btn').forEach(b => b.classList.remove('selected'));
   const btn = document.getElementById(`mat-color-${id}`);
   if (btn) btn.classList.add('selected');
+  fetchFramingCost();
 }
 
 function selectFinish(id, optionId) {
   framing.finish = { id, optionId };
   document.querySelectorAll('#finish-options .option-btn').forEach(b => b.classList.remove('selected'));
   document.getElementById(`finish-${id}`).classList.add('selected');
-  updatePriceSummary();
+  fetchFramingCost();
 }
 
-// Determine hanging hardware based on total size
-function getHangingHardware(w, h) {
-  const totalArea = (w + (framing.matSizeInches * 2)) * (h + (framing.matSizeInches * 2));
-  return totalArea > (36 * 48) ? 134 : 16; // Corner sawtooth vs hanging wire
-}
+// Hardware optionId determined by getHardwareOptionId() defined in FRAME_STYLES block
 
 
 function selectPainting(i) {
@@ -1151,9 +1244,10 @@ function renderSizeOptions() {
   const container = document.getElementById('size-options');
   
   container.innerHTML = tiers.map(s => {
+    const sublabel = s.pct === 1.0 ? 'original dimensions' : (s.pct < 1.0 ? '75% of original' : '125% of original');
     return `
       <button class="option-btn" id="size-${s.id}" onclick="selectSize('${s.id}')">
-        ${s.displayW}×${s.displayH}″ <span style="font-size:0.72rem;color:var(--warm-gray);font-weight:300;">(original dimensions)</span>
+        ${s.displayW}×${s.displayH}″ <span style="font-size:0.72rem;color:var(--warm-gray);font-weight:300;">(${sublabel})</span>
         <span class="opt-price" id="price-${s.id}"></span>
       </button>
     `;
@@ -1191,11 +1285,12 @@ async function selectSize(sizeId) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ width: size.w, height: size.h, paperType: selected.paper.id })
   }).then(r => r.json()).then(data => {
-    if (data.lumaPrice && data.lumaPrice > 0) {
-      const finalPrice = Math.round((data.lumaPrice + 60) / 5) * 5;
-      selected.size.price = Math.max(65, finalPrice);
+    if (data.customerPrice && data.customerPrice > 0) {
+      selected.size.price = data.customerPrice;
+    } else if (data.lumaPrice && data.lumaPrice > 0) {
+      // fallback: calculate locally if worker didn't return customerPrice
+      selected.size.price = Math.max(65, Math.round((data.lumaPrice + 60) / 5) * 5);
     } else {
-      // API failed — fall back to estimate
       selected.size.price = estimatePrice(selected.painting, size);
     }
     if (priceEl) priceEl.textContent = `$${selected.size.price.toLocaleString()}`;
@@ -1214,10 +1309,29 @@ async function selectSize(sizeId) {
 
 function updatePriceSummary() {
   if (!selected.painting || !selected.paper || !selected.size) return;
-  const price = totalPrice();
-  document.getElementById('total-price-display').textContent = `$${price.toLocaleString()}`;
-  document.getElementById('price-summary').style.display = 'block';
-  document.getElementById('checkout-btn').style.display = 'block';
+  const printPrice = selected.size.price || estimatePrice(selected.painting, selected.size);
+  const framingAddon = (framing.enabled && framing.addonPrice) ? framing.addonPrice : 0;
+  const total = printPrice + framingAddon;
+
+  const summaryEl = document.getElementById('price-summary');
+  const totalEl = document.getElementById('total-price-display');
+
+  // Build breakdown HTML
+  let breakdown = `<div class="price-row"><span>Print</span><span class="price-val">$${printPrice.toLocaleString()}</span></div>`;
+  if (framing.enabled) {
+    if (framing.addonPrice) {
+      breakdown += `<div class="price-row"><span>Framing</span><span class="price-val">$${framing.addonPrice.toLocaleString()}</span></div>`;
+    } else if (framing.frame) {
+      breakdown += `<div class="price-row"><span>Framing</span><span class="price-val" style="color:var(--warm-gray);font-size:0.85rem;">Calculating...</span></div>`;
+    }
+  }
+  breakdown += `<div class="price-row total"><span>Total</span><span class="price-val" id="total-price-display">$${total.toLocaleString()}</span></div>`;
+
+  // Replace inner content but keep the wrapper
+  summaryEl.innerHTML = breakdown;
+  summaryEl.style.display = 'block';
+  document.getElementById('price-notes').style.display = 'block';
+  document.getElementById('checkout-btn').style.display = (framing.enabled && framing.frame && !framing.addonPrice) ? 'none' : 'block';
   document.getElementById('stripe-note').style.display = 'block';
 }
 
@@ -1349,7 +1463,14 @@ async function submitOrder() {
             quantity: 1,
             file: { imageUrl: `https://www.marykilpatrick.com/${selected.painting.file}` },
             orderItemOptions: [],
-            notes: `Paper: ${selected.paper.name}, Size: ${selected.size.displayW}×${selected.size.displayH}", Framing: ${framing.enabled ? (framing.frame?.name + ' ' + framing.frame?.profile + (framing.matSize !== 'none' ? ', Mat: ' + framing.matSizeInches + 'in ' + (framing.matColor?.name || '') : '') + ', Finish: ' + framing.finish.id) : 'None'}, Painting: ${selected.painting.title}`,
+            notes: (() => {
+              const glassW = selected.size.w + framing.matSizeInches * 2;
+              const glassH = selected.size.h + framing.matSizeInches * 2;
+              const framingDetail = framing.enabled
+                ? `${framing.frame?.name} ${framing.frame?.profile} (subcatId:${framing.frame?.subcategoryId}), Mat:${framing.matSize} (optId:${MAT_SIZE_OPTIONS[framing.matSize]||64}), MatColor:${framing.matColor?.name||'none'} (optId:${framing.matColor?.optionId||'none'}), Paper optId:${PAPER_TYPE_OPTIONS[selected.paper.id]||82}, HardwareOptId:${getHardwareOptionId(glassW,glassH)}, GlassSize:${glassW}x${glassH}", FramingCost:$${framing.addonPrice||0}`
+                : 'No frame';
+              return `Painting:${selected.painting.title}, PrintSize:${selected.size.displayW}x${selected.size.displayH}" (${selected.size.label}), Paper:${selected.paper.name}, ${framingDetail}, PrintPrice:$${selected.size.price||0}, Total:$${totalPrice()}`;
+            })(),
             printWidth: selected.size.w,
             printHeight: selected.size.h,
             paperType: selected.paper.id,
