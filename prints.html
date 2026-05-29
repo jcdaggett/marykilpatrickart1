@@ -1316,16 +1316,28 @@ function updatePriceSummary() {
   const summaryEl = document.getElementById('price-summary');
   const totalEl = document.getElementById('total-price-display');
 
-  // Build breakdown HTML
-  let breakdown = `<div class="price-row"><span>Print</span><span class="price-val">$${printPrice.toLocaleString()}</span></div>`;
+  // Build breakdown HTML with full selection details
+  const sizeLabel = selected.size.pct === 1.0 ? 'Original size' : (selected.size.pct < 1.0 ? '75% size' : '125% size');
+
+  let breakdown = `
+    <div class="price-row"><span style="font-size:0.8rem;color:var(--warm-gray);">${selected.painting.title}</span></div>
+    <div class="price-row"><span>${selected.paper.name} · ${selected.size.displayW}×${selected.size.displayH}″ <span style="font-size:0.78rem;color:var(--warm-gray);">(${sizeLabel})</span></span><span class="price-val">$${printPrice.toLocaleString()}</span></div>
+  `;
+
   if (framing.enabled) {
     if (framing.addonPrice) {
-      breakdown += `<div class="price-row"><span>Framing</span><span class="price-val">$${framing.addonPrice.toLocaleString()}</span></div>`;
+      const frameDesc = framing.frame ? `${framing.frame.name} ${framing.frame.profile} frame` : 'Frame';
+      const matDesc = framing.matSizeInches > 0
+        ? ` · ${framing.matSizeInches}″ ${framing.matColor ? framing.matColor.name : ''} mat`
+        : ' · No mat';
+      const finishDesc = ` · ${framing.finish.id === 'matte' ? 'Matte' : 'Semi-Glossy'} finish`;
+      breakdown += `<div class="price-row"><span>${frameDesc}${matDesc}${finishDesc}</span><span class="price-val">$${framing.addonPrice.toLocaleString()}</span></div>`;
     } else if (framing.frame) {
       breakdown += `<div class="price-row"><span>Framing</span><span class="price-val" style="color:var(--warm-gray);font-size:0.85rem;">Calculating...</span></div>`;
     }
   }
-  breakdown += `<div class="price-row total"><span>Total</span><span class="price-val" id="total-price-display">$${total.toLocaleString()}</span></div>`;
+
+  breakdown += `<div class="price-row total" style="margin-top:8px;padding-top:12px;border-top:1px solid var(--rule);"><span>Total</span><span class="price-val" id="total-price-display">$${total.toLocaleString()}</span></div>`;
 
   // Replace inner content but keep the wrapper
   summaryEl.innerHTML = breakdown;
