@@ -1316,28 +1316,43 @@ function updatePriceSummary() {
   const summaryEl = document.getElementById('price-summary');
   const totalEl = document.getElementById('total-price-display');
 
-  // Build breakdown HTML with full selection details
-  const sizeLabel = selected.size.pct === 1.0 ? 'Original size' : (selected.size.pct < 1.0 ? '75% size' : '125% size');
+  // Build breakdown — clean receipt style
+  const sizeLabel = selected.size.pct === 1.0 ? 'Original' : (selected.size.pct < 1.0 ? '75%' : '125%');
+  const row = (label, detail, price, subtle) => `
+    <div class="price-row" style="align-items:baseline;">
+      <span>
+        <span style="font-size:0.88rem;">${label}</span>
+        ${detail ? `<span style="font-size:0.78rem;color:var(--warm-gray);margin-left:6px;">${detail}</span>` : ''}
+      </span>
+      <span class="price-val" style="${subtle ? 'color:var(--warm-gray);font-size:0.85rem;' : ''}">${price}</span>
+    </div>`;
 
-  let breakdown = `
-    <div class="price-row"><span style="font-size:0.8rem;color:var(--warm-gray);">${selected.painting.title}</span></div>
-    <div class="price-row"><span>${selected.paper.name} · ${selected.size.displayW}×${selected.size.displayH}″ <span style="font-size:0.78rem;color:var(--warm-gray);">(${sizeLabel})</span></span><span class="price-val">$${printPrice.toLocaleString()}</span></div>
-  `;
+  let breakdown = '';
+
+  // Painting name header
+  breakdown += `<div style="font-size:0.78rem;color:var(--warm-gray);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:12px;">${selected.painting.title}</div>`;
+
+  // Print line
+  breakdown += row('Print', `${selected.paper.name} · ${selected.size.displayW}×${selected.size.displayH}″ · ${sizeLabel}`, `$${printPrice.toLocaleString()}`);
 
   if (framing.enabled) {
     if (framing.addonPrice) {
-      const frameDesc = framing.frame ? `${framing.frame.name} ${framing.frame.profile} frame` : 'Frame';
-      const matDesc = framing.matSizeInches > 0
-        ? ` · ${framing.matSizeInches}″ ${framing.matColor ? framing.matColor.name : ''} mat`
-        : ' · No mat';
-      const finishDesc = ` · ${framing.finish.id === 'matte' ? 'Matte' : 'Semi-Glossy'} finish`;
-      breakdown += `<div class="price-row"><span>${frameDesc}${matDesc}${finishDesc}</span><span class="price-val">$${framing.addonPrice.toLocaleString()}</span></div>`;
+      // Frame, mat, finish as separate detail lines — price only on framing total line
+      breakdown += row('Frame', framing.frame ? `${framing.frame.name} · ${framing.frame.profile}` : '', '');
+      if (framing.matSizeInches > 0) {
+        breakdown += row('Mat', `${framing.matSizeInches}″ · ${framing.matColor ? framing.matColor.name : ''}`, '');
+      } else {
+        breakdown += row('Mat', 'None', '');
+      }
+      breakdown += row('Finish', framing.finish.id === 'matte' ? 'Matte' : 'Semi-Glossy', `$${framing.addonPrice.toLocaleString()}`);
     } else if (framing.frame) {
-      breakdown += `<div class="price-row"><span>Framing</span><span class="price-val" style="color:var(--warm-gray);font-size:0.85rem;">Calculating...</span></div>`;
+      breakdown += row('Framing', framing.frame.name, 'Calculating...', true);
     }
   }
 
-  breakdown += `<div class="price-row total" style="margin-top:8px;padding-top:12px;border-top:1px solid var(--rule);"><span>Total</span><span class="price-val" id="total-price-display">$${total.toLocaleString()}</span></div>`;
+  // Divider + total
+  breakdown += `<div style="border-top:1px solid var(--rule);margin:14px 0 10px;"></div>`;
+  breakdown += `<div class="price-row total"><span>Total</span><span class="price-val" id="total-price-display">$${total.toLocaleString()}</span></div>`;
 
   // Replace inner content but keep the wrapper
   summaryEl.innerHTML = breakdown;
