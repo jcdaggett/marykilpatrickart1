@@ -23,7 +23,7 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-HL153EKQJB");</script>
 
 <style>
-:root {
+:root {--nav-h:88px;
   --cream: #FDFBF7;
   --paper: #F5F1EA;
   --warm-gray: #4A3F35;
@@ -38,8 +38,8 @@ html{scroll-behavior:smooth;}
 body{font-family:"Karla",sans-serif;background:var(--cream);color:var(--soft-black);font-weight:300;font-size:1rem;line-height:1.7;-webkit-font-smoothing:antialiased;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);border-bottom:1px solid var(--rule);height:64px;display:flex;align-items:center;padding:0 48px;justify-content:space-between;}
-.nav-name{font-family:"EB Garamond",serif;font-size:1.2rem;font-weight:400;letter-spacing:0.1em;text-decoration:none;color:var(--soft-black);text-transform:uppercase;}.nav-logo{height:38px;width:auto;display:block;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);border-bottom:1px solid var(--rule);height:var(--nav-h);display:flex;align-items:center;padding:0 48px;justify-content:space-between;}
+.nav-name{font-family:"EB Garamond",serif;font-size:1.2rem;font-weight:400;letter-spacing:0.1em;text-decoration:none;color:var(--soft-black);text-transform:uppercase;}.nav-logo{height:62px;width:auto;display:block;max-width:calc(100vw - 96px);object-fit:contain;}
 .nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
 .nav-links a{font-size:0.7rem;font-weight:400;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;color:var(--soft-black);transition:color 0.2s;}
 .nav-links a:hover{color:var(--gold);}
@@ -155,7 +155,7 @@ footer a:hover{color:var(--gold);}
   /* Artist card — fixed top right over gallery */
   .artist-card {
     position: fixed;
-    top: 80px;
+    top: calc(var(--nav-h) + 16px);
     right: 32px;
     z-index: 500;
     width: 220px;
@@ -282,9 +282,9 @@ footer a:hover{color:var(--gold);}
 
   /* RESPONSIVE */
 @media(max-width:1100px){.reviews-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:900px){
-  nav{padding:0 16px;height:56px;}
-  .nav-name{font-size:0.95rem;letter-spacing:0.08em;}.nav-logo{height:30px;}
+@media(max-width:900px){.nav-logo{height:46px;}:root{--nav-h:68px;}
+  nav{padding:0 16px;}
+  .nav-name{font-size:0.95rem;letter-spacing:0.08em;}
   .nav-links{gap:12px;}
   .nav-links li:nth-child(-n+4){display:none;}
   .nav-links li:last-child,.nav-links li:nth-last-child(2){display:flex;}
@@ -321,7 +321,7 @@ footer a:hover{color:var(--gold);}
 .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .nav-hamburger.open span:nth-child(2){opacity:0;}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.nav-mobile{display:none;position:fixed;top:64px;left:0;right:0;background:var(--cream);border-bottom:1px solid var(--rule);z-index:999;padding:24px 24px 32px;flex-direction:column;gap:0;}
+.nav-mobile{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--cream);border-bottom:1px solid var(--rule);z-index:999;padding:24px 24px 32px;flex-direction:column;gap:0;}
 .nav-mobile.open{display:flex;}
 .nav-mobile a{display:block;padding:14px 0;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--soft-black);text-decoration:none;border-bottom:1px solid var(--rule);}
 .nav-mobile a:last-child{border-bottom:none;}
@@ -343,7 +343,7 @@ footer a:hover{color:var(--gold);}
 <body>
 
 <nav>
-  <a href="index.html" class="nav-name" aria-label="Mary Kilpatrick — marykilpatrickart.com"><img src="logo-nav.png" alt="Mary Kilpatrick" class="nav-logo" width="185" height="38"></a>
+  <a href="index.html" class="nav-name" aria-label="Mary Kilpatrick — marykilpatrickart.com"><img src="logo-nav.png" alt="Mary Kilpatrick" class="nav-logo" width="299" height="62"></a>
   <ul class="nav-links">
     <li><a href="#hero" onclick="setTimeout(()=>{const f=document.getElementById('bio-full');const b=document.getElementById('learn-more-btn');const l=document.getElementById('learn-more-label');if(f&&!f.classList.contains('open')){f.classList.add('open');if(b)b.classList.add('open');if(l)l.textContent='Show Less';}},300)">About</a></li>
     <li><a href="#gallery">Works</a></li>
@@ -389,7 +389,7 @@ footer a:hover{color:var(--gold);}
 
 
 <!-- HERO -->
-<div class="artist-intro" id="hero" style="margin-top:64px;">
+<div class="artist-intro" id="hero" style="margin-top:var(--nav-h);">
   <div class="artist-intro-text">
     <p class="label">Artist · Broadway Actress · Published Illustrator</p>
     <h1>Mary Kilpatrick</h1>

@@ -10,21 +10,21 @@
 <meta name="robots" content="noindex">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Karla:wght@300;400&display=swap" rel="stylesheet">
 <style>
-:root{--cream:#FDFBF7;--soft-black:#1A1A1A;--dark-gold:#9C7C38;--warm-gray:#6D635B;--light-gray:#B8B0A8;}
+:root{--nav-h:88px;--cream:#FDFBF7;--soft-black:#1A1A1A;--dark-gold:#9C7C38;--warm-gray:#6D635B;--light-gray:#B8B0A8;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Karla',sans-serif;background:var(--cream);color:var(--soft-black);font-weight:300;line-height:1.8;-webkit-font-smoothing:antialiased;}
-nav{position:fixed;top:0;width:100%;height:72px;background:rgba(253,251,247,0.96);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:0 48px;z-index:1000;border-bottom:1px solid rgba(184,176,168,0.2);}
-.nav-name{font-family:'Cormorant Garamond',serif;font-size:1.8rem;text-decoration:none;color:var(--soft-black);}.nav-logo{height:38px;width:auto;display:block;}
-.page{max-width:780px;margin:0 auto;padding:110px 48px 80px;}
+nav{position:fixed;top:0;width:100%;height:var(--nav-h);background:rgba(253,251,247,0.96);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:0 48px;z-index:1000;border-bottom:1px solid rgba(184,176,168,0.2);}
+.nav-name{font-family:'Cormorant Garamond',serif;font-size:1.8rem;text-decoration:none;color:var(--soft-black);}.nav-logo{height:62px;width:auto;display:block;max-width:calc(100vw - 96px);object-fit:contain;}
+.page{max-width:780px;margin:0 auto;padding:calc(var(--nav-h) + 38px) 48px 80px;}
 h1{font-family:'Cormorant Garamond',serif;font-size:2.8rem;margin-bottom:8px;font-weight:400;}
 h2{font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin:36px 0 12px;font-weight:400;}
 p{color:var(--warm-gray);margin-bottom:16px;}
 footer{background:var(--soft-black);color:var(--light-gray);text-align:center;padding:28px;font-size:0.85rem;margin-top:80px;}
-@media(max-width:900px){.nav-logo{height:30px;}}
+@media(max-width:900px){.nav-logo{height:46px;}:root{--nav-h:68px;}}
 </style>
 </head>
 <body>
-<nav><a href="index.html" class="nav-name" aria-label="Mary Kilpatrick — marykilpatrickart.com"><img src="logo-nav.png" alt="Mary Kilpatrick" class="nav-logo" width="185" height="38"></a></nav>
+<nav><a href="index.html" class="nav-name" aria-label="Mary Kilpatrick — marykilpatrickart.com"><img src="logo-nav.png" alt="Mary Kilpatrick" class="nav-logo" width="299" height="62"></a></nav>
 <div class="page">
 <h1>Privacy Policy</h1>
 <p>Last updated: May 2026</p>

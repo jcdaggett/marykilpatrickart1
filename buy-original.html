@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Karla:wght@300;400&display=swap" rel="stylesheet">
 <style>
-:root {
+:root {--nav-h:88px;
   --cream: #FDFBF7;
   --paper: #F5F1EA;
   --warm-gray: #4A3F35;
@@ -27,8 +27,8 @@ html{scroll-behavior:smooth;}
 body{font-family:"Karla",sans-serif;background:var(--cream);color:var(--soft-black);font-weight:300;font-size:1rem;line-height:1.7;-webkit-font-smoothing:antialiased;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);border-bottom:1px solid var(--rule);height:64px;display:flex;align-items:center;padding:0 48px;justify-content:space-between;}
-.nav-name{font-family:"EB Garamond",serif;font-size:1.2rem;font-weight:400;letter-spacing:0.1em;text-decoration:none;color:var(--soft-black);text-transform:uppercase;}.nav-logo{height:38px;width:auto;display:block;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);border-bottom:1px solid var(--rule);height:var(--nav-h);display:flex;align-items:center;padding:0 48px;justify-content:space-between;}
+.nav-name{font-family:"EB Garamond",serif;font-size:1.2rem;font-weight:400;letter-spacing:0.1em;text-decoration:none;color:var(--soft-black);text-transform:uppercase;}.nav-logo{height:62px;width:auto;display:block;max-width:calc(100vw - 96px);object-fit:contain;}
 .nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
 .nav-links a{font-size:0.7rem;font-weight:400;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;color:var(--soft-black);transition:color 0.2s;}
 .nav-links a:hover{color:var(--gold);}
@@ -102,7 +102,7 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
 .footer-links a{color:var(--light-gray);text-decoration:none;}
 .footer-links a:hover{color:var(--gold);}
 
-@media(max-width:900px){
+@media(max-width:900px){.nav-logo{height:46px;}:root{--nav-h:68px;}
   nav{padding:0 24px;}
   .page{padding:100px 24px 60px;}
   .trust-grid{grid-template-columns:1fr;}
@@ -117,12 +117,12 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
 .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .nav-hamburger.open span:nth-child(2){opacity:0;}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.nav-mobile{display:none;position:fixed;top:64px;left:0;right:0;background:#FDFBF7;border-bottom:1px solid rgba(156,124,56,0.2);z-index:999;padding:24px 24px 32px;flex-direction:column;gap:0;}
+.nav-mobile{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:#FDFBF7;border-bottom:1px solid rgba(156,124,56,0.2);z-index:999;padding:24px 24px 32px;flex-direction:column;gap:0;}
 .nav-mobile.open{display:flex;}
 .nav-mobile a{display:block;padding:14px 0;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.15em;color:#1A1814;text-decoration:none;border-bottom:1px solid rgba(156,124,56,0.2);}
 .nav-mobile a:last-child{border-bottom:none;}
 .nav-mobile .nav-mobile-cta{color:#9C7C38;margin-top:16px;border:1px solid #9C7C38;text-align:center;padding:14px;border-bottom:1px solid #9C7C38!important;}
-@media(max-width:900px){.nav-logo{height:30px;}.nav-links{display:none;}.nav-hamburger{display:flex;}}
+@media(max-width:900px){.nav-links{display:none;}.nav-hamburger{display:flex;}}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL153EKQJB"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-HL153EKQJB");</script>
@@ -135,7 +135,7 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
 <body>
 
 <nav>
-  <a href="index.html" class="nav-name" aria-label="Mary Kilpatrick — marykilpatrickart.com"><img src="logo-nav.png" alt="Mary Kilpatrick" class="nav-logo" width="185" height="38"></a>
+  <a href="index.html" class="nav-name" aria-label="Mary Kilpatrick — marykilpatrickart.com"><img src="logo-nav.png" alt="Mary Kilpatrick" class="nav-logo" width="299" height="62"></a>
   <ul class="nav-links">
     <li><a href="index.html#hero">About</a></li>
     <li><a href="index.html#gallery">Works</a></li>
