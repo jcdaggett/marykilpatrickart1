@@ -361,6 +361,7 @@
   Large prints (24″+) are statement pieces — living rooms, hallways, over a sofa.
 </div>
         <h4>Print Size</h4>
+      <p id="size-original-ref" style="font-size:0.8rem;color:var(--warm-gray);margin:0 0 12px;"></p>
       <div class="options-grid" id="size-options"></div>
     </div>
 
@@ -522,57 +523,57 @@ function initStripe() {
 
 // Paintings with original prices
 const PAINTINGS = [
-  { title:'Personas', year:2023, medium:'Acrylic, Mixed Media', originalPrice:6000, file:'mary-kilpatrick-personas-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-personas-figurative-painting.jpg', ratio:0.7865, originalSize:'15¾″ × 18¾″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Geri', year:2022, medium:'Acrylic', note:'The artist\'s mother', originalPrice:2500, file:'mary-kilpatrick-geri-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-geri-figurative-painting.jpg', ratio:0.7885, originalSize:'14″ × 16″', editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Josephine Baker', year:2024, medium:'Acrylic, Mixed Media', note:'Feathers and glass jewelry', originalPrice:4000, file:'mary-kilpatrick-josephine-baker-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-josephine-baker-figurative-painting.jpg', ratio:1.0304, originalSize:'20″ × 20″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Breaking Away', year:2025, medium:'Acrylic', originalPrice:4000, file:'mary-kilpatrick-breaking-away-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-breaking-away-figurative-painting.jpg', ratio:0.9795, originalSize:'21″ × 21″', editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Girls Night Out', year:2010, medium:'Acrylic', originalPrice:2500, file:'mary-kilpatrick-girls-night-out-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-girls-night-out-figurative-painting.jpg', ratio:0.8245, originalSize:'16″ × 20″', editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Journey', year:2025, medium:'Acrylic', originalPrice:3000, file:'mary-kilpatrick-journey-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-journey-figurative-painting.jpg', ratio:0.488, originalSize:'10″ × 20″', editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Covid', year:2025, medium:'Acrylic on Wood', originalPrice:4000, file:'mary-kilpatrick-covid-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-covid-figurative-painting.jpg', ratio:1.2715, originalSize:'20″ × 16″', editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Cat Lady', year:2025, medium:'Acrylic', originalPrice:3500, file:'mary-kilpatrick-cat-lady-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-cat-lady-figurative-painting.jpg', ratio:0.7915, originalSize:'8″ × 10″', editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Kissing Cousins', year:2025, medium:'Acrylic', originalPrice:2000, file:'mary-kilpatrick-kissing-cousins-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kissing-cousins-figurative-painting.jpg', ratio:1.3459, originalSize:'16″ × 12″', editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Showgirl', year:1995, medium:'Acrylic, Mixed Media', note:'Plastic beads', originalPrice:15000, file:'mary-kilpatrick-showgirl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-showgirl-figurative-painting.jpg', ratio:0.7965, originalSize:'20″ × 24″', editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Deconstruction', year:1994, medium:'Acrylic', originalPrice:8000, file:'mary-kilpatrick-deconstruction-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-deconstruction-figurative-painting.jpg', ratio:0.7615, originalSize:'28″ × 36″', editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Bravery', year:2001, medium:'Acrylic', originalPrice:4000, file:'mary-kilpatrick-bravery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-bravery-figurative-painting.jpg', ratio:0.9975, originalSize:'18″ × 18″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Beauty', year:1999, medium:'Acrylic', originalPrice:15000, file:'mary-kilpatrick-beauty-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-beauty-figurative-painting.jpg', ratio:0.8003, originalSize:'22″ × 28″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Two Dancers', year:1997, medium:'Acrylic', originalPrice:4500, file:'mary-kilpatrick-two-dancers-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-two-dancers-figurative-painting.jpg', ratio:0.994, originalSize:'24″ × 24″', editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Personas', year:2023, medium:'Acrylic, Mixed Media', originalPrice:6000, file:'mary-kilpatrick-personas-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-personas-figurative-painting.jpg', ratio:0.7865, originalSize:'15¾″ × 18¾″', originalW:15.75, originalH:18.75, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Geri', year:2022, medium:'Acrylic', note:'The artist\'s mother', originalPrice:2500, file:'mary-kilpatrick-geri-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-geri-figurative-painting.jpg', ratio:0.7885, originalSize:'14″ × 16″', originalW:14, originalH:16, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Josephine Baker', year:2024, medium:'Acrylic, Mixed Media', note:'Feathers and glass jewelry', originalPrice:4000, file:'mary-kilpatrick-josephine-baker-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-josephine-baker-figurative-painting.jpg', ratio:1.0304, originalSize:'20″ × 20″', originalW:20, originalH:20, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Breaking Away', year:2025, medium:'Acrylic', originalPrice:4000, file:'mary-kilpatrick-breaking-away-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-breaking-away-figurative-painting.jpg', ratio:0.9795, originalSize:'21″ × 21″', originalW:21, originalH:21, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Girls Night Out', year:2010, medium:'Acrylic', originalPrice:2500, file:'mary-kilpatrick-girls-night-out-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-girls-night-out-figurative-painting.jpg', ratio:0.8245, originalSize:'16″ × 20″', originalW:16, originalH:20, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Journey', year:2025, medium:'Acrylic', originalPrice:3000, file:'mary-kilpatrick-journey-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-journey-figurative-painting.jpg', ratio:0.488, originalSize:'10″ × 20″', originalW:10, originalH:20, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Covid', year:2025, medium:'Acrylic on Wood', originalPrice:4000, file:'mary-kilpatrick-covid-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-covid-figurative-painting.jpg', ratio:1.2715, originalSize:'20″ × 16″', originalW:20, originalH:16, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Cat Lady', year:2025, medium:'Acrylic', originalPrice:3500, file:'mary-kilpatrick-cat-lady-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-cat-lady-figurative-painting.jpg', ratio:0.7915, originalSize:'8″ × 10″', originalW:8, originalH:10, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Kissing Cousins', year:2025, medium:'Acrylic', originalPrice:2000, file:'mary-kilpatrick-kissing-cousins-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kissing-cousins-figurative-painting.jpg', ratio:1.3459, originalSize:'16″ × 12″', originalW:16, originalH:12, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Showgirl', year:1995, medium:'Acrylic, Mixed Media', note:'Plastic beads', originalPrice:15000, file:'mary-kilpatrick-showgirl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-showgirl-figurative-painting.jpg', ratio:0.7965, originalSize:'20″ × 24″', originalW:20, originalH:24, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Deconstruction', year:1994, medium:'Acrylic', originalPrice:8000, file:'mary-kilpatrick-deconstruction-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-deconstruction-figurative-painting.jpg', ratio:0.7615, originalSize:'28″ × 36″', originalW:28, originalH:36, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Bravery', year:2001, medium:'Acrylic', originalPrice:4000, file:'mary-kilpatrick-bravery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-bravery-figurative-painting.jpg', ratio:0.9975, originalSize:'18″ × 18″', originalW:18, originalH:18, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Beauty', year:1999, medium:'Acrylic', originalPrice:15000, file:'mary-kilpatrick-beauty-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-beauty-figurative-painting.jpg', ratio:0.8003, originalSize:'22″ × 28″', originalW:22, originalH:28, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Two Dancers', year:1997, medium:'Acrylic', originalPrice:4500, file:'mary-kilpatrick-two-dancers-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-two-dancers-figurative-painting.jpg', ratio:0.994, originalSize:'24″ × 24″', originalW:24, originalH:24, editionSize:100, recommendedPaper:'hot_press' },
   { title:'Jamaican Hero', year:2008, medium:'Acrylic', originalPrice:3500, file:'mary-kilpatrick-jamaican-hero-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-jamaican-hero-figurative-painting.jpg', ratio:0.8455, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Tickle', year:1999, medium:'Acrylic', originalPrice:10000, file:'mary-kilpatrick-tickle-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-tickle-figurative-painting.jpg', ratio:1.5004, originalSize:'36″ × 24″', editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Earth Mother', year:2009, medium:'Acrylic, Mixed Media', note:'Feathers and glass jewelry', originalPrice:25000, file:'mary-kilpatrick-earth-mother-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-earth-mother-figurative-painting.jpg', ratio:1.3937, originalSize:'36″ × 24″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Christ Mass', year:2013, medium:'Acrylic', originalPrice:7500, file:'mary-kilpatrick-christ-mass-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-christ-mass-figurative-painting.jpg', ratio:0.748, originalSize:'30″ × 40″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Virtual Girl', year:2026, medium:'Acrylic', originalPrice:5000, file:'mary-kilpatrick-virtual-girl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-virtual-girl-figurative-painting.jpg', ratio:1.2658, originalSize:'20″ × 16″', editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Cotton Candy', year:2025, medium:'Acrylic, Mixed Media, Glass', note:'Cotton, satin and sparkles', originalPrice:5000, file:'mary-kilpatrick-cotton-candy-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-cotton-candy-figurative-painting.jpg', ratio:0.803, originalSize:'15⅝″ × 19⅝″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'War', year:1997, medium:'Pencil and Ink', originalPrice:5000, file:'mary-kilpatrick-war-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-war-figurative-painting.jpg', ratio:1.3251, originalSize:'14″ × 10″', editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Alice', year:2014, medium:'Acrylic', originalPrice:3500, file:'mary-kilpatrick-alice-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-alice-figurative-painting.jpg', ratio:0.796, originalSize:'16″ × 20″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Birth', year:2001, medium:'Acrylic', originalPrice:5000, file:'mary-kilpatrick-birth-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-birth-figurative-painting.jpg', ratio:0.759, originalSize:'12″ × 18″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Bottoms Up', year:1999, medium:'Acrylic', originalPrice:10000, file:'mary-kilpatrick-bottoms-up-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-bottoms-up-figurative-painting.jpg', ratio:0.791, originalSize:'24″ × 30″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Boyish', year:2025, medium:'Acrylic', originalPrice:3000, file:'mary-kilpatrick-boyish-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-boyish-figurative-painting.jpg', ratio:0.7695, originalSize:'14″ × 18″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Carnival', year:2015, medium:'Acrylic', originalPrice:4000, file:'mary-kilpatrick-carnival-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-carnival-figurative-painting.jpg', ratio:1.3495, originalSize:'24″ × 18″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Fantasy Land', year:2010, medium:'Acrylic', originalPrice:3000, file:'mary-kilpatrick-fantasy-land-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-fantasy-land-figurative-painting.jpg', ratio:0.7405, originalSize:'18″ × 24″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Flying High', year:2007, medium:'Acrylic', originalPrice:2500, file:'mary-kilpatrick-flying-high-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-flying-high-figurative-painting.jpg', ratio:0.75, originalSize:'18″ × 24″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Freedom', year:2021, medium:'Pen on Paper', originalPrice:4000, file:'mary-kilpatrick-freedom-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-freedom-figurative-painting.jpg', ratio:1.3351, originalSize:'24″ × 18″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Harlem Summer', year:2021, medium:'Pen and Ink', originalPrice:3500, file:'mary-kilpatrick-harlem-summer-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-harlem-summer-figurative-painting.jpg', ratio:0.9905, originalSize:'9″ × 9″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Heidi', year:2010, medium:'Acrylic', originalPrice:3000, file:'mary-kilpatrick-heidi-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-heidi-figurative-painting.jpg', ratio:0.748, originalSize:'18″ × 24″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Help', year:1990, medium:'Acrylic', originalPrice:1500, file:'mary-kilpatrick-help-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-help-figurative-painting.jpg', ratio:0.7805, originalSize:'7″ × 9″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Hippie Girl', year:1988, medium:'Pen and Ink', originalPrice:4000, file:'mary-kilpatrick-hippie-girl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-hippie-girl-figurative-painting.jpg', ratio:0.7545, originalSize:'5″ × 6″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Kidnapped I', year:2023, medium:'Acrylic, Mixed Media', originalPrice:3000, file:'mary-kilpatrick-kidnapped-i-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kidnapped-i-figurative-painting.jpg', ratio:1.004, originalSize:'8″ × 8″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Kidnapped II', year:2023, medium:'Acrylic, Mixed Media', originalPrice:3000, file:'mary-kilpatrick-kidnapped-ii-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kidnapped-ii-figurative-painting.jpg', ratio:1.0096, originalSize:'8″ × 8″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Lovers', year:2026, medium:'Acrylic', originalPrice:4000, file:'mary-kilpatrick-lovers-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-lovers-figurative-painting.jpg', ratio:1.3569, originalSize:'24″ × 18″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Masked', year:1999, medium:'Pen and Ink', originalPrice:1500, file:'mary-kilpatrick-masked-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-masked-figurative-painting.jpg', ratio:0.3175, originalSize:'6″ × 10″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Nanette', year:2023, medium:'Acrylic', originalPrice:2000, file:'mary-kilpatrick-nanette-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-nanette-figurative-painting.jpg', ratio:0.7865, originalSize:'11″ × 14″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Party Time', year:2015, medium:'Acrylic', originalPrice:3000, file:'mary-kilpatrick-party-time-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-party-time-figurative-painting.jpg', ratio:1.3708, originalSize:'24″ × 18″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Plug', year:2019, medium:'Acrylic', originalPrice:3500, file:'mary-kilpatrick-plug-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-plug-figurative-painting.jpg', ratio:0.755, originalSize:'9″ × 12″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Protectors', year:2001, medium:'Acrylic', originalPrice:7000, file:'mary-kilpatrick-protectors-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-protectors-figurative-painting.jpg', ratio:0.8105, originalSize:'12″ × 16″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Rape', year:2002, medium:'Acrylic, Mixed Media', originalPrice:4000, file:'mary-kilpatrick-rape-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-rape-figurative-painting.jpg', ratio:0.7395, originalSize:'18″ × 24″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Resting', year:2024, medium:'Acrylic', note:'Glass', originalPrice:4000, file:'mary-kilpatrick-resting-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-resting-figurative-painting.jpg', ratio:0.7765, originalSize:'14″ × 18″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Rising Spirit', year:2006, medium:'Acrylic', originalPrice:4000, file:'mary-kilpatrick-rising-spirit-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-rising-spirit-figurative-painting.jpg', ratio:0.702, originalSize:'8″ × 10″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Slavery', year:2022, medium:'Acrylic, Mixed Media', originalPrice:4500, file:'mary-kilpatrick-slavery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-slavery-figurative-painting.jpg', ratio:1.0395, originalSize:'12″ × 12″', editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Tickle', year:1999, medium:'Acrylic', originalPrice:10000, file:'mary-kilpatrick-tickle-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-tickle-figurative-painting.jpg', ratio:1.5004, originalSize:'36″ × 24″', originalW:36, originalH:24, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Earth Mother', year:2009, medium:'Acrylic, Mixed Media', note:'Feathers and glass jewelry', originalPrice:25000, file:'mary-kilpatrick-earth-mother-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-earth-mother-figurative-painting.jpg', ratio:1.3937, originalSize:'36″ × 24″', originalW:36, originalH:24, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Christ Mass', year:2013, medium:'Acrylic', originalPrice:7500, file:'mary-kilpatrick-christ-mass-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-christ-mass-figurative-painting.jpg', ratio:0.748, originalSize:'30″ × 40″', originalW:30, originalH:40, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Virtual Girl', year:2026, medium:'Acrylic', originalPrice:5000, file:'mary-kilpatrick-virtual-girl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-virtual-girl-figurative-painting.jpg', ratio:1.2658, originalSize:'20″ × 16″', originalW:20, originalH:16, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Cotton Candy', year:2025, medium:'Acrylic, Mixed Media, Glass', note:'Cotton, satin and sparkles', originalPrice:5000, file:'mary-kilpatrick-cotton-candy-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-cotton-candy-figurative-painting.jpg', ratio:0.803, originalSize:'15⅝″ × 19⅝″', originalW:15.625, originalH:19.625, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'War', year:1997, medium:'Pencil and Ink', originalPrice:5000, file:'mary-kilpatrick-war-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-war-figurative-painting.jpg', ratio:1.3251, originalSize:'14″ × 10″', originalW:14, originalH:10, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Alice', year:2014, medium:'Acrylic', originalPrice:3500, file:'mary-kilpatrick-alice-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-alice-figurative-painting.jpg', ratio:0.796, originalSize:'16″ × 20″', originalW:16, originalH:20, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Birth', year:2001, medium:'Acrylic', originalPrice:5000, file:'mary-kilpatrick-birth-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-birth-figurative-painting.jpg', ratio:0.759, originalSize:'12″ × 18″', originalW:12, originalH:18, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Bottoms Up', year:1999, medium:'Acrylic', originalPrice:10000, file:'mary-kilpatrick-bottoms-up-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-bottoms-up-figurative-painting.jpg', ratio:0.791, originalSize:'24″ × 30″', originalW:24, originalH:30, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Boyish', year:2025, medium:'Acrylic', originalPrice:3000, file:'mary-kilpatrick-boyish-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-boyish-figurative-painting.jpg', ratio:0.7695, originalSize:'14″ × 18″', originalW:14, originalH:18, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Carnival', year:2015, medium:'Acrylic', originalPrice:4000, file:'mary-kilpatrick-carnival-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-carnival-figurative-painting.jpg', ratio:1.3495, originalSize:'24″ × 18″', originalW:24, originalH:18, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Fantasy Land', year:2010, medium:'Acrylic', originalPrice:3000, file:'mary-kilpatrick-fantasy-land-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-fantasy-land-figurative-painting.jpg', ratio:0.7405, originalSize:'18″ × 24″', originalW:18, originalH:24, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Flying High', year:2007, medium:'Acrylic', originalPrice:2500, file:'mary-kilpatrick-flying-high-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-flying-high-figurative-painting.jpg', ratio:0.75, originalSize:'18″ × 24″', originalW:18, originalH:24, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Freedom', year:2021, medium:'Pen on Paper', originalPrice:4000, file:'mary-kilpatrick-freedom-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-freedom-figurative-painting.jpg', ratio:1.3351, originalSize:'24″ × 18″', originalW:24, originalH:18, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Harlem Summer', year:2021, medium:'Pen and Ink', originalPrice:3500, file:'mary-kilpatrick-harlem-summer-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-harlem-summer-figurative-painting.jpg', ratio:0.9905, originalSize:'9″ × 9″', originalW:9, originalH:9, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Heidi', year:2010, medium:'Acrylic', originalPrice:3000, file:'mary-kilpatrick-heidi-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-heidi-figurative-painting.jpg', ratio:0.748, originalSize:'18″ × 24″', originalW:18, originalH:24, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Help', year:1990, medium:'Acrylic', originalPrice:1500, file:'mary-kilpatrick-help-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-help-figurative-painting.jpg', ratio:0.7805, originalSize:'7″ × 9″', originalW:7, originalH:9, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Hippie Girl', year:1988, medium:'Pen and Ink', originalPrice:4000, file:'mary-kilpatrick-hippie-girl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-hippie-girl-figurative-painting.jpg', ratio:0.7545, originalSize:'5″ × 6″', originalW:5, originalH:6, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Kidnapped I', year:2023, medium:'Acrylic, Mixed Media', originalPrice:3000, file:'mary-kilpatrick-kidnapped-i-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kidnapped-i-figurative-painting.jpg', ratio:1.004, originalSize:'8″ × 8″', originalW:8, originalH:8, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Kidnapped II', year:2023, medium:'Acrylic, Mixed Media', originalPrice:3000, file:'mary-kilpatrick-kidnapped-ii-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kidnapped-ii-figurative-painting.jpg', ratio:1.0096, originalSize:'8″ × 8″', originalW:8, originalH:8, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Lovers', year:2026, medium:'Acrylic', originalPrice:4000, file:'mary-kilpatrick-lovers-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-lovers-figurative-painting.jpg', ratio:1.3569, originalSize:'24″ × 18″', originalW:24, originalH:18, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Masked', year:1999, medium:'Pen and Ink', originalPrice:1500, file:'mary-kilpatrick-masked-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-masked-figurative-painting.jpg', ratio:0.3175, originalSize:'6″ × 10″', originalW:6, originalH:10, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Nanette', year:2023, medium:'Acrylic', originalPrice:2000, file:'mary-kilpatrick-nanette-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-nanette-figurative-painting.jpg', ratio:0.7865, originalSize:'11″ × 14″', originalW:11, originalH:14, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Party Time', year:2015, medium:'Acrylic', originalPrice:3000, file:'mary-kilpatrick-party-time-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-party-time-figurative-painting.jpg', ratio:1.3708, originalSize:'24″ × 18″', originalW:24, originalH:18, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Plug', year:2019, medium:'Acrylic', originalPrice:3500, file:'mary-kilpatrick-plug-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-plug-figurative-painting.jpg', ratio:0.755, originalSize:'9″ × 12″', originalW:9, originalH:12, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Protectors', year:2001, medium:'Acrylic', originalPrice:7000, file:'mary-kilpatrick-protectors-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-protectors-figurative-painting.jpg', ratio:0.8105, originalSize:'12″ × 16″', originalW:12, originalH:16, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Rape', year:2002, medium:'Acrylic, Mixed Media', originalPrice:4000, file:'mary-kilpatrick-rape-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-rape-figurative-painting.jpg', ratio:0.7395, originalSize:'18″ × 24″', originalW:18, originalH:24, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Resting', year:2024, medium:'Acrylic', note:'Glass', originalPrice:4000, file:'mary-kilpatrick-resting-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-resting-figurative-painting.jpg', ratio:0.7765, originalSize:'14″ × 18″', originalW:14, originalH:18, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Rising Spirit', year:2006, medium:'Acrylic', originalPrice:4000, file:'mary-kilpatrick-rising-spirit-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-rising-spirit-figurative-painting.jpg', ratio:0.702, originalSize:'8″ × 10″', originalW:8, originalH:10, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Slavery', year:2022, medium:'Acrylic, Mixed Media', originalPrice:4500, file:'mary-kilpatrick-slavery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-slavery-figurative-painting.jpg', ratio:1.0395, originalSize:'12″ × 12″', originalW:12, originalH:12, editionSize:100, recommendedPaper:'somerset_velvet' },
   { title:'Snowbirder', year:2022, medium:'Acrylic', originalPrice:2500, file:'mary-kilpatrick-snowbirder-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-snowbirder-figurative-painting.jpg', ratio:1.0096, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Sweet Baby Sue', year:2025, medium:'Acrylic and Pen', originalPrice:1500, file:'mary-kilpatrick-sweet-baby-sue-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-sweet-baby-sue-figurative-painting.jpg', ratio:0.781, originalSize:'8″ × 9″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Takes All Kinds', year:2025, medium:'Acrylic', originalPrice:3500, file:'mary-kilpatrick-takes-all-kinds-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-takes-all-kinds-figurative-painting.jpg', ratio:0.4995, originalSize:'12″ × 24″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Togetherness', year:2022, medium:'Acrylic', originalPrice:4000, file:'mary-kilpatrick-togetherness-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-togetherness-figurative-painting.jpg', ratio:0.7485, originalSize:'9″ × 12″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Trapped', year:2024, medium:'Acrylic, Mixed Media', originalPrice:3500, file:'mary-kilpatrick-trapped-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-trapped-figurative-painting.jpg', ratio:1.2903, originalSize:'10½″ × 8½″', editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Virgin', year:1998, medium:'Acrylic', originalPrice:15000, file:'mary-kilpatrick-virgin-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-virgin-figurative-painting.jpg', ratio:0.663, originalSize:'24″ × 35″', editionSize:100, recommendedPaper:'somerset_velvet' }
+  { title:'Sweet Baby Sue', year:2025, medium:'Acrylic and Pen', originalPrice:1500, file:'mary-kilpatrick-sweet-baby-sue-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-sweet-baby-sue-figurative-painting.jpg', ratio:0.781, originalSize:'8″ × 9″', originalW:8, originalH:9, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Takes All Kinds', year:2025, medium:'Acrylic', originalPrice:3500, file:'mary-kilpatrick-takes-all-kinds-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-takes-all-kinds-figurative-painting.jpg', ratio:0.4995, originalSize:'12″ × 24″', originalW:12, originalH:24, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Togetherness', year:2022, medium:'Acrylic', originalPrice:4000, file:'mary-kilpatrick-togetherness-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-togetherness-figurative-painting.jpg', ratio:0.7485, originalSize:'9″ × 12″', originalW:9, originalH:12, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Trapped', year:2024, medium:'Acrylic, Mixed Media', originalPrice:3500, file:'mary-kilpatrick-trapped-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-trapped-figurative-painting.jpg', ratio:1.2903, originalSize:'10½″ × 8½″', originalW:10.5, originalH:8.5, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Virgin', year:1998, medium:'Acrylic', originalPrice:15000, file:'mary-kilpatrick-virgin-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-virgin-figurative-painting.jpg', ratio:0.663, originalSize:'24″ × 35″', originalW:24, originalH:35, editionSize:100, recommendedPaper:'somerset_velvet' }
 ];
 
 // Paper types — curated for acrylic figurative paintings
@@ -622,21 +623,46 @@ function toFraction(n) {
 
 // Print sizes derived from each painting's aspect ratio (no forced size).
 // Longest side ladder; short side computed from ratio (w/h). Buyer picks.
+// Print sizes are scaled from the ORIGINAL CANVAS, keeping its aspect ratio.
+// Anything outside these steps goes through the "Request a Different Size" inquiry.
+const SIZE_PERCENTS = [0.50, 0.75, 1.00, 1.25, 1.50];
+// Largest frame Luma offers us is 60 x 40, and /api/price will happily quote
+// sizes it cannot produce, so cap on our side rather than trusting the quote.
+const MAX_LONG_EDGE = 60, MAX_SHORT_EDGE = 40;
+// Fallback long edges for works with no recorded canvas size.
 const SIZE_LADDER = [
   { id:'sm', name:'Small',  long:16 },
   { id:'md', name:'Medium', long:24 },
   { id:'lg', name:'Large',  long:30 }
 ];
 function getSizeTiers(painting) {
-  const r = painting.ratio || 1;            // width / height
   const q = n => Math.round(n * 4) / 4;     // round to 1/4 inch
+
+  // Preferred path: scale the actual canvas, which preserves the original's ratio.
+  if (painting.originalW && painting.originalH) {
+    return SIZE_PERCENTS.map(p => {
+      const w = q(painting.originalW * p), h = q(painting.originalH * p);
+      const long = Math.max(w, h), short = Math.min(w, h);
+      if (long > MAX_LONG_EDGE || short > MAX_SHORT_EDGE) return null;   // too big to produce
+      return {
+        pct: p,
+        label: p === 1 ? 'Same size as the original' : `${Math.round(p * 100)}% of the original`,
+        id: 'p' + Math.round(p * 100),
+        w, h, displayW: toFraction(w), displayH: toFraction(h),
+        price: null
+      };
+    }).filter(Boolean);
+  }
+
+  // No canvas size recorded: fall back to the fixed ladder on the image ratio.
+  const r = painting.ratio || 1;
   return SIZE_LADDER.map(t => {
     let w, h;
-    if (r >= 1) { w = t.long; h = q(t.long / r); }   // landscape / square
-    else        { h = t.long; w = q(t.long * r); }   // portrait
+    if (r >= 1) { w = t.long; h = q(t.long / r); }
+    else        { h = t.long; w = q(t.long * r); }
     w = q(w); h = q(h);
     return {
-      pct: 1.0, label: t.name, id: t.id,
+      pct: null, label: t.name, id: t.id,
       w, h, displayW: toFraction(w), displayH: toFraction(h),
       price: null
     };
@@ -861,6 +887,17 @@ function framesForSize() {
 
 function renderFrameStyles() {
   const list = framesForSize();
+  if (!list.length) {
+    const fin = finishedSize();
+    document.getElementById('frame-style-options').innerHTML =
+      `<p style="grid-column:1/-1;font-size:0.85rem;color:var(--warm-gray);margin:0;">`
+      + `No frame fits ${fin ? toFraction(fin.w) + '″ × ' + toFraction(fin.h) + '″' : 'this size'}`
+      + `${framing.matSizeInches > 0 ? ' with a ' + framing.matSizeInches + '″ mat' : ''}. `
+      + `Choose a smaller print or mat, or use “Request a Different Size” for a custom quote.</p>`;
+    framing.frame = null;
+    framing.charge = null;
+    return;
+  }
   document.getElementById('frame-style-options').innerHTML = list.map(f => `
     <button class="frame-btn" id="frame-${f.id}" onclick="selectFrameStyle('${f.id}')">
       <div class="frame-swatch" style="background:${f.color} center/cover no-repeat;background-image:url('${f.img}');"></div>
@@ -1212,6 +1249,13 @@ function highlightRecommendedMatSize() {
 function renderSizeOptions() {
   const tiers = getSizeTiers(selected.painting);
   const container = document.getElementById('size-options');
+  // State the original canvas size these are scaled from.
+  const refEl = document.getElementById('size-original-ref');
+  if (refEl) {
+    refEl.textContent = selected.painting.originalSize
+      ? `Sizes are scaled from the original canvas — ${selected.painting.originalSize} — keeping its proportions.`
+      : 'The original canvas size for this work is not on file, so standard print sizes are shown.';
+  }
   const pp = printPrice();
   const priceLabel = pp != null ? `$${pp.toLocaleString()}` : 'Contact us';
   container.innerHTML = tiers.map(s => {
