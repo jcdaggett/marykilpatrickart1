@@ -384,13 +384,14 @@
         <!-- Mat Size -->
         <h4 style="font-size:0.88rem;margin-bottom:10px;">Mat Border</h4>
         <div class="options-grid" id="mat-size-options">
-          <button class="option-btn selected" id="mat-none" onclick="selectMatSize('none',0)">No Mat</button>
+          <button class="option-btn" id="mat-none" onclick="selectMatSize('none',0)">No Mat</button>
           <button class="option-btn" id="mat-1" onclick="selectMatSize('1in',1)">1″</button>
           <button class="option-btn" id="mat-15" onclick="selectMatSize('1.5in',1.5)">1½″</button>
           <button class="option-btn" id="mat-2" onclick="selectMatSize('2in',2)">2″</button>
           <button class="option-btn" id="mat-25" onclick="selectMatSize('2.5in',2.5)">2½″</button>
           <button class="option-btn" id="mat-3" onclick="selectMatSize('3in',3)">3″</button>
         </div>
+        <p id="finished-size" style="font-size:0.8rem;color:var(--warm-gray);margin:10px 0 0;"></p>
 
         <!-- Mat Color -->
         <div id="mat-color-section" style="display:none;margin-top:16px;">
@@ -791,7 +792,7 @@ const MAT_RECOMMENDATIONS = {
 const framing = {
   enabled: false,
   frame: null,
-  matSize: 'none',
+  matSize: null,          // null = not chosen yet (no preselection)
   matSizeInches: 0,
   matColor: null,
   charge: 0,        // framing addon charge (from worker, addon x1.20). null = pending/unavailable.
@@ -844,10 +845,18 @@ const MAT_SIZE_REASONS = {
 
 // Frames whose live max print size can't accommodate the selected print are excluded,
 // so the buyer can never pick a frame+size combo Lumaprints would reject after payment.
+// Outer dimensions of the finished piece: print plus the mat border on all four
+// sides. Luma's /api/price will happily quote combinations it cannot actually
+// build, so this filter is the only thing preventing an unfulfillable order.
+function finishedSize() {
+  if (!selected.size) return null;
+  const m = framing.matSizeInches || 0;
+  return { w: selected.size.w + 2 * m, h: selected.size.h + 2 * m };
+}
 function framesForSize() {
-  if (!selected.size) return FRAME_STYLES;
-  const w = selected.size.w, h = selected.size.h;
-  return FRAME_STYLES.filter(f => w <= f.maxW && h <= f.maxH);
+  const fin = finishedSize();
+  if (!fin) return FRAME_STYLES;
+  return FRAME_STYLES.filter(f => fin.w <= f.maxW && fin.h <= f.maxH);
 }
 
 function renderFrameStyles() {
@@ -881,17 +890,31 @@ function renderMatColors() {
   // No preselection: recommendation is badged, customer must pick.
 }
 
+// Shows the customer how big the finished piece actually is on the wall.
+function updateFinishedSize() {
+  const el = document.getElementById('finished-size');
+  if (!el) return;
+  const fin = finishedSize();
+  if (!framing.enabled || !fin || framing.matSizeInches == null) { el.textContent = ''; return; }
+  const mat = framing.matSizeInches || 0;
+  el.textContent = mat > 0
+    ? `Finished size with mat: ${toFraction(fin.w)}″ × ${toFraction(fin.h)}″ (frame adds its own width)`
+    : `Finished size: ${toFraction(fin.w)}″ × ${toFraction(fin.h)}″ (frame adds its own width)`;
+}
+
 function selectFraming(choice) {
   framing.enabled = choice === 'framed';
   document.getElementById('frame-none-btn').classList.toggle('active', !framing.enabled);
   document.getElementById('frame-yes-btn').classList.toggle('active', framing.enabled);
   document.getElementById('framing-options').classList.toggle('visible', framing.enabled);
   if (framing.enabled) renderFrameStyles();
+  updateFinishedSize();
   recomputeFraming();
 }
 
 function selectFrameStyle(id) {
   framing.frame = FRAME_STYLES.find(f => f.id === id);
+  updateFinishedSize();
   document.querySelectorAll('.frame-btn').forEach(b => b.classList.remove('selected'));
   document.getElementById(`frame-${id}`).classList.add('selected');
   recomputeFraming();
@@ -904,6 +927,10 @@ function selectMatSize(id, inches) {
   const matBtnId = id === 'none' ? 'mat-none' : `mat-${id.replace('.','').replace('in','')}`;
   const matBtn = document.getElementById(matBtnId); if(matBtn) matBtn.classList.add('selected');
   document.getElementById('mat-color-section').style.display = inches > 0 ? 'block' : 'none';
+  // Available frames depend on the finished size, so re-filter after a mat change.
+  // renderFrameStyles clears the selected frame if it no longer fits.
+  renderFrameStyles();
+  updateFinishedSize();
   if (inches > 0) {
     renderMatColors();
     framing.matColor = null;      // customer must choose a mat colour
@@ -1223,6 +1250,7 @@ async function selectSize(sizeId) {
 
   // Frame list is size-filtered; re-render so choices match the new size, then reprice framing.
   if (framing.enabled) renderFrameStyles();
+  updateFinishedSize();
   recomputeFraming();               // sets framing.charge (or 0) and calls updatePriceSummary
 }
 
