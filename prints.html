@@ -528,7 +528,6 @@ const PAINTINGS = [
   { title:'Deconstruction', year:1994, medium:'Acrylic', originalPrice:8000, file:'mary-kilpatrick-deconstruction-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-deconstruction-figurative-painting.jpg', ratio:0.7615, editionSize:100, recommendedPaper:'cold_press' },
   { title:'Bravery', year:2001, medium:'Acrylic', originalPrice:4000, file:'mary-kilpatrick-bravery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-bravery-figurative-painting.jpg', ratio:0.9975, editionSize:100, recommendedPaper:'somerset_velvet' },
   { title:'Beauty', year:1999, medium:'Acrylic', originalPrice:15000, file:'mary-kilpatrick-beauty-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-beauty-figurative-painting.jpg', ratio:0.8003, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Peaceful', originalPrice:null, file:'mary-kilpatrick-peaceful-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-peaceful-figurative-painting.jpg', ratio:0.7655, editionSize:100, recommendedPaper:'cold_press' },
   { title:'Two Dancers', year:1997, medium:'Acrylic', originalPrice:4500, file:'mary-kilpatrick-two-dancers-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-two-dancers-figurative-painting.jpg', ratio:0.994, editionSize:100, recommendedPaper:'hot_press' },
   { title:'Jamaican Hero', year:2008, medium:'Acrylic', originalPrice:3500, file:'mary-kilpatrick-jamaican-hero-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-jamaican-hero-figurative-painting.jpg', ratio:0.8455, editionSize:100, recommendedPaper:'somerset_velvet' },
   { title:'Tickle', year:1999, medium:'Acrylic', originalPrice:10000, file:'mary-kilpatrick-tickle-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-tickle-figurative-painting.jpg', ratio:1.5004, editionSize:100, recommendedPaper:'cold_press' },
@@ -542,7 +541,6 @@ const PAINTINGS = [
   { title:'Bottoms Up', year:1999, medium:'Acrylic', originalPrice:10000, file:'mary-kilpatrick-bottoms-up-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-bottoms-up-figurative-painting.jpg', ratio:0.791, editionSize:100, recommendedPaper:'somerset_velvet' },
   { title:'Boyish', year:2025, medium:'Acrylic', originalPrice:3000, file:'mary-kilpatrick-boyish-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-boyish-figurative-painting.jpg', ratio:0.7695, editionSize:100, recommendedPaper:'somerset_velvet' },
   { title:'Carnival', year:2015, medium:'Acrylic', originalPrice:4000, file:'mary-kilpatrick-carnival-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-carnival-figurative-painting.jpg', ratio:1.3495, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Evil', originalPrice:null, file:'mary-kilpatrick-evil-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-evil-figurative-painting.jpg', ratio:0.83, editionSize:100, recommendedPaper:'somerset_velvet' },
   { title:'Fantasy Land', year:2010, medium:'Acrylic', originalPrice:3000, file:'mary-kilpatrick-fantasy-land-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-fantasy-land-figurative-painting.jpg', ratio:0.7405, editionSize:100, recommendedPaper:'somerset_velvet' },
   { title:'Flying High', year:2007, medium:'Acrylic', originalPrice:2500, file:'mary-kilpatrick-flying-high-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-flying-high-figurative-painting.jpg', ratio:0.75, editionSize:100, recommendedPaper:'somerset_velvet' },
   { title:'Freedom', year:2021, medium:'Pen on Paper', originalPrice:4000, file:'mary-kilpatrick-freedom-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-freedom-figurative-painting.jpg', ratio:1.3351, editionSize:100, recommendedPaper:'somerset_velvet' },
@@ -643,7 +641,7 @@ function getSizeTiers(painting) {
 // Size-independent (per painting, not per print size). No Luma call needed.
 function printPrice() {
   const op = selected.painting && selected.painting.originalPrice;
-  if (!op) return null;                        // unpriced (e.g. Evil) -> not purchasable
+  if (!op) return null;                        // no original price on file -> not purchasable
   return Math.round((op * 0.125) / 5) * 5;
 }
 
@@ -777,7 +775,6 @@ const MAT_RECOMMENDATIONS = {
   'Cat Lady': 'white',
   'Kissing Cousins': 'antique-white',
   'Bravery': 'dawn-grey',
-  'Peaceful': 'cream',
   'Two Dancers': 'french-blue',
   'Tickle': 'off-white',
   'Earth Mother': 'sauterne',
@@ -811,7 +808,6 @@ const MAT_SIZE_RECOMMENDATIONS = {
   'Breaking Away':   '15in',
   'Showgirl':        '25in',
   'Bravery':         '15in',
-  'Peaceful':          '25in',
   'Two Dancers':     '15in',
   'Jamaican Hero':   '2in',
   'Deconstruction':  '15in',
@@ -835,7 +831,6 @@ const MAT_SIZE_REASONS = {
   'Breaking Away':   'High-contrast graphic work reads best with a 1½″ mat.',
   'Showgirl':        'Theatrical richness deserves a 2½″ mat — gallery presentation scale.',
   'Bravery':         'The stark contrast of this piece needs a 1½″ mat — let the drama speak.',
-  'Peaceful':          'Soft intimate tones benefit from a wider 2½″ mat — gives the figure room.',
   'Two Dancers':     'Bold pink and strong lines — 1½″ keeps the energy tight.',
   'Jamaican Hero':   '2″ mat balances the generous scale of this painting.',
   'Deconstruction':  'Large abstract work reads strongest with a 1½″ mat — no visual interruption.',
@@ -1068,7 +1063,6 @@ const PAPER_REASONS = {
   'Harmony': 'Harmony\'s rich blues and deep reds — four women singers bathed in golden light — call for a paper that honors warmth and depth. Somerset Velvet deepens the blues and lets the golden background glow without going flat or oversaturated.',
   'Deconstruction': 'Deconstruction is an expressive, painterly work — elongated figures in loose washes of blue and purple against a bare canvas ground. Cold Press\'s heavily textured surface honors the rawness of the image and makes the print feel as much like a drawing as a reproduction.',
   'Bravery': 'Bravery is a quiet, emotionally weighted work — a woman\'s face among blue-robed figures. Somerset Velvet\'s warm, muted surface suits the painting\'s restraint and gives the central figure\'s skin tones the gentle realism they deserve.',
-  'Peaceful': 'Peaceful is a spare, elegant nude — soft skin tones against white and pale grey, rendered with clean confident line. Cold Press adds a subtle depth to those quiet tones and gives the print a handcrafted quality that matches the painting\'s intimacy.',
   'Two Dancers': 'Two Dancers is a bold figurative work with strong silhouettes and confident brushwork. Hot Press captures the maximum contrast between the figures and ground and delivers the sharpest reproduction of the gestural marks.',
   'Jamaican Hero': 'Jamaican Hero is a sun-drenched narrative painting with warm sand, bright yellow, and vivid detail. Somerset Velvet\'s warm ground enriches the ochres and blues without making them aggressive. The velvet surface gives the print the joyful weight of the original.',
   'Tickle': 'Tickle is bold and raw — a large near-abstract nude against a coral ground with gestural tree forms. Cold Press\'s textured surface honors the physicality of the brushwork and gives the print the same painterly presence as the original.',
@@ -1238,7 +1232,7 @@ function updatePriceSummary() {
   summary.style.display = 'block';
 
   const base = printPrice();
-  if (base == null) {                       // unpriced painting (e.g. Evil)
+  if (base == null) {                       // no original price on file
     disp.textContent = 'Contact us';
     checkout.style.display = 'none';
     if (stripeNote) stripeNote.style.display = 'none';
