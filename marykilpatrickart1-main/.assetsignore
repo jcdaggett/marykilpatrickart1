@@ -1,7 +1,0 @@
-.git
-*.zip
-*.pack
-.wrangler
-trigger.txt
-prints.html backup
-*.bat
