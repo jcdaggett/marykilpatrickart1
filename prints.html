@@ -394,13 +394,6 @@
           </div>
         </div>
 
-        <!-- Finish -->
-        <h4 style="font-size:0.88rem;margin-bottom:10px;margin-top:4px;">Finish</h4>
-        <div class="options-grid" id="finish-options">
-          <button class="option-btn selected" id="finish-matte" onclick="selectFinish('matte',213)">Matte <span class="opt-price">Recommended</span></button>
-          <button class="option-btn" id="finish-glossy" onclick="selectFinish('semi-glossy',212)">Semi-Glossy</button>
-        </div>
-
         <p class="framing-note" style="margin-top:16px;">Hanging hardware is included and selected based on your print size. Solid wood frame. Optical-grade clear acrylic glazing included.</p>
       </div>
     </div>
@@ -521,58 +514,58 @@ function initStripe() {
 
 // Paintings with original prices
 const PAINTINGS = [
-  { title:'Personas', file:'mary-kilpatrick-personas-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-personas-figurative-painting.jpg', ratio:0.7865, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Geri', file:'mary-kilpatrick-geri-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-geri-figurative-painting.jpg', ratio:0.7885, editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Josephine Baker', file:'mary-kilpatrick-josephine-baker-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-josephine-baker-figurative-painting.jpg', ratio:1.0304, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Breaking Away', file:'mary-kilpatrick-breaking-away-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-breaking-away-figurative-painting.jpg', ratio:0.9795, editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Girls Night Out', file:'mary-kilpatrick-girls-night-out-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-girls-night-out-figurative-painting.jpg', ratio:0.8245, editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Journey', file:'mary-kilpatrick-journey-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-journey-figurative-painting.jpg', ratio:0.488, editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Covid', file:'mary-kilpatrick-covid-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-covid-figurative-painting.jpg', ratio:1.2715, editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Cat Lady', file:'mary-kilpatrick-cat-lady-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-cat-lady-figurative-painting.jpg', ratio:0.7915, editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Kissing Cousins', file:'mary-kilpatrick-kissing-cousins-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kissing-cousins-figurative-painting.jpg', ratio:1.3459, editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Showgirl', file:'mary-kilpatrick-showgirl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-showgirl-figurative-painting.jpg', ratio:0.7965, editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Harmony', file:'mary-kilpatrick-harmony-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-harmony-figurative-painting.jpg', ratio:0.832, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Deconstruction', file:'mary-kilpatrick-deconstruction-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-deconstruction-figurative-painting.jpg', ratio:0.7615, editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Bravery', file:'mary-kilpatrick-bravery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-bravery-figurative-painting.jpg', ratio:0.9975, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Peaceful', file:'mary-kilpatrick-peaceful-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-peaceful-figurative-painting.jpg', ratio:0.7655, editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Two Dancers', file:'mary-kilpatrick-two-dancers-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-two-dancers-figurative-painting.jpg', ratio:0.994, editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Jamaican Hero', file:'mary-kilpatrick-jamaican-hero-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-jamaican-hero-figurative-painting.jpg', ratio:0.8455, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Tickle', file:'mary-kilpatrick-tickle-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-tickle-figurative-painting.jpg', ratio:1.5004, editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Earth Mother', file:'mary-kilpatrick-earth-mother-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-earth-mother-figurative-painting.jpg', ratio:1.3937, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Christ Mass', file:'mary-kilpatrick-christ-mass-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-christ-mass-figurative-painting.jpg', ratio:0.748, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Virtual Girl', file:'mary-kilpatrick-virtual-girl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-virtual-girl-figurative-painting.jpg', ratio:1.2658, editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Cotton Candy', file:'mary-kilpatrick-cotton-candy-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-cotton-candy-figurative-painting.jpg', ratio:0.803, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Alice', file:'mary-kilpatrick-alice-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-alice-figurative-painting.jpg', ratio:0.796, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Birth', file:'mary-kilpatrick-birth-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-birth-figurative-painting.jpg', ratio:0.759, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Bottoms Up', file:'mary-kilpatrick-bottoms-up-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-bottoms-up-figurative-painting.jpg', ratio:0.791, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Boyish', file:'mary-kilpatrick-boyish-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-boyish-figurative-painting.jpg', ratio:0.7695, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Carnival', file:'mary-kilpatrick-carnival-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-carnival-figurative-painting.jpg', ratio:1.3495, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Evil', file:'mary-kilpatrick-evil-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-evil-figurative-painting.jpg', ratio:0.83, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Fantasy Land', file:'mary-kilpatrick-fantasy-land-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-fantasy-land-figurative-painting.jpg', ratio:0.7405, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Flying High', file:'mary-kilpatrick-flying-high-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-flying-high-figurative-painting.jpg', ratio:0.75, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Freedom', file:'mary-kilpatrick-freedom-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-freedom-figurative-painting.jpg', ratio:1.3351, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Harlem Summer', file:'mary-kilpatrick-harlem-summer-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-harlem-summer-figurative-painting.jpg', ratio:0.9905, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Heidi', file:'mary-kilpatrick-heidi-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-heidi-figurative-painting.jpg', ratio:0.748, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Help', file:'mary-kilpatrick-help-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-help-figurative-painting.jpg', ratio:0.7805, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Hippie Girl', file:'mary-kilpatrick-hippie-girl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-hippie-girl-figurative-painting.jpg', ratio:0.7545, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Kidnapped I', file:'mary-kilpatrick-kidnapped-i-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kidnapped-i-figurative-painting.jpg', ratio:1.004, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Kidnapped II', file:'mary-kilpatrick-kidnapped-ii-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kidnapped-ii-figurative-painting.jpg', ratio:1.0096, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Lovers', file:'mary-kilpatrick-lovers-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-lovers-figurative-painting.jpg', ratio:1.3569, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Masked', file:'mary-kilpatrick-masked-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-masked-figurative-painting.jpg', ratio:0.3175, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Nanette', file:'mary-kilpatrick-nanette-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-nanette-figurative-painting.jpg', ratio:0.7865, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Party Time', file:'mary-kilpatrick-party-time-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-party-time-figurative-painting.jpg', ratio:1.3708, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Plug', file:'mary-kilpatrick-plug-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-plug-figurative-painting.jpg', ratio:0.755, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Protectors', file:'mary-kilpatrick-protectors-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-protectors-figurative-painting.jpg', ratio:0.8105, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Rape', file:'mary-kilpatrick-rape-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-rape-figurative-painting.jpg', ratio:0.7395, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Resting', file:'mary-kilpatrick-resting-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-resting-figurative-painting.jpg', ratio:0.7765, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Rising Spirit', file:'mary-kilpatrick-rising-spirit-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-rising-spirit-figurative-painting.jpg', ratio:0.702, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Slavery', file:'mary-kilpatrick-slavery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-slavery-figurative-painting.jpg', ratio:1.0395, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Snowbirder', file:'mary-kilpatrick-snowbirder-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-snowbirder-figurative-painting.jpg', ratio:1.0096, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Sweet Baby Sue', file:'mary-kilpatrick-sweet-baby-sue-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-sweet-baby-sue-figurative-painting.jpg', ratio:0.781, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Takes All Kinds', file:'mary-kilpatrick-takes-all-kinds-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-takes-all-kinds-figurative-painting.jpg', ratio:0.4995, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Togetherness', file:'mary-kilpatrick-togetherness-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-togetherness-figurative-painting.jpg', ratio:0.7485, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Trapped', file:'mary-kilpatrick-trapped-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-trapped-figurative-painting.jpg', ratio:1.2903, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Virgin', file:'mary-kilpatrick-virgin-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-virgin-figurative-painting.jpg', ratio:0.663, editionSize:100, recommendedPaper:'somerset_velvet' }
+  { title:'Personas', originalPrice:6000, file:'mary-kilpatrick-personas-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-personas-figurative-painting.jpg', ratio:0.7865, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Geri', originalPrice:2500, file:'mary-kilpatrick-geri-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-geri-figurative-painting.jpg', ratio:0.7885, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Josephine Baker', originalPrice:4000, file:'mary-kilpatrick-josephine-baker-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-josephine-baker-figurative-painting.jpg', ratio:1.0304, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Breaking Away', originalPrice:4000, file:'mary-kilpatrick-breaking-away-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-breaking-away-figurative-painting.jpg', ratio:0.9795, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Girls Night Out', originalPrice:2500, file:'mary-kilpatrick-girls-night-out-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-girls-night-out-figurative-painting.jpg', ratio:0.8245, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Journey', originalPrice:3000, file:'mary-kilpatrick-journey-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-journey-figurative-painting.jpg', ratio:0.488, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Covid', originalPrice:4000, file:'mary-kilpatrick-covid-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-covid-figurative-painting.jpg', ratio:1.2715, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Cat Lady', originalPrice:3500, file:'mary-kilpatrick-cat-lady-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-cat-lady-figurative-painting.jpg', ratio:0.7915, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Kissing Cousins', originalPrice:2000, file:'mary-kilpatrick-kissing-cousins-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kissing-cousins-figurative-painting.jpg', ratio:1.3459, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Showgirl', originalPrice:15000, file:'mary-kilpatrick-showgirl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-showgirl-figurative-painting.jpg', ratio:0.7965, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Harmony', originalPrice:3000, file:'mary-kilpatrick-harmony-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-harmony-figurative-painting.jpg', ratio:0.832, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Deconstruction', originalPrice:8000, file:'mary-kilpatrick-deconstruction-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-deconstruction-figurative-painting.jpg', ratio:0.7615, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Bravery', originalPrice:4000, file:'mary-kilpatrick-bravery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-bravery-figurative-painting.jpg', ratio:0.9975, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Peaceful', originalPrice:15000, file:'mary-kilpatrick-peaceful-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-peaceful-figurative-painting.jpg', ratio:0.7655, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Two Dancers', originalPrice:4500, file:'mary-kilpatrick-two-dancers-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-two-dancers-figurative-painting.jpg', ratio:0.994, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Jamaican Hero', originalPrice:3500, file:'mary-kilpatrick-jamaican-hero-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-jamaican-hero-figurative-painting.jpg', ratio:0.8455, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Tickle', originalPrice:10000, file:'mary-kilpatrick-tickle-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-tickle-figurative-painting.jpg', ratio:1.5004, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Earth Mother', originalPrice:25000, file:'mary-kilpatrick-earth-mother-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-earth-mother-figurative-painting.jpg', ratio:1.3937, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Christ Mass', originalPrice:7500, file:'mary-kilpatrick-christ-mass-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-christ-mass-figurative-painting.jpg', ratio:0.748, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Virtual Girl', originalPrice:5000, file:'mary-kilpatrick-virtual-girl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-virtual-girl-figurative-painting.jpg', ratio:1.2658, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Cotton Candy', originalPrice:5000, file:'mary-kilpatrick-cotton-candy-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-cotton-candy-figurative-painting.jpg', ratio:0.803, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Alice', originalPrice:3500, file:'mary-kilpatrick-alice-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-alice-figurative-painting.jpg', ratio:0.796, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Birth', originalPrice:5000, file:'mary-kilpatrick-birth-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-birth-figurative-painting.jpg', ratio:0.759, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Bottoms Up', originalPrice:10000, file:'mary-kilpatrick-bottoms-up-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-bottoms-up-figurative-painting.jpg', ratio:0.791, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Boyish', originalPrice:3000, file:'mary-kilpatrick-boyish-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-boyish-figurative-painting.jpg', ratio:0.7695, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Carnival', originalPrice:4000, file:'mary-kilpatrick-carnival-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-carnival-figurative-painting.jpg', ratio:1.3495, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Evil', originalPrice:null, file:'mary-kilpatrick-evil-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-evil-figurative-painting.jpg', ratio:0.83, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Fantasy Land', originalPrice:3000, file:'mary-kilpatrick-fantasy-land-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-fantasy-land-figurative-painting.jpg', ratio:0.7405, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Flying High', originalPrice:2500, file:'mary-kilpatrick-flying-high-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-flying-high-figurative-painting.jpg', ratio:0.75, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Freedom', originalPrice:4000, file:'mary-kilpatrick-freedom-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-freedom-figurative-painting.jpg', ratio:1.3351, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Harlem Summer', originalPrice:3500, file:'mary-kilpatrick-harlem-summer-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-harlem-summer-figurative-painting.jpg', ratio:0.9905, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Heidi', originalPrice:3000, file:'mary-kilpatrick-heidi-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-heidi-figurative-painting.jpg', ratio:0.748, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Help', originalPrice:1500, file:'mary-kilpatrick-help-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-help-figurative-painting.jpg', ratio:0.7805, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Hippie Girl', originalPrice:4000, file:'mary-kilpatrick-hippie-girl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-hippie-girl-figurative-painting.jpg', ratio:0.7545, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Kidnapped I', originalPrice:3000, file:'mary-kilpatrick-kidnapped-i-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kidnapped-i-figurative-painting.jpg', ratio:1.004, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Kidnapped II', originalPrice:3000, file:'mary-kilpatrick-kidnapped-ii-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kidnapped-ii-figurative-painting.jpg', ratio:1.0096, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Lovers', originalPrice:4000, file:'mary-kilpatrick-lovers-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-lovers-figurative-painting.jpg', ratio:1.3569, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Masked', originalPrice:1500, file:'mary-kilpatrick-masked-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-masked-figurative-painting.jpg', ratio:0.3175, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Nanette', originalPrice:2000, file:'mary-kilpatrick-nanette-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-nanette-figurative-painting.jpg', ratio:0.7865, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Party Time', originalPrice:3000, file:'mary-kilpatrick-party-time-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-party-time-figurative-painting.jpg', ratio:1.3708, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Plug', originalPrice:3500, file:'mary-kilpatrick-plug-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-plug-figurative-painting.jpg', ratio:0.755, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Protectors', originalPrice:7000, file:'mary-kilpatrick-protectors-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-protectors-figurative-painting.jpg', ratio:0.8105, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Rape', originalPrice:4000, file:'mary-kilpatrick-rape-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-rape-figurative-painting.jpg', ratio:0.7395, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Resting', originalPrice:4000, file:'mary-kilpatrick-resting-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-resting-figurative-painting.jpg', ratio:0.7765, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Rising Spirit', originalPrice:4000, file:'mary-kilpatrick-rising-spirit-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-rising-spirit-figurative-painting.jpg', ratio:0.702, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Slavery', originalPrice:4500, file:'mary-kilpatrick-slavery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-slavery-figurative-painting.jpg', ratio:1.0395, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Snowbirder', originalPrice:2500, file:'mary-kilpatrick-snowbirder-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-snowbirder-figurative-painting.jpg', ratio:1.0096, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Sweet Baby Sue', originalPrice:1500, file:'mary-kilpatrick-sweet-baby-sue-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-sweet-baby-sue-figurative-painting.jpg', ratio:0.781, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Takes All Kinds', originalPrice:3500, file:'mary-kilpatrick-takes-all-kinds-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-takes-all-kinds-figurative-painting.jpg', ratio:0.4995, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Togetherness', originalPrice:4000, file:'mary-kilpatrick-togetherness-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-togetherness-figurative-painting.jpg', ratio:0.7485, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Trapped', originalPrice:3500, file:'mary-kilpatrick-trapped-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-trapped-figurative-painting.jpg', ratio:1.2903, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Virgin', originalPrice:15000, file:'mary-kilpatrick-virgin-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-virgin-figurative-painting.jpg', ratio:0.663, editionSize:100, recommendedPaper:'somerset_velvet' }
 ];
 
 // Paper types — curated for acrylic figurative paintings
@@ -644,17 +637,24 @@ function getSizeTiers(painting) {
 }
 
 // Pricing: Lumaprints cost + $60 profit, rounded to nearest $5
-// Rate calibrated from real API data: 8×10 Somerset Velvet = $12.09
-// Rate = $0.12/sq inch + $2.50 base
-function estimatePrice(painting, size) {
-  const sqIn = size.w * size.h;
-  const estimatedLumaCost = sqIn * 0.12 + 2.50;
-  return Math.round((estimatedLumaCost + 60) / 5) * 5;
+// Print retail = 12.5% of the original painting price, rounded to $5.
+// Size-independent (per painting, not per print size). No Luma call needed.
+function printPrice() {
+  const op = selected.painting && selected.painting.originalPrice;
+  if (!op) return null;                        // unpriced (e.g. Evil) -> not purchasable
+  return Math.round((op * 0.125) / 5) * 5;
 }
 
+// Total = print price + framing addon (addon = (framedLuma - printLuma) * 1.20).
+// framing.charge: number = ready, 0 = no frame, null = frame price pending/unavailable.
 function totalPrice() {
-  if (!selected.painting || !selected.paper || !selected.size) return null;
-  return selected.size.price || estimatePrice(selected.painting, selected.size);
+  const base = printPrice();
+  if (base == null || !selected.paper || !selected.size) return null;
+  if (framing.enabled) {
+    if (framing.charge == null) return null;   // frame price not ready -> block checkout
+    return base + framing.charge;
+  }
+  return base;
 }
 
 let inventoryData = {};
@@ -710,33 +710,52 @@ function renderPaintings() {
 // ============================================================
 // FRAMING DATA
 // ============================================================
+// Framed Fine Art Paper — frame style IS the Lumaprints subcategory (category 105).
+// maxW/maxH are the live per-subcategory print-size limits (verified via /api/subcategories/105).
+// img = swatch asset in /frames. Frames whose max size can't fit the selected print are hidden.
 const FRAME_STYLES = [
-  { id: 'blk-875', name: 'Black', profile: '0.875×0.875″', optionId: 241, color: '#1a1814', subcategoryId: 102001 },
-  { id: 'wht-875', name: 'White', profile: '0.875×0.875″', optionId: 242, color: '#f5f1ea', subcategoryId: 102001 },
-  { id: 'oak-875', name: 'Natural Oak', profile: '0.875×0.875″', optionId: 243, color: '#c4965a', subcategoryId: 102001 },
-  { id: 'blk-125', name: 'Black', profile: '1.25×0.875″', optionId: 248, color: '#1a1814', subcategoryId: 102002 },
-  { id: 'wht-125', name: 'White', profile: '1.25×0.875″', optionId: 251, color: '#f5f1ea', subcategoryId: 102002 },
-  { id: 'mpl-125', name: 'Maple', profile: '1.25×0.875″', optionId: 249, color: '#d4a96a', subcategoryId: 102002 },
-  { id: 'blk-mat', name: 'Matte Black', profile: '1.625×1.375″', optionId: 252, color: '#2a2520', subcategoryId: 102003 },
-  { id: 'gld-311', name: 'Gold', profile: '3×1.125″', optionId: 245, color: '#9c7c38', subcategoryId: 102003 },
-  { id: 'blk-gld', name: 'Black w/ Gold', profile: '2×1.0625″', optionId: 216, color: '#1a1814', subcategoryId: 102003 },
+  { id: 'f105001', subcategoryId: 105001, name: 'Black',          profile: '0.875″',  color:'#1a1814', img:'frames/frame-105001.jpg',  maxW:36, maxH:24 },
+  { id: 'f105002', subcategoryId: 105002, name: 'White',          profile: '0.875″',  color:'#f5f1ea', img:'frames/frame-105002.jpg',  maxW:36, maxH:24 },
+  { id: 'f105003', subcategoryId: 105003, name: 'Oak',            profile: '0.875″',  color:'#c4965a', img:'frames/frame-105003.jpg',  maxW:36, maxH:24 },
+  { id: 'f105005', subcategoryId: 105005, name: 'Black',          profile: '1.25″',   color:'#1a1814', img:'frames/frame-105005.webp', maxW:60, maxH:40 },
+  { id: 'f105006', subcategoryId: 105006, name: 'White',          profile: '1.25″',   color:'#f5f1ea', img:'frames/frame-105006.webp', maxW:60, maxH:40 },
+  { id: 'f105022', subcategoryId: 105022, name: 'Maple',          profile: '1.25″',   color:'#d4a96a', img:'frames/frame-105022.webp', maxW:60, maxH:40 },
+  { id: 'f105016', subcategoryId: 105016, name: 'Black / Silver', profile: '1.125″',  color:'#2a2a2e', img:'frames/frame-105016.jpg',  maxW:60, maxH:40 },
+  { id: 'f105017', subcategoryId: 105017, name: 'Black / Gold',   profile: '1.125″',  color:'#3a2f1e', img:'frames/frame-105017.webp', maxW:60, maxH:40 },
+  { id: 'f105025', subcategoryId: 105025, name: 'Matte Black',    profile: '1.625″',  color:'#2a2520', img:'frames/frame-105025.webp', maxW:60, maxH:40 },
+  { id: 'f105013', subcategoryId: 105013, name: 'Black / Gold',   profile: '2″',      color:'#1a1814', img:'frames/frame-105013.jpg',  maxW:60, maxH:40 },
+  { id: 'f105020', subcategoryId: 105020, name: 'Espresso / Gold',profile: '2.5625″', color:'#4a3520', img:'frames/frame-105020.webp', maxW:60, maxH:40 },
+  { id: 'f105015', subcategoryId: 105015, name: 'Black / Gold',   profile: '3″',      color:'#1a1814', img:'frames/frame-105015.jpg',  maxW:60, maxH:40 },
+  { id: 'f105019', subcategoryId: 105019, name: 'Driftwood White',profile: '3″',      color:'#e4ddd2', img:'frames/frame-105019.jpg',  maxW:60, maxH:40 },
+  { id: 'f105023', subcategoryId: 105023, name: 'Gold',           profile: '3″',      color:'#9c7c38', img:'frames/frame-105023.webp', maxW:60, maxH:40 },
+  { id: 'f105021', subcategoryId: 105021, name: 'Copper',         profile: '3.25″',   color:'#b06a3a', img:'frames/frame-105021.webp', maxW:60, maxH:40 },
 ];
 
+// Mat size (inches on each side) -> Lumaprints optionId
+const MAT_SIZE_OPTION = { 0:64, 1:65, 1.5:66, 2:67, 2.5:68, 3:69 };
+// Paper selection -> Framed Fine Art Paper "Paper Type" optionId
+const FRAMED_PAPER_OPTION = { somerset_velvet:82, hot_press:75, cold_press:76 };
+// Fixed framing options
+const GLAZING_ACRYLIC = 146;   // Acrylic Glass (recommended)
+const BACKING_KRAFT   = 95;    // Kraft Paper
+const MOUNTING_LOOSE  = 149;   // Loose Mounted (preserves the giclée)
+
+// Verified Lumaprints "Mat Color" options (category 105) — id used for UI, optionId sent to Luma.
 const MAT_COLORS = [
-  { id: 'white', name: 'White', color: '#ffffff', optionGroupItem: 'White' },
-  { id: 'off-white', name: 'Off-White', color: '#f5f0e8', optionGroupItem: 'Off-White' },
-  { id: 'antique-white', name: 'Antique White', color: '#ede4d0', optionGroupItem: 'Antique White' },
-  { id: 'cream', name: 'Cream', color: '#f2e8d0', optionGroupItem: 'Cream' },
-  { id: 'pearl', name: 'Pearl', color: '#eee8e0', optionGroupItem: 'Pearl' },
-  { id: 'sand', name: 'Sand', color: '#d4c4a0', optionGroupItem: 'Sand' },
-  { id: 'sauterne', name: 'Sauterne', color: '#c8b878', optionGroupItem: 'Sauterne' },
-  { id: 'dawn-gray', name: 'Dawn Gray', color: '#c0bab4', optionGroupItem: 'Dawn Gray' },
-  { id: 'french-blue', name: 'French Blue', color: '#7090b0', optionGroupItem: 'French Blue' },
-  { id: 'silver-florentine', name: 'Silver Florentine', color: '#a8a8b0', optionGroupItem: 'Silver Florentine' },
-  { id: 'indigo', name: 'Indigo', color: '#3a4870', optionGroupItem: 'Indigo' },
-  { id: 'moist-green', name: 'Moist Point Green', color: '#6a8870', optionGroupItem: 'Moist Point Green' },
-  { id: 'black-white-core', name: 'Black / White Core', color: '#1a1814', optionGroupItem: 'Smooth Black with White Core' },
-  { id: 'white-black-core', name: 'White / Black Core', color: '#f5f1ea', optionGroupItem: 'White with Black Core' },
+  { id: 'white',              name: 'White',              color: '#ffffff', optionId: 96 },
+  { id: 'off-white',          name: 'Off White',          color: '#f5f0e8', optionId: 104 },
+  { id: 'antique-white',      name: 'Antique White',      color: '#ede4d0', optionId: 99 },
+  { id: 'cream',              name: 'Cream',              color: '#f2e8d0', optionId: 102 },
+  { id: 'pearl',              name: 'Pearl',              color: '#eee8e0', optionId: 105 },
+  { id: 'sand',               name: 'Sand',               color: '#d4c4a0', optionId: 103 },
+  { id: 'sauterne',           name: 'Sauterne',           color: '#c8b878', optionId: 109 },
+  { id: 'dawn-grey',          name: 'Dawn Grey',          color: '#c0bab4', optionId: 101 },
+  { id: 'french-blue',        name: 'French Blue',        color: '#7090b0', optionId: 107 },
+  { id: 'silver-florentine',  name: 'Silver Florentine',  color: '#a8a8b0', optionId: 106 },
+  { id: 'indigo',             name: 'Indigo',             color: '#3a4870', optionId: 108 },
+  { id: 'moss-green',         name: 'Moss Point Green',   color: '#6a8870', optionId: 110 },
+  { id: 'white-black-core',   name: 'White / Black Core', color: '#f5f1ea', optionId: 97 },
+  { id: 'smooth-black',       name: 'Smooth Black',       color: '#1a1814', optionId: 98 },
 ];
 
 const MAT_RECOMMENDATIONS = {
@@ -751,16 +770,16 @@ const MAT_RECOMMENDATIONS = {
   'Breaking Away': 'french-blue',
   'Girls Night Out': 'pearl',
   'Journey': 'sand',
-  'Covid': 'dawn-gray',
+  'Covid': 'dawn-grey',
   'Cat Lady': 'white',
   'Kissing Cousins': 'antique-white',
-  'Bravery': 'dawn-gray',
+  'Bravery': 'dawn-grey',
   'Peaceful': 'cream',
   'Two Dancers': 'french-blue',
   'Tickle': 'off-white',
   'Earth Mother': 'sauterne',
   'Virtual Girl': 'silver-florentine',
-  'Deconstruction': 'black-white-core',
+  'Deconstruction': 'smooth-black',
 };
 
 // Framing state
@@ -770,7 +789,7 @@ const framing = {
   matSize: 'none',
   matSizeInches: 0,
   matColor: null,
-  finish: { id: 'matte', optionId: 213 },
+  charge: 0,        // framing addon charge (from worker, addon x1.20). null = pending/unavailable.
 };
 
 
@@ -822,21 +841,38 @@ const MAT_SIZE_REASONS = {
   'Christ Mass':     'The largest painting in the collection deserves a full 3″ mat.',
 };
 
+// Frames whose live max print size can't accommodate the selected print are excluded,
+// so the buyer can never pick a frame+size combo Lumaprints would reject after payment.
+function framesForSize() {
+  if (!selected.size) return FRAME_STYLES;
+  const w = selected.size.w, h = selected.size.h;
+  return FRAME_STYLES.filter(f => w <= f.maxW && h <= f.maxH);
+}
+
 function renderFrameStyles() {
-  document.getElementById('frame-style-options').innerHTML = FRAME_STYLES.map(f => `
+  const list = framesForSize();
+  document.getElementById('frame-style-options').innerHTML = list.map(f => `
     <button class="frame-btn" id="frame-${f.id}" onclick="selectFrameStyle('${f.id}')">
-      <div class="frame-swatch" style="background:${f.color};"></div>
+      <div class="frame-swatch" style="background:${f.color} center/cover no-repeat;background-image:url('${f.img}');"></div>
       <strong style="display:block;font-size:0.75rem;">${f.name}</strong>
       <span style="font-size:0.68rem;color:var(--light-gray);">${f.profile}</span>
     </button>
   `).join('');
+  // If a previously-selected frame no longer fits the current size, clear it.
+  if (framing.frame && !list.some(f => f.id === framing.frame.id)) {
+    framing.frame = null;
+    framing.charge = 0;
+  } else if (framing.frame) {
+    const btn = document.getElementById(`frame-${framing.frame.id}`);
+    if (btn) btn.classList.add('selected');
+  }
 }
 
 function renderMatColors() {
   const recId = selected.painting ? (MAT_RECOMMENDATIONS[selected.painting.title] || 'off-white') : 'off-white';
   document.getElementById('mat-color-options').innerHTML = MAT_COLORS.map(m => `
     <button class="mat-btn${m.id === recId ? ' recommended-mat' : ''}" id="mat-color-${m.id}" onclick="selectMatColor('${m.id}')">
-      <div class="mat-swatch" style="background:${m.color};${m.id === 'black-white-core' ? 'border:2px solid #fff;' : ''}"></div>
+      <div class="mat-swatch" style="background:${m.color};${m.id === 'smooth-black' ? 'border:2px solid #fff;' : ''}"></div>
       ${m.id === recId ? '<span class="mat-recommended-label">★ Recommended</span>' : ''}
       <span style="font-size:0.7rem;">${m.name}</span>
     </button>
@@ -850,28 +886,33 @@ function selectFraming(choice) {
   document.getElementById('frame-none-btn').classList.toggle('active', !framing.enabled);
   document.getElementById('frame-yes-btn').classList.toggle('active', framing.enabled);
   document.getElementById('framing-options').classList.toggle('visible', framing.enabled);
-  if (framing.enabled && !document.getElementById('frame-style-options').innerHTML) {
-    renderFrameStyles();
-  }
-  updatePriceSummary();
+  if (framing.enabled) renderFrameStyles();
+  recomputeFraming();
 }
 
 function selectFrameStyle(id) {
   framing.frame = FRAME_STYLES.find(f => f.id === id);
   document.querySelectorAll('.frame-btn').forEach(b => b.classList.remove('selected'));
   document.getElementById(`frame-${id}`).classList.add('selected');
-  updatePriceSummary();
+  recomputeFraming();
 }
 
 function selectMatSize(id, inches) {
   framing.matSize = id;
   framing.matSizeInches = inches;
   document.querySelectorAll('#mat-size-options .option-btn').forEach(b => b.classList.remove('selected'));
-  const matBtnId = id === 'none' ? 'mat-none' : `mat-${id.replace('.','').replace('in','')}`;const matBtn = document.getElementById(matBtnId);if(matBtn) matBtn.classList.add('selected');
-  // Show mat color only if mat selected
+  const matBtnId = id === 'none' ? 'mat-none' : `mat-${id.replace('.','').replace('in','')}`;
+  const matBtn = document.getElementById(matBtnId); if(matBtn) matBtn.classList.add('selected');
   document.getElementById('mat-color-section').style.display = inches > 0 ? 'block' : 'none';
-  if (inches > 0) renderMatColors();
-  updatePriceSummary();
+  if (inches > 0) {
+    renderMatColors();
+    // Auto-pick a mat colour so the framed price can be computed immediately.
+    const recId = selected.painting ? (MAT_RECOMMENDATIONS[selected.painting.title] || 'off-white') : 'off-white';
+    selectMatColor(framing.matColor ? framing.matColor.id : recId);
+    return;                       // selectMatColor triggers recomputeFraming
+  }
+  framing.matColor = null;
+  recomputeFraming();
 }
 
 function selectMatColor(id) {
@@ -879,19 +920,44 @@ function selectMatColor(id) {
   document.querySelectorAll('.mat-btn').forEach(b => b.classList.remove('selected'));
   const btn = document.getElementById(`mat-color-${id}`);
   if (btn) btn.classList.add('selected');
+  recomputeFraming();
 }
 
-function selectFinish(id, optionId) {
-  framing.finish = { id, optionId };
-  document.querySelectorAll('#finish-options .option-btn').forEach(b => b.classList.remove('selected'));
-  document.getElementById(`finish-${id}`).classList.add('selected');
+// Fetch raw Luma costs (unframed print + framed product) and set the framing addon:
+// charge = round5((framedLuma - printLuma) * 1.20). Retail print price is separate (12.5% of original).
+// framing.charge: 0 = no frame, a number = ready, null = pending/unavailable (checkout stays blocked).
+async function recomputeFraming() {
+  if (!framing.enabled) { framing.charge = 0; updatePriceSummary(); return; }
+  if (!framing.frame || !selected.size || !selected.paper) { framing.charge = null; updatePriceSummary(); return; }
+  if (framing.matSizeInches > 0 && !framing.matColor) { framing.charge = null; updatePriceSummary(); return; }
+
+  const w = selected.size.w, h = selected.size.h;
+  const paperOpt = FRAMED_PAPER_OPTION[selected.paper.id] || 82;
+  const matOpt = (framing.matSizeInches in MAT_SIZE_OPTION) ? MAT_SIZE_OPTION[framing.matSizeInches] : 64;
+  const opts = [matOpt, paperOpt, GLAZING_ACRYLIC, 83];      // 83 = hanging wire (included)
+  if (framing.matSizeInches > 0 && framing.matColor) opts.push(framing.matColor.optionId);
+  framing.frameOptions = opts;
+
+  framing.charge = null;
+  document.getElementById('total-price-display').textContent = 'Calculating…';
+  document.getElementById('checkout-btn').style.display = 'none';
+  const reqId = (framing._req = (framing._req || 0) + 1);
+  try {
+    const [printRes, framedRes] = await Promise.all([
+      fetch(`${WORKER_URL}/api/price`, { method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ width:w, height:h, paperType: selected.paper.id }) }).then(r=>r.json()),
+      fetch(`${WORKER_URL}/api/price`, { method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ width:w, height:h, subcategoryId: framing.frame.subcategoryId, options: opts }) }).then(r=>r.json()),
+    ]);
+    if (reqId !== framing._req) return;                       // superseded by a newer selection
+    const printLuma = printRes.lumaPrice, framedLuma = framedRes.lumaPrice;
+    framing.charge = (printLuma > 0 && framedLuma > 0)
+      ? Math.max(0, Math.round(((framedLuma - printLuma) * 1.20) / 5) * 5)
+      : null;
+  } catch (e) {
+    if (reqId === framing._req) framing.charge = null;
+  }
   updatePriceSummary();
-}
-
-// Determine hanging hardware based on total size
-function getHangingHardware(w, h) {
-  const totalArea = (w + (framing.matSizeInches * 2)) * (h + (framing.matSizeInches * 2));
-  return totalArea > (36 * 48) ? 134 : 16; // Corner sawtooth vs hanging wire
 }
 
 
@@ -1116,12 +1182,13 @@ function highlightRecommendedMatSize() {
 function renderSizeOptions() {
   const tiers = getSizeTiers(selected.painting);
   const container = document.getElementById('size-options');
-  
+  const pp = printPrice();
+  const priceLabel = pp != null ? `$${pp.toLocaleString()}` : 'Contact us';
   container.innerHTML = tiers.map(s => {
     return `
       <button class="option-btn" id="size-${s.id}" onclick="selectSize('${s.id}')">
         ${s.displayW}×${s.displayH}″ <span style="font-size:0.72rem;color:var(--warm-gray);font-weight:300;">(${s.label})</span>
-        <span class="opt-price" id="price-${s.id}"></span>
+        <span class="opt-price" id="price-${s.id}">${priceLabel}</span>
       </button>
     `;
   }).join('') + `
@@ -1141,51 +1208,46 @@ async function selectSize(sizeId) {
   const btn = document.getElementById(`size-${sizeId}`);
   if (btn) btn.classList.add('selected');
 
-  // Assign size — show loading state, fetch real price from API
   selected.size = size;
-  selected.size.price = null;
 
+  // Print price = 12.5% of original; same across sizes, no API call needed.
+  const pp = printPrice();
   const priceEl = document.getElementById(`price-${sizeId}`);
-  if (priceEl) priceEl.textContent = 'Loading...';
+  if (priceEl) priceEl.textContent = pp != null ? `$${pp.toLocaleString()}` : 'Contact us';
 
-  // Hide summary until real price confirmed
-  document.getElementById('price-summary').style.display = 'none';
-  document.getElementById('checkout-btn').style.display = 'none';
+  document.getElementById('framing-section').style.display = 'block';
+  highlightRecommendedMatSize();
 
-  // Fetch real Lumaprints cost — price = cost + $60
-  fetch(`${WORKER_URL}/api/price`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ width: size.w, height: size.h, paperType: selected.paper.id })
-  }).then(r => r.json()).then(data => {
-    if (data.lumaPrice && data.lumaPrice > 0) {
-      const finalPrice = Math.round((data.lumaPrice + 60) / 5) * 5;
-      selected.size.price = Math.max(65, finalPrice);
-    } else {
-      // API failed — fall back to estimate
-      selected.size.price = estimatePrice(selected.painting, size);
-    }
-    if (priceEl) priceEl.textContent = `$${selected.size.price.toLocaleString()}`;
-    updatePriceSummary();
-    document.getElementById('framing-section').style.display = 'block';
-    highlightRecommendedMatSize();
-  }).catch(() => {
-    // Network error — fall back to estimate
-    selected.size.price = estimatePrice(selected.painting, size);
-    if (priceEl) priceEl.textContent = `$${selected.size.price.toLocaleString()}`;
-    updatePriceSummary();
-    document.getElementById('framing-section').style.display = 'block';
-    highlightRecommendedMatSize();
-  });
+  // Frame list is size-filtered; re-render so choices match the new size, then reprice framing.
+  if (framing.enabled) renderFrameStyles();
+  recomputeFraming();               // sets framing.charge (or 0) and calls updatePriceSummary
 }
 
 function updatePriceSummary() {
   if (!selected.painting || !selected.paper || !selected.size) return;
+  const summary = document.getElementById('price-summary');
+  const disp = document.getElementById('total-price-display');
+  const checkout = document.getElementById('checkout-btn');
+  const stripeNote = document.getElementById('stripe-note');
+  summary.style.display = 'block';
+
+  const base = printPrice();
+  if (base == null) {                       // unpriced painting (e.g. Evil)
+    disp.textContent = 'Contact us';
+    checkout.style.display = 'none';
+    if (stripeNote) stripeNote.style.display = 'none';
+    return;
+  }
   const price = totalPrice();
-  document.getElementById('total-price-display').textContent = `$${price.toLocaleString()}`;
-  document.getElementById('price-summary').style.display = 'block';
-  document.getElementById('checkout-btn').style.display = 'block';
-  document.getElementById('stripe-note').style.display = 'block';
+  if (price == null) {                      // framing on but not yet priced
+    disp.textContent = framing.frame ? 'Calculating…' : 'Select a frame';
+    checkout.style.display = 'none';
+    if (stripeNote) stripeNote.style.display = 'none';
+    return;
+  }
+  disp.textContent = `$${price.toLocaleString()}`;
+  checkout.style.display = 'block';
+  if (stripeNote) stripeNote.style.display = 'block';
 }
 
 function showCheckout() {
@@ -1237,6 +1299,11 @@ async function submitOrder() {
   document.getElementById('card-errors').textContent = '';
 
   const total = totalPrice();
+  if (total == null) {
+    document.getElementById('card-errors').textContent = 'Please finish choosing your options before paying.';
+    btn.disabled = false; btn.innerHTML = 'Place Order';
+    return;
+  }
 
   try {
     // Create Stripe payment intent
@@ -1299,14 +1366,15 @@ async function submitOrder() {
           },
           orderItems: [{
             externalItemId: String(Date.now()),
-            subcategoryId: null,
             quantity: 1,
             file: { imageUrl: `https://www.marykilpatrick.com/${selected.painting.file}` },
-            orderItemOptions: [],
-            notes: `Paper: ${selected.paper.name}, Size: ${selected.size.displayW}×${selected.size.displayH}", Framing: ${framing.enabled ? (framing.frame?.name + ' ' + framing.frame?.profile + (framing.matSize !== 'none' ? ', Mat: ' + framing.matSizeInches + 'in ' + (framing.matColor?.name || '') : '') + ', Finish: ' + framing.finish.id) : 'None'}, Painting: ${selected.painting.title}`,
             printWidth: selected.size.w,
             printHeight: selected.size.h,
             paperType: selected.paper.id,
+            framed: framing.enabled,
+            frameSubcategoryId: framing.enabled ? (framing.frame && framing.frame.subcategoryId) : null,
+            framingOptions: framing.enabled ? (framing.frameOptions || []) : [],
+            notes: `Painting: ${selected.painting.title}, Paper: ${selected.paper.name}, Size: ${selected.size.displayW}×${selected.size.displayH}", ${framing.enabled ? `Framed: ${framing.frame && framing.frame.name} ${framing.frame && framing.frame.profile}${framing.matSizeInches > 0 ? `, Mat: ${framing.matSizeInches}in ${(framing.matColor && framing.matColor.name) || ''}` : ', No Mat'}, Glazing: Acrylic` : 'Unframed'}, Total: $${total}`,
           }]
         }
       })
