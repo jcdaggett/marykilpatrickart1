@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Biography — Mary Kilpatrick</title>
 <meta name="description" content="Full biography of Mary Kilpatrick — Broadway actress, published illustrator, founder of BEAT Children's Theatre, and figurative painter.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%239C7C38'/><text y='72' x='50' text-anchor='middle' font-size='60' font-family='Georgia,serif' fill='white'>MK</text></svg>">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/logo-mark.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Karla:wght@300;400&display=swap" rel="stylesheet">
@@ -37,7 +39,7 @@ body{font-family:"Karla",sans-serif;background:var(--cream);color:var(--soft-bla
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);border-bottom:1px solid var(--rule);height:64px;display:flex;align-items:center;padding:0 48px;justify-content:space-between;}
-.nav-name{font-family:"EB Garamond",serif;font-size:1.2rem;font-weight:400;letter-spacing:0.1em;text-decoration:none;color:var(--soft-black);text-transform:uppercase;}
+.nav-name{font-family:"EB Garamond",serif;font-size:1.2rem;font-weight:400;letter-spacing:0.1em;text-decoration:none;color:var(--soft-black);text-transform:uppercase;}.nav-logo{height:38px;width:auto;display:block;}
 .nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
 .nav-links a{font-size:0.7rem;font-weight:400;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;color:var(--soft-black);transition:color 0.2s;}
 .nav-links a:hover{color:var(--gold);}
@@ -282,7 +284,7 @@ footer a:hover{color:var(--gold);}
 @media(max-width:1100px){.reviews-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:900px){
   nav{padding:0 16px;height:56px;}
-  .nav-name{font-size:0.95rem;letter-spacing:0.08em;}
+  .nav-name{font-size:0.95rem;letter-spacing:0.08em;}.nav-logo{height:30px;}
   .nav-links{gap:12px;}
   .nav-links li:nth-child(-n+4){display:none;}
   .nav-links li:last-child,.nav-links li:nth-last-child(2){display:flex;}
@@ -341,7 +343,7 @@ footer a:hover{color:var(--gold);}
 <body>
 
 <nav>
-  <a href="index.html" class="nav-name">Mary Kilpatrick</a>
+  <a href="index.html" class="nav-name" aria-label="Mary Kilpatrick — marykilpatrickart.com"><img src="logo-nav.png" alt="Mary Kilpatrick" class="nav-logo" width="185" height="38"></a>
   <ul class="nav-links">
     <li><a href="#hero" onclick="setTimeout(()=>{const f=document.getElementById('bio-full');const b=document.getElementById('learn-more-btn');const l=document.getElementById('learn-more-label');if(f&&!f.classList.contains('open')){f.classList.add('open');if(b)b.classList.add('open');if(l)l.textContent='Show Less';}},300)">About</a></li>
     <li><a href="#gallery">Works</a></li>
