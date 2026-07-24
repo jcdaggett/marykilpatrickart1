@@ -263,6 +263,8 @@
   }
   .mat-btn.recommended-mat { border-color:var(--warm-gray); border-style:dashed; }
   .option-btn.recommended-paper { border-color:var(--warm-gray); border-style:dashed; }
+
+  .rec-note { font-size:0.78rem; color:var(--warm-gray); font-style:italic; margin:0 0 10px; line-height:1.5; }
   .rec-badge { display:block; font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--dark-gold); margin-top:4px; }
   #mat-size-options .option-btn.recommended-mat { border-color:var(--warm-gray); border-style:dashed; }
   .mat-recommended-label {
@@ -407,6 +409,7 @@
 
         <!-- Frame Profile -->
         <h4 style="font-size:0.88rem;margin-bottom:10px;margin-top:4px;"><span class="step-n sm">4</span>Frame Style <span class="step-tick" id="tick-frame"></span></h4>
+        <p class="rec-note" id="frame-rec-note" style="display:none;"></p>
         <div class="frame-grid" id="frame-style-options">
           <!-- rendered by JS -->
         </div>
@@ -427,12 +430,14 @@
         <div id="mat-color-section" style="display:none;margin-top:16px;">
           <h4 style="font-size:0.88rem;margin-bottom:10px;"><span class="step-n sm">6</span>Mat Color <span class="step-tick" id="tick-matcolor"></span></h4>
           <p class="framing-note" id="mat-rec-note"></p>
+          <p class="rec-note" id="mat-color-rec-note" style="display:none;"></p>
           <div class="mat-grid" id="mat-color-options">
             <!-- rendered by JS -->
           </div>
         </div>
 
         <h4 style="font-size:0.88rem;margin-bottom:10px;"><span class="step-n sm">7</span>Hanging Hardware <span class="step-tick" id="tick-hardware"></span></h4>
+        <p class="rec-note" id="hardware-rec-note" style="display:none;"></p>
         <div class="options-grid" id="hardware-options"></div>
 
         <p class="framing-note" style="margin-top:16px;">Hanging hardware is included in the framed price. Solid wood frame. Optical-grade clear acrylic glazing included.</p>
@@ -957,11 +962,16 @@ function renderFrameStyles() {
     framing.charge = null;
     return;
   }
+  const fr = selected.painting ? recommendFrame(selected.painting, list) : null;
+  const frNote = document.getElementById('frame-rec-note');
+  if (frNote) { frNote.textContent = fr ? '★ ' + fr.why : ''; frNote.style.display = fr ? 'block' : 'none'; }
+  const recFrameId = fr && fr.frame ? fr.frame.id : null;
   document.getElementById('frame-style-options').innerHTML = list.map(f => `
-    <button class="frame-btn" id="frame-${f.id}" onclick="selectFrameStyle('${f.id}')">
+    <button class="frame-btn${f.id === recFrameId ? ' recommended-mat' : ''}${framing.frame && framing.frame.id === f.id ? ' selected' : ''}" id="frame-${f.id}" onclick="selectFrameStyle('${f.id}')">
       <div class="frame-swatch" style="background:${f.color} center/cover no-repeat;background-image:url('${f.img}');"></div>
       <strong style="display:block;font-size:0.82rem;">${f.name}</strong>
       <span style="font-size:0.74rem;color:var(--light-gray);">${f.profile}</span>
+      ${f.id === recFrameId ? '<span class="rec-badge">★ Recommended</span>' : ''}
     </button>
   `).join('');
   // If a previously-selected frame no longer fits the current size, clear it.
@@ -975,6 +985,12 @@ function renderFrameStyles() {
 }
 
 function renderMatColors() {
+  // reason for the recommended mat colour
+  if (selected.painting) {
+    const rc = recommendMatColor(selected.painting);
+    const n = document.getElementById('mat-color-rec-note');
+    if (n) { n.textContent = '★ ' + rc.why; n.style.display = 'block'; }
+  }
   const recId = selected.painting ? (MAT_RECOMMENDATIONS[selected.painting.title] || 'off-white') : 'off-white';
   document.getElementById('mat-color-options').innerHTML = MAT_COLORS.map(m => `
     <button class="mat-btn${m.id === recId ? ' recommended-mat' : ''}" id="mat-color-${m.id}" onclick="selectMatColor('${m.id}')">
@@ -998,11 +1014,72 @@ function updateFinishedSize() {
     : `Finished size: ${toFraction(fin.w)}″ × ${toFraction(fin.h)}″ (frame adds its own width)`;
 }
 
+
+// ---------------------------------------------------------------------------
+// Recommendations. Every painting gets one for frame, mat width, mat colour and
+// hanging hardware, each with the reason shown to the customer. Curated choices
+// (MAT_RECOMMENDATIONS / MAT_SIZE_RECOMMENDATIONS) cover 18 works and always
+// win; the rest are derived from attributes actually on the record - medium and
+// print size - so the stated reason is true rather than decorative.
+// Nothing is preselected: these only badge an option and explain it.
+// ---------------------------------------------------------------------------
+function isWorkOnPaper(medium) { return /pen|pencil|ink|paper/i.test(medium || ''); }
+function isMixedMedia(medium)  { return /mixed media|glass/i.test(medium || ''); }
+
+function recommendMatColor(p) {
+  const curated = MAT_RECOMMENDATIONS[p.title];
+  if (curated) return { id: curated, why: 'Chosen for this painting to sit with its dominant tones without competing.' };
+  if (isWorkOnPaper(p.medium))
+    return { id: 'white', why: `A crisp white mat suits ${p.medium.toLowerCase()} — it reads as a work on paper and keeps the line work sharp.` };
+  if (isMixedMedia(p.medium))
+    return { id: 'off-white', why: 'Off white stays neutral against mixed media, so the surface and materials stay the focus.' };
+  if (/wood/i.test(p.medium || ''))
+    return { id: 'antique-white', why: 'A warm antique white picks up the wood ground rather than fighting it.' };
+  return { id: 'off-white', why: 'Off white is the safe neutral for a colour-led acrylic — it frames the work without adding a second colour.' };
+}
+
+function recommendMatSize(p, size) {
+  const curated = MAT_SIZE_RECOMMENDATIONS[p.title];
+  if (curated) return { id: curated, why: MAT_SIZE_REASONS[p.title] || 'Chosen to suit this particular composition.' };
+  const long = size ? Math.max(size.w, size.h) : 20;
+  if (long <= 12) return { id: '1.5in', why: `At ${toFraction(long)}″ a 1½″ mat gives breathing room without overwhelming a small print.` };
+  if (long <= 20) return { id: '2in',   why: `A 2″ mat is proportional to a ${toFraction(long)}″ print — the standard gallery ratio.` };
+  if (long <= 30) return { id: '2.5in', why: `At ${toFraction(long)}″ the mat needs to scale up; 2½″ keeps the border in proportion.` };
+  return { id: '3in', why: `A ${toFraction(long)}″ print carries a wide 3″ mat, which is what gives large work its presence.` };
+}
+
+function recommendFrame(p, available) {
+  if (!available || !available.length) return null;
+  const pick = (...names) => {
+    for (const n of names) { const f = available.find(x => x.name === n); if (f) return f; }
+    return available[0];
+  };
+  if (isWorkOnPaper(p.medium))
+    return { frame: pick('Black','Matte Black'), why: `A plain black profile is the traditional choice for ${p.medium.toLowerCase()} — it defines the edge and stays out of the way.` };
+  if (isMixedMedia(p.medium))
+    return { frame: pick('Matte Black','Black'), why: 'Matte black holds a busy mixed-media surface together without adding shine that competes with it.' };
+  if (/wood/i.test(p.medium || ''))
+    return { frame: pick('Maple','Oak','Driftwood White'), why: 'A natural timber profile echoes the wood the piece is painted on.' };
+  const long = (p.originalW && p.originalH) ? Math.max(p.originalW, p.originalH) : 20;
+  if (long >= 30)
+    return { frame: pick('Black / Gold','Gold','Matte Black'), why: 'A large colour work takes a wider profile; the gold lift keeps it from reading as severe.' };
+  return { frame: pick('Black','Matte Black','Maple'), why: 'A simple black profile is the safest match for a colour-led acrylic — it frames without introducing a competing tone.' };
+}
+
+function recommendHardwareFull(size) {
+  const long = size ? Math.max(size.w, size.h) : 20;
+  if (long <= 14) return { id: 93,  why: `At ${toFraction(long)}″ a single sawtooth hanger is enough and sits flat to the wall.` };
+  if (long <= 30) return { id: 83,  why: `Wire is the standard for a ${toFraction(long)}″ frame — it lets you level the piece after hanging.` };
+  return { id: 223, why: `At ${toFraction(long)}″ the frame is heavy enough to want a three-point fixing so it cannot tilt.` };
+}
+
 function renderHardwareOptions() {
   const el = document.getElementById('hardware-options');
   if (!el) return;
-  const longEdge = selected.size ? Math.max(selected.size.w, selected.size.h) : 0;
-  const rec = longEdge ? recommendedHardware(longEdge) : null;
+  const r = selected.size ? recommendHardwareFull(selected.size) : null;
+  const rec = r ? r.id : null;
+  const note = document.getElementById('hardware-rec-note');
+  if (note) { note.textContent = r ? '★ ' + r.why : ''; note.style.display = r ? 'block' : 'none'; }
   el.innerHTML = HARDWARE_OPTIONS.map(h => `
     <button class="option-btn${h.id === rec ? ' recommended-paper' : ''}${framing.hardware === h.id ? ' selected' : ''}"
             id="hw-${h.id}" onclick="selectHardware(${h.id})">
@@ -1307,8 +1384,10 @@ function selectPaper(paperId) {
 
 function highlightRecommendedMatSize() {
   if (!selected.painting) return;
-  const rec = MAT_SIZE_RECOMMENDATIONS[selected.painting.title] || '2in';
-  const reason = MAT_SIZE_REASONS[selected.painting.title] || '';
+  // Curated where one exists, otherwise derived from the print size - every
+  // painting gets a recommendation and a reason, not just the 18 curated ones.
+  const _r = recommendMatSize(selected.painting, selected.size);
+  const rec = _r.id, reason = _r.why;
   // Add recommended label to mat size button
   document.querySelectorAll('#mat-size-options .option-btn').forEach(b => {
     b.classList.remove('recommended-mat');
@@ -1331,6 +1410,8 @@ function highlightRecommendedMatSize() {
       noteEl.style.display = 'block';
     }
   }
+  const nEl = document.getElementById('mat-rec-note');
+  if (nEl && reason) { nEl.textContent = '★ ' + reason; nEl.style.display = 'block'; }
 }
 
 function renderSizeOptions() {
