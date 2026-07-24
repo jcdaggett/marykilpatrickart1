@@ -435,7 +435,8 @@
     <!-- Sticky order bar: stays in view so the outstanding step is never off-screen -->
     <div class="order-bar" id="order-bar" style="display:none;">
       <div class="price-summary" id="price-summary">
-        <div class="price-row total"><span>Price</span><span class="price-val" id="total-price-display">—</span></div>
+        <div class="price-row total"><span id="price-label">Price</span><span class="price-val" id="total-price-display">—</span></div>
+        <p id="price-caveat" style="font-size:0.72rem;color:var(--warm-gray);margin:2px 0 0;display:none;"></p>
       </div>
       <p id="next-step-hint" style="font-size:0.82rem;color:var(--dark-gold);text-align:center;margin:6px 0;display:none;"></p>
       <p style="font-size:0.78rem;color:var(--light-gray);text-align:center;margin:6px 0;display:none;" id="stripe-note">🔒 Secure checkout powered by Stripe</p>
@@ -1394,10 +1395,30 @@ function updatePriceSummary() {
 
   // Always show the running price so the customer can see what they are building.
   const missing = nextStep();
-  const shown = totalPrice() != null ? totalPrice() : base;
-  disp.textContent = `$${shown.toLocaleString()}` + (missing ? ' +' : '');
+  const label = document.getElementById('price-label');
+  const caveat = document.getElementById('price-caveat');
+  const final = totalPrice();
 
-  setCheckoutState(totalPrice(), missing);
+  if (final != null && !missing) {
+    // Everything chosen: this is the real number.
+    disp.textContent = `$${final.toLocaleString()}`;
+    if (label) label.textContent = framing.enabled ? 'Total (framed)' : 'Total';
+    if (caveat) caveat.style.display = 'none';
+  } else {
+    // Still choosing. The print itself is a flat 12.5% of the original and does
+    // not change with size, so it can be stated honestly - but it is only part
+    // of the price once a frame or mat is added, and must not read as a total.
+    disp.textContent = `$${base.toLocaleString()}`;
+    if (label) label.textContent = 'Print, any size';
+    if (caveat) {
+      caveat.textContent = framing.enabled
+        ? 'Framing and mat not yet added'
+        : 'Framing optional — added if you choose it';
+      caveat.style.display = 'block';
+    }
+  }
+
+  setCheckoutState(final, missing);
 }
 
 function showCheckout() {
