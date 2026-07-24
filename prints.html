@@ -36,6 +36,7 @@
     --dark-gold: #9C7C38;
     --warm-gray: #6D635B;
     --light-gray: #B8B0A8;
+      --gold-text: #7A6029;   /* gold that meets AA on cream; --dark-gold is 3.8:1 and is for borders only */
     --sold-red: #B02020;
     --success: #2D7A4F;
   }
@@ -48,23 +49,23 @@
   
   .nav-links { list-style: none; display: flex; gap: 36px; align-items: center; }
   .nav-links a { text-decoration: none; color: var(--soft-black); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; transition: color 0.3s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--dark-gold); }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold-text); }
   .nav-dropdown { position: relative; }
   .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--cream); border: 1px solid rgba(184,176,168,0.2); min-width: 200px; z-index: 1001; box-shadow: 0 4px 16px rgba(0,0,0,0.08); padding: 8px 0; list-style: none; }
   .nav-dropdown:hover .nav-dropdown-menu { display: block; }
   .nav-dropdown-menu li a { display: block; padding: 10px 20px; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--soft-black); text-decoration: none; transition: color 0.2s; }
-  .nav-dropdown-menu li a:hover { color: var(--dark-gold); }
+  .nav-dropdown-menu li a:hover { color: var(--gold-text); }
   .page-header { margin-top: var(--nav-h); background: var(--cream); padding: 60px 48px 40px; text-align: center; border-bottom: 1px solid rgba(184,176,168,0.2); }
   .page-header h1 { font-size: 3.8rem; color: var(--soft-black); margin-bottom: 16px; font-family: 'Cormorant Garamond', serif; font-weight: 400; }
   .page-header p { color: var(--warm-gray); font-size: 1rem; max-width: 640px; margin: 0 auto; line-height: 1.8; }
   .shop-container { max-width: 1300px; margin: 0 auto; padding: 70px 48px; }
-  .step-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--dark-gold); margin-bottom: 10px; font-weight: 400; }
+  .step-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold-text); margin-bottom: 10px; font-weight: 400; }
 
   /* Painting grid */
   .paintings-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-bottom: 60px; }
   .painting-card { cursor: pointer; border: 2px solid transparent; transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s; background: #fff; }
   .painting-card:hover { box-shadow: 0 6px 24px rgba(156,124,56,0.18); transform: translateY(-2px); }
-  .painting-card.selected { border-color: var(--dark-gold); box-shadow: 0 6px 24px rgba(156,124,56,0.25); }
+  .painting-card.selected { border-color: var(--gold-text); box-shadow: 0 6px 24px rgba(156,124,56,0.25); }
   .painting-card img { width: 100%; aspect-ratio: 4/5; object-fit: contain; display: block; background: #F7F2E9; box-sizing: border-box; padding: 10px; }
   .painting-card-info { padding: 12px 10px 14px; }
   .painting-card-info h3 { font-size: 1.05rem; font-family: 'Cormorant Garamond', serif; margin-bottom: 4px; font-weight: 400; }
@@ -78,23 +79,23 @@
   .config-info h2 { font-size: 2rem; margin-bottom: 6px; }
   .config-info .config-meta { color: var(--warm-gray); font-size: 0.88rem; margin-bottom: 20px; }
   .btn-back { background: transparent; color: var(--warm-gray); border: 1px solid var(--light-gray); padding: 8px 20px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; font-family: 'Karla', sans-serif; transition: all 0.2s; }
-  .btn-back:hover { border-color: var(--dark-gold); color: var(--dark-gold); }
+  .btn-back:hover { border-color: var(--gold-text); color: var(--gold-text); }
 
   /* Options */
   .options-section { margin-bottom: 32px; }
   .options-section h4 { font-size: 1.05rem; font-family: 'Cormorant Garamond', serif; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(184,176,168,0.3); color: var(--soft-black); }
   .options-grid { display: flex; flex-wrap: wrap; gap: 10px; }
   .option-btn { border: 1px solid var(--light-gray); background: #fff; padding: 8px 16px; font-size: 0.82rem; cursor: pointer; transition: all 0.2s; font-family: 'Karla', sans-serif; color: var(--soft-black); white-space: nowrap; }
-  .option-btn:hover { border-color: var(--dark-gold); }
-  .option-btn.selected { border-color: var(--dark-gold); background: rgba(156,124,56,0.10); color: var(--soft-black); box-shadow: inset 0 0 0 2px var(--dark-gold); font-weight:500; }
+  .option-btn:hover { border-color: var(--gold-text); }
+  .option-btn.selected { border-color: var(--gold-text); background: rgba(156,124,56,0.10); color: var(--soft-black); box-shadow: inset 0 0 0 2px var(--dark-gold); font-weight:500; }
   .option-btn .opt-price { font-size: 0.72rem; opacity: 0.75; margin-left: 6px; }
 
   /* Price summary */
   .price-summary { background: #fff; border: 1px solid rgba(156,124,56,0.2); padding: 28px 32px; margin: 28px 0; }
   .price-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; font-size: 0.9rem; color: var(--warm-gray); }
   .price-row.total { border-top: 1px solid rgba(184,176,168,0.3); margin-top: 10px; padding-top: 14px; font-size: 1.1rem; color: var(--soft-black); }
-  .price-row.total .price-val { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--dark-gold); }
-  .price-note { font-size: 0.78rem; color: var(--light-gray); margin-top: 8px; }
+  .price-row.total .price-val { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold-text); }
+  .price-note { font-size: 0.78rem; color: var(--warm-gray); margin-top: 8px; }
 
   /* Checkout */
   .checkout-section { display: none; }
@@ -104,7 +105,7 @@
   .form-group.full { grid-column: 1 / -1; }
   .form-group label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--warm-gray); }
   .form-group input { border: 1px solid var(--light-gray); padding: 11px 14px; font-size: 0.95rem; font-family: 'Karla', sans-serif; background: #fff; color: var(--soft-black); outline: none; transition: border-color 0.2s; }
-  .form-group input:focus { border-color: var(--dark-gold); }
+  .form-group input:focus { border-color: var(--gold-text); }
   #card-element { border: 1px solid var(--light-gray); padding: 13px 14px; background: #fff; margin-bottom: 8px; }
   #card-errors { color: var(--sold-red); font-size: 0.85rem; min-height: 20px; margin-bottom: 16px; }
   .btn-primary { background: var(--soft-black); color: #fff; border: none; padding: 16px 40px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; font-family: 'Karla', sans-serif; transition: background 0.2s; width: 100%; margin-top: 8px; }
@@ -121,7 +122,7 @@
   /* One selected treatment everywhere: gold inset ring + tint + tick.
      'Recommended' is a dashed grey outline so it can never be mistaken for a
      choice the customer has already made. */
-  .option-btn.selected::before, .frame-toggle-btn.active::before { content:'\2713 '; color:var(--dark-gold); font-weight:600; }
+  .option-btn.selected::before, .frame-toggle-btn.active::before { content:'\2713 '; color:var(--gold-text); font-weight:600; }
   .frame-btn.selected, .mat-btn.selected { position:relative; }
   .frame-btn.selected::after, .mat-btn.selected::after {
     content:'\2713'; position:absolute; top:6px; right:8px; width:20px; height:20px; line-height:20px;
@@ -134,7 +135,7 @@
     border-radius:50%; background:var(--dark-gold); color:#fff; font-family:'Karla',sans-serif;
     font-size:0.72rem; margin-right:9px; vertical-align:middle; }
   .step-n.sm { width:19px; height:19px; font-size:0.66rem; margin-right:7px; }
-  .step-tick { color:var(--dark-gold); font-size:0.85rem; margin-left:6px; font-family:'Karla',sans-serif; }
+  .step-tick { color:var(--gold-text); font-size:0.85rem; margin-left:6px; font-family:'Karla',sans-serif; }
   .btn-primary.is-disabled { background: var(--light-gray); color: #fff; cursor: not-allowed; }
   .btn-primary.is-disabled:hover { background: var(--light-gray); }
   .btn-primary:hover { background: var(--dark-gold); }
@@ -160,9 +161,9 @@
   .waitlist-form p { color: var(--warm-gray); font-size: 0.9rem; margin-bottom: 20px; }
   .waitlist-input-row { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; }
   .waitlist-input-row input { flex: 1; border: 1px solid var(--light-gray); padding: 10px 14px; font-family: 'Karla', sans-serif; font-size: 0.95rem; outline: none; }
-  .waitlist-input-row input:focus { border-color: var(--dark-gold); }
+  .waitlist-input-row input:focus { border-color: var(--gold-text); }
   .waitlist-msg { margin-top: 12px; font-size: 0.85rem; color: var(--success); min-height: 20px; }
-  footer { background: var(--soft-black); color: var(--light-gray); text-align: center; padding: 28px; font-size: 0.85rem; }
+  footer { background: var(--soft-black); color: var(--warm-gray); text-align: center; padding: 28px; font-size: 0.85rem; }
   @media (max-width: 1100px) { .paintings-grid { grid-template-columns: repeat(3,1fr); } }
   @media (max-width: 768px) {.nav-logo{height:46px;}:root{--nav-h:68px;}.frame-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;}.frame-btn .frame-swatch{height:120px;}
     nav { padding: 0 24px; } .nav-links { gap: 16px; } 
@@ -207,7 +208,7 @@
     display: block;
     font-weight: 400;
     margin-bottom: 4px;
-    color: var(--dark-gold);
+    color: var(--gold-text);
     font-family: 'Cormorant Garamond', serif;
     font-size: 0.95rem;
   }
@@ -234,7 +235,7 @@
     font-family:'Karla',sans-serif; font-size:0.8rem; text-transform:uppercase;
     letter-spacing:0.1em; cursor:pointer; transition:all 0.2s; color:var(--soft-black);
   }
-  .frame-toggle-btn.active { border-color:var(--dark-gold); color:var(--soft-black); background:rgba(156,124,56,0.10); box-shadow: inset 0 0 0 2px var(--dark-gold); font-weight:500; }
+  .frame-toggle-btn.active { border-color:var(--gold-text); color:var(--soft-black); background:rgba(156,124,56,0.10); box-shadow: inset 0 0 0 2px var(--dark-gold); font-weight:500; }
   .framing-options { display:none; }
   .framing-options.visible { display:block; }
   .frame-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; margin-bottom:20px; }
@@ -243,8 +244,8 @@
     font-family:'Karla',sans-serif; font-size:0.75rem; text-align:center;
     cursor:pointer; transition:all 0.2s; color:var(--soft-black); line-height:1.4;
   }
-  .frame-btn:hover { border-color:var(--dark-gold); }
-  .frame-btn.selected { border-color:var(--dark-gold); background:rgba(156,124,56,0.10); box-shadow: inset 0 0 0 2px var(--dark-gold); }
+  .frame-btn:hover { border-color:var(--gold-text); }
+  .frame-btn.selected { border-color:var(--gold-text); background:rgba(156,124,56,0.10); box-shadow: inset 0 0 0 2px var(--dark-gold); }
   .frame-btn .frame-swatch {
     width:100%; height:170px; margin-bottom:10px; border:1px solid rgba(0,0,0,0.10);
     border-radius:2px; background-size:cover !important; background-position:center !important;
@@ -255,25 +256,25 @@
     font-family:'Karla',sans-serif; font-size:0.72rem; text-align:center;
     cursor:pointer; transition:all 0.2s; color:var(--soft-black); line-height:1.4;
   }
-  .mat-btn:hover { border-color:var(--dark-gold); }
-  .mat-btn.selected { border-color:var(--dark-gold); background:rgba(156,124,56,0.10); box-shadow: inset 0 0 0 2px var(--dark-gold); }
+  .mat-btn:hover { border-color:var(--gold-text); }
+  .mat-btn.selected { border-color:var(--gold-text); background:rgba(156,124,56,0.10); box-shadow: inset 0 0 0 2px var(--dark-gold); }
   .mat-btn .mat-swatch {
     width:100%; height:40px; margin-bottom:6px; border:1px solid rgba(0,0,0,0.10);
     border-radius:2px;
   }
   .mat-btn.recommended-mat { border-color:var(--warm-gray); border-style:dashed; }
   .frame-btn.recommended-mat { border-color:var(--warm-gray); border-style:dashed; }
-  .frame-btn.selected.recommended-mat { border-color:var(--dark-gold); border-style:solid; }
+  .frame-btn.selected.recommended-mat { border-color:var(--gold-text); border-style:solid; }
   .option-btn.recommended-paper { border-color:var(--warm-gray); border-style:dashed; }
 
   .rec-note { font-size:0.78rem; color:var(--warm-gray); font-style:italic; margin:0 0 10px; line-height:1.5; }
-  .rec-badge { display:block; font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--dark-gold); margin-top:4px; }
+  .rec-badge { display:block; font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-text); margin-top:4px; }
   #mat-size-options .option-btn.recommended-mat { border-color:var(--warm-gray); border-style:dashed; }
   .mat-recommended-label {
-    font-size:0.62rem; color:var(--dark-gold); text-transform:uppercase;
+    font-size:0.62rem; color:var(--gold-text); text-transform:uppercase;
     letter-spacing:0.1em; display:block; margin-bottom:2px;
   }
-  .framing-note { font-size:0.78rem; color:var(--light-gray); margin-bottom:16px; line-height:1.6; }
+  .framing-note { font-size:0.78rem; color:var(--warm-gray); margin-bottom:16px; line-height:1.6; }
 
 </style>
 <script type="application/ld+json">
@@ -332,7 +333,7 @@
     </li>
     <li><a href="index.html#work">The Paintings</a></li>
     <li><a href="index.html#contact">Inquire</a></li>
-    <li><a href="tel:+14586663614" style="color:var(--dark-gold);letter-spacing:0.05em;">(458) 666-3614</a></li>
+    <li><a href="tel:+14586663614" style="color:var(--gold-text);letter-spacing:0.05em;">(458) 666-3614</a></li>
   </ul>
 </nav>
 
@@ -359,7 +360,7 @@
         <h2 id="config-title"></h2>
         <p class="config-meta" id="config-meta"></p>
         <p id="config-dims" style="font-size:0.85rem;color:var(--warm-gray);margin-bottom:4px;"></p>
-        <p id="config-base-note" style="font-size:0.85rem;color:var(--dark-gold);margin-bottom:20px;"></p>
+        <p id="config-base-note" style="font-size:0.85rem;color:var(--gold-text);margin-bottom:20px;"></p>
         <button class="btn-back" onclick="clearSelection()">← Choose different painting</button>
       </div>
     </div>
@@ -379,7 +380,7 @@
         <div id="paper-exp-text" style="max-height:80px;overflow:hidden;transition:max-height 0.35s ease;"></div>
         <div id="paper-exp-fade" style="position:absolute;bottom:0;left:0;right:0;height:36px;background:linear-gradient(transparent,#fff);pointer-events:none;"></div>
       </div>
-      <button id="paper-exp-toggle" onclick="togglePaperExp()" style="background:none;border:none;color:var(--dark-gold);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;cursor:pointer;padding:6px 0 0;font-family:'Karla',sans-serif;display:flex;align-items:center;gap:6px;">
+      <button id="paper-exp-toggle" onclick="togglePaperExp()" style="background:none;border:none;color:var(--gold-text);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;cursor:pointer;padding:6px 0 0;font-family:'Karla',sans-serif;display:flex;align-items:center;gap:6px;">
         <span id="paper-exp-label">Read more</span>
         <span id="paper-exp-arrow" style="font-size:0.7rem;transition:transform 0.3s;">▼</span>
       </button>
@@ -387,7 +388,7 @@
 
     <!-- Size -->
     <div class="options-section" id="size-section" style="display:none;">
-      <div style="font-size:0.78rem;color:var(--light-gray);margin-bottom:14px;line-height:1.7;">
+      <div style="font-size:0.78rem;color:var(--warm-gray);margin-bottom:14px;line-height:1.7;">
   <strong style="color:var(--warm-gray);font-family:'Cormorant Garamond',serif;font-size:0.9rem;">Size guide:</strong>
   Small prints (under 12″) suit a shelf, desk, or intimate wall grouping.
   Medium prints (12–24″) work as standalone wall pieces in most rooms.
@@ -469,8 +470,8 @@
         <div class="price-row total"><span id="price-label">Price</span><span class="price-val" id="total-price-display">—</span></div>
         <p id="price-caveat" style="font-size:0.72rem;color:var(--warm-gray);margin:2px 0 0;display:none;"></p>
       </div>
-      <p id="next-step-hint" style="font-size:0.82rem;color:var(--dark-gold);text-align:center;margin:6px 0;display:none;"></p>
-      <p style="font-size:0.78rem;color:var(--light-gray);text-align:center;margin:6px 0;display:none;" id="stripe-note">🔒 Secure checkout powered by Stripe</p>
+      <p id="next-step-hint" style="font-size:0.82rem;color:var(--gold-text);text-align:center;margin:6px 0;display:none;"></p>
+      <p style="font-size:0.78rem;color:var(--warm-gray);text-align:center;margin:6px 0;display:none;" id="stripe-note">🔒 Secure checkout powered by Stripe</p>
       <button class="btn-primary" id="checkout-btn" style="display:none;" onclick="checkoutButtonClick(this)">Proceed to Checkout →</button>
     </div>
 
@@ -524,6 +525,10 @@
         Your order is processed securely through Stripe. Production takes 3–5 business days. Your print ships nationwide via insured carrier with tracking. A signed, numbered Certificate of Authenticity is included with every order.
       </div>
 
+      <div id="order-review" style="border:1px solid rgba(184,176,168,0.5);background:var(--paper);padding:18px 20px;margin:0 0 18px;">
+        <h4 style="font-size:0.95rem;margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid rgba(184,176,168,0.4);">Your order</h4>
+        <div id="order-review-lines" style="font-size:0.86rem;"></div>
+      </div>
       <button class="btn-primary" id="submit-btn" onclick="submitOrder()">Place Order</button>
     </div>
   </div>
@@ -532,7 +537,7 @@
     <h2>Order Confirmed</h2>
     <p>Your order is confirmed. Your print is being prepared and will ship within 3–5 business days.</p>
     <p>A confirmation has been sent to your email address. You'll receive a separate shipping notification with tracking once your order is on its way.</p>
-    <p style="margin-top:28px;"><a href="index.html" style="color:var(--dark-gold);">← Return to Gallery</a></p>
+    <p style="margin-top:28px;"><a href="index.html" style="color:var(--gold-text);">← Return to Gallery</a></p>
   </div>
 
 </div>
@@ -547,7 +552,7 @@
     <p id="fullres-title" style="color:rgba(255,255,255,0.7);font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;margin-top:14px;"></p>
   </div>
 </div>
-<footer>&copy; 2026 Mary Kilpatrick. All rights reserved. &nbsp;|&nbsp; <a href="index.html#work" style="color:var(--light-gray);text-decoration:none;">View Gallery</a> &nbsp;|&nbsp; <a href="privacy.html" style="color:var(--light-gray);text-decoration:none;">Privacy</a> &nbsp;|&nbsp; <a href="terms.html" style="color:var(--light-gray);text-decoration:none;">Terms</a></footer>
+<footer>&copy; 2026 Mary Kilpatrick. All rights reserved. &nbsp;|&nbsp; <a href="index.html#work" style="color:var(--warm-gray);text-decoration:none;">View Gallery</a> &nbsp;|&nbsp; <a href="privacy.html" style="color:var(--warm-gray);text-decoration:none;">Privacy</a> &nbsp;|&nbsp; <a href="terms.html" style="color:var(--warm-gray);text-decoration:none;">Terms</a></footer>
 
 <script>
 const WORKER_URL = 'https://mary-kilpatrick-api.jesse-daggett.workers.dev';
@@ -987,7 +992,7 @@ function renderFrameStyles() {
     <button class="frame-btn${f.id === recFrameId ? ' recommended-mat' : ''}${framing.frame && framing.frame.id === f.id ? ' selected' : ''}" id="frame-${f.id}" onclick="selectFrameStyle('${f.id}')">
       <div class="frame-swatch" style="background:${f.color} center/cover no-repeat;background-image:url('${f.img}');"></div>
       <strong style="display:block;font-size:0.82rem;">${f.name}</strong>
-      <span style="font-size:0.74rem;color:var(--light-gray);">${f.profile}</span>
+      <span style="font-size:0.74rem;color:var(--warm-gray);">${f.profile}</span>
       ${f.id === recFrameId ? '<span class="rec-badge">★ Recommended</span>' : ''}
     </button>
   `).join('');
@@ -1466,7 +1471,7 @@ function renderPaperRecommendation(painting) {
   const reason = PAPER_REASONS[painting.title] || '';
   recEl.innerHTML = `
     <div style="background:rgba(156,124,56,0.06);border-left:3px solid var(--dark-gold);padding:16px 20px;margin-bottom:20px;">
-      <p style="font-size:0.82rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--dark-gold);margin-bottom:6px;">Recommended for this painting</p>
+      <p style="font-size:0.82rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold-text);margin-bottom:6px;">Recommended for this painting</p>
       <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:8px;color:var(--soft-black);">${paperName}</p>
       <p style="font-size:0.88rem;color:var(--warm-gray);line-height:1.7;">${reason}</p>
     </div>
@@ -1569,9 +1574,9 @@ function selectPaper(paperId) {
     if (isRecommended && paintingReason) {
       // Recommended paper for this painting — lead with the specific reason
       expText.innerHTML = `
-        <strong style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--dark-gold);display:block;margin-bottom:8px;">Recommended for this print: ${PAPER_TYPES.find(p => p.id === paperId)?.name || ''}</strong>
+        <strong style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--gold-text);display:block;margin-bottom:8px;">Recommended for this print: ${PAPER_TYPES.find(p => p.id === paperId)?.name || ''}</strong>
         <span style="display:block;margin-bottom:14px;line-height:1.75;">${paintingReason}</span>
-        <span style="display:block;font-size:0.78rem;color:var(--light-gray);padding-top:10px;border-top:1px solid rgba(184,176,168,0.2);">${descBody.replace(/\n/g, '<br>')}</span>
+        <span style="display:block;font-size:0.78rem;color:var(--warm-gray);padding-top:10px;border-top:1px solid rgba(184,176,168,0.2);">${descBody.replace(/\n/g, '<br>')}</span>
       `;
     } else {
       // Non-recommended paper — show generic description with a note
@@ -1694,6 +1699,39 @@ async function selectSize(sizeId) {
   if (framing.enabled) { renderFrameStyles(); renderHardwareOptions(); }
   updateFinishedSize();
   recomputeFraming();               // sets framing.charge (or 0) and calls updatePriceSummary
+}
+
+// The sticky bar hides when the payment form opens, so the customer would
+// otherwise be asked to Place Order with no price anywhere on screen.
+function renderOrderReview() {
+  const el = document.getElementById('order-review-lines');
+  if (!el || !selected.painting || !selected.size) return;
+  const row = (label, val, strong) =>
+    `<div style="display:flex;justify-content:space-between;gap:16px;margin-bottom:6px;${strong?'font-weight:500;font-size:0.98rem;border-top:1px solid rgba(184,176,168,0.4);padding-top:10px;margin-top:10px;':''}">`
+    + `<span>${label}</span><span>${val}</span></div>`;
+
+  const base = printPrice();
+  let html = row(`${selected.painting.title} — ${selected.size.displayW}×${selected.size.displayH}″`, '');
+  html += row(`Giclée print on ${selected.paper.name}`, `$${base.toLocaleString()}`);
+
+  if (framing.enabled && framing.frame) {
+    const bits = [`${framing.frame.name} ${framing.frame.profile}`];
+    if (framing.matSizeInches > 0) {
+      bits.push(`${framing.matSizeInches}″ ${framing.matColor ? framing.matColor.name.toLowerCase() : ''} mat`.replace('  ',' '));
+    } else { bits.push('no mat'); }
+    const hw = HARDWARE_OPTIONS.find(h => h.id === framing.hardware);
+    if (hw) bits.push(hw.name.toLowerCase());
+    html += row(`Framing — ${bits.join(', ')}`, `+$${(framing.charge || 0).toLocaleString()}`);
+    const fin = finishedSize();
+    if (fin) html += `<div style="font-size:0.78rem;color:var(--warm-gray);margin:-2px 0 8px;">Finished size ${toFraction(fin.w)}″ × ${toFraction(fin.h)}″, plus the frame's own width</div>`;
+  } else {
+    html += row('Framing', 'None — print only');
+  }
+
+  const total = totalPrice();
+  html += row('Total', total != null ? `$${total.toLocaleString()}` : '—', true);
+  html += `<div style="font-size:0.78rem;color:var(--warm-gray);margin-top:8px;">Shipping calculated at the next step · signed &amp; numbered Certificate of Authenticity included</div>`;
+  el.innerHTML = html;
 }
 
 function checkoutButtonClick(btn) {
@@ -1823,6 +1861,7 @@ function showCheckout() {
   }
   const bar = document.getElementById('order-bar');
   if (bar) bar.style.display = 'none';        // free the screen for the payment form
+  renderOrderReview();                        // the bar carried the total, so restate it here
   document.getElementById('checkout-section').classList.add('active');
   document.getElementById('checkout-section').scrollIntoView({ behavior:'smooth', block:'start' });
 
