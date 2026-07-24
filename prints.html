@@ -692,9 +692,27 @@ function recommendedHardware(longEdge) {
   if (longEdge <= 30) return 83;
   return 223;
 }
-// Largest frame Luma offers us is 60 x 40, and /api/price will happily quote
-// sizes it cannot produce, so cap on our side rather than trusting the quote.
-const MAX_LONG_EDGE = 60, MAX_SHORT_EDGE = 40;
+// Real production limits, read from Luma's own subcategory data
+// (/api/subcategories/103 for paper, /105 for frames). /api/price will happily
+// quote a combination Luma cannot build, so these are the only real guard.
+// Note the MINIMUMS - every frame needs at least 5in on both edges, which the
+// site previously never checked.
+const PAPER_LIMITS = {                        // by our paper id -> Luma subcategory
+  somerset_velvet: { sub:103009, minW:4, maxW:110, minH:4, maxH:43 },
+  hot_press:       { sub:103002, minW:4, maxW:110, minH:4, maxH:59 },
+  cold_press:      { sub:103003, minW:4, maxW:110, minH:4, maxH:59 },
+};
+const FRAME_MIN_EDGE = 5;                     // every 105xxx frame: min 5 x 5
+// Widest any paper can go, used before a paper has been chosen.
+const ANY_PAPER = { minW:4, maxW:110, minH:4, maxH:59 };
+
+function paperLimits(paperId) {
+  return (paperId && PAPER_LIMITS[paperId]) ? PAPER_LIMITS[paperId] : ANY_PAPER;
+}
+function fitsPaper(w, h, paperId) {
+  const L = paperLimits(paperId);
+  return w >= L.minW && w <= L.maxW && h >= L.minH && h <= L.maxH;
+}
 // Fallback long edges for works with no recorded canvas size.
 const SIZE_LADDER = [
   { id:'sm', name:'Small',  long:16 },
@@ -708,8 +726,7 @@ function getSizeTiers(painting) {
   if (painting.originalW && painting.originalH) {
     return SIZE_PERCENTS.map(p => {
       const w = q(painting.originalW * p), h = q(painting.originalH * p);
-      const long = Math.max(w, h), short = Math.min(w, h);
-      if (long > MAX_LONG_EDGE || short > MAX_SHORT_EDGE) return null;   // too big to produce
+      if (!fitsPaper(w, h, selected.paper && selected.paper.id)) return null;  // Luma cannot print it
       return {
         pct: p,
         label: p === 1 ? 'Same size as the original' : `${Math.round(p * 100)}% of the original`,
@@ -955,7 +972,19 @@ function finishedSize() {
 function framesForSize() {
   const fin = finishedSize();
   if (!fin) return FRAME_STYLES;
-  return FRAME_STYLES.filter(f => fin.w <= f.maxW && fin.h <= f.maxH);
+  // Both bounds matter: a 4x5in print is under Luma's 5in frame minimum, and
+  // the site used to offer frames for it anyway.
+  return FRAME_STYLES.filter(f =>
+    fin.w >= FRAME_MIN_EDGE && fin.h >= FRAME_MIN_EDGE &&
+    fin.w <= f.maxW && fin.h <= f.maxH);
+}
+
+// Mat widths that would push the finished piece outside every frame are not
+// offered - previously they were, and the frame list simply went empty.
+function matFits(inches) {
+  if (!selected.size) return true;
+  const w = selected.size.w + 2*inches, h = selected.size.h + 2*inches;
+  return FRAME_STYLES.some(f => w >= FRAME_MIN_EDGE && h >= FRAME_MIN_EDGE && w <= f.maxW && h <= f.maxH);
 }
 
 function renderFrameStyles() {
@@ -1314,6 +1343,7 @@ function selectFrameStyle(id) {
 }
 
 function selectMatSize(id, inches) {
+  if (inches > 0 && !matFits(inches)) return;   // not producible at this size
   framing.matSize = id;
   framing.matSizeInches = inches;
   document.querySelectorAll('#mat-size-options .option-btn').forEach(b => b.classList.remove('selected'));
@@ -1604,12 +1634,23 @@ function selectPaper(paperId) {
 
   renderSizeOptions();
   document.getElementById('size-section').style.display = 'block';
+  renderSizeOptions();           // available sizes depend on the paper's limits
   updatePriceSummary();          // keep the next-step prompt in sync
 }
 
 
 function highlightRecommendedMatSize() {
   if (!selected.painting) return;
+  // Disable any mat width that no frame could accommodate at this print size.
+  document.querySelectorAll('#mat-size-options .option-btn').forEach(b => {
+    const m = /selectMatSize\('([^']+)',([\d.]+)\)/.exec(b.getAttribute('onclick') || '');
+    if (!m) return;
+    const ok = matFits(parseFloat(m[2]));
+    b.disabled = !ok;
+    b.style.opacity = ok ? '' : '0.4';
+    b.style.cursor = ok ? '' : 'not-allowed';
+    b.title = ok ? '' : 'No frame fits this print with that mat width';
+  });
   // Curated where one exists, otherwise derived from the print size - every
   // painting gets a recommendation and a reason, not just the 18 curated ones.
   const _r = recommendMatSize(selected.painting, selected.size);
@@ -1645,6 +1686,11 @@ function renderSizeOptions() {
   const container = document.getElementById('size-options');
   // State the original canvas size these are scaled from.
   const refEl = document.getElementById('size-original-ref');
+  if (tiers.length === 0 && container) {
+    container.innerHTML = '<p style="font-size:0.85rem;color:var(--warm-gray);margin:0;">'
+      + 'No standard size of this work can be printed on the selected paper. '
+      + 'Try another paper, or use “Request a Different Size”.</p>';
+  }
   if (refEl) {
     refEl.textContent = selected.painting.originalSize
       ? `Sizes are scaled from the original canvas — ${selected.painting.originalSize} — keeping its proportions.`
