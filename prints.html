@@ -86,7 +86,7 @@
   .options-grid { display: flex; flex-wrap: wrap; gap: 10px; }
   .option-btn { border: 1px solid var(--light-gray); background: #fff; padding: 8px 16px; font-size: 0.82rem; cursor: pointer; transition: all 0.2s; font-family: 'Karla', sans-serif; color: var(--soft-black); white-space: nowrap; }
   .option-btn:hover { border-color: var(--dark-gold); }
-  .option-btn.selected { border-color: var(--dark-gold); background: var(--dark-gold); color: #fff; }
+  .option-btn.selected { border-color: var(--dark-gold); background: rgba(156,124,56,0.10); color: var(--soft-black); box-shadow: inset 0 0 0 2px var(--dark-gold); font-weight:500; }
   .option-btn .opt-price { font-size: 0.72rem; opacity: 0.75; margin-left: 6px; }
 
   /* Price summary */
@@ -117,6 +117,24 @@
   .order-bar .btn-primary { margin-top: 6px; padding: 14px 32px; }
   @media(max-width:768px){ .order-bar { padding: 10px 20px 14px; margin: 16px -48px -48px; }
     .order-bar .btn-primary { padding: 13px 24px; } }
+
+  /* One selected treatment everywhere: gold inset ring + tint + tick.
+     'Recommended' is a dashed grey outline so it can never be mistaken for a
+     choice the customer has already made. */
+  .option-btn.selected::before, .frame-toggle-btn.active::before { content:'\2713 '; color:var(--dark-gold); font-weight:600; }
+  .frame-btn.selected, .mat-btn.selected { position:relative; }
+  .frame-btn.selected::after, .mat-btn.selected::after {
+    content:'\2713'; position:absolute; top:6px; right:8px; width:20px; height:20px; line-height:20px;
+    text-align:center; border-radius:50%; background:var(--dark-gold); color:#fff; font-size:0.7rem; }
+  .option-btn.selected.recommended-paper, .option-btn.selected.recommended-mat,
+  .mat-btn.selected.recommended-mat { border-style:solid; }
+
+  /* Numbered steps with a tick once done, so progress is legible at a glance. */
+  .step-n { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px;
+    border-radius:50%; background:var(--dark-gold); color:#fff; font-family:'Karla',sans-serif;
+    font-size:0.72rem; margin-right:9px; vertical-align:middle; }
+  .step-n.sm { width:19px; height:19px; font-size:0.66rem; margin-right:7px; }
+  .step-tick { color:var(--dark-gold); font-size:0.85rem; margin-left:6px; font-family:'Karla',sans-serif; }
   .btn-primary.is-disabled { background: var(--light-gray); color: #fff; cursor: not-allowed; }
   .btn-primary.is-disabled:hover { background: var(--light-gray); }
   .btn-primary:hover { background: var(--dark-gold); }
@@ -216,7 +234,7 @@
     font-family:'Karla',sans-serif; font-size:0.8rem; text-transform:uppercase;
     letter-spacing:0.1em; cursor:pointer; transition:all 0.2s; color:var(--soft-black);
   }
-  .frame-toggle-btn.active { border-color:var(--dark-gold); color:var(--dark-gold); background:rgba(156,124,56,0.04); }
+  .frame-toggle-btn.active { border-color:var(--dark-gold); color:var(--soft-black); background:rgba(156,124,56,0.10); box-shadow: inset 0 0 0 2px var(--dark-gold); font-weight:500; }
   .framing-options { display:none; }
   .framing-options.visible { display:block; }
   .frame-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; margin-bottom:20px; }
@@ -226,7 +244,7 @@
     cursor:pointer; transition:all 0.2s; color:var(--soft-black); line-height:1.4;
   }
   .frame-btn:hover { border-color:var(--dark-gold); }
-  .frame-btn.selected { border-color:var(--dark-gold); background:rgba(156,124,56,0.04); }
+  .frame-btn.selected { border-color:var(--dark-gold); background:rgba(156,124,56,0.10); box-shadow: inset 0 0 0 2px var(--dark-gold); }
   .frame-btn .frame-swatch {
     width:100%; height:170px; margin-bottom:10px; border:1px solid rgba(0,0,0,0.10);
     border-radius:2px; background-size:cover !important; background-position:center !important;
@@ -238,15 +256,15 @@
     cursor:pointer; transition:all 0.2s; color:var(--soft-black); line-height:1.4;
   }
   .mat-btn:hover { border-color:var(--dark-gold); }
-  .mat-btn.selected { border-color:var(--dark-gold); background:rgba(156,124,56,0.04); }
+  .mat-btn.selected { border-color:var(--dark-gold); background:rgba(156,124,56,0.10); box-shadow: inset 0 0 0 2px var(--dark-gold); }
   .mat-btn .mat-swatch {
     width:100%; height:40px; margin-bottom:6px; border:1px solid rgba(0,0,0,0.10);
     border-radius:2px;
   }
-  .mat-btn.recommended-mat { border-color:var(--dark-gold); }
-  .option-btn.recommended-paper { border-color:var(--dark-gold); }
+  .mat-btn.recommended-mat { border-color:var(--warm-gray); border-style:dashed; }
+  .option-btn.recommended-paper { border-color:var(--warm-gray); border-style:dashed; }
   .rec-badge { display:block; font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--dark-gold); margin-top:4px; }
-  #mat-size-options .option-btn.recommended-mat { border-color:var(--dark-gold); }
+  #mat-size-options .option-btn.recommended-mat { border-color:var(--warm-gray); border-style:dashed; }
   .mat-recommended-label {
     font-size:0.62rem; color:var(--dark-gold); text-transform:uppercase;
     letter-spacing:0.1em; display:block; margin-bottom:2px;
@@ -347,7 +365,7 @@
 
     <!-- Paper type -->
     <div class="options-section">
-      <h4>Paper <span style="font-size:0.78rem;color:var(--warm-gray);font-family:'Karla',sans-serif;font-weight:300;text-transform:none;letter-spacing:0;">— hover or tap each option to learn more</span></h4>
+      <h4><span class="step-n">1</span>Paper <span class="step-tick" id="tick-paper"></span><span style="font-size:0.78rem;color:var(--warm-gray);font-family:'Karla',sans-serif;font-weight:300;text-transform:none;letter-spacing:0;">— hover or tap each option to learn more</span></h4>
       <div class="options-grid" id="paper-options"></div>
     </div>
 
@@ -371,7 +389,7 @@
   Medium prints (12–24″) work as standalone wall pieces in most rooms.
   Large prints (24″+) are statement pieces — living rooms, hallways, over a sofa.
 </div>
-        <h4>Print Size</h4>
+        <h4><span class="step-n">2</span>Print Size <span class="step-tick" id="tick-size"></span></h4>
       <p id="size-original-ref" style="font-size:0.8rem;color:var(--warm-gray);margin:0 0 12px;"></p>
       <div class="options-grid" id="size-options"></div>
     </div>
@@ -379,7 +397,7 @@
 
     <!-- Framing Option -->
     <div class="options-section" id="framing-section" style="display:none;">
-      <h4>Framing <span style="font-size:0.78rem;color:var(--warm-gray);font-family:'Karla',sans-serif;font-weight:300;text-transform:none;letter-spacing:0;">— optional</span></h4>
+      <h4><span class="step-n">3</span>Framing <span class="step-tick" id="tick-framing"></span><span style="font-size:0.78rem;color:var(--warm-gray);font-family:'Karla',sans-serif;font-weight:300;text-transform:none;letter-spacing:0;">— choose framed or unframed</span></h4>
       <div class="frame-toggle">
         <button class="frame-toggle-btn" id="frame-none-btn" onclick="selectFraming('none')">No Frame — Print Only</button>
         <button class="frame-toggle-btn" id="frame-yes-btn" onclick="selectFraming('framed')">Add a Frame</button>
@@ -388,13 +406,13 @@
       <div class="framing-options" id="framing-options">
 
         <!-- Frame Profile -->
-        <h4 style="font-size:0.88rem;margin-bottom:10px;margin-top:4px;">Frame Style</h4>
+        <h4 style="font-size:0.88rem;margin-bottom:10px;margin-top:4px;"><span class="step-n sm">4</span>Frame Style <span class="step-tick" id="tick-frame"></span></h4>
         <div class="frame-grid" id="frame-style-options">
           <!-- rendered by JS -->
         </div>
 
         <!-- Mat Size -->
-        <h4 style="font-size:0.88rem;margin-bottom:10px;">Mat Border</h4>
+        <h4 style="font-size:0.88rem;margin-bottom:10px;"><span class="step-n sm">5</span>Mat Border <span class="step-tick" id="tick-matsize"></span></h4>
         <div class="options-grid" id="mat-size-options">
           <button class="option-btn" id="mat-none" onclick="selectMatSize('none',0)">No Mat</button>
           <button class="option-btn" id="mat-1" onclick="selectMatSize('1in',1)">1″</button>
@@ -407,14 +425,17 @@
 
         <!-- Mat Color -->
         <div id="mat-color-section" style="display:none;margin-top:16px;">
-          <h4 style="font-size:0.88rem;margin-bottom:10px;">Mat Color</h4>
+          <h4 style="font-size:0.88rem;margin-bottom:10px;"><span class="step-n sm">6</span>Mat Color <span class="step-tick" id="tick-matcolor"></span></h4>
           <p class="framing-note" id="mat-rec-note"></p>
           <div class="mat-grid" id="mat-color-options">
             <!-- rendered by JS -->
           </div>
         </div>
 
-        <p class="framing-note" style="margin-top:16px;">Hanging hardware is included and selected based on your print size. Solid wood frame. Optical-grade clear acrylic glazing included.</p>
+        <h4 style="font-size:0.88rem;margin-bottom:10px;"><span class="step-n sm">7</span>Hanging Hardware <span class="step-tick" id="tick-hardware"></span></h4>
+        <div class="options-grid" id="hardware-options"></div>
+
+        <p class="framing-note" style="margin-top:16px;">Hanging hardware is included in the framed price. Solid wood frame. Optical-grade clear acrylic glazing included.</p>
       </div>
     </div>
 
@@ -435,6 +456,8 @@
     <!-- Sticky order bar: stays in view so the outstanding step is never off-screen -->
     <div class="order-bar" id="order-bar" style="display:none;">
       <div class="price-summary" id="price-summary">
+        <div class="price-row" id="row-print" style="display:none;font-size:0.82rem;color:var(--warm-gray);"><span>Print</span><span id="line-print"></span></div>
+        <div class="price-row" id="row-framing" style="display:none;font-size:0.82rem;color:var(--warm-gray);"><span>Framing, mat &amp; hardware</span><span id="line-framing"></span></div>
         <div class="price-row total"><span id="price-label">Price</span><span class="price-val" id="total-price-display">—</span></div>
         <p id="price-caveat" style="font-size:0.72rem;color:var(--warm-gray);margin:2px 0 0;display:none;"></p>
       </div>
@@ -642,6 +665,20 @@ const SIZE_PERCENTS = [0.50, 0.75, 1.00, 1.25, 1.50];
 // At today's catalogue the 12.5% price clears it everywhere (thinnest is
 // about $182), so this only bites if a low-priced original is added later.
 const MIN_PRINT_PROFIT = 60;
+// Luma hanging hardware option ids (verified against /api/options).
+// Priced through the same framed quote, so it carries the same x1.20 markup.
+const HARDWARE_OPTIONS = [
+  { id:83,  name:'Hanging Wire',    note:'Standard for framed pieces' },
+  { id:93,  name:'Sawtooth',        note:'Simple centre hanger, small pieces' },
+  { id:135, name:'Corner Sawtooth', note:'Two-point, resists tilting' },
+  { id:223, name:'Three-Point',     note:'Most secure, large or heavy pieces' },
+];
+// Recommendation only - the customer still chooses.
+function recommendedHardware(longEdge) {
+  if (longEdge <= 14) return 93;
+  if (longEdge <= 30) return 83;
+  return 223;
+}
 // Largest frame Luma offers us is 60 x 40, and /api/price will happily quote
 // sizes it cannot produce, so cap on our side rather than trusting the quote.
 const MAX_LONG_EDGE = 60, MAX_SHORT_EDGE = 40;
@@ -844,6 +881,7 @@ const framing = {
   matSize: null,          // null = not chosen yet (no preselection)
   matSizeInches: 0,
   matColor: null,
+  hardware: null,   // Luma option id; null = not chosen yet
   charge: 0,        // framing addon charge (from worker, addon x1.20). null = pending/unavailable.
 };
 
@@ -960,13 +998,34 @@ function updateFinishedSize() {
     : `Finished size: ${toFraction(fin.w)}″ × ${toFraction(fin.h)}″ (frame adds its own width)`;
 }
 
+function renderHardwareOptions() {
+  const el = document.getElementById('hardware-options');
+  if (!el) return;
+  const longEdge = selected.size ? Math.max(selected.size.w, selected.size.h) : 0;
+  const rec = longEdge ? recommendedHardware(longEdge) : null;
+  el.innerHTML = HARDWARE_OPTIONS.map(h => `
+    <button class="option-btn${h.id === rec ? ' recommended-paper' : ''}${framing.hardware === h.id ? ' selected' : ''}"
+            id="hw-${h.id}" onclick="selectHardware(${h.id})">
+      ${h.name}
+      <span class="opt-price">${h.note}</span>
+      ${h.id === rec ? '<span class="rec-badge">★ Recommended</span>' : ''}
+    </button>
+  `).join('');
+}
+
+function selectHardware(id) {
+  framing.hardware = id;
+  renderHardwareOptions();
+  recomputeFraming();
+}
+
 function selectFraming(choice) {
   framing.choice = choice;
   framing.enabled = choice === 'framed';
   document.getElementById('frame-none-btn').classList.toggle('active', !framing.enabled);
   document.getElementById('frame-yes-btn').classList.toggle('active', framing.enabled);
   document.getElementById('framing-options').classList.toggle('visible', framing.enabled);
-  if (framing.enabled) renderFrameStyles();
+  if (framing.enabled) { renderFrameStyles(); renderHardwareOptions(); }
   updateFinishedSize();
   recomputeFraming();
 }
@@ -1016,11 +1075,12 @@ async function recomputeFraming() {
   if (!framing.enabled) { framing.charge = 0; updatePriceSummary(); return; }
   if (!framing.frame || !selected.size || !selected.paper) { framing.charge = null; updatePriceSummary(); return; }
   if (framing.matSizeInches > 0 && !framing.matColor) { framing.charge = null; updatePriceSummary(); return; }
+  if (!framing.hardware) { framing.charge = null; updatePriceSummary(); return; }
 
   const w = selected.size.w, h = selected.size.h;
   const paperOpt = FRAMED_PAPER_OPTION[selected.paper.id] || 82;
   const matOpt = (framing.matSizeInches in MAT_SIZE_OPTION) ? MAT_SIZE_OPTION[framing.matSizeInches] : 64;
-  const opts = [matOpt, paperOpt, GLAZING_ACRYLIC, 83];      // 83 = hanging wire (included)
+  const opts = [matOpt, paperOpt, GLAZING_ACRYLIC, framing.hardware];   // hardware is customer-chosen
   if (framing.matSizeInches > 0 && framing.matColor) opts.push(framing.matColor.optionId);
   framing.frameOptions = opts;
 
@@ -1333,9 +1393,21 @@ async function selectSize(sizeId) {
   highlightRecommendedMatSize();
 
   // Frame list is size-filtered; re-render so choices match the new size, then reprice framing.
-  if (framing.enabled) renderFrameStyles();
+  if (framing.enabled) { renderFrameStyles(); renderHardwareOptions(); }
   updateFinishedSize();
   recomputeFraming();               // sets framing.charge (or 0) and calls updatePriceSummary
+}
+
+// Ticks mirror nextStep() so the headings and the button can never disagree.
+function updateStepTicks() {
+  const t = (id, done) => { const e = document.getElementById(id); if (e) e.textContent = done ? '✓ chosen' : ''; };
+  t('tick-paper',    !!selected.paper);
+  t('tick-size',     !!selected.size);
+  t('tick-framing',  framing.choice != null);
+  t('tick-frame',    !!framing.frame);
+  t('tick-matsize',  framing.matSize != null);
+  t('tick-matcolor', framing.matSizeInches > 0 ? !!framing.matColor : framing.matSize != null);
+  t('tick-hardware', !!framing.hardware);
 }
 
 // Keeps the call to action visible at all times. Hiding it left the customer
@@ -1368,6 +1440,7 @@ function nextStep() {
     if (!framing.frame) return 'Choose a frame style';
     if (framing.matSize == null) return 'Choose a mat width';
     if (framing.matSizeInches > 0 && !framing.matColor) return 'Choose a mat colour';
+    if (!framing.hardware) return 'Choose hanging hardware';
     if (framing.charge == null) return 'Pricing your frame…';
   }
   return null;
@@ -1399,6 +1472,17 @@ function updatePriceSummary() {
   const caveat = document.getElementById('price-caveat');
   const final = totalPrice();
 
+  // Break the total out so the framing charge is never a mystery number.
+  const rp = document.getElementById('row-print'), rf = document.getElementById('row-framing');
+  const lp = document.getElementById('line-print'), lf = document.getElementById('line-framing');
+  const showBreak = framing.enabled && framing.charge != null && framing.charge > 0 && !missing;
+  if (rp) rp.style.display = showBreak ? 'flex' : 'none';
+  if (rf) rf.style.display = showBreak ? 'flex' : 'none';
+  if (showBreak) {
+    if (lp) lp.textContent = `$${base.toLocaleString()}`;
+    if (lf) lf.textContent = `+$${framing.charge.toLocaleString()}`;
+  }
+
   if (final != null && !missing) {
     // Everything chosen: this is the real number.
     disp.textContent = `$${final.toLocaleString()}`;
@@ -1418,6 +1502,7 @@ function updatePriceSummary() {
     }
   }
 
+  updateStepTicks();
   setCheckoutState(final, missing);
 }
 
