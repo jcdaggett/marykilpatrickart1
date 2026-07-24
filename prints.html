@@ -411,6 +411,7 @@
 
         <!-- Frame Profile -->
         <h4 style="font-size:0.88rem;margin-bottom:10px;margin-top:4px;"><span class="step-n sm">4</span>Frame Style <span class="step-tick" id="tick-frame"></span></h4>
+        <p id="frame-dropped-note" style="display:none;font-size:0.8rem;color:var(--sold-red);margin:0 0 8px;"></p>
         <p class="rec-note" id="frame-rec-note" style="display:none;"></p>
         <div class="frame-grid" id="frame-style-options">
           <!-- rendered by JS -->
@@ -966,6 +967,19 @@ function renderFrameStyles() {
     return;
   }
   const fr = selected.painting ? recommendFrame(selected.painting, list) : null;
+  // Detect a no-longer-fitting frame before rendering, so the notice below is
+  // accurate. charge must be null, not 0 - zero reads as "framing costs nothing".
+  if (framing.frame && !list.some(f => f.id === framing.frame.id)) {
+    framing.frame = null;
+    framing.charge = null;
+    framing.frameDropped = true;
+  }
+  const dropEl = document.getElementById('frame-dropped-note');
+  if (dropEl) {
+    dropEl.textContent = framing.frameDropped
+      ? 'Your previous frame no longer fits at this size — please choose another.' : '';
+    dropEl.style.display = framing.frameDropped ? 'block' : 'none';
+  }
   const frNote = document.getElementById('frame-rec-note');
   if (frNote) { frNote.textContent = fr ? '★ ' + fr.why : ''; frNote.style.display = fr ? 'block' : 'none'; }
   const recFrameId = fr && fr.frame ? fr.frame.id : null;
@@ -978,10 +992,7 @@ function renderFrameStyles() {
     </button>
   `).join('');
   // If a previously-selected frame no longer fits the current size, clear it.
-  if (framing.frame && !list.some(f => f.id === framing.frame.id)) {
-    framing.frame = null;
-    framing.charge = 0;
-  } else if (framing.frame) {
+  if (framing.frame) {
     const btn = document.getElementById(`frame-${framing.frame.id}`);
     if (btn) btn.classList.add('selected');
   }
@@ -1249,6 +1260,7 @@ function selectFraming(choice) {
 
 function selectFrameStyle(id) {
   framing.priceError = false;
+  framing.frameDropped = false;
   framing.frame = FRAME_STYLES.find(f => f.id === id);
   updateFinishedSize();
   document.querySelectorAll('.frame-btn').forEach(b => b.classList.remove('selected'));
