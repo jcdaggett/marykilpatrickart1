@@ -108,6 +108,8 @@
   #card-element { border: 1px solid var(--light-gray); padding: 13px 14px; background: #fff; margin-bottom: 8px; }
   #card-errors { color: var(--sold-red); font-size: 0.85rem; min-height: 20px; margin-bottom: 16px; }
   .btn-primary { background: var(--soft-black); color: #fff; border: none; padding: 16px 40px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; font-family: 'Karla', sans-serif; transition: background 0.2s; width: 100%; margin-top: 8px; }
+  .btn-primary.is-disabled { background: var(--light-gray); color: #fff; cursor: not-allowed; }
+  .btn-primary.is-disabled:hover { background: var(--light-gray); }
   .btn-primary:hover { background: var(--dark-gold); }
   .btn-primary:disabled { background: var(--light-gray); cursor: not-allowed; }
   .section-divider { border: none; border-top: 1px solid rgba(184,176,168,0.3); margin: 32px 0; }
@@ -370,7 +372,7 @@
     <div class="options-section" id="framing-section" style="display:none;">
       <h4>Framing <span style="font-size:0.78rem;color:var(--warm-gray);font-family:'Karla',sans-serif;font-weight:300;text-transform:none;letter-spacing:0;">— optional</span></h4>
       <div class="frame-toggle">
-        <button class="frame-toggle-btn active" id="frame-none-btn" onclick="selectFraming('none')">No Frame — Print Only</button>
+        <button class="frame-toggle-btn" id="frame-none-btn" onclick="selectFraming('none')">No Frame — Print Only</button>
         <button class="frame-toggle-btn" id="frame-yes-btn" onclick="selectFraming('framed')">Add a Frame</button>
       </div>
 
@@ -425,8 +427,9 @@
       </div>
       <div class="waitlist-msg" id="waitlist-msg"></div>
     </div>
+    <p id="next-step-hint" style="font-size:0.82rem;color:var(--dark-gold);text-align:center;margin-bottom:8px;display:none;"></p>
     <p style="font-size:0.78rem;color:var(--light-gray);text-align:center;margin-bottom:8px;display:none;" id="stripe-note">🔒 Secure checkout powered by Stripe</p>
-  <button class="btn-primary" id="checkout-btn" style="display:none;" onclick="showCheckout();document.getElementById('stripe-note').style.display='block'">Proceed to Checkout →</button>
+  <button class="btn-primary" id="checkout-btn" style="display:none;" onclick="if(!this.disabled){showCheckout();document.getElementById('stripe-note').style.display='block';}">Proceed to Checkout →</button>
 
     <hr class="section-divider">
 
@@ -690,6 +693,7 @@ function printPrice() {
 function totalPrice() {
   const base = printPrice();
   if (base == null || !selected.paper || !selected.size) return null;
+  if (framing.choice == null) return null;     // framed or unframed not chosen yet
   if (framing.enabled) {
     if (framing.charge == null) return null;   // frame price not ready -> block checkout
     return base + framing.charge;
@@ -822,6 +826,7 @@ const MAT_RECOMMENDATIONS = {
 
 // Framing state
 const framing = {
+  choice: null,     // null = customer has not chosen yet; 'none' | 'framed'
   enabled: false,
   frame: null,
   matSize: null,          // null = not chosen yet (no preselection)
@@ -944,6 +949,7 @@ function updateFinishedSize() {
 }
 
 function selectFraming(choice) {
+  framing.choice = choice;
   framing.enabled = choice === 'framed';
   document.getElementById('frame-none-btn').classList.toggle('active', !framing.enabled);
   document.getElementById('frame-yes-btn').classList.toggle('active', framing.enabled);
@@ -994,6 +1000,7 @@ function selectMatColor(id) {
 // charge = round5((framedLuma - printLuma) * 1.20). Retail print price is separate (12.5% of original).
 // framing.charge: 0 = no frame, a number = ready, null = pending/unavailable (checkout stays blocked).
 async function recomputeFraming() {
+  if (framing.choice == null) { framing.charge = 0; updatePriceSummary(); return; }
   if (!framing.enabled) { framing.charge = 0; updatePriceSummary(); return; }
   if (!framing.frame || !selected.size || !selected.paper) { framing.charge = null; updatePriceSummary(); return; }
   if (framing.matSizeInches > 0 && !framing.matColor) { framing.charge = null; updatePriceSummary(); return; }
@@ -1055,6 +1062,8 @@ function selectPainting(i) {
   // Print size is derived from the original canvas and does not depend on the
   // paper choice, so show the sizes straight away rather than gating them.
   renderSizeOptions();
+  // Surface the running price and the next required step immediately.
+  updatePriceSummary();
 
   document.getElementById('configurator').classList.add('active');
   document.getElementById('configurator').scrollIntoView({ behavior:'smooth', block:'start' });
@@ -1220,6 +1229,7 @@ function selectPaper(paperId) {
 
   renderSizeOptions();
   document.getElementById('size-section').style.display = 'block';
+  updatePriceSummary();          // keep the next-step prompt in sync
 }
 
 
@@ -1316,8 +1326,43 @@ async function selectSize(sizeId) {
   recomputeFraming();               // sets framing.charge (or 0) and calls updatePriceSummary
 }
 
+// Keeps the call to action visible at all times. Hiding it left the customer
+// with nothing to click and no indication of what was missing.
+function setCheckoutState(price, missing) {
+  const checkout = document.getElementById('checkout-btn');
+  const stripeNote = document.getElementById('stripe-note');
+  const hint = document.getElementById('next-step-hint');
+  const ready = price != null && !missing;
+
+  checkout.style.display = 'block';
+  checkout.disabled = !ready;
+  checkout.classList.toggle('is-disabled', !ready);
+  checkout.textContent = ready ? 'Proceed to Checkout →' : (missing || 'Proceed to Checkout →');
+  if (stripeNote) stripeNote.style.display = ready ? 'block' : 'none';
+  if (hint) {
+    hint.textContent = ready ? '' : (missing || '');
+    hint.style.display = ready ? 'none' : 'block';
+  }
+}
+
+// The one place that decides what the customer still has to do. Returns null
+// when everything needed for checkout is chosen.
+function nextStep() {
+  if (!selected.painting) return 'Choose a painting';
+  if (!selected.paper)   return 'Choose a paper';
+  if (!selected.size)    return 'Choose a print size';
+  if (framing.choice == null) return 'Choose framed or unframed';
+  if (framing.enabled) {
+    if (!framing.frame) return 'Choose a frame style';
+    if (framing.matSize == null) return 'Choose a mat width';
+    if (framing.matSizeInches > 0 && !framing.matColor) return 'Choose a mat colour';
+    if (framing.charge == null) return 'Pricing your frame…';
+  }
+  return null;
+}
+
 function updatePriceSummary() {
-  if (!selected.painting || !selected.paper || !selected.size) return;
+  if (!selected.painting) return;
   const summary = document.getElementById('price-summary');
   const disp = document.getElementById('total-price-display');
   const checkout = document.getElementById('checkout-btn');
@@ -1327,22 +1372,16 @@ function updatePriceSummary() {
   const base = printPrice();
   if (base == null) {                       // no original price on file
     disp.textContent = 'Contact us';
-    checkout.style.display = 'none';
-    if (stripeNote) stripeNote.style.display = 'none';
+    setCheckoutState(null, 'Contact us to order this work');
     return;
   }
-  const price = totalPrice();
-  if (price == null) {                      // framing on but not yet priced
-    disp.textContent = !framing.frame ? 'Select a frame'
-      : (framing.matSizeInches > 0 && !framing.matColor) ? 'Select a mat colour'
-      : 'Calculating…';
-    checkout.style.display = 'none';
-    if (stripeNote) stripeNote.style.display = 'none';
-    return;
-  }
-  disp.textContent = `$${price.toLocaleString()}`;
-  checkout.style.display = 'block';
-  if (stripeNote) stripeNote.style.display = 'block';
+
+  // Always show the running price so the customer can see what they are building.
+  const missing = nextStep();
+  const shown = totalPrice() != null ? totalPrice() : base;
+  disp.textContent = `$${shown.toLocaleString()}` + (missing ? ' +' : '');
+
+  setCheckoutState(totalPrice(), missing);
 }
 
 function showCheckout() {
