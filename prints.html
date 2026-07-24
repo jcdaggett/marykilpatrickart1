@@ -1896,6 +1896,15 @@ function openFullRes() {
   const img = document.getElementById('fullres-img');
   img.style.transform = '';
   img.style.cursor = 'zoom-in';
+  // 28 of 48 works have no watermarked file, which showed an empty lightbox.
+  // Fall back to the thumbnail, which is already served on this page, so
+  // nothing unwatermarked is newly exposed.
+  img.onerror = function () {
+    if (img.dataset.fellBack === '1') return;      // avoid a loop
+    img.dataset.fellBack = '1';
+    img.src = selected.painting.thumb;
+  };
+  img.dataset.fellBack = '';
   img.src = 'watermarked/' + selected.painting.file;
   document.getElementById('fullres-title').textContent = selected.painting.title;
   const lb = document.getElementById('fullres-lightbox');
