@@ -623,6 +623,10 @@ function toFraction(n) {
 // Print sizes are scaled from the ORIGINAL CANVAS, keeping its aspect ratio.
 // Anything outside these steps goes through the "Request a Different Size" inquiry.
 const SIZE_PERCENTS = [0.50, 0.75, 1.00, 1.25, 1.50];
+// Every print must clear this much over what Luma charges us to make it.
+// At today's catalogue the 12.5% price clears it everywhere (thinnest is
+// about $182), so this only bites if a low-priced original is added later.
+const MIN_PRINT_PROFIT = 60;
 // Largest frame Luma offers us is 60 x 40, and /api/price will happily quote
 // sizes it cannot produce, so cap on our side rather than trusting the quote.
 const MAX_LONG_EDGE = 60, MAX_SHORT_EDGE = 40;
@@ -672,7 +676,13 @@ function getSizeTiers(painting) {
 function printPrice() {
   const op = selected.painting && selected.painting.originalPrice;
   if (!op) return null;                        // no original price on file -> not purchasable
-  return Math.round((op * 0.125) / 5) * 5;
+  const base = Math.round((op * 0.125) / 5) * 5;
+  // Guard: never sell below cost + MIN_PRINT_PROFIT. Luma's cost depends on the
+  // size and paper, so this only applies once both are chosen and the cost is in.
+  const cost = selected.lumaPrintCost;
+  if (cost == null) return base;
+  const floor = Math.ceil((cost + MIN_PRINT_PROFIT) / 5) * 5;
+  return Math.max(base, floor);
 }
 
 // Total = print price + framing addon (addon = (framedLuma - printLuma) * 1.20).
@@ -1160,6 +1170,7 @@ function selectPaper(paperId) {
   document.querySelectorAll('#paper-options .option-btn').forEach(b => b.classList.remove('selected'));
   document.getElementById(`paper-${paperId}`).classList.add('selected');
   selected.paper = PAPER_TYPES.find(p => p.id === paperId);
+  selected.lumaPrintCost = null;        // cost is paper-dependent; refetch on size
   selected.size = null;
 
   // Show paper explanation
@@ -1278,7 +1289,20 @@ async function selectSize(sizeId) {
 
   selected.size = size;
 
-  // Print price = 12.5% of original; same across sizes, no API call needed.
+  // Pull what Luma charges us for this exact size/paper so the profit floor can
+  // be applied. A failure here leaves cost unknown and the 12.5% price stands.
+  selected.lumaPrintCost = null;
+  if (selected.paper) {
+    try {
+      const r = await fetch(`${WORKER_URL}/api/price`, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ width:size.w, height:size.h, paperType:selected.paper.id })
+      });
+      const d = await r.json();
+      if (typeof d.lumaPrice === 'number') selected.lumaPrintCost = d.lumaPrice;
+    } catch (e) { /* leave unknown */ }
+  }
+
   const pp = printPrice();
   const priceEl = document.getElementById(`price-${sizeId}`);
   if (priceEl) priceEl.textContent = pp != null ? `$${pp.toLocaleString()}` : 'Contact us';
