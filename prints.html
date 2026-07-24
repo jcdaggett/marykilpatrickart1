@@ -1141,10 +1141,50 @@ function recommendMatColor(p) {
   return { id: 'off-white', why: 'Off white is the safe neutral for a colour-led acrylic — it frames the work without adding a second colour.' };
 }
 
+// Cache of Luma quotes keyed by request shape. Identical configurations are
+// revisited constantly as customers change their minds; refetching each time is
+// what pushed us into the rate limit.
+const priceCache = new Map();
+async function cachedPrice(body, signal) {
+  const key = JSON.stringify(body);
+  if (priceCache.has(key)) return priceCache.get(key);
+  const r = await fetch(`${WORKER_URL}/api/price`, {
+    method:'POST', signal, headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(body)
+  });
+  const d = await r.json();
+  if (typeof d.lumaPrice === 'number') priceCache.set(key, d);   // never cache failures
+  return d;
+}
+
+const MAT_WIDTHS = [1, 1.5, 2, 2.5, 3];
+const snapMat = t => MAT_WIDTHS.reduce((a,b) => Math.abs(b-t) < Math.abs(a-t) ? b : a);
+const matId = w => w + 'in';
+// Two id spellings are in use: the buttons say '2.5in', the curated map says
+// '25in'. Parse both explicitly - '25in' read as 25 inches would be nonsense.
+const MAT_ID_INCHES = { 'none':0, '1in':1, '15in':1.5, '1.5in':1.5, '2in':2,
+                        '25in':2.5, '2.5in':2.5, '3in':3 };
+const matInches = id => (id in MAT_ID_INCHES) ? MAT_ID_INCHES[id] : 2;
+
 function recommendMatSize(p, size) {
-  const curated = MAT_SIZE_RECOMMENDATIONS[p.title];
-  if (curated) return { id: curated, why: MAT_SIZE_REASONS[p.title] || 'Chosen to suit this particular composition.' };
   const long = size ? Math.max(size.w, size.h) : 20;
+  const origLong = (p.originalW && p.originalH) ? Math.max(p.originalW, p.originalH) : null;
+  const curated = MAT_SIZE_RECOMMENDATIONS[p.title];
+
+  // A curated width was chosen for the painting at its own size. Prints are
+  // offered from 50% to 150%, so holding that width fixed puts a 2.5in border
+  // on an 8in print. Use the curated value only near full size; otherwise scale
+  // it and say so.
+  if (curated && origLong) {
+    const scale = long / origLong;
+    if (Math.abs(scale - 1) < 0.12) {
+      return { id: curated, why: MAT_SIZE_REASONS[p.title] || 'Chosen to suit this particular composition.' };
+    }
+    const base = matInches(curated);
+    const w = snapMat(base * scale);
+    return { id: matId(w), why: `This work suits a ${base}″ mat at full size; at ${toFraction(long)}″ that scales to ${w}″ to keep the same proportion.` };
+  }
+  if (curated) return { id: curated, why: MAT_SIZE_REASONS[p.title] || 'Chosen to suit this particular composition.' };
   if (long <= 12) return { id: '1.5in', why: `At ${toFraction(long)}″ a 1½″ mat gives breathing room without overwhelming a small print.` };
   if (long <= 20) return { id: '2in',   why: `A 2″ mat is proportional to a ${toFraction(long)}″ print — the standard gallery ratio.` };
   if (long <= 30) return { id: '2.5in', why: `At ${toFraction(long)}″ the mat needs to scale up; 2½″ keeps the border in proportion.` };
@@ -1321,18 +1361,22 @@ async function recomputeFraming() {
 
   // Bounded request with one retry. Without this, a single failed or throttled
   // call left the customer stuck on 'Pricing your frame…' with no way forward.
+  // Every selection previously fired two fresh calls, and selectSize fires a
+  // third for the profit floor. Clicking through frame -> mat -> colour ->
+  // hardware burned ~8 calls in a few seconds, which is what trips Luma's rate
+  // limit and produced 'Frame pricing unavailable'. Cache by request shape.
   const quote = async () => {
     const ctl = new AbortController();
     const timer = setTimeout(() => ctl.abort(), 12000);
     try {
-      const [printRes, framedRes] = await Promise.all([
-        fetch(`${WORKER_URL}/api/price`, { method:'POST', signal: ctl.signal,
-          headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({ width:w, height:h, paperType: selected.paper.id }) }).then(r=>r.json()),
-        fetch(`${WORKER_URL}/api/price`, { method:'POST', signal: ctl.signal,
-          headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({ width:w, height:h, subcategoryId: framing.frame.subcategoryId, options: opts }) }).then(r=>r.json()),
-      ]);
+      // The unframed print price only depends on size and paper, and selectSize
+      // has usually already fetched it for the profit floor - reuse it.
+      const printReq = { width:w, height:h, paperType: selected.paper.id };
+      const printRes = (selected.lumaPrintCost != null)
+        ? { lumaPrice: selected.lumaPrintCost }
+        : await cachedPrice(printReq, ctl.signal);
+      const framedRes = await cachedPrice(
+        { width:w, height:h, subcategoryId: framing.frame.subcategoryId, options: opts }, ctl.signal);
       return [printRes, framedRes];
     } finally { clearTimeout(timer); }
   };
@@ -1634,11 +1678,7 @@ async function selectSize(sizeId) {
   selected.lumaPrintCost = null;
   if (selected.paper) {
     try {
-      const r = await fetch(`${WORKER_URL}/api/price`, {
-        method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ width:size.w, height:size.h, paperType:selected.paper.id })
-      });
-      const d = await r.json();
+      const d = await cachedPrice({ width:size.w, height:size.h, paperType:selected.paper.id });
       if (typeof d.lumaPrice === 'number') selected.lumaPrintCost = d.lumaPrice;
     } catch (e) { /* leave unknown */ }
   }
