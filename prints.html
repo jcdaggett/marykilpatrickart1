@@ -108,6 +108,15 @@
   #card-element { border: 1px solid var(--light-gray); padding: 13px 14px; background: #fff; margin-bottom: 8px; }
   #card-errors { color: var(--sold-red); font-size: 0.85rem; min-height: 20px; margin-bottom: 16px; }
   .btn-primary { background: var(--soft-black); color: #fff; border: none; padding: 16px 40px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; font-family: 'Karla', sans-serif; transition: background 0.2s; width: 100%; margin-top: 8px; }
+  /* Keeps the price and the outstanding step on screen while the customer
+     works down a long configurator, so nothing has to be scrolled to find. */
+  .order-bar { position: sticky; bottom: 0; z-index: 900; background: rgba(253,251,247,0.97);
+    backdrop-filter: blur(10px); border-top: 1px solid rgba(184,176,168,0.35);
+    padding: 14px 48px 18px; margin: 24px -48px -48px; box-shadow: 0 -6px 18px rgba(0,0,0,0.05); }
+  .order-bar .price-summary { display: block; margin: 0 0 4px; padding: 0; border: none; background: none; }
+  .order-bar .btn-primary { margin-top: 6px; padding: 14px 32px; }
+  @media(max-width:768px){ .order-bar { padding: 10px 20px 14px; margin: 16px -48px -48px; }
+    .order-bar .btn-primary { padding: 13px 24px; } }
   .btn-primary.is-disabled { background: var(--light-gray); color: #fff; cursor: not-allowed; }
   .btn-primary.is-disabled:hover { background: var(--light-gray); }
   .btn-primary:hover { background: var(--dark-gold); }
@@ -409,14 +418,6 @@
       </div>
     </div>
 
-    <!-- Price summary -->
-    <div class="price-summary" id="price-summary" style="display:none;">
-      <div class="price-row total"><span>Price</span><span class="price-val" id="total-price-display">—</span></div>
-      <p class="price-note">First edition · signed &amp; numbered Certificate of Authenticity included</p>
-      <p class="price-note" style="margin-top:4px;">+ shipping calculated at checkout · ships nationwide</p>
-    </div>
-
-
     <!-- Sold out waitlist -->
     <div class="waitlist-form" id="waitlist-form" style="display:none;">
       <h3>First Edition Sold Out</h3>
@@ -427,9 +428,19 @@
       </div>
       <div class="waitlist-msg" id="waitlist-msg"></div>
     </div>
-    <p id="next-step-hint" style="font-size:0.82rem;color:var(--dark-gold);text-align:center;margin-bottom:8px;display:none;"></p>
-    <p style="font-size:0.78rem;color:var(--light-gray);text-align:center;margin-bottom:8px;display:none;" id="stripe-note">🔒 Secure checkout powered by Stripe</p>
-  <button class="btn-primary" id="checkout-btn" style="display:none;" onclick="if(!this.disabled){showCheckout();document.getElementById('stripe-note').style.display='block';}">Proceed to Checkout →</button>
+
+    <p class="price-note" id="edition-note" style="display:none;">First edition · signed &amp; numbered Certificate of Authenticity included</p>
+    <p class="price-note" id="shipping-note" style="margin-top:4px;display:none;">+ shipping calculated at checkout · ships nationwide</p>
+
+    <!-- Sticky order bar: stays in view so the outstanding step is never off-screen -->
+    <div class="order-bar" id="order-bar" style="display:none;">
+      <div class="price-summary" id="price-summary">
+        <div class="price-row total"><span>Price</span><span class="price-val" id="total-price-display">—</span></div>
+      </div>
+      <p id="next-step-hint" style="font-size:0.82rem;color:var(--dark-gold);text-align:center;margin:6px 0;display:none;"></p>
+      <p style="font-size:0.78rem;color:var(--light-gray);text-align:center;margin:6px 0;display:none;" id="stripe-note">🔒 Secure checkout powered by Stripe</p>
+      <button class="btn-primary" id="checkout-btn" style="display:none;" onclick="if(!this.disabled){showCheckout();document.getElementById('stripe-note').style.display='block';}">Proceed to Checkout →</button>
+    </div>
 
     <hr class="section-divider">
 
@@ -1364,6 +1375,11 @@ function nextStep() {
 function updatePriceSummary() {
   if (!selected.painting) return;
   const summary = document.getElementById('price-summary');
+  const bar = document.getElementById('order-bar');
+  if (bar) bar.style.display = 'block';
+  ['edition-note','shipping-note'].forEach(id => {
+    const n = document.getElementById(id); if (n) n.style.display = 'block';
+  });
   const disp = document.getElementById('total-price-display');
   const checkout = document.getElementById('checkout-btn');
   const stripeNote = document.getElementById('stripe-note');
@@ -1391,6 +1407,8 @@ function showCheckout() {
     document.getElementById('card-errors').textContent = e.message;
     return;
   }
+  const bar = document.getElementById('order-bar');
+  if (bar) bar.style.display = 'none';        // free the screen for the payment form
   document.getElementById('checkout-section').classList.add('active');
   document.getElementById('checkout-section').scrollIntoView({ behavior:'smooth', block:'start' });
 
