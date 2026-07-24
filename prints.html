@@ -1137,18 +1137,58 @@ function recommendMatSize(p, size) {
   return { id: '3in', why: `A ${toFraction(long)}″ print carries a wide 3″ mat, which is what gives large work its presence.` };
 }
 
+// Frame families, so a size-driven swap stays in the same visual register as
+// the colour-driven choice.
+// Families include wider tonally-compatible profiles so a large piece is not
+// stuck with a thin moulding just because its family tops out narrow. The
+// plain-black range stops at 1.625in, so big dark works step up into the
+// black/gold and espresso profiles rather than staying undersized.
+const FRAME_FAMILY = {
+  'Black':            ['Black','Matte Black','Black / Silver','Black / Gold','Espresso / Gold'],
+  'Matte Black':      ['Matte Black','Black','Black / Silver','Black / Gold','Espresso / Gold'],
+  'Black / Gold':     ['Black / Gold','Espresso / Gold','Gold','Copper'],
+  'Maple':            ['Maple','Oak','Driftwood White'],
+  'White':            ['White','Driftwood White'],
+};
+
+// Moulding width should grow with the piece. A 0.875in profile on a 54in print
+// looks flimsy; a 3in profile on a 5in print swamps it. Bands follow standard
+// framing practice, measured against the FINISHED size (print plus mat), since
+// that is what the moulding actually surrounds.
+function targetProfile(longEdge) {
+  if (longEdge <= 10) return 0.875;
+  if (longEdge <= 16) return 1.125;
+  if (longEdge <= 24) return 1.25;
+  if (longEdge <= 32) return 1.625;
+  if (longEdge <= 44) return 2.0;
+  if (longEdge <= 56) return 2.5625;
+  return 3.0;
+}
+const profileInches = f => parseFloat(String(f.profile).replace(/[^0-9.]/g,'')) || 1;
+
 function recommendFrame(p, available) {
   if (!available || !available.length) return null;
   const pick = (...names) => {
     for (const n of names) { const f = available.find(x => x.name === n); if (f) return f; }
     return available[0];
   };
-  // Measured from the artwork itself; falls through to the rules below only if
-  // the painting has no entry (it should never happen - all 48 are covered).
+  // Colour/medium decides the family; the finished size decides the weight.
   const d = FRAME_DERIVED[p.title];
   if (d) {
-    const f = available.find(x => x.name === d.name);
-    if (f) return { frame: f, why: d.why.charAt(0).toUpperCase() + d.why.slice(1) + '.' };
+    const fin = finishedSize();
+    const longEdge = fin ? Math.max(fin.w, fin.h)
+                    : (selected.size ? Math.max(selected.size.w, selected.size.h) : 20);
+    const target = targetProfile(longEdge);
+    const fam = FRAME_FAMILY[d.name] || [d.name];
+    const inFam = available.filter(f => fam.includes(f.name));
+    const pool = inFam.length ? inFam : available;
+    const best = pool.slice().sort((a,b) =>
+      Math.abs(profileInches(a)-target) - Math.abs(profileInches(b)-target))[0];
+    if (best) {
+      const why = d.why.charAt(0).toUpperCase() + d.why.slice(1)
+        + `, and at ${toFraction(longEdge)}″ finished a ${best.profile} moulding carries the piece without overwhelming it.`;
+      return { frame: best, why };
+    }
   }
   if (isWorkOnPaper(p.medium))
     return { frame: pick('Black','Matte Black'), why: `A plain black profile is the traditional choice for ${p.medium.toLowerCase()} — it defines the edge and stays out of the way.` };
