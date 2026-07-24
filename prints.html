@@ -1842,7 +1842,7 @@ async function submitOrder() {
           orderItems: [{
             externalItemId: String(Date.now()),
             quantity: 1,
-            file: { imageUrl: `https://www.marykilpatrick.com/${selected.painting.file}` },
+            file: { imageUrl: `https://marykilpatrick.com/${selected.painting.file}` },
             printWidth: selected.size.w,
             printHeight: selected.size.h,
             paperType: selected.paper.id,
@@ -1862,7 +1862,7 @@ async function submitOrder() {
     document.getElementById('order-success').scrollIntoView({ behavior:'smooth' });
 
   } catch (err) {
-    document.getElementById('card-errors').textContent = `Error: ${err.message}. Please try again or contact art@marykilpatrick.com`;
+    document.getElementById('card-errors').textContent = `Error: ${err.message}. Please try again or contact art@marykilpatrickart.com`;
     btn.disabled = false;
     btn.innerHTML = 'Place Order';
   }
