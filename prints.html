@@ -262,6 +262,8 @@
     border-radius:2px;
   }
   .mat-btn.recommended-mat { border-color:var(--warm-gray); border-style:dashed; }
+  .frame-btn.recommended-mat { border-color:var(--warm-gray); border-style:dashed; }
+  .frame-btn.selected.recommended-mat { border-color:var(--dark-gold); border-style:solid; }
   .option-btn.recommended-paper { border-color:var(--warm-gray); border-style:dashed; }
 
   .rec-note { font-size:0.78rem; color:var(--warm-gray); font-style:italic; margin:0 0 10px; line-height:1.5; }
@@ -468,7 +470,7 @@
       </div>
       <p id="next-step-hint" style="font-size:0.82rem;color:var(--dark-gold);text-align:center;margin:6px 0;display:none;"></p>
       <p style="font-size:0.78rem;color:var(--light-gray);text-align:center;margin:6px 0;display:none;" id="stripe-note">🔒 Secure checkout powered by Stripe</p>
-      <button class="btn-primary" id="checkout-btn" style="display:none;" onclick="if(!this.disabled){showCheckout();document.getElementById('stripe-note').style.display='block';}">Proceed to Checkout →</button>
+      <button class="btn-primary" id="checkout-btn" style="display:none;" onclick="checkoutButtonClick(this)">Proceed to Checkout →</button>
     </div>
 
     <hr class="section-divider">
@@ -887,6 +889,7 @@ const framing = {
   matSizeInches: 0,
   matColor: null,
   hardware: null,   // Luma option id; null = not chosen yet
+  priceError: false,  // true = the framed quote failed and the customer can retry
   charge: 0,        // framing addon charge (from worker, addon x1.20). null = pending/unavailable.
 };
 
@@ -1227,6 +1230,7 @@ function renderHardwareOptions() {
 }
 
 function selectHardware(id) {
+  framing.priceError = false;
   framing.hardware = id;
   renderHardwareOptions();
   recomputeFraming();
@@ -1244,6 +1248,7 @@ function selectFraming(choice) {
 }
 
 function selectFrameStyle(id) {
+  framing.priceError = false;
   framing.frame = FRAME_STYLES.find(f => f.id === id);
   updateFinishedSize();
   document.querySelectorAll('.frame-btn').forEach(b => b.classList.remove('selected'));
@@ -1298,23 +1303,47 @@ async function recomputeFraming() {
   framing.frameOptions = opts;
 
   framing.charge = null;
-  document.getElementById('total-price-display').textContent = 'Calculating…';
-  document.getElementById('checkout-btn').style.display = 'none';
+  framing.priceError = false;
   const reqId = (framing._req = (framing._req || 0) + 1);
-  try {
-    const [printRes, framedRes] = await Promise.all([
-      fetch(`${WORKER_URL}/api/price`, { method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ width:w, height:h, paperType: selected.paper.id }) }).then(r=>r.json()),
-      fetch(`${WORKER_URL}/api/price`, { method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ width:w, height:h, subcategoryId: framing.frame.subcategoryId, options: opts }) }).then(r=>r.json()),
-    ]);
-    if (reqId !== framing._req) return;                       // superseded by a newer selection
-    const printLuma = printRes.lumaPrice, framedLuma = framedRes.lumaPrice;
-    framing.charge = (printLuma > 0 && framedLuma > 0)
-      ? Math.max(0, Math.round(((framedLuma - printLuma) * 1.20) / 5) * 5)
-      : null;
-  } catch (e) {
-    if (reqId === framing._req) framing.charge = null;
+  updatePriceSummary();                 // shows 'Pricing your frame…' via nextStep()
+
+  // Bounded request with one retry. Without this, a single failed or throttled
+  // call left the customer stuck on 'Pricing your frame…' with no way forward.
+  const quote = async () => {
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), 12000);
+    try {
+      const [printRes, framedRes] = await Promise.all([
+        fetch(`${WORKER_URL}/api/price`, { method:'POST', signal: ctl.signal,
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ width:w, height:h, paperType: selected.paper.id }) }).then(r=>r.json()),
+        fetch(`${WORKER_URL}/api/price`, { method:'POST', signal: ctl.signal,
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ width:w, height:h, subcategoryId: framing.frame.subcategoryId, options: opts }) }).then(r=>r.json()),
+      ]);
+      return [printRes, framedRes];
+    } finally { clearTimeout(timer); }
+  };
+
+  let printLuma, framedLuma;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const [pr, fr] = await quote();
+      if (reqId !== framing._req) return;                     // superseded, newer call owns the UI
+      if (typeof pr.lumaPrice === 'number' && typeof fr.lumaPrice === 'number') {
+        printLuma = pr.lumaPrice; framedLuma = fr.lumaPrice; break;
+      }
+    } catch (e) {
+      if (reqId !== framing._req) return;
+    }
+    if (attempt === 0) await new Promise(r => setTimeout(r, 900));   // brief back-off
+  }
+  if (reqId !== framing._req) return;
+  if (printLuma > 0 && framedLuma > 0) {
+    framing.charge = Math.max(0, Math.round(((framedLuma - printLuma) * 1.20) / 5) * 5);
+  } else {
+    framing.charge = null;
+    framing.priceError = true;
   }
   updatePriceSummary();
 }
@@ -1615,6 +1644,13 @@ async function selectSize(sizeId) {
   recomputeFraming();               // sets framing.charge (or 0) and calls updatePriceSummary
 }
 
+function checkoutButtonClick(btn) {
+  if (btn.disabled) return;
+  if (framing.priceError) { recomputeFraming(); return; }   // retry the quote
+  showCheckout();
+  document.getElementById('stripe-note').style.display = 'block';
+}
+
 // Ticks mirror nextStep() so the headings and the button can never disagree.
 function updateStepTicks() {
   const t = (id, done) => { const e = document.getElementById(id); if (e) e.textContent = done ? '✓ chosen' : ''; };
@@ -1636,7 +1672,9 @@ function setCheckoutState(price, missing) {
   const ready = price != null && !missing;
 
   checkout.style.display = 'block';
-  checkout.disabled = !ready;
+  // A failed quote is clickable so the customer can retry; every other
+  // incomplete state stays disabled.
+  checkout.disabled = !ready && !framing.priceError;
   checkout.classList.toggle('is-disabled', !ready);
   checkout.textContent = ready ? 'Proceed to Checkout →' : (missing || 'Proceed to Checkout →');
   if (stripeNote) stripeNote.style.display = ready ? 'block' : 'none';
@@ -1658,6 +1696,7 @@ function nextStep() {
     if (framing.matSize == null) return 'Choose a mat width';
     if (framing.matSizeInches > 0 && !framing.matColor) return 'Choose a mat colour';
     if (!framing.hardware) return 'Choose hanging hardware';
+    if (framing.priceError) return 'Frame pricing unavailable — tap to retry';
     if (framing.charge == null) return 'Pricing your frame…';
   }
   return null;
