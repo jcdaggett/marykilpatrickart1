@@ -1023,12 +1023,101 @@ function updateFinishedSize() {
 // print size - so the stated reason is true rather than decorative.
 // Nothing is preselected: these only badge an option and explain it.
 // ---------------------------------------------------------------------------
+// Derived from the actual artwork: each thumbnail was measured for mean
+// lightness, saturation and warm/cool bias, and the mat and frame chosen to
+// suit it. Curated entries in MAT_RECOMMENDATIONS still take precedence.
+const MAT_COLOR_DERIVED = {
+  'Alice': { id:'dawn-grey', why:'a cool grey answers the blues and stops a white mat looking stark' },
+  'Beauty': { id:'off-white', why:'a barely-warm neutral that follows the warmth without adding colour' },
+  'Birth': { id:'dawn-grey', why:'a cool grey answers the blues and stops a white mat looking stark' },
+  'Bottoms Up': { id:'off-white', why:'a barely-warm neutral that follows the warmth without adding colour' },
+  'Boyish': { id:'pearl', why:'pearl is the quietest neutral for a painting this evenly balanced' },
+  'Carnival': { id:'antique-white', why:'picks up the warm reds and golds running through the painting' },
+  'Fantasy Land': { id:'cream', why:'a warm cream echoes the warm palette without brightening it further' },
+  'Flying High': { id:'pearl', why:'pearl is the quietest neutral for a painting this evenly balanced' },
+  'Freedom': { id:'white', why:'a crisp white keeps the line work of this pen on paper sharp' },
+  'Harlem Summer': { id:'white', why:'a crisp white keeps the line work of this pen and ink sharp' },
+  'Heidi': { id:'pearl', why:'pearl is the quietest neutral for a painting this evenly balanced' },
+  'Help': { id:'pearl', why:'pearl is the quietest neutral for a painting this evenly balanced' },
+  'Hippie Girl': { id:'white', why:'a crisp white keeps the line work of this pen and ink sharp' },
+  'Kidnapped I': { id:'pearl', why:'pearl is the quietest neutral for a painting this evenly balanced' },
+  'Kidnapped II': { id:'cream', why:'a warm cream echoes the warm palette without brightening it further' },
+  'Lovers': { id:'off-white', why:'a barely-warm neutral that follows the warmth without adding colour' },
+  'Nanette': { id:'off-white', why:'a barely-warm neutral that follows the warmth without adding colour' },
+  'Party Time': { id:'off-white', why:'a barely-warm neutral that follows the warmth without adding colour' },
+  'Plug': { id:'cream', why:'a warm cream echoes the warm palette without brightening it further' },
+  'Protectors': { id:'white', why:'a bright white mat lifts a predominantly dark painting off the wall' },
+  'Rape': { id:'white', why:'a bright white mat lifts a predominantly dark painting off the wall' },
+  'Resting': { id:'cream', why:'a warm cream echoes the warm palette without brightening it further' },
+  'Rising Spirit': { id:'off-white', why:'a barely-warm neutral that follows the warmth without adding colour' },
+  'Slavery': { id:'cream', why:'a warm cream echoes the warm palette without brightening it further' },
+  'Sweet Baby Sue': { id:'white', why:'a crisp white keeps the line work of this acrylic and pen sharp' },
+  'Takes All Kinds': { id:'pearl', why:'pearl is the quietest neutral for a painting this evenly balanced' },
+  'Togetherness': { id:'antique-white', why:'picks up the warm reds and golds running through the painting' },
+  'Trapped': { id:'antique-white', why:'picks up the warm reds and golds running through the painting' },
+  'Virgin': { id:'cream', why:'a warm cream echoes the warm palette without brightening it further' },
+  'War': { id:'white', why:'a crisp white keeps the line work of this pencil and ink sharp' },
+};
+
+const FRAME_DERIVED = {
+  'Alice': { name:'Matte Black', why:'matte black holds a dark, low-key painting together' },
+  'Beauty': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Birth': { name:'Black', why:'a plain black edge keeps a cool palette crisp' },
+  'Bottoms Up': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Boyish': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Bravery': { name:'Black', why:'a plain black edge keeps a cool palette crisp' },
+  'Breaking Away': { name:'Black', why:'a plain black edge keeps a cool palette crisp' },
+  'Carnival': { name:'Black / Gold', why:'a gold lift answers the warm palette without competing with it' },
+  'Cat Lady': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Christ Mass': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Cotton Candy': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Covid': { name:'Maple', why:'timber echoes the wood the piece is painted on' },
+  'Deconstruction': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Earth Mother': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Fantasy Land': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Flying High': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Freedom': { name:'Black', why:'the traditional profile for works on paper' },
+  'Geri': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Girls Night Out': { name:'Black / Gold', why:'a gold lift answers the warm palette without competing with it' },
+  'Harlem Summer': { name:'Black', why:'the traditional profile for works on paper' },
+  'Heidi': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Help': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Hippie Girl': { name:'Black', why:'the traditional profile for works on paper' },
+  'Josephine Baker': { name:'Black / Gold', why:'a gold lift answers the warm palette without competing with it' },
+  'Journey': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Kidnapped I': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Kidnapped II': { name:'Black / Gold', why:'a gold lift answers the warm palette without competing with it' },
+  'Kissing Cousins': { name:'Black / Gold', why:'a gold lift answers the warm palette without competing with it' },
+  'Lovers': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Nanette': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Party Time': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Personas': { name:'Black / Gold', why:'a gold lift answers the warm palette without competing with it' },
+  'Plug': { name:'Black / Gold', why:'a gold lift answers the warm palette without competing with it' },
+  'Protectors': { name:'Matte Black', why:'matte black holds a dark, low-key painting together' },
+  'Rape': { name:'Matte Black', why:'matte black holds a dark, low-key painting together' },
+  'Resting': { name:'Black / Gold', why:'a gold lift answers the warm palette without competing with it' },
+  'Rising Spirit': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Showgirl': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Slavery': { name:'Black / Gold', why:'a gold lift answers the warm palette without competing with it' },
+  'Sweet Baby Sue': { name:'Black', why:'the traditional profile for works on paper' },
+  'Takes All Kinds': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Tickle': { name:'Black / Gold', why:'a gold lift answers the warm palette without competing with it' },
+  'Togetherness': { name:'Black / Gold', why:'a gold lift answers the warm palette without competing with it' },
+  'Trapped': { name:'Black / Gold', why:'a gold lift answers the warm palette without competing with it' },
+  'Two Dancers': { name:'Black', why:'a simple black profile frames without introducing a second tone' },
+  'Virgin': { name:'Black / Gold', why:'a gold lift answers the warm palette without competing with it' },
+  'Virtual Girl': { name:'Black / Gold', why:'a gold lift answers the warm palette without competing with it' },
+  'War': { name:'Black', why:'the traditional profile for works on paper' },
+};
+
 function isWorkOnPaper(medium) { return /pen|pencil|ink|paper/i.test(medium || ''); }
 function isMixedMedia(medium)  { return /mixed media|glass/i.test(medium || ''); }
 
 function recommendMatColor(p) {
   const curated = MAT_RECOMMENDATIONS[p.title];
   if (curated) return { id: curated, why: 'Chosen for this painting to sit with its dominant tones without competing.' };
+  const measured = MAT_COLOR_DERIVED[p.title];
+  if (measured) return { id: measured.id, why: measured.why.charAt(0).toUpperCase() + measured.why.slice(1) + '.' };
   if (isWorkOnPaper(p.medium))
     return { id: 'white', why: `A crisp white mat suits ${p.medium.toLowerCase()} — it reads as a work on paper and keeps the line work sharp.` };
   if (isMixedMedia(p.medium))
@@ -1054,6 +1143,13 @@ function recommendFrame(p, available) {
     for (const n of names) { const f = available.find(x => x.name === n); if (f) return f; }
     return available[0];
   };
+  // Measured from the artwork itself; falls through to the rules below only if
+  // the painting has no entry (it should never happen - all 48 are covered).
+  const d = FRAME_DERIVED[p.title];
+  if (d) {
+    const f = available.find(x => x.name === d.name);
+    if (f) return { frame: f, why: d.why.charAt(0).toUpperCase() + d.why.slice(1) + '.' };
+  }
   if (isWorkOnPaper(p.medium))
     return { frame: pick('Black','Matte Black'), why: `A plain black profile is the traditional choice for ${p.medium.toLowerCase()} — it defines the edge and stays out of the way.` };
   if (isMixedMedia(p.medium))
