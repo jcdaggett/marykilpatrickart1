@@ -374,15 +374,9 @@
 
     <!-- Size -->
     <div class="options-section" id="size-section" style="display:none;">
-      <div style="font-size:0.78rem;color:var(--light-gray);margin-bottom:14px;line-height:1.7;">
-  <strong style="color:var(--warm-gray);font-family:'Cormorant Garamond',serif;font-size:0.9rem;">Size guide:</strong>
-  Small prints (under 12″) suit a shelf, desk, or intimate wall grouping.
-  Medium prints (12–24″) work as standalone wall pieces in most rooms.
-  Large prints (24″+) are statement pieces — living rooms, hallways, over a sofa.
-</div>
         <h4>Print Size</h4>
-      <div class="options-grid" id="size-options"></div>
-    </div>
+        <p id="original-size-line" style="font-size:0.9rem;color:var(--warm-gray);line-height:1.7;margin-top:6px;">Each print is made at the original painting's dimensions. <span id="original-size-dims" style="color:var(--soft-black);"></span></p>
+      </div>
 
 
     <!-- Framing Option -->
@@ -544,58 +538,57 @@ function initStripe() {
 
 // Paintings with original prices
 const PAINTINGS = [
-  { title:'Personas', file:'mary-kilpatrick-personas-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-personas-figurative-painting.jpg', ratio:0.7865, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Geri', file:'mary-kilpatrick-geri-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-geri-figurative-painting.jpg', ratio:0.7885, editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Josephine Baker', file:'mary-kilpatrick-josephine-baker-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-josephine-baker-figurative-painting.jpg', ratio:1.0304, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Breaking Away', file:'mary-kilpatrick-breaking-away-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-breaking-away-figurative-painting.jpg', ratio:0.9795, editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Girls Night Out', file:'mary-kilpatrick-girls-night-out-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-girls-night-out-figurative-painting.jpg', ratio:0.8245, editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Journey', file:'mary-kilpatrick-journey-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-journey-figurative-painting.jpg', ratio:0.488, editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Covid', file:'mary-kilpatrick-covid-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-covid-figurative-painting.jpg', ratio:1.2715, editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Cat Lady', file:'mary-kilpatrick-cat-lady-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-cat-lady-figurative-painting.jpg', ratio:0.7915, editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Kissing Cousins', file:'mary-kilpatrick-kissing-cousins-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kissing-cousins-figurative-painting.jpg', ratio:1.3459, editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Showgirl', file:'mary-kilpatrick-showgirl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-showgirl-figurative-painting.jpg', ratio:0.7965, editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Harmony', file:'mary-kilpatrick-harmony-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-harmony-figurative-painting.jpg', ratio:0.785, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Deconstruction', file:'mary-kilpatrick-deconstruction-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-deconstruction-figurative-painting.jpg', ratio:0.7615, editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Bravery', file:'mary-kilpatrick-bravery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-bravery-figurative-painting.jpg', ratio:0.9975, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Peaceful', file:'mary-kilpatrick-peaceful-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-peaceful-figurative-painting.jpg', ratio:0.7655, editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Two Dancers', file:'mary-kilpatrick-two-dancers-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-two-dancers-figurative-painting.jpg', ratio:0.994, editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Jamaican Heroine', file:'mary-kilpatrick-jamaican-hero-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-jamaican-hero-figurative-painting.jpg', ratio:0.8455, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Tickle', file:'mary-kilpatrick-tickle-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-tickle-figurative-painting.jpg', ratio:1.5004, editionSize:100, recommendedPaper:'cold_press' },
-  { title:'Earth Mother', file:'mary-kilpatrick-earth-mother-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-earth-mother-figurative-painting.jpg', ratio:1.3937, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Christ Mass', file:'mary-kilpatrick-christ-mass-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-christ-mass-figurative-painting.jpg', ratio:0.748, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Virtual Girl', file:'mary-kilpatrick-virtual-girl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-virtual-girl-figurative-painting.jpg', ratio:1.2658, editionSize:100, recommendedPaper:'hot_press' },
-  { title:'Cotton Candy', file:'mary-kilpatrick-cotton-candy-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-cotton-candy-figurative-painting.jpg', ratio:0.803, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Alice', file:'mary-kilpatrick-alice-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-alice-figurative-painting.jpg', ratio:0.796, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Birth', file:'mary-kilpatrick-birth-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-birth-figurative-painting.jpg', ratio:0.759, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Bottoms Up', file:'mary-kilpatrick-bottoms-up-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-bottoms-up-figurative-painting.jpg', ratio:0.791, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Boyish', file:'mary-kilpatrick-boyish-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-boyish-figurative-painting.jpg', ratio:0.7695, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Carnival', file:'mary-kilpatrick-carnival-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-carnival-figurative-painting.jpg', ratio:1.3495, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Abuse', file:'mary-kilpatrick-abuse-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-abuse-figurative-painting.jpg', ratio:0.83, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Fantasy Land', file:'mary-kilpatrick-fantasy-land-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-fantasy-land-figurative-painting.jpg', ratio:0.7405, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Flying High', file:'mary-kilpatrick-flying-high-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-flying-high-figurative-painting.jpg', ratio:0.75, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Freedom', file:'mary-kilpatrick-freedom-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-freedom-figurative-painting.jpg', ratio:1.3351, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Harlem Summer', file:'mary-kilpatrick-harlem-summer-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-harlem-summer-figurative-painting.jpg', ratio:0.9905, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Heidi', file:'mary-kilpatrick-heidi-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-heidi-figurative-painting.jpg', ratio:0.748, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Help', file:'mary-kilpatrick-help-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-help-figurative-painting.jpg', ratio:0.7805, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Hippie Girl', file:'mary-kilpatrick-hippie-girl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-hippie-girl-figurative-painting.jpg', ratio:0.7545, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Kidnapped I', file:'mary-kilpatrick-kidnapped-i-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kidnapped-i-figurative-painting.jpg', ratio:1.004, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Kidnapped II', file:'mary-kilpatrick-kidnapped-ii-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kidnapped-ii-figurative-painting.jpg', ratio:1.0096, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Lovers', file:'mary-kilpatrick-lovers-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-lovers-figurative-painting.jpg', ratio:1.3569, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Masked', file:'mary-kilpatrick-masked-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-masked-figurative-painting.jpg', ratio:0.3175, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Nanette', file:'mary-kilpatrick-nanette-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-nanette-figurative-painting.jpg', ratio:0.7865, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Party Time', file:'mary-kilpatrick-party-time-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-party-time-figurative-painting.jpg', ratio:1.3708, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Plug', file:'mary-kilpatrick-plug-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-plug-figurative-painting.jpg', ratio:0.755, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Protectors', file:'mary-kilpatrick-protectors-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-protectors-figurative-painting.jpg', ratio:0.8105, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Rape', file:'mary-kilpatrick-rape-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-rape-figurative-painting.jpg', ratio:0.7395, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Resting', file:'mary-kilpatrick-resting-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-resting-figurative-painting.jpg', ratio:0.7765, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Rising Spirit', file:'mary-kilpatrick-rising-spirit-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-rising-spirit-figurative-painting.jpg', ratio:0.702, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Slavery', file:'mary-kilpatrick-slavery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-slavery-figurative-painting.jpg', ratio:1.0395, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Snowboarder', file:'mary-kilpatrick-snowboarder-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-snowboarder-figurative-painting.jpg', ratio:1.0096, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Sweet Baby Sue', file:'mary-kilpatrick-sweet-baby-sue-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-sweet-baby-sue-figurative-painting.jpg', ratio:0.781, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Takes All Kinds', file:'mary-kilpatrick-takes-all-kinds-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-takes-all-kinds-figurative-painting.jpg', ratio:0.4995, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Togetherness', file:'mary-kilpatrick-togetherness-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-togetherness-figurative-painting.jpg', ratio:0.7485, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Trapped', file:'mary-kilpatrick-trapped-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-trapped-figurative-painting.jpg', ratio:1.2903, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Virgin', file:'mary-kilpatrick-virgin-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-virgin-figurative-painting.jpg', ratio:0.663, editionSize:100, recommendedPaper:'somerset_velvet' }
+  { title:'Personas', file:'mary-kilpatrick-personas-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-personas-figurative-painting.jpg', dims:'15¾ × 18¾ in', originalPrice:6000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Geri', file:'mary-kilpatrick-geri-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-geri-figurative-painting.jpg', dims:'14 × 16 in', originalPrice:2500, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Josephine Baker', file:'mary-kilpatrick-josephine-baker-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-josephine-baker-figurative-painting.jpg', dims:'20 × 20 in', originalPrice:4000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Breaking Away', file:'mary-kilpatrick-breaking-away-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-breaking-away-figurative-painting.jpg', dims:'21 × 21 in', originalPrice:4000, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Girls Night Out', file:'mary-kilpatrick-girls-night-out-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-girls-night-out-figurative-painting.jpg', dims:'16 × 20 in', originalPrice:2500, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Journey', file:'mary-kilpatrick-journey-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-journey-figurative-painting.jpg', dims:'20 × 10 in', originalPrice:3000, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Covid', file:'mary-kilpatrick-covid-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-covid-figurative-painting.jpg', dims:'20 × 16 in', originalPrice:4000, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Cat Lady', file:'mary-kilpatrick-cat-lady-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-cat-lady-figurative-painting.jpg', dims:'8 × 10 in', originalPrice:3500, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Kissing Cousins', file:'mary-kilpatrick-kissing-cousins-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kissing-cousins-figurative-painting.jpg', dims:'16 × 12 in', originalPrice:2000, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Showgirl', file:'mary-kilpatrick-showgirl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-showgirl-figurative-painting.jpg', dims:'20 × 24 in', originalPrice:15000, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Harmony', file:'mary-kilpatrick-harmony-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-harmony-figurative-painting.jpg', dims:'15 × 19 in', originalPrice:3000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Deconstruction', file:'mary-kilpatrick-deconstruction-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-deconstruction-figurative-painting.jpg', dims:'28 × 36 in', originalPrice:8000, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Bravery', file:'mary-kilpatrick-bravery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-bravery-figurative-painting.jpg', dims:'18 × 18 in', originalPrice:4000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Peaceful', file:'mary-kilpatrick-peaceful-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-peaceful-figurative-painting.jpg', dims:'22 × 28 in', originalPrice:15000, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Two Dancers', file:'mary-kilpatrick-two-dancers-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-two-dancers-figurative-painting.jpg', dims:'24 × 24 in', originalPrice:4500, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Jamaican Heroine', file:'mary-kilpatrick-jamaican-hero-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-jamaican-hero-figurative-painting.jpg', dims:'30 × 24 in', originalPrice:3500, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Tickle', file:'mary-kilpatrick-tickle-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-tickle-figurative-painting.jpg', dims:'36 × 24 in', originalPrice:10000, editionSize:100, recommendedPaper:'cold_press' },
+  { title:'Earth Mother', file:'mary-kilpatrick-earth-mother-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-earth-mother-figurative-painting.jpg', dims:'36 × 24 in', originalPrice:25000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Christ Mass', file:'mary-kilpatrick-christ-mass-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-christ-mass-figurative-painting.jpg', dims:'40 × 30 in', originalPrice:7500, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Virtual Girl', file:'mary-kilpatrick-virtual-girl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-virtual-girl-figurative-painting.jpg', dims:'20 × 16 in', originalPrice:5000, editionSize:100, recommendedPaper:'hot_press' },
+  { title:'Cotton Candy', file:'mary-kilpatrick-cotton-candy-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-cotton-candy-figurative-painting.jpg', dims:'15⅝ × 19⅝ in', originalPrice:5000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Alice', file:'mary-kilpatrick-alice-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-alice-figurative-painting.jpg', dims:'20 × 16 in', originalPrice:3500, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Birth', file:'mary-kilpatrick-birth-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-birth-figurative-painting.jpg', dims:'18  12 in', originalPrice:5000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Bottoms Up', file:'mary-kilpatrick-bottoms-up-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-bottoms-up-figurative-painting.jpg', dims:'24 × 30 in', originalPrice:10000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Boyish', file:'mary-kilpatrick-boyish-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-boyish-figurative-painting.jpg', dims:'18 × 14 in', originalPrice:3000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Carnival', file:'mary-kilpatrick-carnival-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-carnival-figurative-painting.jpg', dims:'24 × 18 in', originalPrice:4000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Fantasy Land', file:'mary-kilpatrick-fantasy-land-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-fantasy-land-figurative-painting.jpg', dims:'24 × 18 in', originalPrice:3000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Flying High', file:'mary-kilpatrick-flying-high-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-flying-high-figurative-painting.jpg', dims:'24 × 18 in', originalPrice:2500, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Freedom', file:'mary-kilpatrick-freedom-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-freedom-figurative-painting.jpg', dims:'24 × 18 in', originalPrice:4000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Harlem Summer', file:'mary-kilpatrick-harlem-summer-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-harlem-summer-figurative-painting.jpg', dims:'9 × 9 in', originalPrice:3500, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Heidi', file:'mary-kilpatrick-heidi-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-heidi-figurative-painting.jpg', dims:'24 × 18 in', originalPrice:3000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Help', file:'mary-kilpatrick-help-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-help-figurative-painting.jpg', dims:'9 × 7 in', originalPrice:1500, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Hippie Girl', file:'mary-kilpatrick-hippie-girl-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-hippie-girl-figurative-painting.jpg', dims:'6 × 5 in', originalPrice:4000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Kidnapped I', file:'mary-kilpatrick-kidnapped-i-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kidnapped-i-figurative-painting.jpg', dims:'8 × 8 in', originalPrice:3000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Kidnapped II', file:'mary-kilpatrick-kidnapped-ii-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-kidnapped-ii-figurative-painting.jpg', dims:'8 × 8 in', originalPrice:3000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Lovers', file:'mary-kilpatrick-lovers-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-lovers-figurative-painting.jpg', dims:'18  24 in', originalPrice:4000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Masked', file:'mary-kilpatrick-masked-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-masked-figurative-painting.jpg', dims:'10 × 6 in', originalPrice:1500, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Nanette', file:'mary-kilpatrick-nanette-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-nanette-figurative-painting.jpg', dims:'14 × 11 in', originalPrice:2000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Party Time', file:'mary-kilpatrick-party-time-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-party-time-figurative-painting.jpg', dims:'18  24 in', originalPrice:3000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Plug', file:'mary-kilpatrick-plug-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-plug-figurative-painting.jpg', dims:'12 × 9 in', originalPrice:3500, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Protectors', file:'mary-kilpatrick-protectors-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-protectors-figurative-painting.jpg', dims:'16 × 12 in', originalPrice:7000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Rape', file:'mary-kilpatrick-rape-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-rape-figurative-painting.jpg', dims:'24 × 18 in', originalPrice:4000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Resting', file:'mary-kilpatrick-resting-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-resting-figurative-painting.jpg', dims:'18 × 14 in', originalPrice:4000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Rising Spirit', file:'mary-kilpatrick-rising-spirit-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-rising-spirit-figurative-painting.jpg', dims:'10 × 8 in', originalPrice:4000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Slavery', file:'mary-kilpatrick-slavery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-slavery-figurative-painting.jpg', dims:'12 × 12 in', originalPrice:4500, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Snowboarder', file:'mary-kilpatrick-snowboarder-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-snowboarder-figurative-painting.jpg', dims:'11½ × 12 in', originalPrice:2500, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Sweet Baby Sue', file:'mary-kilpatrick-sweet-baby-sue-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-sweet-baby-sue-figurative-painting.jpg', dims:'9 × 8 in', originalPrice:1500, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Takes All Kinds', file:'mary-kilpatrick-takes-all-kinds-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-takes-all-kinds-figurative-painting.jpg', dims:'24 × 12 in', originalPrice:3500, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Togetherness', file:'mary-kilpatrick-togetherness-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-togetherness-figurative-painting.jpg', dims:'12 × 9 in', originalPrice:4000, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Trapped', file:'mary-kilpatrick-trapped-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-trapped-figurative-painting.jpg', dims:'10½ × 8½ in', originalPrice:3500, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Virgin', file:'mary-kilpatrick-virgin-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-virgin-figurative-painting.jpg', dims:'35 × 24 in', originalPrice:15000, editionSize:100, recommendedPaper:'somerset_velvet' }
 ];
 
 // Paper types — curated for acrylic figurative paintings
@@ -645,25 +638,28 @@ function toFraction(n) {
 
 // Print sizes derived from each painting's aspect ratio (no forced size).
 // Longest side ladder; short side computed from ratio (w/h). Buyer picks.
-const SIZE_LADDER = [
-  { id:'sm', name:'Small',  long:16 },
-  { id:'md', name:'Medium', long:24 },
-  { id:'lg', name:'Large',  long:30 }
-];
-function getSizeTiers(painting) {
-  const r = painting.ratio || 1;            // width / height
-  const q = n => Math.round(n * 4) / 4;     // round to 1/4 inch
-  return SIZE_LADDER.map(t => {
-    let w, h;
-    if (r >= 1) { w = t.long; h = q(t.long / r); }   // landscape / square
-    else        { h = t.long; w = q(t.long * r); }   // portrait
-    w = q(w); h = q(h);
-    return {
-      pct: 1.0, label: t.name, id: t.id,
-      w, h, displayW: toFraction(w), displayH: toFraction(h),
-      price: null
-    };
-  });
+// Single print offering: made at the original painting's dimensions.
+// Price = 12.5% of the original painting price (standard), with a $60 minimum profit floor.
+function parseDims(dims) {
+  const clean = String(dims||'').replace('in','').trim();
+  const fr = {'⅛':0.125,'¼':0.25,'⅜':0.375,'½':0.5,'⅝':0.625,'¾':0.75,'⅞':0.875};
+  const num = s => { let t=0; s=String(s).trim(); const mfr=s.match(/[⅛¼⅜½⅝¾⅞]/); if(mfr){t+=fr[mfr[0]]; s=s.replace(mfr[0],'').trim();} const w=s.match(/[\d.]+/); return (w?parseFloat(w[0]):0)+t; };
+  const parts = clean.split('×');
+  return { w: num(parts[0]||0), h: num(parts[1]||0) };
+}
+function originalSize(painting) {
+  const { w, h } = parseDims(painting.dims);
+  return {
+    id: 'original', label: 'Original size', pct: 1.0,
+    w, h, displayW: w, displayH: h,
+    price: null
+  };
+}
+// Standard print price: 12.5% of original, floored at Luma cost + $60.
+function printPriceFor(painting, lumaCost) {
+  const standard = Math.round(painting.originalPrice * 0.125);
+  const floor = lumaCost && lumaCost > 0 ? Math.round(lumaCost + 60) : 0;
+  return Math.max(standard, floor);
 }
 
 // Pricing: Lumaprints cost + $60 profit, rounded to nearest $5
@@ -1147,66 +1143,41 @@ function highlightRecommendedMatSize() {
 }
 
 function renderSizeOptions() {
-  const tiers = getSizeTiers(selected.painting);
-  const container = document.getElementById('size-options');
-  
-  container.innerHTML = tiers.map(s => {
-    return `
-      <button class="option-btn" id="size-${s.id}" onclick="selectSize('${s.id}')">
-        ${s.displayW}×${s.displayH}″ <span style="font-size:0.72rem;color:var(--warm-gray);font-weight:300;">(${s.label})</span>
-        <span class="opt-price" id="price-${s.id}"></span>
-      </button>
-    `;
-  }).join('') + `
-    <button class="option-btn" style="border-style:dashed;margin-top:8px;" onclick="window.open('index.html#contact','_blank')">
-      Request a Different Size
-      <span class="opt-price" style="font-size:0.72rem;">Contact us</span>
-    </button>
-  `;
+  // Single size: the original painting's dimensions. Auto-select it.
+  const size = originalSize(selected.painting);
+  const dimsEl = document.getElementById('original-size-dims');
+  if (dimsEl) dimsEl.textContent = selected.painting.dims || '';
+  selectOriginalSize();
 }
 
-async function selectSize(sizeId) {
-  const tiers = getSizeTiers(selected.painting);
-  const size = tiers.find(s => s.id === sizeId);
-  if (!size) return;
-
-  document.querySelectorAll('#size-options .option-btn').forEach(b => b.classList.remove('selected'));
-  const btn = document.getElementById(`size-${sizeId}`);
-  if (btn) btn.classList.add('selected');
-
-  // Assign size — show loading state, fetch real price from API
+async function selectOriginalSize() {
+  const size = originalSize(selected.painting);
   selected.size = size;
   selected.size.price = null;
 
-  const priceEl = document.getElementById(`price-${sizeId}`);
-  if (priceEl) priceEl.textContent = 'Loading...';
-
-  // Hide summary until real price confirmed
   document.getElementById('price-summary').style.display = 'none';
   document.getElementById('checkout-btn').style.display = 'none';
 
-  // Fetch real Lumaprints cost — price = cost + $60
+  // Standard price = 12.5% of original — available immediately, no API needed.
+  const standard = Math.round(selected.painting.originalPrice * 0.125);
+
+  // Confirm Luma can fulfill this size on the chosen paper; use its cost only as the $60 floor check.
   fetch(`${WORKER_URL}/api/price`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ width: size.w, height: size.h, paperType: selected.paper.id })
   }).then(r => r.json()).then(data => {
-    if (data.lumaPrice && data.lumaPrice > 0) {
-      const finalPrice = Math.round((data.lumaPrice + 60) / 5) * 5;
-      selected.size.price = Math.max(65, finalPrice);
-    } else {
-      selected.size.price = null;
-    }
-    if (priceEl) priceEl.textContent = selected.size.price ? `$${selected.size.price.toLocaleString()}` : 'unavailable';
+    const luma = (data && data.lumaPrice > 0) ? data.lumaPrice : 0;
+    selected.size.price = printPriceFor(selected.painting, luma);
     updatePriceSummary();
-    document.getElementById('framing-section').style.display = selected.size.price ? 'block' : 'none';
+    document.getElementById('framing-section').style.display = 'block';
     highlightRecommendedMatSize();
   }).catch(() => {
-    // No confirmed Lumaprints price - never guess one.
-    selected.size.price = null;
-    if (priceEl) priceEl.textContent = 'unavailable';
+    // Even if the fulfillment check fails, the standard 12.5% price still stands.
+    selected.size.price = standard;
     updatePriceSummary();
-    document.getElementById('framing-section').style.display = 'none';
+    document.getElementById('framing-section').style.display = 'block';
+    highlightRecommendedMatSize();
   });
 }
 
