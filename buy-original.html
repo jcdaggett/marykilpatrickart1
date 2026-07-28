@@ -104,6 +104,8 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
   nav{padding:0 24px;}
   .page{padding:100px 24px 60px;}
   .trust-grid{grid-template-columns:1fr;}
+  #inquiry-section{grid-template-columns:1fr!important;gap:40px!important;}
+  #inquiry-section > div[style*="repeat(4"]{grid-template-columns:repeat(2,1fr)!important;}
   .terms-section{grid-template-columns:1fr;margin:0 -24px 60px;padding:40px 24px;}
   .process-section{max-width:100%;}
   footer{padding:24px;flex-direction:column;gap:16px;text-align:center;}
@@ -417,7 +419,7 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
     <p style="font-size:0.78rem;color:var(--light-gray);margin-top:16px;text-align:center;">Click a painting to select it — the inquiry form below will update automatically.</p>
   </div>
 
-  <div id="inquiry-section" style="display:grid;grid-template-columns:420px 1fr;gap:80px;margin-bottom:72px;align-items:start;">
+  <div id="inquiry-section" style="display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:80px;margin-bottom:72px;align-items:start;">
 
     <!-- INQUIRY FORM -->
     <div style="background:var(--paper);padding:40px;border-top:2px solid var(--gold);">

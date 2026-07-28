@@ -46,6 +46,15 @@
   .nav-links{list-style:none;display:flex;gap:36px;align-items:center;}
   .nav-links a{text-decoration:none;color:var(--soft-black);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;}
   .nav-links a:hover{color:var(--dark-gold);}
+  .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;z-index:1002;}
+  .nav-hamburger span{display:block;width:22px;height:2px;background:var(--soft-black);transition:all 0.3s;}
+  .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-hamburger.open span:nth-child(2){opacity:0;}
+  .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .nav-mobile{display:none;position:fixed;top:72px;left:0;right:0;background:#FDFBF7;border-bottom:1px solid rgba(156,124,56,0.2);z-index:999;padding:24px 24px 32px;flex-direction:column;}
+  .nav-mobile.open{display:flex;}
+  .nav-mobile a{display:block;padding:14px 0;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.15em;color:#1A1814;text-decoration:none;border-bottom:1px solid rgba(156,124,56,0.2);}
+  .nav-mobile a:last-child{border-bottom:none;}
   .page{max-width:1100px;margin:0 auto;padding:110px 48px 80px;}
   .breadcrumb{font-size:0.78rem;color:var(--light-gray);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:40px;}
   .breadcrumb a{color:var(--light-gray);text-decoration:none;}
@@ -71,7 +80,7 @@
   .related-item p{font-size:0.8rem;color:var(--warm-gray);margin-top:6px;text-align:center;}
   .related-item a{text-decoration:none;}
   footer{background:var(--soft-black);color:var(--light-gray);text-align:center;padding:28px;font-size:0.85rem;margin-top:80px;}
-  @media(max-width:768px){.painting-layout{grid-template-columns:1fr;}.painting-image{position:static;}.page{padding:90px 24px 60px;}.related-grid{grid-template-columns:repeat(2,1fr);}nav{padding:0 24px;}.nav-links{gap:16px;}}
+  @media(max-width:768px){.painting-layout{grid-template-columns:1fr;}.painting-image{position:static;}.page{padding:90px 24px 60px;}.related-grid{grid-template-columns:repeat(2,1fr);}nav{padding:0 24px;}.nav-links{display:none;}.nav-hamburger{display:flex;}}
 
   #sp-lb { display:none; position:fixed; inset:0; background:rgba(10,8,6,0.97); z-index:3000; justify-content:center; align-items:center; padding:24px; }
   #sp-lb.active { display:flex; }
@@ -98,7 +107,16 @@
     <li><a href="../index.html#contact">Inquire</a></li>
     <li><a href="tel:+14586663614" style="color:var(--dark-gold);letter-spacing:0.05em;">(458) 666-3614</a></li>
   </ul>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
 </nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="../index.html#about">About</a>
+  <a href="../prints.html">Buy Prints</a>
+  <a href="../index.html#work">The Paintings</a>
+  <a href="../index.html#contact">Inquire About Originals</a>
+  <a href="tel:+14586663614">(458) 666-3614</a>
+</div>
+
 
 <div class="page">
   <div class="breadcrumb">
@@ -258,6 +276,11 @@ document.getElementById('sp-lb').addEventListener('touchmove',function(e){
   }
 },{passive:false});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSPLB();});
+</script>
+
+<script>
+function toggleMobileNav(){var m=document.getElementById('nav-mobile'),b=document.getElementById('nav-hamburger');if(m)m.classList.toggle('open');if(b)b.classList.toggle('open');}
+document.addEventListener('click',function(e){if(!e.target.closest('nav')&&!e.target.closest('.nav-mobile')){var m=document.getElementById('nav-mobile'),b=document.getElementById('nav-hamburger');if(m)m.classList.remove('open');if(b)b.classList.remove('open');}});
 </script>
 </body>
 </html>
