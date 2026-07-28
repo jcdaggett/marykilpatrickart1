@@ -1165,7 +1165,7 @@ async function selectOriginalSize() {
   fetch(`${WORKER_URL}/api/price`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ width: size.w, height: size.h, paperType: selected.paper.id })
+    body: JSON.stringify({ width: size.w, height: size.h, paperType: selected.paper.id, originalPrice: selected.painting.originalPrice })
   }).then(r => r.json()).then(data => {
     const luma = (data && data.lumaPrice > 0) ? data.lumaPrice : 0;
     selected.size.price = printPriceFor(selected.painting, luma);
