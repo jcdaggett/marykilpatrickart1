@@ -326,7 +326,7 @@
 <div class="page-header">
   <h1>Mary Kilpatrick</h1>
   <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--warm-gray);margin-top:-8px;margin-bottom:20px;letter-spacing:0.04em;">Limited Edition Prints</h2>
-  <p>Every painting is available as a numbered limited edition print at the original painting's dimensions — a maximum of 100 worldwide, ever. When an edition sells out, it closes permanently. Each print is made to last, ships with a signed and numbered Certificate of Authenticity, and is delivered nationwide.</p>
+  <p>Every painting is available as a numbered, limited edition giclée print — no more than 100 prints per edition, ever. When an edition sells out, it closes permanently. Each print is made to last, ships with a signed and numbered Certificate of Authenticity, and is delivered nationwide.</p>
 </div>
 
 <div class="shop-container">
@@ -717,8 +717,7 @@ function renderPaintings() {
         </div>
         <div class="painting-card-info">
           <h3>${p.title}</h3>
-          <p class="card-price">${soldOut ? `First Edition Sold Out` : `${remaining} remaining`}</p>
-          <div class="inventory-bar"><div class="inventory-fill" style="width:${pct}%"></div></div>
+          <p class="card-price">${soldOut ? `First Edition Sold Out` : `First edition prints available`}</p>
         </div>
       </div>
     `;
