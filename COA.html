@@ -6,6 +6,19 @@
 <title>Mary Kilpatrick COA Generator</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
+  /* Desktop primary nav — these pages were built from a bare template and
+     never got the horizontal nav rules, so the mobile display:none left the
+     links rendering as a vertical bulleted list on desktop. */
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream,#FDFBF7);border-bottom:1px solid var(--rule,rgba(184,176,168,0.35));height:var(--nav-h,88px);display:flex;align-items:center;padding:0 48px;justify-content:space-between;}
+  .nav-name{text-decoration:none;}
+  .nav-logo{height:62px;width:auto;display:block;max-width:calc(100vw - 96px);object-fit:contain;}
+  .nav-links{display:flex;gap:32px;list-style:none;align-items:center;margin:0;padding:0;}
+  .nav-links a{font-size:0.7rem;font-weight:400;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;color:var(--soft-black,#1A1A1A);transition:color 0.2s;}
+  .nav-links a:hover{color:var(--gold-text,#7A6029);}
+  .nav-cta{color:var(--gold-text,#7A6029)!important;border:1px solid var(--gold-text,#7A6029);padding:7px 18px;}
+  .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;z-index:1002;}
+  .nav-hamburger span{display:block;width:24px;height:2px;background:var(--soft-black,#1A1A1A);}
+
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:Georgia,serif; background:#1C0A06; color:#FAF6F0; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:2rem; }
   .card { background:#2A1208; border:1px solid #C4843A; padding:2.5rem; width:100%; max-width:520px; }
@@ -48,6 +61,7 @@
     .nav-links a{font-size:0.68rem;}
     .nav-logo{height:34px;}
   }
+
 </style>
 </head>
 <body>
