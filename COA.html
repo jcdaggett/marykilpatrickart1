@@ -96,7 +96,7 @@
     <option value="Virtual Girl|virtual-girl">Virtual Girl</option>
   </select>
   <div class="row">
-    <div><label>Print Number</label><input type="number" id="edition" min="1" max="100" placeholder="e.g. 12"></div>
+    <div><label>Print Number</label><input type="number" id="edition" min="1" max="25" placeholder="e.g. 12"></div>
     <div><label>Year of Original</label><input type="number" id="year" min="2000" max="2030" placeholder="e.g. 2021"></div>
   </div>
   <button id="btn" onclick="generateCOA()">Generate PDF</button>
@@ -108,7 +108,7 @@
 var ASSET_DATA = JSON.parse(document.getElementById("assets-data").textContent);
 var THUMBS = ASSET_DATA.thumbs;
 var SIG = ASSET_DATA.sig;
-var ATTEST = "This certifies that the print described above is an original limited edition fine art print authorized by the artist. This impression is one of a strictly limited series of one hundred (100) numbered originals. No additional prints of this edition will be produced. No artist proofs exist outside this numbered series.";
+var ATTEST = "This certifies that the print described above is an original limited edition fine art print authorized by the artist. This impression is one of a strictly limited series of twenty-five (25) numbered originals. No additional prints of this edition will be produced. No artist proofs exist outside this numbered series.";
 
 function generateCOA() {
   var sel = document.getElementById("painting").value;
