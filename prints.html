@@ -306,6 +306,22 @@
     body.mnav-open #mnav-ovl{opacity:1; pointer-events:auto;}
     html, body { overflow-x: hidden; }
   }
+
+  .edition-story { background: var(--paper); border-top: 1px solid rgba(156,124,56,0.18); border-bottom: 1px solid rgba(156,124,56,0.18); padding: 40px 48px; }
+  .edition-story-inner { max-width: 1000px; margin: 0 auto; }
+  .edition-badge { display: inline-block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--gold-text); border: 1px solid var(--gold-text); border-radius: 999px; padding: 6px 16px; margin: 0 auto 28px; }
+  .edition-story-inner { text-align: center; }
+  .edition-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; text-align: left; margin-top: 4px; }
+  .edition-point { }
+  .edition-num { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; line-height: 1; color: var(--dark-gold); display: block; margin-bottom: 10px; font-weight: 400; }
+  .edition-num sup { font-size: 1.1rem; }
+  .edition-point h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 500; margin: 0 0 8px; color: var(--soft-black); letter-spacing: 0.01em; }
+  .edition-point p { font-size: 0.88rem; line-height: 1.7; color: var(--warm-gray); margin: 0; }
+  @media (max-width: 820px) {
+    .edition-story { padding: 32px 20px; }
+    .edition-points { grid-template-columns: 1fr; gap: 26px; }
+    .edition-num { font-size: 2.2rem; }
+  }
 </style>
 <script type="application/ld+json">
 {
@@ -399,7 +415,30 @@
 <div class="page-header">
   <h1>Mary Kilpatrick</h1>
   <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--warm-gray);margin-top:-8px;margin-bottom:20px;letter-spacing:0.04em;">Limited Edition Prints</h2>
-  <p>Every painting is available as a numbered limited edition print at the original painting's dimensions — a maximum of 25 worldwide, ever. When an edition sells out, it closes permanently. Each print is made to last, ships with a signed and numbered Certificate of Authenticity, and is delivered nationwide.</p>
+  <p>Each painting opens as a <strong>First Edition of just 25</strong> — like the first printing of a book, the earliest and most sought-after run. Every print is made at the original painting's dimensions, signed and numbered by hand, and ships with a matching Certificate of Authenticity. When the 25 are gone, the First Edition is closed for good; your number is yours alone.</p>
+</div>
+
+<div class="edition-story">
+  <div class="edition-story-inner">
+    <div class="edition-badge">First Edition · 25 only</div>
+    <div class="edition-points">
+      <div class="edition-point">
+        <span class="edition-num">25</span>
+        <h3>The whole first run</h3>
+        <p>Not 25 per size or per shop — 25 in the world. Once numbered 25 of 25 ships, the First Edition is closed permanently.</p>
+      </div>
+      <div class="edition-point">
+        <span class="edition-num">№</span>
+        <h3>Your number is yours</h3>
+        <p>Each print is hand-signed and numbered — 1/25, 2/25, and so on. No two collectors hold the same impression, and the number is recorded on your Certificate of Authenticity.</p>
+      </div>
+      <div class="edition-point">
+        <span class="edition-num">1<sup>st</sup></span>
+        <h3>Earliest is most sought-after</h3>
+        <p>As with a book, the first printing carries the most weight. Later editions, if they ever open, are numbered and sold separately — a First Edition impression can never be reprinted.</p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="shop-container">
