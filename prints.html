@@ -1107,7 +1107,7 @@ function renderFrameStyles() {
   const frNote = document.getElementById('frame-rec-note');
   if (frNote) { frNote.textContent = fr ? '★ ' + fr.why : ''; frNote.style.display = fr ? 'block' : 'none'; }
   const recFrameId = fr && fr.frame ? fr.frame.id : null;
-  document.getElementById('frame-style-options').innerHTML = list.map(f => `
+  document.getElementById('frame-style-options').innerHTML = recFirst(list, recFrameId).map(f => `
     <button class="frame-btn${f.id === recFrameId ? ' recommended-mat' : ''}${framing.frame && framing.frame.id === f.id ? ' selected' : ''}" id="frame-${f.id}" onclick="selectFrameStyle('${f.id}')">
       <div class="frame-swatch" style="background:${f.color} center/cover no-repeat;background-image:url('${f.img}');"></div>
       <strong style="display:block;font-size:0.82rem;">${f.name}</strong>
@@ -1130,7 +1130,7 @@ function renderMatColors() {
     if (n) { n.textContent = '★ ' + rc.why; n.style.display = 'block'; }
   }
   const recId = selected.painting ? (MAT_RECOMMENDATIONS[selected.painting.title] || 'off-white') : 'off-white';
-  document.getElementById('mat-color-options').innerHTML = MAT_COLORS.map(m => `
+  document.getElementById('mat-color-options').innerHTML = recFirst(MAT_COLORS, recId).map(m => `
     <button class="mat-btn${m.id === recId ? ' recommended-mat' : ''}" id="mat-color-${m.id}" onclick="selectMatColor('${m.id}')">
       <div class="mat-swatch" style="background:${m.color};${m.id === 'smooth-black' ? 'border:2px solid #fff;' : ''}"></div>
       ${m.id === recId ? '<span class="mat-recommended-label">★ Recommended</span>' : ''}
@@ -1394,7 +1394,7 @@ function renderHardwareOptions() {
   const rec = r ? r.id : null;
   const note = document.getElementById('hardware-rec-note');
   if (note) { note.textContent = r ? '★ ' + r.why : ''; note.style.display = r ? 'block' : 'none'; }
-  el.innerHTML = HARDWARE_OPTIONS.map(h => `
+  el.innerHTML = recFirst(HARDWARE_OPTIONS, rec).map(h => `
     <button class="option-btn${h.id === rec ? ' recommended-paper' : ''}${framing.hardware === h.id ? ' selected' : ''}"
             id="hw-${h.id}" onclick="selectHardware(${h.id})">
       ${h.name}
@@ -1604,9 +1604,18 @@ const PAPER_TOOLTIPS = {
   'cold_press': '<strong>Cold Press</strong>340 gsm · heavily textured matte · 100% cotton rag<br>Pronounced texture that replicates traditional watercolor and printmaking paper. Adds its own painterly character to the print.',
 };
 
+// Puts the recommended option first in a list without selecting it. The
+// customer still chooses; the recommendation just leads the row.
+function recFirst(arr, recId, key='id') {
+  if (!recId) return arr;
+  const rec = arr.filter(x => x[key] === recId);
+  const rest = arr.filter(x => x[key] !== recId);
+  return [...rec, ...rest];
+}
+
 function renderPaperOptions() {
   const _recPaper = selected.painting ? selected.painting.recommendedPaper : null;
-  document.getElementById('paper-options').innerHTML = PAPER_TYPES.map(p => `
+  document.getElementById('paper-options').innerHTML = recFirst(PAPER_TYPES, _recPaper).map(p => `
     <div class="paper-btn-wrap" id="wrap-${p.id}">
       <button class="option-btn${p.id === _recPaper ? ' recommended-paper' : ''}" id="paper-${p.id}" onclick="selectPaper('${p.id}')">
         ${p.name}
