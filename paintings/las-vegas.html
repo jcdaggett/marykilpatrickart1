@@ -86,11 +86,6 @@
 .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .nav-hamburger.open span:nth-child(2){opacity:0;}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.nav-mobile{display:none;position:fixed;top:64px;left:0;right:0;background:#FDFBF7;border-bottom:1px solid rgba(156,124,56,0.2);z-index:999;padding:24px 24px 32px;flex-direction:column;gap:0;}
-.nav-mobile.open{display:flex;}
-.nav-mobile a{display:block;padding:14px 0;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.15em;color:#1A1814;text-decoration:none;border-bottom:1px solid rgba(156,124,56,0.2);}
-.nav-mobile a:last-child{border-bottom:none;}
-.nav-mobile .nav-mobile-cta{color:#9C7C38;margin-top:16px;border:1px solid #9C7C38;text-align:center;padding:14px;border-bottom:1px solid #9C7C38!important;}
 @media(max-width:900px){}
 
   footer .footer-cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;max-width:1200px;margin:0 auto;text-align:left;padding-bottom:26px;}
@@ -103,34 +98,26 @@
   footer .footer-base a:hover{color:#F2EDE4;}
   @media(max-width:820px){footer .footer-cols{grid-template-columns:1fr 1fr;gap:26px;}footer .footer-base{flex-direction:column;align-items:flex-start;}}
 
-  /* Mobile overflow guards — no element may force horizontal scroll on a phone. */
-  @media(max-width:768px){
-    html, body { overflow-x: hidden; max-width: 100%; }
-    .section-header h2 { white-space: normal !important; letter-spacing: 0.18em !important; }
-    a[href^="mailto:"], a[href^="tel:"], .footer-col a { overflow-wrap: anywhere; word-break: break-word; }
-    * { max-width: 100%; }
-    img, table, pre { max-width: 100%; height: auto; }
+
   }
 
-  /* Mobile nav: keep the logo, let the links scroll horizontally rather than
-     overflow the screen or rely on a hamburger that has no handler. */
   @media(max-width:820px){
-    nav{padding:0 16px !important; gap:10px;}
-    .nav-hamburger{display:none !important;}
-    .nav-links{
-      display:flex !important; gap:14px; list-style:none; margin:0; padding:0;
-      overflow-x:auto; -webkit-overflow-scrolling:touch; flex-wrap:nowrap;
-      scrollbar-width:none; align-items:center;
-    }
-    .nav-links::-webkit-scrollbar{display:none;}
-    .nav-links li{display:flex !important; flex:0 0 auto;}
-    .nav-links a{font-size:0.72rem; white-space:nowrap;}
-    .nav-links .nav-cta{padding:6px 12px;}
-    .nav-logo{height:40px;}
-  }
-  @media(max-width:480px){
-    .nav-links a{font-size:0.68rem;}
-    .nav-logo{height:34px;}
+    nav{padding:0 16px !important;}
+    .nav-links{display:none !important;}
+    .nav-hamburger{display:flex !important; flex-direction:column; gap:5px; cursor:pointer; padding:8px; background:none; border:none; z-index:1201;}
+    .nav-hamburger span{display:block; width:24px; height:2px; background:#1A1A1A; transition:transform 0.25s, opacity 0.2s;}
+    body.mnav-open .nav-hamburger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    body.mnav-open .nav-hamburger span:nth-child(2){opacity:0;}
+    body.mnav-open .nav-hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .nav-logo{height:38px;}
+    #mnav-panel{position:fixed; top:0; right:0; height:100vh; width:min(78vw,300px); background:#FDFBF7; box-shadow:-8px 0 28px rgba(0,0,0,0.14); transform:translateX(100%); transition:transform 0.28s ease; z-index:1200; display:flex; flex-direction:column; padding:84px 30px 30px; gap:2px; overflow-y:auto;}
+    body.mnav-open #mnav-panel{transform:translateX(0);}
+    #mnav-panel a{font-family:'Cormorant Garamond',serif; font-size:1.35rem; color:#1A1A1A; text-decoration:none; padding:12px 0; border-bottom:1px solid rgba(184,176,168,0.3);}
+    #mnav-panel a.mnav-cta{margin-top:18px; border:none; background:#1A1A1A; color:#fff; text-align:center; border-radius:2px; font-family:'Karla',sans-serif; font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase; padding:14px;}
+    #mnav-panel a.mnav-phone{font-family:'Karla',sans-serif; font-size:0.95rem; color:#7A6029; border:none; margin-top:4px;}
+    #mnav-ovl{position:fixed; inset:0; background:rgba(0,0,0,0.35); opacity:0; pointer-events:none; transition:opacity 0.28s; z-index:1199;}
+    body.mnav-open #mnav-ovl{opacity:1; pointer-events:auto;}
+    html, body { overflow-x: hidden; }
   }
 </style>
 <script type="application/ld+json">
@@ -176,17 +163,19 @@
     <span></span><span></span><span></span>
   </button>
 </nav>
+<div id="mnav-ovl" onclick="toggleMobileNav()"></div>
+<div id="mnav-panel" role="dialog" aria-label="Menu">
+  <a href="../index.html">Home</a>
+  <a href="../work.html">Work</a>
+  <a href="../prints.html">Prints</a>
+  <a href="../biography.html">Biography</a>
+  <a href="../buy-original.html">Acquire an Original</a>
+  <a href="tel:+14586663614" class="mnav-phone">(458) 666-3614</a>
+  <a href="../prints.html" class="mnav-cta">Buy Prints</a>
+</div>
 
 <!-- MOBILE NAV -->
-<div class="nav-mobile" id="nav-mobile">
-  <a href="../index.html#hero">About</a>
-  <a href="../index.html#gallery">Works</a>
-  <a href="../buy-original.html">Acquire an Original</a>
-  <a href="../prints.html">Buy Prints</a>
-  <a href="../index.html#contact">Inquire</a>
-  <a href="tel:+14586663614">(458) 666-3614</a>
-  <a href="../prints.html" class="nav-mobile-cta">Buy Prints</a>
-</div>
+
 
 <div class="page">
   <div class="breadcrumb">
@@ -297,20 +286,15 @@ document.addEventListener('click',function(e){
     document.querySelectorAll('.nav-dropdown-menu').forEach(function(m){m.style.display='';});
 });
 
-function toggleMobileNav() {
-  const menu = document.getElementById('nav-mobile');
-  const btn = document.getElementById('nav-hamburger');
-  menu.classList.toggle('open');
-  btn.classList.toggle('open');
-}
 document.addEventListener('click', e => {
-  if (!e.target.closest('nav') && !e.target.closest('.nav-mobile')) {
-    const m = document.getElementById('nav-mobile');
-    const b = document.getElementById('nav-hamburger');
-    if(m) m.classList.remove('open');
-    if(b) b.classList.remove('open');
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown-menu').forEach(m => m.style.display = '');
   }
 });
+</script>
+<script>
+function toggleMobileNav(){document.body.classList.toggle('mnav-open');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.body.classList.remove('mnav-open');});
 </script>
 </body>
 </html>
