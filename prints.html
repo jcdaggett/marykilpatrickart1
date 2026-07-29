@@ -399,7 +399,7 @@
 <div class="page-header">
   <h1>Mary Kilpatrick</h1>
   <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--warm-gray);margin-top:-8px;margin-bottom:20px;letter-spacing:0.04em;">Limited Edition Prints</h2>
-  <p>Every painting is available as a numbered limited edition print at the original painting's dimensions — a maximum of 25. When an edition sells out, it closes permanently. Each print is made to last, ships with a signed and numbered Certificate of Authenticity, and is delivered nationwide.</p>
+  <p>Every painting is available as a numbered, first edition limited print at the original painting's dimensions. When an edition sells out, it closes permanently. Each print is made to last, ships with a signed and numbered Certificate of Authenticity, and is delivered nationwide.</p>
 </div>
 
 <div class="shop-container">
@@ -889,7 +889,7 @@ function getSold(title) {
 
 function getEditionSize(title) {
   const p = PAINTINGS.find(x => x.title === title);
-  return p ? p.editionSize : 100;
+  return p ? p.editionSize : 25;
 }
 function isSoldOut(title) {
   return getSold(title) >= getEditionSize(title);
@@ -898,9 +898,7 @@ function isSoldOut(title) {
 function renderPaintings() {
   document.getElementById('paintings-grid').innerHTML = PAINTINGS.map((p,i) => {
     const sold = getSold(p.title);
-    const remaining = Math.max(0, (p.editionSize || 25) - sold);
     const soldOut = sold >= (p.editionSize || 25);
-    const pct = Math.min(100, (sold / (p.editionSize || 25)) * 100);
     return `
       <div class="painting-card${soldOut ? ' sold-out-card' : ''}" id="pcard-${i}" onclick="${soldOut ? '' : `selectPainting(${i})`}" style="${soldOut ? 'cursor:default;' : ''}">
         <div style="position:relative;">
@@ -910,8 +908,7 @@ function renderPaintings() {
         <div class="painting-card-info">
           <h3>${p.title}</h3>
           ${(p.year || p.medium) ? `<p style="font-size:0.72rem;color:var(--warm-gray);font-weight:300;font-style:italic;margin:0.15rem 0 0.35rem;">${[p.year, p.medium].filter(Boolean).join(' · ')}</p>` : ''}
-          <p class="card-price">${soldOut ? `First Edition Sold Out` : `${remaining} remaining`}</p>
-          <div class="inventory-bar"><div class="inventory-fill" style="width:${pct}%"></div></div>
+          <p class="card-price">${soldOut ? `First Edition Sold Out` : `First Edition print`}</p>
         </div>
       </div>
     `;
