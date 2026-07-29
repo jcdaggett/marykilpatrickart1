@@ -493,7 +493,11 @@
         Your order is processed securely through Stripe. Production takes 3–5 business days. Your print ships nationwide via insured carrier with tracking. A signed, numbered Certificate of Authenticity is included with every order.
       </div>
 
-      <button class="btn-primary" id="submit-btn" onclick="submitOrder()">Place Order</button>
+      <label class="terms-agree" style="display:flex;align-items:flex-start;gap:10px;margin:20px 0 16px;font-size:0.85rem;color:var(--warm-gray);line-height:1.6;cursor:pointer;">
+        <input type="checkbox" id="agree-terms" onchange="var b=document.getElementById('submit-btn');b.disabled=!this.checked;b.style.opacity=this.checked?'1':'0.5';b.style.cursor=this.checked?'pointer':'not-allowed';" style="margin-top:3px;flex-shrink:0;width:16px;height:16px;cursor:pointer;">
+        <span>I have read and agree to the <a href="/terms.html" target="_blank" style="color:var(--dark-gold);text-decoration:underline;">Terms &amp; Conditions</a> and <a href="/privacy.html" target="_blank" style="color:var(--dark-gold);text-decoration:underline;">Privacy Policy</a></span>
+      </label>
+      <button class="btn-primary" id="submit-btn" onclick="submitOrder()" disabled style="opacity:0.5;cursor:not-allowed;">Place Order</button>
     </div>
   </div>
 
@@ -1273,6 +1277,10 @@ function showCheckout() {
     document.getElementById('card-errors').textContent = e.message;
     return;
   }
+  var agree = document.getElementById('agree-terms');
+  var sbtn = document.getElementById('submit-btn');
+  if (agree) agree.checked = false;
+  if (sbtn) { sbtn.disabled = true; sbtn.style.opacity = '0.5'; sbtn.style.cursor = 'not-allowed'; }
   document.getElementById('checkout-section').classList.add('active');
   document.getElementById('checkout-section').scrollIntoView({ behavior:'smooth', block:'start' });
 
@@ -1288,6 +1296,12 @@ function showCheckout() {
 }
 
 async function submitOrder() {
+  // Require agreement to Terms & Privacy before charging
+  var agree = document.getElementById('agree-terms');
+  if (!agree || !agree.checked) {
+    document.getElementById('card-errors').textContent = 'Please agree to the Terms & Conditions and Privacy Policy to continue.';
+    return;
+  }
   // Ensure Stripe is initialized
   try { initStripe(); } catch(e) {
     document.getElementById('card-errors').textContent = e.message;
