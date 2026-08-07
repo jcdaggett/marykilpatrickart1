@@ -590,7 +590,7 @@ const PAINTINGS = [
   { title:'Rape', file:'mary-kilpatrick-rape-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-rape-figurative-painting.jpg', dims:'24 × 18 in', originalPrice:4000, editionSize:100, recommendedPaper:'somerset_velvet' },
   { title:'Resting', file:'mary-kilpatrick-resting-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-resting-figurative-painting.jpg', dims:'18 × 14 in', originalPrice:4000, editionSize:100, recommendedPaper:'somerset_velvet' },
   { title:'Rising Spirit', file:'mary-kilpatrick-rising-spirit-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-rising-spirit-figurative-painting.jpg', dims:'10 × 8 in', originalPrice:4000, editionSize:100, recommendedPaper:'somerset_velvet' },
-  { title:'Slavery', file:'mary-kilpatrick-slavery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-slavery-figurative-painting.jpg', dims:'12 × 12 in', originalPrice:4500, editionSize:100, recommendedPaper:'somerset_velvet' },
+  { title:'Slavery', file:'mary-kilpatrick-slavery-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-slavery-figurative-painting.jpg', dims:'12 × 12 in', originalPrice:4500, editionSize:100, recommendedPaper:'somerset_velvet', printAvailable:false },
   { title:'Snowboarder', file:'mary-kilpatrick-snowboarder-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-snowboarder-figurative-painting.jpg', dims:'11½ × 12 in', originalPrice:2500, editionSize:100, recommendedPaper:'somerset_velvet' },
   { title:'Sweet Baby Sue', file:'mary-kilpatrick-sweet-baby-sue-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-sweet-baby-sue-figurative-painting.jpg', dims:'9 × 8 in', originalPrice:1500, editionSize:100, recommendedPaper:'somerset_velvet' },
   { title:'Takes All Kinds', file:'mary-kilpatrick-takes-all-kinds-figurative-painting.jpg', thumb:'thumbs/mary-kilpatrick-takes-all-kinds-figurative-painting.jpg', dims:'24 × 12 in', originalPrice:3500, editionSize:100, recommendedPaper:'somerset_velvet' },
@@ -711,17 +711,23 @@ function renderPaintings() {
   document.getElementById('paintings-grid').innerHTML = PAINTINGS.map((p,i) => {
     const sold = getSold(p.title);
     const remaining = Math.max(0, (p.editionSize || 100) - sold);
-    const soldOut = sold >= (p.editionSize || 100);
+    const notOffered = p.printAvailable === false;
+    const soldOut = !notOffered && sold >= (p.editionSize || 100);
+    const inactive = notOffered || soldOut;
     const pct = Math.min(100, (sold / (p.editionSize || 100)) * 100);
+    const overlayLabel = notOffered ? 'Not Available as a Print' : 'Edition Sold Out';
+    const priceLabel = notOffered ? 'Original artwork — not offered as a print'
+                     : soldOut ? 'First Edition Sold Out'
+                     : 'First edition prints available';
     return `
-      <div class="painting-card${soldOut ? ' sold-out-card' : ''}" id="pcard-${i}" onclick="${soldOut ? '' : `selectPainting(${i})`}" style="${soldOut ? 'cursor:default;' : ''}">
+      <div class="painting-card${inactive ? ' sold-out-card' : ''}" id="pcard-${i}" onclick="${inactive ? '' : `selectPainting(${i})`}" style="${inactive ? 'cursor:default;' : ''}">
         <div style="position:relative;">
-          <img src="${p.thumb}" alt="${p.title}" loading="lazy" style="${soldOut ? 'opacity:0.4;filter:grayscale(30%);' : ''}">
-          ${soldOut ? '<div class="sold-out-overlay"><span class="sold-out-badge">Edition Sold Out</span></div>' : ''}
+          <img src="${p.thumb}" alt="${p.title}" loading="lazy" style="${inactive ? 'opacity:0.4;filter:grayscale(30%);' : ''}">
+          ${inactive ? `<div class="sold-out-overlay"><span class="sold-out-badge">${overlayLabel}</span></div>` : ''}
         </div>
         <div class="painting-card-info">
           <h3>${p.title}</h3>
-          <p class="card-price">${soldOut ? `First Edition Sold Out` : `First edition prints available`}</p>
+          <p class="card-price">${priceLabel}</p>
         </div>
       </div>
     `;
@@ -933,6 +939,7 @@ function getHangingHardware(w, h) {
 
 
 function selectPainting(i) {
+  if (PAINTINGS[i].printAvailable === false) return;
   if (isSoldOut(PAINTINGS[i].title)) return;
   document.querySelectorAll('.painting-card').forEach(c => c.classList.remove('selected'));
   document.getElementById(`pcard-${i}`).classList.add('selected');
@@ -1587,6 +1594,7 @@ function checkHashSelection() {
   const hash = decodeURIComponent(window.location.hash.replace('#',''));
   if (!hash) return;
   const idx = PAINTINGS.findIndex(p => p.title === hash);
+  if (idx >= 0 && PAINTINGS[idx].printAvailable === false) return;
   if (idx >= 0) {
     loadInventory().then(() => {
       renderPaintings();

@@ -380,9 +380,9 @@ footer{border-top:1px solid var(--rule);padding:32px 64px;display:flex;justify-c
         <div class="acq-card-info"><p class="acq-card-title">Rising Spirit</p><p class="acq-card-price">$4,000</p></div>
       </div>
 
-      <div class="acq-painting-card" onclick="selectPainting('Slavery','mary-kilpatrick-slavery-figurative-painting.jpg')">
-        <img src="thumbs/mary-kilpatrick-slavery-figurative-painting.jpg" alt="Slavery">
-        <div class="acq-card-info"><p class="acq-card-title">Slavery</p><p class="acq-card-price">$4,500</p></div>
+      <div class="acq-painting-card acq-sold" style="cursor:default;opacity:0.6;">
+        <img src="thumbs/mary-kilpatrick-slavery-figurative-painting.jpg" alt="Slavery" style="filter:grayscale(30%);">
+        <div class="acq-card-info"><p class="acq-card-title">Slavery</p><p class="acq-card-price">Sold</p></div>
       </div>
 
       <div class="acq-painting-card" onclick="selectPainting('Snowboarder','mary-kilpatrick-snowboarder-figurative-painting.jpg')">
@@ -648,9 +648,10 @@ function selectPainting(title, file) {
 }
 
 // Pre-fill painting name from URL param and show context
+const SOLD_ORIGINALS = ['Slavery']; // sold — cannot enter the inquiry flow
 const urlParams = new URLSearchParams(window.location.search);
 const paintingParam = urlParams.get('painting');
-if(paintingParam) {
+if(paintingParam && !SOLD_ORIGINALS.includes(paintingParam)) {
   const field = document.getElementById('acq-painting');
   if(field) field.value = paintingParam;
   
