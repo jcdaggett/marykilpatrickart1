@@ -1442,11 +1442,35 @@ async function joinWaitlist() {
 }
 
 
-let frScale = 1, frDragging = false, frLastX = 0, frLastY = 0, frTransX = 0, frTransY = 0, frLastDist = 0;
+let frScale = 1, frTransX = 0, frTransY = 0;
+let frDragging = false, frMoved = false, frLastX = 0, frLastY = 0;
+let frPinch = false, frLastDist = 0, frPinchMidX = 0, frPinchMidY = 0;
+
+function frApply() {
+  const img = document.getElementById('fullres-img');
+  // translate() BEFORE scale(): translate stays in screen pixels, unaffected by scale.
+  img.style.transform = `translate(${frTransX}px, ${frTransY}px) scale(${frScale})`;
+  img.style.cursor = frScale > 1 ? (frDragging ? 'grabbing' : 'grab') : 'zoom-in';
+}
+
+// Keep the panned image within its own bounds so it can't be dragged into empty space.
+function frClamp() {
+  const img = document.getElementById('fullres-img');
+  const r = img.getBoundingClientRect(); // already reflects current transform
+  // The rendered (scaled) size divided by scale gives the layout size.
+  const scaledW = r.width, scaledH = r.height;
+  const vw = window.innerWidth, vh = window.innerHeight;
+  const maxX = Math.max(0, (scaledW - vw) / 2);
+  const maxY = Math.max(0, (scaledH - vh) / 2);
+  frTransX = Math.max(-maxX, Math.min(maxX, frTransX));
+  frTransY = Math.max(-maxY, Math.min(maxY, frTransY));
+}
+
+function frReset() { frScale = 1; frTransX = 0; frTransY = 0; }
 
 function openFullRes() {
   if (!selected.painting) return;
-  frScale = 1; frTransX = 0; frTransY = 0;
+  frReset();
   const img = document.getElementById('fullres-img');
   img.style.transform = '';
   img.style.cursor = 'zoom-in';
@@ -1460,67 +1484,100 @@ function closeFullRes() {
   document.getElementById('fullres-lightbox').style.display = 'none';
   document.getElementById('fullres-img').src = '';
   document.body.style.overflow = '';
-  frScale = 1; frTransX = 0; frTransY = 0;
+  frReset();
 }
 
-// Scroll zoom
-document.getElementById('fullres-lightbox').addEventListener('wheel', function(e) {
+const frLb = document.getElementById('fullres-lightbox');
+const frImg = document.getElementById('fullres-img');
+
+// Backdrop click closes; clicks on the image itself do not.
+frImg.addEventListener('click', e => e.stopPropagation());
+
+// ---- Wheel zoom (desktop), anchored on the cursor ----
+frLb.addEventListener('wheel', function(e) {
   e.preventDefault();
-  const img = document.getElementById('fullres-img');
-  frScale = Math.max(1, Math.min(5, frScale - e.deltaY * 0.002));
+  const prev = frScale;
+  frScale = Math.max(1, Math.min(5, frScale - e.deltaY * 0.0025));
   if (frScale === 1) { frTransX = 0; frTransY = 0; }
-  img.style.transform = `scale(${frScale}) translate(${frTransX}px, ${frTransY}px)`;
-  img.style.cursor = frScale > 1 ? 'grab' : 'zoom-in';
+  else {
+    // Zoom toward the pointer: keep the point under the cursor stationary.
+    const rect = frImg.getBoundingClientRect();
+    const cx = e.clientX - (rect.left + rect.width / 2);
+    const cy = e.clientY - (rect.top + rect.height / 2);
+    const factor = frScale / prev;
+    frTransX -= cx * (factor - 1) / prev;
+    frTransY -= cy * (factor - 1) / prev;
+    frClamp();
+  }
+  frApply();
 }, { passive: false });
 
-// Click to toggle zoom
-document.getElementById('fullres-img').addEventListener('click', function(e) {
+// ---- Double-click toggles zoom (replaces the drag-conflicting single click) ----
+frImg.addEventListener('dblclick', function(e) {
   e.stopPropagation();
-  if (frScale > 1) {
-    frScale = 1; frTransX = 0; frTransY = 0;
-    this.style.transform = '';
-    this.style.cursor = 'zoom-in';
-  } else {
+  if (frScale > 1) { frReset(); }
+  else {
     frScale = 2.5;
-    this.style.transform = `scale(${frScale})`;
-    this.style.cursor = 'grab';
+    const rect = frImg.getBoundingClientRect();
+    const cx = e.clientX - (rect.left + rect.width / 2);
+    const cy = e.clientY - (rect.top + rect.height / 2);
+    frTransX = -cx; frTransY = -cy;
+    frClamp();
   }
+  frApply();
 });
 
-// Drag to pan
-const frImg = document.getElementById('fullres-img');
+// ---- Mouse drag to pan ----
 frImg.addEventListener('mousedown', function(e) {
   if (frScale <= 1) return;
-  frDragging = true; frLastX = e.clientX; frLastY = e.clientY;
-  this.style.cursor = 'grabbing'; e.preventDefault();
+  frDragging = true; frMoved = false;
+  frLastX = e.clientX; frLastY = e.clientY;
+  e.preventDefault(); frApply();
 });
 document.addEventListener('mousemove', function(e) {
   if (!frDragging) return;
-  const img = document.getElementById('fullres-img');
-  frTransX += (e.clientX - frLastX) / frScale;
-  frTransY += (e.clientY - frLastY) / frScale;
+  frTransX += (e.clientX - frLastX);
+  frTransY += (e.clientY - frLastY);
   frLastX = e.clientX; frLastY = e.clientY;
-  img.style.transform = `scale(${frScale}) translate(${frTransX}px, ${frTransY}px)`;
+  frMoved = true;
+  frClamp(); frApply();
 });
 document.addEventListener('mouseup', function() {
-  if (frDragging) { frDragging = false; if (frScale > 1) document.getElementById('fullres-img').style.cursor = 'grab'; }
+  if (frDragging) { frDragging = false; frApply(); }
 });
 
-// Pinch zoom mobile
-document.getElementById('fullres-lightbox').addEventListener('touchstart', function(e) {
-  if (e.touches.length === 2) frLastDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
-}, { passive: true });
-document.getElementById('fullres-lightbox').addEventListener('touchmove', function(e) {
+// ---- Touch: one finger pans, two fingers pinch-zoom ----
+frLb.addEventListener('touchstart', function(e) {
   if (e.touches.length === 2) {
+    frPinch = true;
+    frLastDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+  } else if (e.touches.length === 1 && frScale > 1) {
+    frDragging = true;
+    frLastX = e.touches[0].clientX; frLastY = e.touches[0].clientY;
+  }
+}, { passive: true });
+
+frLb.addEventListener('touchmove', function(e) {
+  if (frPinch && e.touches.length === 2) {
     e.preventDefault();
     const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
     frScale = Math.max(1, Math.min(5, frScale * (dist / frLastDist)));
     frLastDist = dist;
-    const img = document.getElementById('fullres-img');
-    if (frScale === 1) { frTransX = 0; frTransY = 0; }
-    img.style.transform = `scale(${frScale}) translate(${frTransX}px, ${frTransY}px)`;
+    if (frScale === 1) { frTransX = 0; frTransY = 0; } else { frClamp(); }
+    frApply();
+  } else if (frDragging && e.touches.length === 1 && frScale > 1) {
+    e.preventDefault();
+    frTransX += (e.touches[0].clientX - frLastX);
+    frTransY += (e.touches[0].clientY - frLastY);
+    frLastX = e.touches[0].clientX; frLastY = e.touches[0].clientY;
+    frClamp(); frApply();
   }
 }, { passive: false });
+
+frLb.addEventListener('touchend', function(e) {
+  if (e.touches.length === 0) { frPinch = false; frDragging = false; }
+  else if (e.touches.length === 1) { frPinch = false; frLastX = e.touches[0].clientX; frLastY = e.touches[0].clientY; }
+}, { passive: true });
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFullRes(); });
 
