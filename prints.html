@@ -840,10 +840,17 @@ function getSizeTiers(painting) {
   });
 }
 
+// PRICING_ENABLED: set to false to pull all pricing off the site (checkout
+// disables itself and every price display falls back to "Contact us" via
+// existing logic below) without touching any of the calculation/Luma/Stripe
+// code. Flip back to true + redeploy to restore pricing exactly as built.
+const PRICING_ENABLED = false;
+
 // Pricing: Lumaprints cost + $60 profit, rounded to nearest $5
 // Print retail = 12.5% of the original painting price, rounded to $5.
 // Size-independent (per painting, not per print size). No Luma call needed.
 function printPrice() {
+  if (!PRICING_ENABLED) return null;
   const op = selected.painting && selected.painting.originalPrice;
   if (!op) return null;                        // no original price on file -> not purchasable
   const base = Math.round((op * 0.125) / 5) * 5;

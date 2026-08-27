@@ -82,7 +82,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);bor
 .gallery-item.sold img{filter:grayscale(30%);opacity:0.6;}
 .gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,24,20,0.75) 0%,rgba(26,24,20,0.1) 40%,transparent 65%);opacity:1;transition:opacity 0.4s;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;}
 .gallery-overlay h3{font-family:"EB Garamond",serif;font-size:1.1rem;font-weight:400;color:#fff;margin-bottom:3px;}
-.gallery-overlay .ov-price{font-size:0.75rem;color:rgba(255,255,255,0.65);letter-spacing:0.05em;margin-bottom:12px;opacity:0;transition:opacity 0.3s;}
+.gallery-overlay .ov-price{display:none;font-size:0.75rem;color:rgba(255,255,255,0.65);letter-spacing:0.05em;margin-bottom:12px;opacity:0;transition:opacity 0.3s;} /* Pricing removed site-wide (Howard) — remove display:none to restore, prices untouched below */
 .gallery-item:hover .gallery-overlay .ov-price{opacity:1;}
 .gallery-actions{display:flex;gap:8px;opacity:0;transition:opacity 0.3s;}
 .gallery-item:hover .gallery-actions{opacity:1;}
@@ -512,7 +512,7 @@ footer a:hover{color:var(--gold);}
     <div data-url="paintings/two-twisted-sisters.html" class="gallery-item sold" onclick="openLightbox('mary-kilpatrick-two-twisted-sisters-figurative-painting.jpg','Two Twisted Sisters')">
       <img src="thumbs/mary-kilpatrick-two-twisted-sisters-figurative-painting.jpg" alt="Two Twisted Sisters - original painting by Mary Kilpatrick (sold)" loading="lazy">
       <div class="sold-badge">Sold</div>
-      <div class="gallery-overlay"><h3>Two Twisted Sisters</h3><p class="ov-price">Sold</p><div class="gallery-actions"></div></div>
+      <div class="gallery-overlay"><h3>Two Twisted Sisters</h3><p class="ov-price" style="display:block !important;">Sold</p><div class="gallery-actions"></div></div>
     </div>
 
     <div class="gallery-item" data-url="paintings/breaking-away.html" onclick="openLightbox('mary-kilpatrick-breaking-away-figurative-painting.jpg','Breaking Away')">
@@ -533,7 +533,7 @@ footer a:hover{color:var(--gold);}
     <div data-url="paintings/blue-lady.html" class="gallery-item sold" onclick="openLightbox('mary-kilpatrick-blue-lady-figurative-painting.jpg','Blue Lady')">
       <img src="thumbs/mary-kilpatrick-blue-lady-figurative-painting.jpg" alt="Blue Lady - original painting by Mary Kilpatrick (sold)" loading="lazy">
       <div class="sold-badge">Sold</div>
-      <div class="gallery-overlay"><h3>Blue Lady</h3><p class="ov-price">Sold</p><div class="gallery-actions"></div></div>
+      <div class="gallery-overlay"><h3>Blue Lady</h3><p class="ov-price" style="display:block !important;">Sold</p><div class="gallery-actions"></div></div>
     </div>
 
     <div class="gallery-item" data-url="paintings/cat-lady.html" onclick="openLightbox('mary-kilpatrick-cat-lady-figurative-painting.jpg','Cat Lady')">
