@@ -263,9 +263,9 @@
   },
   "offers": {
     "@type": "AggregateOffer",
-    "priceCurrency": "USD",
-    "lowPrice": "65",
-    "highPrice": "250",
+    
+    
+    
     "offerCount": "21",
     "availability": "https://schema.org/InStock"
   },
@@ -445,69 +445,40 @@
       <div class="waitlist-msg" id="waitlist-msg"></div>
     </div>
     <p style="font-size:0.78rem;color:var(--light-gray);text-align:center;margin-bottom:8px;display:none;" id="stripe-note">🔒 Secure checkout powered by Stripe</p>
-  <button class="btn-primary" id="checkout-btn" style="display:none;" onclick="showCheckout();document.getElementById('stripe-note').style.display='block'">Proceed to Checkout →</button>
+  <button class="btn-primary" id="checkout-btn" style="display:none;" onclick="showCheckout()">Request This Print →</button>
 
     <hr class="section-divider">
 
     <!-- Checkout -->
     <div class="checkout-section" id="checkout-section">
-      <p class="step-label">Step 3</p>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;margin-bottom:24px;font-weight:400;">Shipping &amp; Payment</h2>
+      <p class="step-label">Request</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;margin-bottom:8px;font-weight:400;">Request This Print</h2>
+      <p style="color:var(--warm-gray);font-size:0.95rem;margin-bottom:24px;line-height:1.6;">
+        Send us your selection and we'll follow up personally with pricing and next steps — typically within one business day.
+      </p>
+
+      <div id="inquiry-spec" style="background:var(--paper);padding:18px 22px;margin-bottom:24px;font-size:0.9rem;color:var(--warm-gray);line-height:1.7;"></div>
 
       <div class="form-grid">
         <div class="form-group"><label>First Name *</label><input type="text" id="firstName" placeholder="Jane"></div>
         <div class="form-group"><label>Last Name *</label><input type="text" id="lastName" placeholder="Smith"></div>
         <div class="form-group full"><label>Email *</label><input type="email" id="email" placeholder="jane@example.com"></div>
-        <div class="form-group full"><label>Address *</label><input type="text" id="address1" placeholder="123 Main St"></div>
-        <div class="form-group full"><label>Address Line 2</label><input type="text" id="address2" placeholder="Apt, Suite (optional)"></div>
-        <div class="form-group"><label>City *</label><input type="text" id="city" placeholder="New York"></div>
-        <div class="form-group"><label>State *</label><select id="state" style="width:100%;border:1px solid var(--light-gray);padding:11px 14px;font-family:'Karla',sans-serif;font-size:0.95rem;background:#fff;color:var(--soft-black);outline:none;">
-        <option value="">State *</option>
-        <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option>
-        <option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option>
-        <option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option>
-        <option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option>
-        <option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option>
-        <option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option>
-        <option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option>
-        <option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option>
-        <option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option>
-        <option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
-      </select></div>
-        <div class="form-group"><label>ZIP Code *</label><input type="text" id="zipCode" placeholder="10001"></div>
-        <div class="form-group"><label>Country</label>
-        <select id="country" style="width:100%;border:1px solid var(--light-gray);padding:11px 14px;font-family:'Karla',sans-serif;font-size:0.95rem;background:#fff;color:var(--soft-black);outline:none;">
-          <option value="US">United States</option>
-          <option value="CA">Canada</option>
-          <option value="GB">United Kingdom</option>
-          <option value="AU">Australia</option>
-          <option value="DE">Germany</option>
-          <option value="FR">France</option>
-          <option value="OTHER">Other — contact us</option>
-        </select>
-      </div>
-      <div class="form-group"><label>Phone</label><input type="tel" id="phone" placeholder="555-555-5555"></div>
+        <div class="form-group full"><label>Message (optional)</label><textarea id="inq-message" rows="3" placeholder="Anything you'd like us to know" style="width:100%;border:1px solid var(--light-gray);padding:11px 14px;font-family:'Karla',sans-serif;font-size:0.95rem;background:#fff;color:var(--soft-black);outline:none;resize:vertical;"></textarea></div>
       </div>
 
-      <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(184,176,168,0.3);">Card Details</h4>
-      <div id="card-element"></div>
-      <div id="card-errors"></div>
-
-      <div style="background:var(--paper);padding:16px 20px;margin-bottom:20px;font-size:0.82rem;color:var(--warm-gray);">
-        Your order is processed securely through Stripe. Production takes 3–5 business days. Your print ships worldwide via insured carrier with tracking. A signed, numbered Certificate of Authenticity is included with every order.
-      </div>
+      <div id="card-errors" style="color:#c0392b;font-size:0.85rem;margin:8px 0;"></div>
 
       <label class="terms-agree" style="display:flex;align-items:flex-start;gap:10px;margin:20px 0 16px;font-size:0.85rem;color:var(--warm-gray);line-height:1.6;cursor:pointer;">
         <input type="checkbox" id="agree-terms" onchange="var b=document.getElementById('submit-btn');b.disabled=!this.checked;b.style.opacity=this.checked?'1':'0.5';b.style.cursor=this.checked?'pointer':'not-allowed';" style="margin-top:3px;flex-shrink:0;width:16px;height:16px;cursor:pointer;">
         <span>I have read and agree to the <a href="/terms.html" target="_blank" style="color:var(--dark-gold);text-decoration:underline;">Terms &amp; Conditions</a> and <a href="/privacy.html" target="_blank" style="color:var(--dark-gold);text-decoration:underline;">Privacy Policy</a></span>
       </label>
-      <button class="btn-primary" id="submit-btn" onclick="submitOrder()" disabled style="opacity:0.5;cursor:not-allowed;">Place Order</button>
+      <button class="btn-primary" id="submit-btn" onclick="submitOrder()" disabled style="opacity:0.5;cursor:not-allowed;">Send Request</button>
     </div>
   </div>
 
   <div class="order-success" id="order-success">
-    <h2>Order Confirmed</h2>
-    <p>Your order is confirmed. Your print is being prepared and will ship within 3–5 business days.</p>
+    <h2>Request Received</h2>
+    <p>Thank you — your print request has been received. We'll follow up personally with pricing and next steps, typically within one business day.</p>
     <p>A confirmation has been sent to your email address. You'll receive a separate shipping notification with tracking once your order is on its way.</p>
     <p style="margin-top:28px;"><a href="index.html" style="color:var(--dark-gold);">← Return to Gallery</a></p>
   </div>
@@ -1239,193 +1210,110 @@ async function refreshFramedPrice() {
 }
 
 function updatePriceSummary() {
+  // Pricing hidden site-wide. The configurator still computes everything under the
+  // hood (selected.size.price, framing.charge) for the inquiry, but no prices are shown.
+  // The "Proceed" button appears once a valid print is built; it opens an inquiry.
   if (!selected.painting || !selected.paper || !selected.size) return;
 
-  const printPrice = selected.size.price;
-  const rowPrint = document.getElementById('row-print');
-  const rowFrame = document.getElementById('row-framing');
-  const totalEl  = document.getElementById('total-price-display');
-  const errEl    = document.getElementById('framing-error');
   const checkout = document.getElementById('checkout-btn');
+  const summary  = document.getElementById('price-summary');
+  const errEl    = document.getElementById('framing-error');
 
-  if (!printPrice) {
-    document.getElementById('price-summary').style.display = 'none';
-    checkout.style.display = 'none';
-    return;
-  }
-
-  rowPrint.style.display = framing.enabled ? 'flex' : 'none';
-  document.getElementById('print-price-display').textContent = `$${printPrice.toLocaleString()}`;
-
-  if (framing.enabled) {
-    rowFrame.style.display = 'flex';
-    document.getElementById('framing-label').textContent =
-      framing.frame ? `Framing — ${framing.frame.name}` : 'Framing';
-    document.getElementById('framing-price-display').textContent =
-      framing.pending ? 'calculating…' : (framing.frame ? `$${framing.charge.toLocaleString()}` : 'select a frame');
-  } else {
-    rowFrame.style.display = 'none';
-  }
+  // Never show the price rows
+  summary.style.display = 'none';
+  document.getElementById('stripe-note').style.display = 'none';
 
   if (errEl) {
     errEl.textContent = framing.error || '';
     errEl.style.display = framing.error ? 'block' : 'none';
   }
 
+  // Block the inquiry button only while framing price is still resolving or errored
   const blocked = framing.enabled && (framing.pending || !framing.frame || framing.error);
-  const total = totalPrice();
-  totalEl.textContent = framing.pending ? 'calculating…' : `$${total.toLocaleString()}`;
-
-  document.getElementById('price-summary').style.display = 'block';
   checkout.style.display = blocked ? 'none' : 'block';
-  document.getElementById('stripe-note').style.display = blocked ? 'none' : 'block';
 }
 
 function showCheckout() {
-  try {
-    initStripe();
-  } catch(e) {
-    document.getElementById('card-errors').textContent = e.message;
-    return;
+  // Build a human-readable spec of what the customer configured
+  const specEl = document.getElementById('inquiry-spec');
+  if (specEl && selected.painting) {
+    const rows = [];
+    rows.push(`<strong>${selected.painting.title}</strong>`);
+    if (selected.paper) rows.push(`Paper: ${selected.paper.name}`);
+    if (selected.size)  rows.push(`Size: ${selected.size.displayW}\u00d7${selected.size.displayH}\u2033 (${selected.size.label})`);
+    if (framing.enabled && framing.frame) {
+      let f = `Frame: ${framing.frame.name} ${framing.frame.profile}`;
+      if (framing.matSize !== 'none') f += ` \u00b7 Mat: ${framing.matSizeInches}\u2033 ${framing.matColor ? framing.matColor.name : ''}`;
+      f += ` \u00b7 Finish: ${framing.finish && framing.finish.id === 'matte' ? 'Matte' : 'Semi-Glossy'}`;
+      rows.push(f);
+    } else {
+      rows.push('Frame: None');
+    }
+    specEl.innerHTML = rows.join('<br>');
   }
-  var agree = document.getElementById('agree-terms');
-  var sbtn = document.getElementById('submit-btn');
-  if (agree) agree.checked = false;
-  if (sbtn) { sbtn.disabled = true; sbtn.style.opacity = '0.5'; sbtn.style.cursor = 'not-allowed'; }
   document.getElementById('checkout-section').classList.add('active');
-  document.getElementById('checkout-section').scrollIntoView({ behavior:'smooth', block:'start' });
-
-  if (!cardElement) {
-    cardElement = elements.create('card', {
-      style: { base: { fontFamily:'Karla,sans-serif', fontSize:'16px', color:'#1A1A1A', '::placeholder':{ color:'#B8B0A8' } } }
-    });
-    cardElement.mount('#card-element');
-    cardElement.on('change', e => {
-      document.getElementById('card-errors').textContent = e.error ? e.error.message : '';
-    });
-  }
+  document.getElementById('checkout-section').scrollIntoView({ behavior:'smooth' });
 }
 
 async function submitOrder() {
-  // Require agreement to Terms & Privacy before charging
   var agree = document.getElementById('agree-terms');
   if (!agree || !agree.checked) {
     document.getElementById('card-errors').textContent = 'Please agree to the Terms & Conditions and Privacy Policy to continue.';
     return;
   }
-  // Ensure Stripe is initialized
-  try { initStripe(); } catch(e) {
-    document.getElementById('card-errors').textContent = e.message;
-    return;
-  }
   const btn = document.getElementById('submit-btn');
-  const fields = { firstName:'First Name', lastName:'Last Name', email:'Email', address1:'Address', city:'City', state:'State', zipCode:'ZIP Code' };
-  for (const [id, label] of Object.entries(fields)) {
-    const el = document.getElementById(id);
-    if (!el.value.trim() || el.value === '') {
-      document.getElementById('card-errors').textContent = `${label} is required.`;
-      el.focus();
-      return;
-    }
-  }
-  // Validate email format
-  const emailVal = document.getElementById('email').value.trim();
-  if (!emailVal.includes('@') || !emailVal.includes('.')) {
-    document.getElementById('card-errors').textContent = 'Please enter a valid email address.';
-    return;
-  }
+  const errEl = document.getElementById('card-errors');
+
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName  = document.getElementById('lastName').value.trim();
+  const email     = document.getElementById('email').value.trim();
+  const userMsg   = document.getElementById('inq-message').value.trim();
+
+  if (!firstName) { errEl.textContent = 'First name is required.'; return; }
+  if (!lastName)  { errEl.textContent = 'Last name is required.'; return; }
+  if (!email.includes('@') || !email.includes('.')) { errEl.textContent = 'Please enter a valid email address.'; return; }
 
   btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span>Processing...';
-  document.getElementById('card-errors').textContent = '';
+  btn.innerHTML = '<span class="spinner"></span>Sending...';
+  errEl.textContent = '';
 
-  const total = totalPrice();
+  // Build the full spec of what they configured
+  let spec = `Painting: ${selected.painting.title}`;
+  spec += `\nPaper: ${selected.paper.name}`;
+  spec += `\nSize: ${selected.size.displayW}\u00d7${selected.size.displayH}\" (${selected.size.label})`;
+  if (framing.enabled && framing.frame) {
+    spec += `\nFrame: ${framing.frame.name} ${framing.frame.profile}`;
+    if (framing.matSize !== 'none') spec += `\nMat: ${framing.matSizeInches}\" ${framing.matColor ? framing.matColor.name : ''}`;
+    spec += `\nFinish: ${framing.finish && framing.finish.id === 'matte' ? 'Matte' : 'Semi-Glossy'}`;
+  } else {
+    spec += `\nFrame: None`;
+  }
+  if (userMsg) spec += `\n\nMessage: ${userMsg}`;
 
   try {
-    // Create Stripe payment intent
-    const piRes = await fetch(`${WORKER_URL}/api/payment-intent`, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
+    const res = await fetch(`${WORKER_URL}/api/inquire`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        amount: total,
-        currency: 'usd',
-        metadata: {
-          painting: selected.painting.title,
-          paper: selected.paper.name,
-          size: `${selected.size.displayW}×${selected.size.displayH}"`,
-          pct: selected.size.label,
-        }
+        name: `${firstName} ${lastName}`,
+        email,
+        painting: selected.painting.title,
+        subject: `Print request \u2014 ${selected.painting.title}`,
+        message: spec,
       })
     });
-    const { clientSecret, error: piError } = await piRes.json();
-    if (piError) throw new Error(piError);
-
-    const firstName = document.getElementById('firstName').value.trim();
-    const lastName = document.getElementById('lastName').value.trim();
-
-    // Confirm payment
-    const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: cardElement,
-        billing_details: { name: `${firstName} ${lastName}`, email: document.getElementById('email').value.trim() }
-      }
-    });
-
-    if (error) {
-      document.getElementById('card-errors').textContent = error.message;
-      btn.disabled = false;
-      btn.innerHTML = 'Place Order';
-      return;
+    const data = await res.json();
+    if (res.ok && data.success) {
+      document.getElementById('configurator').style.display = 'none';
+      document.getElementById('order-success').classList.add('active');
+      document.getElementById('order-success').scrollIntoView({ behavior:'smooth' });
+    } else {
+      throw new Error();
     }
-
-    // Submit to Lumaprints
-    await fetch(`${WORKER_URL}/api/order`, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        paymentIntentId: paymentIntent.id,
-        order: {
-          externalId: paymentIntent.id,
-          shippingMethod: 'default',
-          productionTime: 'regular',
-          recipient: {
-            firstName,
-            lastName,
-            email: document.getElementById('email').value.trim(),
-            addressLine1: document.getElementById('address1').value.trim(),
-            addressLine2: document.getElementById('address2').value.trim(),
-            city: document.getElementById('city').value.trim(),
-            state: document.getElementById('state').value,
-            zipCode: document.getElementById('zipCode').value.trim(),
-            country: document.getElementById('country').value || 'US',
-            phone: document.getElementById('phone').value.trim(),
-          },
-          orderItems: [{
-            externalItemId: String(Date.now()),
-            subcategoryId: null,
-            frameSubcategoryId: framing.enabled && framing.frame ? framing.frame.subcategoryId : null,
-            quantity: 1,
-            file: { imageUrl: `https://www.marykilpatrick.com/${selected.painting.file}` },
-            orderItemOptions: framing.enabled && framing.frame ? buildFrameOptions() : [],
-            notes: `Paper: ${selected.paper.name}, Size: ${selected.size.displayW}×${selected.size.displayH}", Framing: ${framing.enabled ? (framing.frame?.name + ' ' + framing.frame?.profile + (framing.matSize !== 'none' ? ', Mat: ' + framing.matSizeInches + 'in ' + (framing.matColor?.name || '') : '')) : 'None'}, Painting: ${selected.painting.title}`,
-            printWidth: selected.size.w,
-            printHeight: selected.size.h,
-            paperType: selected.paper.id,
-          }]
-        }
-      })
-    });
-
-    // Success
-    sessionStorage.setItem('orderComplete', JSON.stringify({ painting: selected.painting.title, paper: selected.paper.name, size: `${selected.size.w}×${selected.size.h}"` }));
-    document.getElementById('configurator').style.display = 'none';
-    document.getElementById('order-success').classList.add('active');
-    document.getElementById('order-success').scrollIntoView({ behavior:'smooth' });
-
   } catch (err) {
-    document.getElementById('card-errors').textContent = `Error: ${err.message}. Please try again or contact art@marykilpatrick.com`;
+    errEl.textContent = 'Something went wrong. Please email art@marykilpatrick.com directly.';
     btn.disabled = false;
-    btn.innerHTML = 'Place Order';
+    btn.innerHTML = 'Send Request';
   }
 }
 
