@@ -1172,40 +1172,13 @@ let framePriceToken = 0;
 // Fetches the real framing upcharge from Lumaprints via the worker.
 // Worker returns: printPrice + (framedLumaCost - printLumaCost) * 1.20
 async function refreshFramedPrice() {
-  if (!framing.enabled || !framing.frame || !selected.paper || !selected.size) {
-    framing.pending = false;
-    updatePriceSummary();
-    return;
-  }
-  const token = ++framePriceToken;
-  framing.pending = true;
-  framing.error = null;
-  updatePriceSummary();
-
-  const res = await fetch(`${WORKER_URL}/api/price`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      width: selected.size.w,
-      height: selected.size.h,
-      subcategoryId: framing.frame.subcategoryId,
-      paperType: selected.paper.id,
-      options: buildFrameOptions(),
-    }),
-  }).catch(() => null);
-
-  if (token !== framePriceToken) return; // a newer request superseded this one
-
-  const data = res ? await res.json().catch(() => null) : null;
+  // Pricing is hidden and orders are now inquiries, so we no longer fetch a
+  // framing price from Luma here. The customer's frame/mat/finish choices are
+  // still captured and sent in the inquiry. (Pricing engine remains intact for
+  // when live checkout is re-enabled.)
   framing.pending = false;
-
-  if (!res || !res.ok || !data || typeof data.framingCharge !== 'number') {
-    framing.charge = 0;
-    framing.error = (data && data.message) || 'Framing price unavailable. Try another option or order unframed.';
-  } else {
-    framing.charge = data.framingCharge;
-    framing.error = null;
-  }
+  framing.error = null;
+  framing.charge = 0;
   updatePriceSummary();
 }
 
@@ -1223,13 +1196,13 @@ function updatePriceSummary() {
   summary.style.display = 'none';
   document.getElementById('stripe-note').style.display = 'none';
 
-  if (errEl) {
-    errEl.textContent = framing.error || '';
-    errEl.style.display = framing.error ? 'block' : 'none';
-  }
+  // Pricing is hidden and this is an inquiry, so framing price resolution is irrelevant.
+  // Hide any framing price error entirely and never block on it.
+  if (errEl) { errEl.textContent = ''; errEl.style.display = 'none'; }
 
-  // Block the inquiry button only while framing price is still resolving or errored
-  const blocked = framing.enabled && (framing.pending || !framing.frame || framing.error);
+  // Show the request button as soon as a valid print is built.
+  // If framing is chosen, only require that a frame style is selected — not a resolved price.
+  const blocked = framing.enabled && !framing.frame;
   checkout.style.display = blocked ? 'none' : 'block';
 }
 
