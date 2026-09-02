@@ -391,9 +391,7 @@
 
         <!-- Frame Profile -->
         <h4 style="font-size:0.88rem;margin-bottom:10px;margin-top:4px;">Frame Style</h4>
-        <div class="frame-grid" id="frame-style-options">
-          <!-- rendered by JS -->
-        </div>
+        <div class="frame-grid" id="frame-style-options"></div>
 
         <!-- Mat Size -->
         <h4 style="font-size:0.88rem;margin-bottom:10px;">Mat Border</h4>
@@ -855,7 +853,7 @@ function selectFraming(choice) {
   document.getElementById('frame-none-btn').classList.toggle('active', !framing.enabled);
   document.getElementById('frame-yes-btn').classList.toggle('active', framing.enabled);
   document.getElementById('framing-options').classList.toggle('visible', framing.enabled);
-  if (framing.enabled && !document.getElementById('frame-style-options').innerHTML) {
+  if (framing.enabled) {
     renderFrameStyles();
   }
   if (!framing.enabled) { framing.charge = 0; framing.error = null; }
