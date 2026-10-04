@@ -36,7 +36,7 @@ html{scroll-behavior:smooth;}
 body{font-family:"Karla",sans-serif;background:var(--cream);color:var(--soft-black);font-weight:300;font-size:1rem;line-height:1.7;-webkit-font-smoothing:antialiased;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);border-bottom:1px solid var(--rule);height:64px;display:flex;align-items:center;padding:0 48px;justify-content:space-between;}.nav-name{display:inline-flex;align-items:center;gap:12px;height:100%;}.nav-logo-mark{height:34px;width:auto;display:block;}.nav-logo-word{height:30px;width:auto;display:block;}@media(max-width:820px){.nav-logo-word{display:none;}.nav-logo-mark{height:30px;}}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);border-bottom:1px solid var(--rule);height:76px;display:flex;align-items:center;padding:0 48px;justify-content:space-between;}.nav-name{display:inline-flex;align-items:center;gap:12px;height:100%;}.nav-logo-mark{height:48px;width:auto;display:block;}.nav-logo-word{height:42px;width:auto;display:block;}@media(max-width:820px){.nav-logo-word{display:none;}.nav-logo-mark{height:42px;}}
 .nav-name{font-family:"Cormorant Garamond",serif;font-size:1.2rem;font-weight:400;letter-spacing:0.1em;text-decoration:none;color:var(--soft-black);text-transform:uppercase;}
 .nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
 .nav-links a{font-size:0.7rem;font-weight:400;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;color:var(--soft-black);transition:color 0.2s;}
@@ -137,13 +137,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);bor
 /* LIGHTBOX */
 #lightbox{display:none;position:fixed;inset:0;background:rgba(12,10,8,0.985);z-index:3000;flex-direction:column;}
 #lightbox.active{display:flex;}
-.lb-topbar{flex:0 0 auto;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;z-index:6;}
+.lb-topbar{flex:0 0 auto;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;z-index:6;}.lb-top-left{display:flex;align-items:center;gap:16px;}
 .lb-counter{color:rgba(255,255,255,0.6);font-family:"Karla",sans-serif;font-size:0.74rem;letter-spacing:0.14em;}
 .lb-top-actions{display:flex;align-items:center;gap:10px;}
 .lb-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.28);color:#fff;cursor:pointer;font-family:"Karla",sans-serif;transition:background 0.2s;}
 .lb-btn:hover{background:rgba(255,255,255,0.22);}
-.lb-zoom{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;font-size:0.66rem;text-transform:uppercase;letter-spacing:0.12em;}
-.lz-glyph{width:12px;height:12px;border:1.6px solid #fff;border-radius:50%;box-shadow:4px 4px 0 -1.5px #fff;display:inline-block;}
+.lb-zoom{display:inline-flex;align-items:center;gap:9px;padding:10px 18px;font-size:0.74rem;text-transform:uppercase;letter-spacing:0.13em;background:rgba(255,255,255,0.14);}.lb-zoom:hover{background:rgba(255,255,255,0.26);}
+.lz-glyph{width:15px;height:15px;border:2px solid #fff;border-radius:50%;box-shadow:5px 5px 0 -2px #fff;display:inline-block;}
 .lb-close{width:36px;height:36px;font-size:1.5rem;line-height:1;display:flex;align-items:center;justify-content:center;padding:0;}
 .lb-nav{position:absolute;top:0;bottom:0;width:9vw;min-width:54px;max-width:120px;background:none;border:none;color:rgba(255,255,255,0.5);font-size:2.6rem;cursor:pointer;z-index:5;transition:color 0.2s,background 0.2s;display:flex;align-items:center;justify-content:center;}
 .lb-nav:hover{color:#fff;background:rgba(255,255,255,0.04);}
@@ -311,7 +311,7 @@ footer a:hover{color:var(--gold);}
   /* RESPONSIVE */
 @media(max-width:1100px){.reviews-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:900px){
-  nav{padding:0 16px;height:56px;}
+  nav{padding:0 16px;height:66px;}
   .nav-name{font-size:0.95rem;letter-spacing:0.08em;font-family:"Cormorant Garamond",serif;}
   .nav-links{gap:12px;}
   .nav-links li:nth-child(-n+4){display:none;}
@@ -349,7 +349,7 @@ footer a:hover{color:var(--gold);}
 .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .nav-hamburger.open span:nth-child(2){opacity:0;}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.nav-mobile{display:none;position:fixed;top:64px;left:0;right:0;background:var(--cream);border-bottom:1px solid var(--rule);z-index:999;padding:24px 24px 32px;flex-direction:column;gap:0;}
+.nav-mobile{display:none;position:fixed;top:76px;left:0;right:0;background:var(--cream);border-bottom:1px solid var(--rule);z-index:999;padding:24px 24px 32px;flex-direction:column;gap:0;}
 .nav-mobile.open{display:flex;}
 .nav-mobile a{display:block;padding:14px 0;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--soft-black);text-decoration:none;border-bottom:1px solid var(--rule);}
 .nav-mobile a:last-child{border-bottom:none;}
@@ -417,7 +417,7 @@ footer a:hover{color:var(--gold);}
 
 
 <!-- HERO -->
-<div class="artist-intro" id="hero" style="margin-top:64px;">
+<div class="artist-intro" id="hero" style="margin-top:76px;">
   <div class="artist-intro-text">
     <p class="label">Artist · Broadway Actress · Published Illustrator</p>
     <h1>Mary Kilpatrick</h1>
@@ -488,7 +488,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Personas</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic / Mixed Media, 15 3/4 × 18 3/4 in · 2023</p>
       </div>
     </div>
 
@@ -500,7 +500,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Josephine Baker</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic / Mixed Media, 20 × 20 in · 2024</p>
       </div>
     </div>
 
@@ -523,7 +523,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Breaking Away</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 21 × 21 in · 2025</p>
       </div>
     </div>
 
@@ -534,7 +534,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Girls Night Out</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 16 × 20 in · 2010</p>
       </div>
     </div>
 
@@ -545,7 +545,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Journey</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 20 × 10 in · 2025</p>
       </div>
     </div>
 
@@ -568,7 +568,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Cat Lady</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 8 × 10 in · 2025</p>
       </div>
     </div>
 
@@ -579,7 +579,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Kissing Cousins</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 16 × 12 in · 2025</p>
       </div>
     </div>
 
@@ -590,7 +590,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Showgirl</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic / Mixed Media, 20 × 24 in · 1995</p>
       </div>
     </div>
 
@@ -601,7 +601,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Harmony</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 15 × 19 in · 2021</p>
       </div>
     </div>
 
@@ -613,7 +613,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>War</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Pencil & Ink, 14 × 10 in · 1997</p>
       </div>
     </div>
 
@@ -624,7 +624,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Bravery</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 18 × 18 in · 2001</p>
       </div>
     </div>
 
@@ -635,7 +635,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Peaceful</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 22 × 28 in · 1999</p>
       </div>
     </div>
 
@@ -646,7 +646,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Two Dancers</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 24 × 24 in · 1997</p>
       </div>
     </div>
 
@@ -668,7 +668,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Tickle</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 36 × 24 in · 1999</p>
       </div>
     </div>
 
@@ -679,7 +679,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Earth Mother</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic / Mixed Media, 36 × 24 in · 2009</p>
       </div>
     </div>
 
@@ -690,7 +690,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Christ Mass</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 40 × 30 in · 2013</p>
       </div>
     </div>
 
@@ -701,7 +701,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Virtual Girl</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 20 × 16 in · 2024</p>
       </div>
     </div>
 
@@ -712,7 +712,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Cotton Candy</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic / Mixed Media / Glass, 15 5/8 × 19 5/8 in · 2025</p>
       </div>
     </div>
 
@@ -723,7 +723,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Bajan Heroine</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 30 × 24 in · 2008</p>
       </div>
     </div>
 
@@ -734,7 +734,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Deconstruction</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 28 × 36 in · 1994</p>
       </div>
     </div>
 
@@ -745,7 +745,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Geri</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 14 × 16 in · 2022</p>
       </div>
     </div>
 
@@ -756,7 +756,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Covid</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic / Wood, 20 × 16 in · 2025</p>
       </div>
     </div>
 
@@ -768,7 +768,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Alice</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 20 × 16 in · 2014</p>
       </div>
     </div>
 
@@ -779,7 +779,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Birth</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 18 × 12 in · 2001</p>
       </div>
     </div>
 
@@ -790,7 +790,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Bottoms Up</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 24 × 30 in · 1999</p>
       </div>
     </div>
 
@@ -801,7 +801,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Boyish</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 18 × 14 in · 2025</p>
       </div>
     </div>
 
@@ -812,7 +812,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Carnival</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 24 × 18 in · 2015</p>
       </div>
     </div>
 
@@ -823,7 +823,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Abuse</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">16 × 20 in</p>
       </div>
     </div>
 
@@ -834,7 +834,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Fantasy Land</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 24 × 18 in · 2010</p>
       </div>
     </div>
 
@@ -845,7 +845,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Flying High</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 24 × 18 in · 2007</p>
       </div>
     </div>
 
@@ -856,7 +856,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Freedom</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Pen on Paper, 24 × 18 in · 2021</p>
       </div>
     </div>
 
@@ -867,7 +867,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Harlem Summer</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Pen & Ink, 9 × 9 in · 2021</p>
       </div>
     </div>
 
@@ -878,7 +878,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Heidi</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 24 × 18 in · 2010</p>
       </div>
     </div>
 
@@ -889,7 +889,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Help</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic & Ink, 9 × 7 in · 1990</p>
       </div>
     </div>
 
@@ -900,7 +900,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Hippie Girl</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Pen & Ink, 6 × 5 in · 1988</p>
       </div>
     </div>
 
@@ -911,7 +911,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Kidnapped I</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic / Mixed Media, 8 × 8 in · 2023</p>
       </div>
     </div>
 
@@ -922,7 +922,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Kidnapped II</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic / Mixed Media, 8 × 8 in · 2023</p>
       </div>
     </div>
 
@@ -933,7 +933,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Lovers</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 18 × 24 in · 2026</p>
       </div>
     </div>
 
@@ -944,7 +944,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Masked</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Pen & Ink, 10 × 6 in · 1999</p>
       </div>
     </div>
 
@@ -955,7 +955,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Nanette</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 14 × 11 in · 2023</p>
       </div>
     </div>
 
@@ -966,7 +966,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Party Time</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 18 × 24 in · 2015</p>
       </div>
     </div>
 
@@ -977,7 +977,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Plug</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 12 × 9 in · 2019</p>
       </div>
     </div>
 
@@ -988,7 +988,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Protectors</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 16 × 12 in · 2001</p>
       </div>
     </div>
 
@@ -999,7 +999,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Rape</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic / Mixed, 24 × 18 in · 2002</p>
       </div>
     </div>
 
@@ -1010,7 +1010,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Resting</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 18 × 14 in · 2024</p>
       </div>
     </div>
 
@@ -1021,7 +1021,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Rising Spirit</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 10 × 8 in · 2006</p>
       </div>
     </div>
 
@@ -1033,7 +1033,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Slavery</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic / Mixed Media, 12 × 12 in · 2022</p>
       </div>
     </div>
 
@@ -1044,7 +1044,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Sweet Baby Sue</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic & Pen, 9 × 8 in · 2025</p>
       </div>
     </div>
 
@@ -1055,7 +1055,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Takes All Kinds</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 24 × 12 in · 2025</p>
       </div>
     </div>
 
@@ -1066,7 +1066,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Togetherness</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 12 × 9 in · 2022</p>
       </div>
     </div>
 
@@ -1077,7 +1077,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Trapped</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic / Mixed, 10 1/2 × 8 1/2 in · 2024</p>
       </div>
     </div>
 
@@ -1088,7 +1088,17 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Virgin</h3>
-        <p class="cap-meta">Medium, X × X in</p>
+        <p class="cap-meta">Acrylic, 35 × 24 in · 1998</p>
+      </div>
+    </div>
+    <div class="gallery-item" data-url="paintings/snowboarder.html" onclick="openLightbox('mary-kilpatrick-snowboarder-figurative-painting.jpg','Snowboarder')">
+      <div class="gallery-art">
+        <img src="thumbs/mary-kilpatrick-snowboarder-figurative-painting.jpg" alt="Snowboarder - original painting by Mary Kilpatrick" loading="lazy">
+        <span class="gallery-view-cue">View</span>
+      </div>
+      <div class="gallery-caption">
+        <h3>Snowboarder</h3>
+        <p class="cap-meta">Acrylic, 11 1/2 × 12 in · 2022</p>
       </div>
     </div>
 </section>
@@ -1221,11 +1231,11 @@ footer a:hover{color:var(--gold);}
 <!-- LIGHTBOX -->
 <div id="lightbox" role="dialog" aria-modal="true" aria-label="Artwork viewer">
   <div class="lb-topbar">
-    <span class="lb-counter" id="lb-counter"></span>
-    <div class="lb-top-actions">
+    <div class="lb-top-left">
       <button class="lb-btn lb-zoom" onclick="lbToggleZoom()" aria-label="Zoom in or out"><span class="lz-glyph"></span><span class="lb-btn-label">Zoom</span></button>
-      <button class="lb-btn lb-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+      <span class="lb-counter" id="lb-counter"></span>
     </div>
+    <button class="lb-btn lb-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
   </div>
   <button class="lb-nav lb-prev" onclick="lbNav(-1)" aria-label="Previous work">&#8249;</button>
   <button class="lb-nav lb-next" onclick="lbNav(1)" aria-label="Next work">&#8250;</button>
@@ -1291,61 +1301,62 @@ let lbScale=1,lbDragging=false,lbLastX=0,lbLastY=0,lbTransX=0,lbTransY=0,lbLastD
 history.replaceState({page:'gallery'},'','');
 
 const PAINTING_INFO = {
-  'Abuse': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Alice': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Bajan Heroine': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Birth': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Abuse': { meta:'16 \u00d7 20 in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Alice': { meta:'Acrylic, 20 \u00d7 16 in · 2014', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Bajan Heroine': { meta:'Acrylic, 30 \u00d7 24 in · 2008', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Birth': { meta:'Acrylic, 18 \u00d7 12 in · 2001', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
   'Blue Lady': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Bottoms Up': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Boyish': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Bravery': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Breaking Away': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Carnival': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Cat Lady': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Christ Mass': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Cotton Candy': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Covid': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Deconstruction': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Earth Mother': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Fantasy Land': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Flying High': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Freedom': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Geri': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Girls Night Out': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Harlem Summer': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Harmony': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Heidi': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Help': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Hippie Girl': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Josephine Baker': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Journey': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Kidnapped I': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Kidnapped II': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Kissing Cousins': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Bottoms Up': { meta:'Acrylic, 24 \u00d7 30 in · 1999', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Boyish': { meta:'Acrylic, 18 \u00d7 14 in · 2025', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Bravery': { meta:'Acrylic, 18 \u00d7 18 in · 2001', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Breaking Away': { meta:'Acrylic, 21 \u00d7 21 in · 2025', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Carnival': { meta:'Acrylic, 24 \u00d7 18 in · 2015', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Cat Lady': { meta:'Acrylic, 8 \u00d7 10 in · 2025', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Christ Mass': { meta:'Acrylic, 40 \u00d7 30 in · 2013', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Cotton Candy': { meta:'Acrylic / Mixed Media / Glass, 15 5/8 \u00d7 19 5/8 in · 2025', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Covid': { meta:'Acrylic / Wood, 20 \u00d7 16 in · 2025', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Deconstruction': { meta:'Acrylic, 28 \u00d7 36 in · 1994', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Earth Mother': { meta:'Acrylic / Mixed Media, 36 \u00d7 24 in · 2009', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Fantasy Land': { meta:'Acrylic, 24 \u00d7 18 in · 2010', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Flying High': { meta:'Acrylic, 24 \u00d7 18 in · 2007', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Freedom': { meta:'Pen on Paper, 24 \u00d7 18 in · 2021', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Geri': { meta:'Acrylic, 14 \u00d7 16 in · 2022', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Girls Night Out': { meta:'Acrylic, 16 \u00d7 20 in · 2010', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Harlem Summer': { meta:'Pen & Ink, 9 \u00d7 9 in · 2021', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Harmony': { meta:'Acrylic, 15 \u00d7 19 in · 2021', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Heidi': { meta:'Acrylic, 24 \u00d7 18 in · 2010', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Help': { meta:'Acrylic & Ink, 9 \u00d7 7 in · 1990', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Hippie Girl': { meta:'Pen & Ink, 6 \u00d7 5 in · 1988', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Josephine Baker': { meta:'Acrylic / Mixed Media, 20 \u00d7 20 in · 2024', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Journey': { meta:'Acrylic, 20 \u00d7 10 in · 2025', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Kidnapped I': { meta:'Acrylic / Mixed Media, 8 \u00d7 8 in · 2023', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Kidnapped II': { meta:'Acrylic / Mixed Media, 8 \u00d7 8 in · 2023', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Kissing Cousins': { meta:'Acrylic, 16 \u00d7 12 in · 2025', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
   'Las Vegas': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Lovers': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Masked': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Nanette': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Party Time': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Peaceful': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Personas': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Plug': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Protectors': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Rape': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Resting': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Rising Spirit': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Showgirl': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Slavery': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Sweet Baby Sue': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Takes All Kinds': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Tickle': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Togetherness': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Trapped': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Two Dancers': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Lovers': { meta:'Acrylic, 18 \u00d7 24 in · 2026', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Masked': { meta:'Pen & Ink, 10 \u00d7 6 in · 1999', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Nanette': { meta:'Acrylic, 14 \u00d7 11 in · 2023', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Party Time': { meta:'Acrylic, 18 \u00d7 24 in · 2015', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Peaceful': { meta:'Acrylic, 22 \u00d7 28 in · 1999', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Personas': { meta:'Acrylic / Mixed Media, 15 3/4 \u00d7 18 3/4 in · 2023', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Plug': { meta:'Acrylic, 12 \u00d7 9 in · 2019', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Protectors': { meta:'Acrylic, 16 \u00d7 12 in · 2001', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Rape': { meta:'Acrylic / Mixed, 24 \u00d7 18 in · 2002', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Resting': { meta:'Acrylic, 18 \u00d7 14 in · 2024', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Rising Spirit': { meta:'Acrylic, 10 \u00d7 8 in · 2006', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Showgirl': { meta:'Acrylic / Mixed Media, 20 \u00d7 24 in · 1995', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Snowboarder': { meta:'Acrylic, 11 1/2 \u00d7 12 in · 2022', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Slavery': { meta:'Acrylic / Mixed Media, 12 \u00d7 12 in · 2022', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Sweet Baby Sue': { meta:'Acrylic & Pen, 9 \u00d7 8 in · 2025', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Takes All Kinds': { meta:'Acrylic, 24 \u00d7 12 in · 2025', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Tickle': { meta:'Acrylic, 36 \u00d7 24 in · 1999', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Togetherness': { meta:'Acrylic, 12 \u00d7 9 in · 2022', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Trapped': { meta:'Acrylic / Mixed, 10 1/2 \u00d7 8 1/2 in · 2024', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Two Dancers': { meta:'Acrylic, 24 \u00d7 24 in · 1997', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
   'Two Twisted Sisters': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Virgin': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'Virtual Girl': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
-  'War': { meta:'Medium, X \u00d7 X in', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' }
+  'Virgin': { meta:'Acrylic, 35 \u00d7 24 in · 1998', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'Virtual Girl': { meta:'Acrylic, 20 \u00d7 16 in · 2024', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' },
+  'War': { meta:'Pencil & Ink, 14 \u00d7 10 in · 1997', desc:'Placeholder description — the artist&#39;s note on this work will appear here once the final copy is provided. It will describe the subject, the mood, and what drew Mary to paint it, in roughly seventy to eighty words. This stand-in lets us see how the description sits beneath the title and details inside the lightbox, and how a longer note collapses behind a Read more link until the visitor chooses to see the rest.' }
 };
 function lbRenderDesc(title){
   const info = (typeof PAINTING_INFO!=='undefined' && PAINTING_INFO[title]) ? PAINTING_INFO[title] : {};
