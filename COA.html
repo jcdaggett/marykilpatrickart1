@@ -4,16 +4,17 @@
 <meta charset="UTF-8">
 <title>Mary Kilpatrick COA Generator</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Karla:wght@300;400&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:Georgia,serif; background:#1C0A06; color:#FAF6F0; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:2rem; }
+  body { font-family:"EB Garamond",serif; background:#1C0A06; color:#FAF6F0; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:2rem; }
   .card { background:#2A1208; border:1px solid #C4843A; padding:2.5rem; width:100%; max-width:520px; }
   h1 { font-size:1.6rem; margin-bottom:0.2rem; }
   .sub { font-size:0.8rem; color:#C4843A; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:2rem; }
   label { display:block; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#C4843A; margin-bottom:0.4rem; margin-top:1.2rem; }
-  select, input { width:100%; background:#1C0A06; border:1px solid #5A3A1A; color:#FAF6F0; padding:0.6rem 0.8rem; font-size:0.95rem; font-family:Georgia,serif; }
+  select, input { width:100%; background:#1C0A06; border:1px solid #5A3A1A; color:#FAF6F0; padding:0.6rem 0.8rem; font-size:0.95rem; font-family:"EB Garamond",serif; }
   .row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-  button { margin-top:2rem; width:100%; background:#7A1515; color:#FAF6F0; border:none; padding:0.9rem; font-size:1rem; font-family:Georgia,serif; letter-spacing:0.08em; cursor:pointer; }
+  button { margin-top:2rem; width:100%; background:#7A1515; color:#FAF6F0; border:none; padding:0.9rem; font-size:1rem; font-family:"EB Garamond",serif; letter-spacing:0.08em; cursor:pointer; }
   button:hover { background:#9A2020; }
   button:disabled { background:#4A3030; cursor:not-allowed; }
   .status { margin-top:1rem; text-align:center; font-size:0.85rem; color:#C4843A; min-height:1.2rem; }
