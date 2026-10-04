@@ -73,13 +73,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);bor
 .reveal-ready{opacity:1;transform:none;transition:opacity 0.5s ease,transform 0.5s ease;}
 @media (prefers-reduced-motion: no-preference){.reveal-ready:not(.revealed){opacity:0;transform:translateY(16px);}}
 .gallery-section{padding:0 0 80px;}
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);column-gap:18px;row-gap:56px;}
-.gallery-item{cursor:pointer;display:flex;flex-direction:column;}.gallery-art{position:relative;overflow:hidden;background:var(--paper);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;padding:22px;box-shadow:inset 0 0 0 1px rgba(26,24,20,0.07);}
-.gallery-art img{max-width:78%;max-height:72%;width:auto;height:auto;object-fit:contain;display:block;box-shadow:0 3px 14px rgba(0,0,0,0.16);transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);}
-.gallery-item:hover .gallery-art img{transform:scale(1.03);}
+.gallery-grid{column-count:3;column-gap:28px;}
+.gallery-item{cursor:pointer;display:inline-block;width:100%;break-inside:avoid;-webkit-column-break-inside:avoid;margin:0 0 42px;}.gallery-art{position:relative;overflow:hidden;line-height:0;}
+.gallery-art img{width:100%;height:auto;display:block;box-shadow:0 2px 12px rgba(0,0,0,0.14);transition:opacity 0.4s;}
+.gallery-item:hover .gallery-art img{opacity:0.92;}
 .gallery-item.sold .gallery-art img{filter:grayscale(30%);opacity:0.6;}
 .gallery-hover{position:absolute;inset:0;background:rgba(26,24,20,0.0);opacity:0;transition:opacity 0.35s,background 0.35s;display:flex;align-items:center;justify-content:center;}.gallery-item:hover .gallery-hover{opacity:1;background:rgba(26,24,20,0.28);}
-.gallery-caption{padding:10px 4px 0;text-align:center;}.gallery-caption h3{font-family:"EB Garamond",serif;font-size:1.15rem;font-weight:400;color:var(--soft-black);margin:0 0 3px;letter-spacing:0.01em;}.gallery-caption .cap-meta{font-family:"Karla",sans-serif;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--warm-gray);margin:0 0 6px;}.gallery-caption .cap-desc{font-family:"EB Garamond",serif;font-size:0.9rem;font-style:italic;line-height:1.5;color:var(--warm-gray);margin:0;max-width:34ch;margin-left:auto;margin-right:auto;}
+.gallery-caption{padding:14px 2px 0;text-align:center;}.gallery-caption h3{font-family:"EB Garamond",serif;font-size:1.1rem;font-weight:400;font-style:italic;color:var(--soft-black);margin:0 0 4px;letter-spacing:0.01em;}.gallery-caption .cap-meta{font-family:"Karla",sans-serif;font-size:0.72rem;letter-spacing:0.04em;color:var(--warm-gray);margin:0;}
 
 
 .gallery-actions{display:flex;gap:8px;opacity:0;transition:opacity 0.3s;}
@@ -294,13 +294,13 @@ footer a:hover{color:var(--gold);}
   .buy-section{grid-template-columns:1fr;padding:40px 20px;gap:40px;}
   .contact-section{grid-template-columns:1fr;gap:40px;}
   .faq-grid{grid-template-columns:1fr;}
-  .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  .gallery-grid{column-count:2;column-gap:20px;}
   .artist-card{display:none!important;}
   h1{font-size:2.4rem;}
   .credentials-inline{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:580px){
-  .gallery-grid{grid-template-columns:1fr;row-gap:72px;}
+  .gallery-grid{column-count:1;}
   .form-row{grid-template-columns:1fr;}
   footer{flex-direction:column;gap:14px;text-align:center;}
   .credentials-inline{grid-template-columns:1fr;}
@@ -458,8 +458,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Personas</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -471,8 +470,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Josephine Baker</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -483,8 +481,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Two Twisted Sisters</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
     </div>
@@ -496,8 +493,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Breaking Away</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -508,8 +504,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Girls Night Out</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -520,8 +515,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Journey</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -532,8 +526,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Blue Lady</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
     </div>
@@ -545,8 +538,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Cat Lady</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -557,8 +549,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Kissing Cousins</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -569,8 +560,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Showgirl</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -581,8 +571,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Harmony</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -593,8 +582,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>War</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
     </div>
@@ -606,8 +594,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Bravery</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -618,8 +605,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Peaceful</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -630,8 +616,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Two Dancers</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -642,8 +627,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Las Vegas</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -654,8 +638,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Tickle</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -666,8 +649,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Earth Mother</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -678,8 +660,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Christ Mass</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -690,8 +671,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Virtual Girl</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -702,8 +682,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Cotton Candy</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -714,8 +693,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Bajan Heroine</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -726,8 +704,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Deconstruction</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -738,8 +715,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Geri</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -750,8 +726,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Covid</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -763,8 +738,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Alice</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -775,8 +749,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Birth</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -787,8 +760,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Bottoms Up</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -799,8 +771,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Boyish</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -811,8 +782,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Carnival</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -823,8 +793,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Abuse</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -835,8 +804,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Fantasy Land</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -847,8 +815,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Flying High</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -859,8 +826,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Freedom</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -871,8 +837,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Harlem Summer</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -883,8 +848,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Heidi</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -895,8 +859,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Help</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -907,8 +870,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Hippie Girl</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -919,8 +881,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Kidnapped I</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -931,8 +892,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Kidnapped II</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -943,8 +903,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Lovers</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -955,8 +914,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Masked</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -967,8 +925,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Nanette</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -979,8 +936,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Party Time</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -991,8 +947,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Plug</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -1003,8 +958,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Protectors</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -1015,8 +969,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Rape</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -1027,8 +980,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Resting</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -1039,8 +991,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Rising Spirit</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -1051,8 +1002,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Slavery</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -1063,8 +1013,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Sweet Baby Sue</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -1075,8 +1024,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Takes All Kinds</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -1087,8 +1035,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Togetherness</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -1099,8 +1046,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Trapped</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
@@ -1111,8 +1057,7 @@ footer a:hover{color:var(--gold);}
       </div>
       <div class="gallery-caption">
         <h3>Virgin</h3>
-        <p class="cap-meta">X × X in · Medium</p>
-        <p class="cap-desc">Placeholder text — a short note on the subject and mood of the work will live here once written.</p>
+        <p class="cap-meta">Medium, X × X in</p>
       </div>
     </div>
 
