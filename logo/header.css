@@ -1,0 +1,33 @@
+/* Shared header: logo size, header height, and everything that depends on it.
+   One source of truth for every page (replaces the per-page logo sizing). */
+:root{--nav-h:96px;--mark-h:76px;--word-h:84px;--navpad:48px;}
+@media (max-width:1279px){:root{--nav-h:84px;--mark-h:62px;--word-h:66px;--navpad:32px;}}
+@media (max-width:1099px){:root{--nav-h:80px;--mark-h:58px;--word-h:62px;--navpad:24px;}}
+@media (max-width:600px){:root{--nav-h:68px;--mark-h:56px;--navpad:16px;}}
+
+nav{height:var(--nav-h)!important;padding-left:var(--navpad)!important;padding-right:var(--navpad)!important;}
+.nav-name{display:inline-flex!important;align-items:center;gap:calc(var(--mark-h)*.2);height:100%;flex:0 0 auto;}
+.nav-logo-mark{height:var(--mark-h)!important;width:auto!important;display:block;}
+.nav-logo-word{height:var(--word-h)!important;width:auto!important;display:block;}
+@media (max-width:600px){.nav-logo-word{display:none!important;}}
+
+/* pages that have the hamburger menu: links collapse into it below 1100px
+   (the bigger logo needs the room the links used to have) */
+@media (max-width:1099px){
+  html[data-nav="full"] .nav-links{display:none!important;}
+  html[data-nav="full"] .nav-hamburger{display:flex!important;}
+}
+.nav-mobile{top:var(--nav-h)!important;}
+
+/* content that sits under the fixed header follows its height */
+html{scroll-padding-top:var(--nav-h);}
+#hero{margin-top:var(--nav-h)!important;}
+body > .page-header{margin-top:var(--nav-h)!important;}
+.page{padding-top:calc(var(--nav-h) + 28px)!important;}
+
+/* dropdown menu (the painting pages never had these rules so it rendered open inside the header) */
+.nav-dropdown { position: relative; }
+.nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--cream); border: 1px solid rgba(184,176,168,0.2); min-width: 200px; z-index: 1001; box-shadow: 0 4px 16px rgba(0,0,0,0.08); padding: 8px 0; list-style: none; }
+.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu li a { display: block; padding: 10px 20px; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--soft-black); text-decoration: none; transition: color 0.2s; }
+.nav-dropdown-menu li a:hover { color: var(--dark-gold); }
