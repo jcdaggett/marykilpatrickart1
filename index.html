@@ -137,7 +137,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);bor
 /* LIGHTBOX */
 #lightbox{display:none;position:fixed;inset:0;background:rgba(12,10,8,0.985);z-index:3000;flex-direction:column;align-items:center;}.lb-frame{position:relative;width:100%;max-width:1040px;height:100%;min-height:0;display:flex;flex-direction:column;}
 #lightbox.active{display:flex;}
-.lb-topbar{flex:0 0 auto;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;z-index:6;}.lb-top-left{display:flex;align-items:center;gap:16px;}
+.lb-topbar{flex:0 0 auto;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 70px;z-index:6;}.lb-top-left{display:flex;align-items:center;gap:16px;}
 .lb-counter{color:rgba(255,255,255,0.6);font-family:"Karla",sans-serif;font-size:0.74rem;letter-spacing:0.14em;}
 .lb-top-actions{display:flex;align-items:center;gap:10px;}
 .lb-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.28);color:#fff;cursor:pointer;font-family:"Karla",sans-serif;transition:background 0.2s;}
@@ -145,9 +145,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);bor
 .lb-zoom{display:inline-flex;align-items:center;gap:9px;padding:10px 18px;font-size:0.74rem;text-transform:uppercase;letter-spacing:0.13em;background:rgba(255,255,255,0.14);}.lb-zoom:hover{background:rgba(255,255,255,0.26);}
 .lz-glyph{width:15px;height:15px;border:2px solid #fff;border-radius:50%;box-shadow:5px 5px 0 -2px #fff;display:inline-block;}
 .lb-close{width:36px;height:36px;font-size:1.5rem;line-height:1;display:flex;align-items:center;justify-content:center;padding:0;}
-.lb-nav{position:absolute;top:60px;bottom:0;width:64px;background:none;border:none;color:rgba(255,255,255,0.5);font-size:2.6rem;cursor:pointer;z-index:5;transition:color 0.2s,background 0.2s;display:flex;align-items:center;justify-content:center;}
+.lb-imgwrap{position:relative;display:inline-block;line-height:0;max-width:100%;}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);height:110px;width:56px;background:none;border:none;color:rgba(255,255,255,0.5);font-size:2.6rem;cursor:pointer;z-index:5;transition:color 0.2s,background 0.2s;display:flex;align-items:center;justify-content:center;}
 .lb-nav:hover{color:#fff;background:rgba(255,255,255,0.04);}
-.lb-prev{left:0;}.lb-next{right:0;}
+.lb-prev{left:-60px;}.lb-next{right:-60px;}
 .lb-nav[disabled]{opacity:0.15;cursor:default;background:none;}
 .lightbox-content{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow-y:auto;overflow-x:hidden;padding:0 70px 24px;-webkit-overflow-scrolling:touch;}
 .lb-stage{flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:100%;}
@@ -166,7 +167,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);bor
 #lightbox-buy-original{background:#fff;color:#1A1814;}
 #lightbox-buy-print{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.5);}
 @media (max-width:600px){
-  .lb-nav{width:52px;min-width:44px;font-size:2rem;color:rgba(255,255,255,0.75);}
+  .lb-topbar{padding:0 14px;}
+  .lb-nav{width:34px;height:60px;font-size:1.7rem;color:#fff;background:rgba(0,0,0,0.3);}.lb-prev{left:0;}.lb-next{right:0;}
   .lightbox-content{padding:0 10px 20px;}
   #lightbox-img{max-height:54vh;}
   #lightbox-desc{font-size:0.9rem;max-width:92%;}
@@ -1238,10 +1240,12 @@ footer a:hover{color:var(--gold);}
     </div>
     <button class="lb-btn lb-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
   </div>
-  <button class="lb-nav lb-prev" onclick="lbNav(-1)" aria-label="Previous work">&#8249;</button>
-  <button class="lb-nav lb-next" onclick="lbNav(1)" aria-label="Next work">&#8250;</button>
   <div class="lightbox-content">
-    <div class="lb-stage"><img id="lightbox-img" src="" alt=""></div>
+    <div class="lb-stage"><div class="lb-imgwrap">
+      <button class="lb-nav lb-prev" onclick="lbNav(-1)" aria-label="Previous work">&#8249;</button>
+      <img id="lightbox-img" src="" alt="">
+      <button class="lb-nav lb-next" onclick="lbNav(1)" aria-label="Next work">&#8250;</button>
+    </div></div>
     <div class="lb-caption">
       <p id="lightbox-title"></p>
       <p id="lightbox-meta"></p>
@@ -1392,7 +1396,7 @@ function lbBuildItems(){
 function lbFit(){
   const img=document.getElementById('lightbox-img'), fr=document.querySelector('.lb-frame');
   if(!img||!fr||!img.naturalWidth) return;
-  const w=Math.max(img.offsetWidth,520);
+  const w=Math.max(img.offsetWidth,380);
   fr.style.maxWidth=Math.min(w+140,1040)+'px';
 }
 window.addEventListener('resize',lbFit);
