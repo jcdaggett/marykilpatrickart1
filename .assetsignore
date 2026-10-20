@@ -5,3 +5,5 @@
 trigger.txt
 prints.html backup
 *.bat
+site-gate.js
+wrangler.toml
