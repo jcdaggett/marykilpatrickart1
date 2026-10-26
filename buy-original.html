@@ -649,7 +649,7 @@ function selectPainting(title, file) {
 }
 
 // Pre-fill painting name from URL param and show context
-const SOLD_ORIGINALS = ['Slavery']; // sold — cannot enter the inquiry flow
+const SOLD_ORIGINALS = ['Slavery','War','Blue Lady','Two Twisted Sisters']; // sold — cannot enter the inquiry flow
 const urlParams = new URLSearchParams(window.location.search);
 const paintingParam = urlParams.get('painting');
 if(paintingParam && !SOLD_ORIGINALS.includes(paintingParam)) {

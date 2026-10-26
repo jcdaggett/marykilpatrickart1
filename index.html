@@ -90,6 +90,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--cream);bor
 .btn-inquire:hover{background:rgba(255,255,255,0.12);}
 .btn-print{background:var(--gold);border:1px solid var(--gold);color:#fff;}
 .btn-print:hover{background:var(--gold-light);}
+.gallery-item.orig-sold .gallery-art img{filter:grayscale(12%);}
+#lightbox-status{color:rgba(255,255,255,0.72);font-family:"Karla",sans-serif;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.14em;margin-top:9px;}#lightbox-status:empty{display:none;}
 .sold-badge{position:absolute;top:12px;right:12px;background:var(--soft-black);color:#fff;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.14em;padding:4px 10px;z-index:2;}
 
 /* ACQUIRE */
@@ -529,7 +531,7 @@ footer a:hover{color:var(--gold);}
       </div>
     </div>
 
-    <div class="gallery-item sold" onclick="openLightbox('mary-kilpatrick-two-twisted-sisters-figurative-painting.jpg','Two Twisted Sisters')">
+    <div class="gallery-item sold" data-original="sold" data-print="no" onclick="openLightbox('mary-kilpatrick-two-twisted-sisters-figurative-painting.jpg','Two Twisted Sisters')">
       <div class="gallery-art">
         <img src="thumbs/mary-kilpatrick-two-twisted-sisters-figurative-painting.jpg" alt="Two Twisted Sisters - original painting by Mary Kilpatrick (sold)" loading="lazy">
         <div class="sold-badge">Sold</div>
@@ -574,7 +576,7 @@ footer a:hover{color:var(--gold);}
       </div>
     </div>
 
-    <div class="gallery-item sold" onclick="openLightbox('mary-kilpatrick-blue-lady-figurative-painting.jpg','Blue Lady')">
+    <div class="gallery-item sold" data-original="sold" data-print="no" onclick="openLightbox('mary-kilpatrick-blue-lady-figurative-painting.jpg','Blue Lady')">
       <div class="gallery-art">
         <img src="thumbs/mary-kilpatrick-blue-lady-figurative-painting.jpg" alt="Blue Lady - original painting by Mary Kilpatrick (sold)" loading="lazy">
         <div class="sold-badge">Sold</div>
@@ -630,10 +632,10 @@ footer a:hover{color:var(--gold);}
       </div>
     </div>
 
-    <div class="gallery-item sold" onclick="openLightbox('mary-kilpatrick-war-figurative-painting.jpg','War')">
+    <div class="gallery-item orig-sold" data-original="sold" data-print="yes" onclick="openLightbox('mary-kilpatrick-war-figurative-painting.jpg','War')">
       <div class="gallery-art">
-        <img src="thumbs/mary-kilpatrick-war-figurative-painting.jpg" alt="War - original painting by Mary Kilpatrick (sold)" loading="lazy">
-        <div class="sold-badge">Sold</div>
+        <img src="thumbs/mary-kilpatrick-war-figurative-painting.jpg" alt="War - original painting by Mary Kilpatrick (original sold; prints available)" loading="lazy">
+        <div class="sold-badge">Original sold</div>
         <span class="gallery-view-cue">View</span>
       </div>
       <div class="gallery-caption">
@@ -1050,10 +1052,10 @@ footer a:hover{color:var(--gold);}
       </div>
     </div>
 
-    <div class="gallery-item" data-url="paintings/slavery.html" onclick="openLightbox('mary-kilpatrick-slavery-figurative-painting.jpg','Slavery')">
+    <div class="gallery-item sold" data-original="sold" data-print="no" data-url="paintings/slavery.html" onclick="openLightbox('mary-kilpatrick-slavery-figurative-painting.jpg','Slavery')">
       <div class="gallery-art">
         <img src="thumbs/mary-kilpatrick-slavery-figurative-painting.jpg" alt="Slavery - original painting by Mary Kilpatrick" loading="lazy">
-        <div class="sold-badge">Original Sold</div>
+        <div class="sold-badge">Sold</div>
         <span class="gallery-view-cue">View</span>
       </div>
       <div class="gallery-caption">
@@ -1284,6 +1286,7 @@ footer a:hover{color:var(--gold);}
     <div class="lb-caption">
       <p id="lightbox-title"></p>
       <p id="lightbox-meta"></p>
+      <p id="lightbox-status"></p>
       <div id="lightbox-desc"></div>
       <div class="lb-buy">
         <a id="lightbox-buy-original" href="buy-original.html" onclick="this.href='buy-original.html?painting='+encodeURIComponent(document.getElementById('lightbox-title').innerText);closeLightbox();">Acquire the Original</a>
@@ -1425,7 +1428,7 @@ let LB_ITEMS=[], lbIndex=-1;
 function lbBuildItems(){
   LB_ITEMS=[...document.querySelectorAll('.gallery-item')].map(it=>{
     const m=it.getAttribute('onclick').match(/openLightbox\('([^']+)','([^']+)'\)/);
-    return m?{src:m[1],title:m[2],sold:it.classList.contains('sold')}:null;
+    return m?{src:m[1],title:m[2],orig:it.dataset.original||'yes',print:it.dataset.print||'yes'}:null;
   }).filter(Boolean);
 }
 function lbFit(){
@@ -1453,7 +1456,12 @@ function lbShow(i){
   // buy links
   const bo=document.getElementById('lightbox-buy-original'), bp=document.getElementById('lightbox-buy-print');
   bp.href='prints.html#'+encodeURIComponent(it.title);
-  bo.style.display=it.sold?'none':''; bp.style.display=it.sold?'none':'';
+  // availability: original (yes|sold) and print (yes|no) come from each tile's data attributes
+  bo.style.display=it.orig==='yes'?'':'none';
+  bp.style.display=it.print==='yes'?'':'none';
+  const st=document.getElementById('lightbox-status');
+  st.textContent = it.orig==='sold' ? (it.print==='yes' ? 'Original sold \u00b7 Prints available' : 'Original sold \u00b7 Not offered as a print')
+                 : (it.print==='yes' ? '' : 'Original available \u00b7 Not offered as a print');
   // prev/next enabled state
   document.querySelector('.lb-prev').disabled=(i===0);
   document.querySelector('.lb-next').disabled=(i===LB_ITEMS.length-1);
